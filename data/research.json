@@ -1,0 +1,37 @@
+{
+  "archive": 2000,
+  "semanticPilot": 120,
+  "occurrences": 168,
+  "workerOccurrences": 156,
+  "qualificationOccurrences": 122,
+  "workerDocuments": 114,
+  "namedCollaborationDocuments": 71,
+  "sources": {
+    "51job": 1000,
+    "boss": 500,
+    "liepin": 500
+  },
+  "terms": {
+    "独立": 618,
+    "抗压": 501,
+    "SQL": 60,
+    "数据": 905,
+    "沟通": 1233,
+    "协作": 522,
+    "闭环": 182,
+    "自主": 47,
+    "AI": 207,
+    "责任心": 498,
+    "耐心": 53,
+    "学习": 368
+  },
+  "senses": {
+    "execution": 90,
+    "judgment": 28,
+    "end_to_end": 17,
+    "coordination": 5,
+    "generic": 7,
+    "ambiguous": 9
+  },
+  "status": "model_coded_exploratory_not_human_validated"
+}

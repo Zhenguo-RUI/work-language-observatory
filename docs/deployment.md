@@ -1,30 +1,36 @@
-# Deployment and portability / 部署与迁移
+# Deployment / 部署
 
-## Current implementation
+## Vercel
 
-The application uses Vinext and the Cloudflare Vite plugin, with a Cloudflare Worker entry point and D1 SQL storage. `.openai/hosting.json` declares binding names only; this export contains no previous hosting project identifier or deployed resource IDs. Local builds use a placeholder database ID for the local emulator.
+1. Import `Zhenguo-RUI/work-language-observatory`. Use the repository root, Next.js, Node.js 22, build `npm run build`, install `npm ci --include=dev`.
+2. Add the Neon integration, choose its Free plan, accept its service terms and connect the database to this project. The integration injects `DATABASE_URL`. Tables and indexes initialize transactionally on first access; no private corpus is seeded.
+3. Add encrypted server-side environment variables:
+   - `ANALYSIS_PROVIDER=deepseek`
+   - `ANALYSIS_MODEL=deepseek-flash`
+   - `DEEPSEEK_API_KEY` from your own API account
+   - `MODEL_DAILY_CALL_LIMIT=100`: shared provider requests per UTC day, including repairs and translations
+   - `AUTH_SECRET`: a securely generated value of at least 32 characters
+   - `AUTH_GITHUB_ID`, `AUTH_GITHUB_SECRET`: optional GitHub OAuth application credentials for personal histories
+   - `OPERATOR_ACCESS_KEY`: optional separate random owner-only key, at least 32 characters; never a personal account password
+   - `OPERATOR_GITHUB_ID`: the operator's stable numeric GitHub user ID
+4. Set the GitHub OAuth callback to `https://YOUR-PRODUCTION-HOST/api/auth/callback/github`. Optional `AUTH_URL` must match that host; update it when switching to a custom domain. Never share OAuth client secrets or model keys in the repository.
+5. Deploy. If the public production URL requires Vercel login, disable Vercel Authentication for production in project Deployment Protection. The application still protects saved records and operations via Auth.js.
+6. Check anonymous analysis, the English title/full-text translation, private record ownership and owner-only operator access. A successful page load alone does not verify model or database functionality.
 
-`npm run build` prepares `dist/`. `npm start` serves that build through **local** Wrangler; it does not deploy a production site.
+## Data and permissions
 
-The authentication adapter reads `oai-authenticated-user-*` headers injected by the original host's gateway. This is safe only when a trusted gateway removes caller-supplied versions of those headers and injects verified identity. The Vite mock login strips spoofed headers during local development. It provides no identity verification for an independently deployed production server.
+The public tool and aggregate findings need no visitor account. Anonymous readings are ephemeral and not written into the site's history. Signed-in submissions are saved and may be reviewed by the operator; other visitors cannot retrieve them. A record's `published` status does not change this ownership boundary.
 
-**Do not expose a standalone deployment with this adapter unchanged.** A configured operator email is an authorization check after authentication; it is not a replacement for authentication.
+Database transactions protect revision histories and optimistic review updates. Durable database counters enforce anonymous hourly and shared daily model-call limits. The database is required for paid public model calls; production does not fall back to process-local counters or ephemeral SQLite.
 
-## Vercel migration checklist
+GitHub identities come only from verified Auth.js sessions. Caller-supplied host identity headers are ignored. The operator is authorized by a numeric provider ID, not by a display name or an unverified email. An owner-key login uses the same Auth.js encrypted HttpOnly sessions and CSRF protection, with a distinct internal identity. The key is checked on the server and its credential version is checked on each session refresh; rotation invalidates prior owner-key sessions. It does not impersonate a GitHub identity. When OAuth is absent, public-user cloud histories are disabled; the operator can still use the owner-key workspace. Without either authentication method, the public reader remains available while storage and operations actions require login.
 
-The target deployment requested for this project is GitHub → Vercel → a custom domain. Uploading this source is the first step. A functioning migration still requires:
+## Custom domain
 
-1. Replace Vinext/Worker entry and `cloudflare:workers` bindings with the selected Vercel-compatible runtime.
-2. Adapt D1 SQL operations, migrations, revision checks and rate counters to the selected persistent database.
-3. Replace host headers and host sign-in routes with verified server-side sessions; recheck record ownership and operator authorization.
-4. Store model credentials only in the hosting provider's server secret settings. Add a spending limit and recheck anonymous request quotas.
-5. Test anonymous analysis, bilingual output, private history, concurrent edits and operator actions on a preview deployment.
-6. Connect the custom domain using the DNS records actually supplied by the selected host.
+Add the purchased domain in Vercel Settings → Domains. Copy the exact DNS records shown there into the domain's DNS provider; do not assume a fixed historical IP address. Check Vercel's domain status and HTTPS after propagation. A domain purchase is separate from hosting and API billing.
 
-Do not assume the repository can currently be imported into Vercel as an ordinary Next.js application and immediately work. No Vercel deployment, external database or custom-domain setup is included in this export.
+## Releases
 
-## 中文说明
+Normal updates are source commits followed by a Vercel rebuild. Changing environment variables also requires a new deployment. Keep model keys in Vercel's server environment. Retain database backups and test major prompt or schema changes before promoting them. Never restore the former Cloudflare-only archive over this version.
 
-当前是可本地构建的研究原型源码。数据库、登录和运营权限仍依赖原运行环境；迁移到独立网站，需要把这些连接落实并验证。域名只决定访问地址，不会自动补齐数据库、认证或模型服务。
-
-公开仓库仅包含工具和汇总数据。不要为使部署方便而把私有语料、个人文书、真实用户提交或密钥重新放回仓库。生产密钥应通过服务端配置注入，浏览器不能直接持有。
+If a deployment was uploaded directly before GitHub synchronization, label that state explicitly: automatic GitHub deployment is not complete until the same source is committed and the repository is connected.

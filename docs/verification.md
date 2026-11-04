@@ -1,21 +1,25 @@
 # Verification / 验证记录
 
-Verified on 2026-11-04 in a fresh temporary directory with Node.js 22.23.1. Dependencies installed successfully with `npm ci` from the lockfile.
+## Next.js migration — 2026-11-04
 
-- TypeScript: passed.
-- Full client/server build: passed.
-- Analysis and provider checks: 45 passed.
-- Full translation checks: 19 passed (no private prepared cases included).
-- Boundary and cross-field fidelity checks: 63 passed.
-- Language checks: 13 passed.
-- Known semantic regressions: 12 passed.
+Node.js 22.23.1, standard Next.js 16.3.4, Auth.js, Postgres-compatible adapter. The production build and TypeScript checks passed locally.
 
-These 152 checks exercise finite contracts, synthetic regressions and mocked provider responses. They are not an independent sociological accuracy estimate. A live smoke test, if recorded below, uses one synthetic input and is not a quality benchmark.
+- Analysis/provider checks: 45.
+- Full translation checks: 19.
+- Cross-field fidelity checks: 63.
+- Language checks: 13.
+- Known semantic regressions: 12.
+- Database, identity-policy and model-budget checks: 18.
+- Actual Next.js HTTP/session/isolation checks: 30.
 
-## Live DeepSeek smoke test
+These 200 finite checks use synthetic cases, mocked providers, PGlite and encrypted synthetic test sessions. HTTP checks cover ownership, spoofed identity headers, invalid sessions, concurrent review conflicts, private exports, rate limits and operator separation. They do not establish live GitHub OAuth or Neon connectivity, independent semantic accuracy or improved applicant outcomes.
 
-One synthetic data-analyst JD was sent to `deepseek-flash`: one analysis request and one full-translation request. Both passed their respective local contracts. Total elapsed time was 53.6 seconds. The provider reported 13,018 tokens across the two calls, including thinking tokens. This timing and token count describe this one test only. No private corpus, CV or personal statement was sent.
+## Earlier local live check
 
-Browser interaction was not rechecked in this session because the browser tool timed out. Seven local HTTP checks passed: reader response, model-connected anonymous bootstrap, no saved-case exposure, protected operations and archive routes, rejected forged identity headers, public aggregates, and an ephemeral labelled rule preview. No independent production deployment was performed.
+The separate retained Cloudflare local prototype completed a real DeepSeek analysis and full translation of a synthetic JD, followed by private record readback and operator revision synchronization. That result verifies its local workflow only; it does not verify this Next.js deployment or constitute a social-science quality benchmark.
 
-A manual read of the live result also flagged wording that can blur “authority not specified in the JD” and “authority not granted”. This is an interpretive review issue that the automatic contract does not fully detect; the smoke test is therefore not a claim that every generated assertion is correct.
+Browser automation was unavailable in this migration session. HTTP checks and a production build were used; visual interaction was not independently rechecked. A production verification record should be added only after the real deployed endpoints have been exercised.
+
+## Public deployment smoke test
+
+The Vercel public deployment at `https://work-language-observatory.vercel.app` completed 12 anonymous HTTP checks, including real Neon initialization, one live DeepSeek analysis, source-grounded quotes and complete role-title/JD translation, with no private record or comparator exposure. The entire check sequence took 82.9 seconds. The input was synthetic; this is a connectivity and functionality test, not a human semantic accuracy estimate. That run preceded the optional owner-key login update; its deployment still needs its own authentication verification.

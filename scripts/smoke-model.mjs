@@ -6,8 +6,9 @@ import {existsSync,mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 const settings={...process.env};
-if(existsSync('.dev.vars')){
-  for(const line of readFileSync('.dev.vars','utf8').split(/\r?\n/)){
+for(const configFile of ['.env.local','.dev.vars']){
+ if(!existsSync(configFile))continue;
+  for(const line of readFileSync(configFile,'utf8').split(/\r?\n/)){
     const match=line.match(/^([A-Z_]+)\s*=\s*(.*)$/);
     if(match&&!settings[match[1]])settings[match[1]]=match[2].replace(/^(["'])(.*)\1$/,'$2');
   }

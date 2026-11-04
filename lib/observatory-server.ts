@@ -1,6 +1,10 @@
-import {env} from "cloudflare:workers";
+import {createHmac} from "node:crypto";
+import {getDatabase,databaseConfigured,ensureDatabase} from "./database";
+import type {PreparedStatement} from "./database-core";
+import {authenticationConfigured,githubAuthenticationConfigured,isOperatorIdentity} from "./identity-policy";
+const env=process.env;
 import {z} from "zod";
-import {getChatGPTUser} from "@/app/chatgpt-auth";
+import {getUser} from "./identity";
 import {seeds,seedTranslations} from "./seed-data";
 import corpusData from "@/data/corpus.json";
 import research from "@/data/research.json";
@@ -11,13 +15,15 @@ import {resultSchema} from "./analysis-contract";
 import {ANALYSIS_VERSION} from "./analysis-prompt";
 import {runModelReading} from "./model-reading";
 import {modelRuntime} from "./model-client";
+import {operatorAccessConfigured} from "./operator-access";
+import {reserveModelCall,ModelBudgetError} from "./model-quota";
 import type {Analysis,AnalysisResult,CorpusEntry} from "./observatory-types";
 const corpus=corpusData as CorpusEntry[];
 const now=()=>new Date().toISOString();
 const uid=()=>crypto.randomUUID();
 const statuses=["draft","in_review","published","archived"] as const;
 class HttpError extends Error{constructor(public status:number,message:string){super(message)}}
-function database(){if(!env.DB)throw new HttpError(503,"数据库正在连接，请稍后刷新 / Database unavailable");return env.DB;}
+function database(){if(!databaseConfigured())throw new HttpError(503,"保存服务正在配置 / Storage is being configured");return getDatabase();}
 async function rows<T=Record<string,unknown>>(sql:string,...args:unknown[]){return (await database().prepare(sql).bind(...args).all<T>()).results;}
 async function first<T=Record<string,unknown>>(sql:string,...args:unknown[]){return database().prepare(sql).bind(...args).first<T>();}
 const parseRow=(r:Record<string,unknown>):Analysis=>{const {owner_id,change_id,result_json,...fields}=r;return {...fields,result:JSON.parse(result_json as string)} as unknown as Analysis;};
@@ -33,35 +39,37 @@ async function readyTranslation(title:string,raw:string){
 }
 async function setting(key:string,fallback=""){return (await first<{value:string}>("SELECT value FROM settings WHERE key=?",key))?.value??fallback;}
 async function event(actor:string,action:string,detail:string,id:string|null=null){await database().prepare("INSERT INTO activities (id,actor_id,analysis_id,action,detail,created_at) VALUES (?,?,?,?,?,?)").bind(uid(),actor,id,action,detail,now()).run();}
-async function actor(){const user=await getChatGPTUser();if(!user)throw new HttpError(401,"请先登录 / Please sign in");return user;}
-function isOperator(user:Awaited<ReturnType<typeof getChatGPTUser>>){return !!user&&!!env.OPERATOR_EMAIL&&user.email.toLowerCase()===env.OPERATOR_EMAIL.toLowerCase();}
+async function actor(){const user=await getUser();if(!user)throw new HttpError(401,"请先登录 / Please sign in");return user;}
+function isOperator(user:Awaited<ReturnType<typeof getUser>>){return isOperatorIdentity(user,env.OPERATOR_GITHUB_ID,operatorAccessConfigured());}
 async function operator(userId:string){const user=await actor();if(user.userId!==userId||!isOperator(user))throw new HttpError(403,"仅项目运营者可以执行此操作 / Operator access required");}
 async function publicQuota(req:Request){
- const hour=new Date().toISOString().slice(0,13),ip=req.headers.get("cf-connecting-ip")||"shared",fingerprint=(await textHash(ip)).slice(0,32);
+ const hour=new Date().toISOString().slice(0,13),ip=env.VERCEL==="1"?(req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()||"shared"):"local",fingerprint=createHmac("sha256",env.AUTH_SECRET||modelRuntime(env).apiKey||"rule-preview-only").update(hour+":"+ip).digest("hex").slice(0,32);
  for(const [scope,limit] of [["all",100],[fingerprint,12]] as const){
-  const row=await database().prepare("INSERT INTO settings (key,value,updated_at) VALUES (?, '1', ?) ON CONFLICT(key) DO UPDATE SET value=CAST(CAST(value AS INTEGER)+1 AS TEXT),updated_at=excluded.updated_at RETURNING value").bind(`rate:${hour}:${scope}`,now()).first<{value:string}>();
+  const row=await database().prepare("INSERT INTO settings (key,value,updated_at) VALUES (?, '1', ?) ON CONFLICT(key) DO UPDATE SET value=CAST(CAST(settings.value AS INTEGER)+1 AS TEXT),updated_at=excluded.updated_at RETURNING value").bind(`rate:${hour}:${scope}`,now()).first<{value:string}>();
   if(Number(row?.value)>limit)throw new HttpError(429,"本小时公开体验次数已达上限，请稍后再试 / Public preview limit reached; please try later");
  }
  await database().prepare("DELETE FROM settings WHERE key LIKE 'rate:%' AND updated_at<?").bind(new Date(Date.now()-48*3600000).toISOString()).run();
 }
 async function initialize(){
+ await ensureDatabase();
  const db=database();
  if(await setting("initialized")==="public-v1")return;
- const stmts:D1PreparedStatement[]=[];
- for(const s of seeds){const stamp=now();stmts.push(db.prepare("INSERT OR IGNORE INTO analyses (id,owner_id,title,company,raw_text,source_url,text_hash,status,engine,result_json,revision,change_id,created_at,updated_at) VALUES (?,?,?,?,?,?,?,'published','curated',?,1,?,?,?)").bind(s.id,"__observatory__",s.title,s.company,s.raw_text,s.source_url,await textHash(s.raw_text),JSON.stringify(s.result),`seed-${s.id}`,stamp,stamp));stmts.push(db.prepare("UPDATE analyses SET owner_id='__observatory__' WHERE id=? AND engine='curated'").bind(s.id));}
+ const stmts:PreparedStatement[]=[];
+ for(const s of seeds){const stamp=now();stmts.push(db.prepare("INSERT INTO analyses (id,owner_id,title,company,raw_text,source_url,text_hash,status,engine,result_json,revision,change_id,created_at,updated_at) VALUES (?,?,?,?,?,?,?,'published','curated',?,1,?,?,?) ON CONFLICT(id) DO NOTHING").bind(s.id,"__observatory__",s.title,s.company,s.raw_text,s.source_url,await textHash(s.raw_text),JSON.stringify(s.result),`seed-${s.id}`,stamp,stamp));stmts.push(db.prepare("UPDATE analyses SET owner_id='__observatory__' WHERE id=? AND engine='curated'").bind(s.id));}
  stmts.push(db.prepare("INSERT INTO settings (key,value,updated_at) VALUES ('initialized','public-v1',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value,updated_at=excluded.updated_at").bind(now()));
- stmts.push(db.prepare("INSERT OR IGNORE INTO settings (key,value,updated_at) VALUES ('method_note',?,?)").bind("以原文动作和对象解释能力词；区分资格、职责、协作与授权；保留来源、反例和解释边界。",now()));
- stmts.push(db.prepare("INSERT OR IGNORE INTO activities (id,actor_id,action,detail,created_at) VALUES ('initial-cases',?,'initialized',?,?)").bind("system",`Initialized with ${seeds.length} case records; not an independent evaluation.`,now()));
+ stmts.push(db.prepare("INSERT INTO settings (key,value,updated_at) VALUES ('method_note',?,?) ON CONFLICT(key) DO NOTHING").bind("以原文动作和对象解释能力词；区分资格、职责、协作与授权；保留来源、反例和解释边界。",now()));
+ stmts.push(db.prepare("INSERT INTO activities (id,actor_id,action,detail,created_at) VALUES ('initial-cases',?,'initialized',?,?) ON CONFLICT(id) DO NOTHING").bind("system",`Initialized with ${seeds.length} case records; not an independent evaluation.`,now()));
  await db.batch(stmts);
 }
-async function getAnalysis(id:string,userId:string){const op=isOperator(await getChatGPTUser());const r=await first("SELECT * FROM analyses WHERE id=? AND (owner_id=? OR ?)",id,userId,op?1:0);if(!r)throw new HttpError(404,"记录不存在 / Record not found");return readerView(parseRow(r),op);}
+async function getAnalysis(id:string,userId:string){const op=isOperator(await getUser());const r=await first("SELECT * FROM analyses WHERE id=? AND (owner_id=? OR ?)",id,userId,op);if(!r)throw new HttpError(404,"记录不存在 / Record not found");return readerView(parseRow(r),op);}
 async function body(req:Request){if(!req.headers.get("content-type")?.includes("application/json"))throw new HttpError(415,"请使用JSON提交 / JSON required");const raw=await req.text();if(raw.length>120000)throw new HttpError(413,"提交内容过长 / Request too large");try{return JSON.parse(raw)}catch{throw new HttpError(400,"内容格式无效 / Invalid JSON")}}
-async function config(){const runtime=modelRuntime(env),model=await setting("model",runtime.model);return {provider:runtime.provider,model,modelConnected:!!runtime.apiKey&&!!model,methodNote:await setting("method_note"),version:ANALYSIS_VERSION};}
+async function config(){const runtime=modelRuntime(env),model=databaseConfigured()?await setting("model",runtime.model):runtime.model;return {provider:runtime.provider,model,modelConnected:databaseConfigured()&&!!runtime.apiKey&&!!model,authConfigured:githubAuthenticationConfigured(),storageConfigured:databaseConfigured(),methodNote:databaseConfigured()?await setting("method_note"):"",version:ANALYSIS_VERSION};}
 function json(value:unknown,status=200){return Response.json(value,{status,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff","Vary":"Cookie"}});}
 async function modelAnalysis(raw:string,title:string,cs:CorpusEntry[],methodNote:string,model:string):Promise<AnalysisResult>{
  const runtime=modelRuntime(env);if(!runtime.apiKey)throw new Error("model_not_connected");
- return (await runModelReading({provider:runtime.provider,apiKey:runtime.apiKey,model,raw,title,comparators:cs,methodNote})).result;
+ return (await runModelReading({provider:runtime.provider,apiKey:runtime.apiKey,model,raw,title,comparators:cs,methodNote,request:meteredModelRequest})).result;
 }
+const meteredModelRequest:typeof fetch=async(input,init)=>{await reserveModelCall(database(),env.MODEL_DAILY_CALL_LIMIT);return fetch(input,init);};
 async function updateAnalysis(current:Analysis,userId:string,input:{result?:AnalysisResult;status?:Analysis["status"];revision:number;note?:string;issues?:string[]}){
  if(input.revision!==current.revision)throw new HttpError(409,"该记录已更新，请刷新后再保存 / This record changed; refresh before saving");
  const result=input.result??current.result;const status=input.status??current.status;
@@ -77,19 +85,34 @@ async function updateAnalysis(current:Analysis,userId:string,input:{result?:Anal
 }
 export async function handleApi(req:Request,path:string[]){
  try{
-  if(path.join("/")==="health")return json({ok:true,database:!!env.DB});
+  if(path.join("/")==="health")return json({ok:true,databaseConfigured:databaseConfigured(),authenticationConfigured:authenticationConfigured(),version:ANALYSIS_VERSION});
   if(req.method!=="GET"){const origin=req.headers.get("origin");if(origin&&origin!==new URL(req.url).origin)throw new HttpError(403,"跨站提交已拒绝 / Cross-origin write rejected");}
-  const identity=await getChatGPTUser(),op=isOperator(identity),user=identity||{userId:"",displayName:"访客 / Guest",email:"",fullName:null};await initialize();const root=path[0];
+  const identity=await getUser(),op=isOperator(identity),user=identity||{userId:"",displayName:"访客 / Guest",email:"",fullName:null};const root=path[0];
+  if(root==="bootstrap"&&new URL(req.url).searchParams.get("scope")==="ops"){if(!identity)throw new HttpError(401,"请先登录 / Please sign in");await operator(user.userId);}
+  if(root==="research"&&req.method==="GET")return json(research);
+  if(!databaseConfigured()){
+   if(root==="bootstrap"&&req.method==="GET")return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:[],stats:{total:0,draft:0,in_review:0,published:0,archived:0,feedback:0,reviews:0},feedback:[],activity:[],settings:{model:"",modelConnected:false,authConfigured:githubAuthenticationConfigured(),storageConfigured:false,methodNote:"",version:ANALYSIS_VERSION}});
+   if(root==="analyses"&&path.length===1&&req.method==="POST"){
+    const d=z.object({title:z.string().max(160).default(""),company:z.string().max(160).default(""),rawText:z.string().min(40).max(24000),sourceUrl:z.string().max(1500).default(""),useModel:z.boolean().default(false)}).parse(await body(req));
+    if(d.useModel)throw new HttpError(503,"模型分析服务正在配置 / Model analysis is being configured");
+    if(d.sourceUrl&&!/^https?:\/\//.test(d.sourceUrl))throw new HttpError(400,"来源链接须为HTTP或HTTPS / Invalid source URL");
+    const title=d.title||d.rawText.split("\n")[0].slice(0,80),result=ruleDraft(d.rawText,title,[]),stamp=now();
+    const translation=await readyTranslation(title,d.rawText);if(translation)result.sourceTranslation=translation;
+    return json({analysis:{id:`preview-${uid()}`,title,company:d.company,raw_text:d.rawText,source_url:d.sourceUrl,text_hash:await textHash(d.rawText),status:"draft",engine:"rules",result,revision:1,created_at:stamp,updated_at:stamp},ephemeral:true,modelError:false});
+   }
+   throw new HttpError(503,"保存和复核服务正在配置 / Storage and review are being configured");
+  }
+  await initialize();
   if(root==="bootstrap"&&req.method==="GET"){
    if(new URL(req.url).searchParams.get("scope")==="ops"){if(!identity)throw new HttpError(401,"请先登录 / Please sign in");await operator(user.userId);}
    const where=op?"1=1":"owner_id=?",args=op?[]:[user.userId];
    const list=(await rows(`SELECT * FROM analyses WHERE ${where} ORDER BY updated_at DESC LIMIT 250`,...args)).map(r=>readerView(parseRow(r),op));
    const feedback=op?await rows("SELECT f.*,a.title FROM feedback f JOIN analyses a ON a.id=f.analysis_id ORDER BY f.created_at DESC LIMIT 100"):[];
-   const grouped=await rows<{status:string;n:number}>(`SELECT status,count(*) n FROM analyses WHERE ${where} GROUP BY status`,...args);
+   const grouped=await rows<{status:string;n:number}>(`SELECT status,count(*)::integer n FROM analyses WHERE ${where} GROUP BY status`,...args);
    const counts=Object.fromEntries(statuses.map(status=>[status,grouped.find(r=>r.status===status)?.n||0]));
-   const feedbackCount=op?await first<{n:number}>("SELECT count(*) n FROM feedback"):null;
-   const reviewCount=op?await first<{n:number}>("SELECT count(*) n FROM reviews"):null;
-   return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:list,stats:{total:grouped.reduce((n,r)=>n+r.n,0),...counts,feedback:feedbackCount?.n||0,reviews:reviewCount?.n||0},feedback,activity:op?await rows("SELECT id,action,detail,created_at FROM activities ORDER BY created_at DESC LIMIT 15"):[],settings:op?await config():{model:"",modelConnected:(await config()).modelConnected,methodNote:"",version:ANALYSIS_VERSION}});
+   const feedbackCount=op?await first<{n:number}>("SELECT count(*)::integer n FROM feedback"):null;
+   const reviewCount=op?await first<{n:number}>("SELECT count(*)::integer n FROM reviews"):null;
+   return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:list,stats:{total:grouped.reduce((n,r)=>n+r.n,0),...counts,feedback:feedbackCount?.n||0,reviews:reviewCount?.n||0},feedback,activity:op?await rows("SELECT id,action,detail,created_at FROM activities ORDER BY created_at DESC LIMIT 15"):[],settings:op?await config():{model:"",modelConnected:(await config()).modelConnected,authConfigured:githubAuthenticationConfigured(),storageConfigured:true,methodNote:"",version:ANALYSIS_VERSION}});
   }
   if(root==="corpus"&&req.method==="GET"){
    await operator(user.userId);
@@ -118,18 +141,18 @@ export async function handleApi(req:Request,path:string[]){
    const cfg=await config();if(!cfg.modelConnected)throw new HttpError(503,"全文翻译服务尚未连接，可使用兼容浏览器的本地翻译 / Full translation is not connected; a compatible browser can translate locally");
    await publicQuota(req);
    const runtime=modelRuntime(env);
-   let translation;try{translation=await translateWithModel({title,raw,provider:runtime.provider,apiKey:runtime.apiKey!,model:cfg.model});}catch{throw new HttpError(502,"翻译未完整通过检查，请重试 / Translation did not pass completeness checks; please retry");}
+   let translation;try{translation=await translateWithModel({title,raw,provider:runtime.provider,apiKey:runtime.apiKey!,model:cfg.model,request:meteredModelRequest});}catch(error){if(error instanceof ModelBudgetError)throw error;throw new HttpError(502,"翻译未完整通过检查，请重试 / Translation did not pass completeness checks; please retry");}
    if(current&&identity){const saved=await updateAnalysis(current,user.userId,{result:{...current.result,sourceTranslation:translation},revision:current.revision});return json({translation,analysis:saved});}
    return json({translation,ephemeral:true});
   }
   if(root==="analyses"&&path.length===1&&req.method==="POST"){
    const d=z.object({title:z.string().max(160).default(""),company:z.string().max(160).default(""),rawText:z.string().min(40).max(24000),sourceUrl:z.string().max(1500).default(""),useModel:z.boolean().default(false)}).parse(await body(req));
    if(d.sourceUrl&&!/^https?:\/\//.test(d.sourceUrl))throw new HttpError(400,"来源链接须为HTTP或HTTPS / Invalid source URL");
-   const n=await first<{n:number}>("SELECT count(*) n FROM analyses WHERE owner_id=? AND engine!='curated' AND created_at>?",user.userId,new Date(Date.now()-3600000).toISOString());if((n?.n||0)>=30)throw new HttpError(429,"本小时提交已达30份，请稍后再试 / Hourly limit reached");
+   const n=await first<{n:number}>("SELECT count(*)::integer n FROM analyses WHERE owner_id=? AND engine!='curated' AND created_at>?",user.userId,new Date(Date.now()-3600000).toISOString());if((n?.n||0)>=30)throw new HttpError(429,"本小时提交已达30份，请稍后再试 / Hourly limit reached");
    if(!identity)await publicQuota(req);
    const hash=await textHash(d.rawText);const existing=identity?await first("SELECT * FROM analyses WHERE owner_id=? AND text_hash=? AND status!='archived' ORDER BY CASE WHEN engine='curated' THEN 0 ELSE 1 END LIMIT 1",user.userId,hash):null;if(existing)return json({analysis:readerView(parseRow(existing),op),reused:true});
    const cs=op?matchesFor(`${d.title} ${d.rawText}`,corpus):[];const cfg=await config();let result=ruleDraft(d.rawText,d.title||d.rawText.split("\n")[0].slice(0,60),cs);let engine="rules",modelError=false;
-   if(d.useModel){if(!cfg.modelConnected)throw new HttpError(409,"请先在运营端连接模型 / Connect the analysis model first");try{result=await modelAnalysis(d.rawText,d.title,cs,cfg.methodNote,cfg.model);engine="model";}catch{modelError=true;}}
+   if(d.useModel){if(!cfg.modelConnected)throw new HttpError(409,"请先在运营端连接模型 / Connect the analysis model first");try{result=await modelAnalysis(d.rawText,d.title,cs,cfg.methodNote,cfg.model);engine="model";}catch(error){if(error instanceof ModelBudgetError)throw error;modelError=true;}}
    if(!op)result.comparisons=[];
    const id=uid(),stamp=now(),title=d.title||d.rawText.split("\n")[0].slice(0,80);
    const prepared=await readyTranslation(title,d.rawText);if(prepared)result.sourceTranslation=prepared;
@@ -149,5 +172,5 @@ export async function handleApi(req:Request,path:string[]){
    if(path[2]==="export"&&req.method==="GET")return new Response(JSON.stringify(current,null,2),{headers:{"Content-Type":"application/json; charset=utf-8","Content-Disposition":`attachment; filename="jd-analysis-${current.id}.json"`,"Cache-Control":"no-store"}});
   }
   throw new HttpError(404,"接口不存在 / Endpoint not found");
- }catch(e){if(e instanceof HttpError)return json({error:e.message},e.status);if(e instanceof z.ZodError)return json({error:"输入字段无效，请检查后重试 / Invalid input",fields:e.issues.map(x=>x.path.join("."))},422);console.error("Observatory API error",e instanceof Error?e.message:"unknown");return json({error:"操作未完成，请稍后重试 / The operation could not be completed"},500);}
+ }catch(e){if(e instanceof ModelBudgetError)return json({error:"本站今日模型体验额度已用完，请明日再试 / The site’s daily model allowance has been reached; please try tomorrow"},429);if(e instanceof HttpError)return json({error:e.message},e.status);if(e instanceof z.ZodError)return json({error:"输入字段无效，请检查后重试 / Invalid input",fields:e.issues.map(x=>x.path.join("."))},422);console.error("Observatory API error",{type:e instanceof Error?e.name:"unknown"});return json({error:"操作未完成，请稍后重试 / The operation could not be completed"},500);}
 }

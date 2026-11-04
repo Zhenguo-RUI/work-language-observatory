@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+import {readFileSync,writeFileSync} from 'node:fs';
+const req=createRequire(import.meta.url);
+const {englishCondition,displayTerm,localizeError,hasChinese}=req(resolve('.sites-runtime/analysis-tests/localization.js'));
+const {ruleDraft}=req(resolve('.sites-runtime/analysis-tests/analysis-engine.js'));
+const {deepEvidenceErrors}=req(resolve('.sites-runtime/analysis-tests/analysis-contract.js'));
+const checks=[];const check=(name,fn)=>{fn();checks.push({name,passed:true});};
+check('English keyword labels are translated',()=>assert.equal(displayTerm('独立','en'),'Working independently'));
+check('translated select labels preserve Chinese search values',()=>assert(readFileSync('components/observatory.tsx','utf8').includes('<option key={s} value={s}>')));
+check('preference is retained',()=>assert.equal(englishCondition('连续实习六个月优先').text,'Preferred: 6 months of continuous availability.'));
+check('graduation cutoff is retained',()=>assert.equal(englishCondition('毕业时间在2028 年及以后').text,'Graduation in 2028 or later.'));
+check('weekly attendance is retained',()=>assert.equal(englishCondition('每周到岗 5 天').text,'5 days per week on site.'));
+check('negative condition is not reversed',()=>assert.equal(englishCondition('不要求抗压型人格').text,'Not required: A pressure-tolerant personality.'));
+check('unknown conditions are not falsely marked complete',()=>assert.equal(englishCondition('另有尚未说明的特殊复杂条件').complete,false));
+check('English errors exclude Chinese copy',()=>assert.equal(localizeError('操作未完成 / Request failed','en'),'Request failed'));
+const samples=[['care','按医嘱独立完成治疗，与患者及家属沟通，提供心理疏导。每周到岗5天，六个月优先。'],['finance','使用SQL核对发票，与财务团队协作完成对账。本科及以上在校生。'],['evaluation','与算法同事协作完成机评与人工标注对齐，分析RAG答案问题，用消融实验迭代评估逻辑。毕业时间在2028年及以后。']];
+for(const [title,raw] of samples){const result=ruleDraft(raw,title,[]);check(`${title}: all English prose is English`,()=>{const visit=x=>{if(!x||typeof x!=='object')return;for(const [k,v] of Object.entries(x)){if(k==='en')assert(!hasChinese(v),v);else if(typeof v==='object')visit(v);}};visit(result);});}
+const raw=samples[2][1],bad=ruleDraft(raw,'evaluation',[]);bad.depth.basis='model';bad.conditions=[{zh:'本科',en:'Original condition: 本科'}];
+check('untranslated model condition triggers a contract error',()=>assert(deepEvidenceErrors(bad,raw,true).some(e=>e.includes('untranslated Chinese'))));
+check('explicit English URLs take precedence over browser preference',()=>assert(readFileSync('components/observatory.tsx','utf8').includes('q||localStorage.getItem')));
+writeFileSync('language-checks.json',JSON.stringify({count:checks.length,checks,all_passed:true,scope:'UI labels, language contract and bounded condition translation. Not a complete general-purpose translator.'},null,2));
+console.log(JSON.stringify({language_checks:checks.length,all_passed:true}));

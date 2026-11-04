@@ -8,6 +8,7 @@ import {getUser} from "./identity";
 import {seeds,seedTranslations} from "./seed-data";
 import corpusData from "@/data/corpus.json";
 import research from "@/data/research.json";
+import publicStudy from "@/data/public-study.json";
 import {originalEnglish,sourceFingerprint,translateWithModel,translationErrors} from "./jd-translation";
 import {PUBLIC_DEMO} from "./public-demo";
 import {evidenceErrors,matchesFor,ruleDraft,textHash} from "./analysis-engine";
@@ -89,7 +90,7 @@ export async function handleApi(req:Request,path:string[]){
   if(req.method!=="GET"){const origin=req.headers.get("origin");if(origin&&origin!==new URL(req.url).origin)throw new HttpError(403,"跨站提交已拒绝 / Cross-origin write rejected");}
   const identity=await getUser(),op=isOperator(identity),user=identity||{userId:"",displayName:"访客 / Guest",email:"",fullName:null};const root=path[0];
   if(root==="bootstrap"&&new URL(req.url).searchParams.get("scope")==="ops"){if(!identity)throw new HttpError(401,"请先登录 / Please sign in");await operator(user.userId);}
-  if(root==="research"&&req.method==="GET")return json(research);
+  if(root==="research"&&req.method==="GET")return json({...research,study:publicStudy});
   if(!databaseConfigured()){
    if(root==="bootstrap"&&req.method==="GET")return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:[],stats:{total:0,draft:0,in_review:0,published:0,archived:0,feedback:0,reviews:0},feedback:[],activity:[],settings:{model:"",modelConnected:false,authConfigured:githubAuthenticationConfigured(),storageConfigured:false,methodNote:"",version:ANALYSIS_VERSION}});
    if(root==="analyses"&&path.length===1&&req.method==="POST"){
@@ -121,7 +122,7 @@ export async function handleApi(req:Request,path:string[]){
    const reviewRows=op?await rows("SELECT * FROM corpus_reviews"):[];const map=Object.fromEntries(reviewRows.map(r=>[r.id,r]));
    return json({total:filtered.length,offset,items:filtered.slice(offset,offset+30).map(c=>({...c,review:map[c.id]||null}))});
   }
-  if(root==="research"&&req.method==="GET")return json(research);
+  if(root==="research"&&req.method==="GET")return json({...research,study:publicStudy});
   if(root==="corpus"&&path[1]&&req.method==="PATCH"){
    await operator(user.userId);if(!corpus.some(c=>c.id===path[1]))throw new HttpError(404,"档案不存在 / Archive record not found");
    const d=z.object({status:z.enum(["unreviewed","verified","rejected"]),note:z.string().max(2000)}).parse(await body(req));

@@ -24,3 +24,7 @@ User-created records are stored at runtime, never written into these source fixt
 2,000是历史归档数量；120份全文、168处“独立”是探索性模型编码试验的不同分母。它们不代表市场分布，也不是人工确认的正确率。公开文件不包含逐条语料，因此第三方目前不能仅靠此仓库完整复算历史结果。
 
 若未来公开可复现的数据集，应另行记录抽样、抓取日期、平台字段、去重、文本完整性、编码版本、复核与再利用条件，不能只把当前汇总数字包装成已验证发现。
+
+## 2026-11-05 public contextual examples
+
+`data/public-study.json` adds 60 deidentified paraphrases from 60 distinct archived ads, three per keyword and one per source for each term. These explicitly requested public examples are authored interpretations, not verbatim source excerpts. Original company names, contacts, row identifiers, URLs and full bodies remain excluded. The private source ledger is retained locally and is not packaged. See `docs/research-top20-method.md` for selection and counting rules.

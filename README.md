@@ -45,6 +45,10 @@ The public tool works without visitor login. Saving personal histories and opera
 
 `data/research.json` contains historical project counts: an archive of 2,000 records and an exploratory model-coded pilot of 120 texts / 168 occurrences of “独立”. These are historical counts, not a corpus distributed here, a representative market estimate or an accuracy benchmark. See [data notes](docs/data.md).
 
+## Keyword atlas and research note / 关键词与研究报告
+
+The public atlas ranks 20 expressions within a disclosed 33-item vocabulary and offers 60 bilingual, deidentified contextual paraphrases from 60 distinct advertisements. The research note combines document-level cross-tabs, contrasting cases and the earlier 120-ad semantic pilot. These descriptive archive results are not market estimates or independent human accuracy scores. See [methods](docs/research-top20-method.md).
+
 ## Checks / 检查
 
 ```sh
@@ -55,6 +59,7 @@ npm run test:translation
 node scripts/check-language.mjs
 node scripts/check-semantic-regressions.mjs
 npm run test:database
+node scripts/check-public-study.mjs
 ```
 
 Run the analysis checks first: they prepare an isolated test build. `scripts/check-vercel-http.mjs` additionally verifies HTTP/session/ownership behavior against an explicitly configured loopback server and synthetic test identities. `npm run test:live` is optional and sends a synthetic JD to the configured paid API. Ordinary checks do not make paid model calls.

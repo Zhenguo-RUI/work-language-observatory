@@ -1,0 +1,447 @@
+{
+  "n": 2000,
+  "unique_exact": 2000,
+  "unique_normalized": 2000,
+  "sources": {
+    "51job": 1000,
+    "boss": 500,
+    "liepin": 500
+  },
+  "candidateVocabulary": [
+    "沟通",
+    "分析",
+    "数据",
+    "协调",
+    "熟练",
+    "独立",
+    "协作",
+    "抗压",
+    "责任心",
+    "适应",
+    "目标",
+    "服务",
+    "逻辑",
+    "学习",
+    "统筹",
+    "主动",
+    "英语",
+    "严谨",
+    "闭环",
+    "执行力",
+    "洞察",
+    "创新",
+    "SQL",
+    "自驱",
+    "自主",
+    "耐心",
+    "灵活",
+    "结果导向",
+    "细心",
+    "时间管理",
+    "领导力",
+    "应变",
+    "复盘"
+  ],
+  "ranking": [
+    {
+      "term": "沟通",
+      "documents": 1233,
+      "order": 0
+    },
+    {
+      "term": "分析",
+      "documents": 1004,
+      "order": 1
+    },
+    {
+      "term": "数据",
+      "documents": 905,
+      "order": 2
+    },
+    {
+      "term": "协调",
+      "documents": 751,
+      "order": 3
+    },
+    {
+      "term": "熟练",
+      "documents": 747,
+      "order": 4
+    },
+    {
+      "term": "独立",
+      "documents": 618,
+      "order": 5
+    },
+    {
+      "term": "协作",
+      "documents": 522,
+      "order": 6
+    },
+    {
+      "term": "抗压",
+      "documents": 501,
+      "order": 7
+    },
+    {
+      "term": "责任心",
+      "documents": 498,
+      "order": 8
+    },
+    {
+      "term": "适应",
+      "documents": 452,
+      "order": 9
+    },
+    {
+      "term": "目标",
+      "documents": 447,
+      "order": 10
+    },
+    {
+      "term": "服务",
+      "documents": 427,
+      "order": 11
+    },
+    {
+      "term": "逻辑",
+      "documents": 395,
+      "order": 12
+    },
+    {
+      "term": "学习",
+      "documents": 368,
+      "order": 13
+    },
+    {
+      "term": "统筹",
+      "documents": 295,
+      "order": 14
+    },
+    {
+      "term": "主动",
+      "documents": 237,
+      "order": 15
+    },
+    {
+      "term": "英语",
+      "documents": 230,
+      "order": 16
+    },
+    {
+      "term": "严谨",
+      "documents": 219,
+      "order": 17
+    },
+    {
+      "term": "闭环",
+      "documents": 182,
+      "order": 18
+    },
+    {
+      "term": "执行力",
+      "documents": 180,
+      "order": 19
+    }
+  ],
+  "selection": "case-sensitive exact substring; one document once per term; ties follow written vocabulary order; SQL case folding not used",
+  "unique_example_source_documents": 60,
+  "crossTabs": [
+    {
+      "a": "抗压",
+      "b": "协调",
+      "table": [
+        [
+          284,
+          217
+        ],
+        [
+          467,
+          1032
+        ]
+      ],
+      "bySource": {
+        "51job": [
+          [
+            163,
+            107
+          ],
+          [
+            197,
+            533
+          ]
+        ],
+        "boss": [
+          [
+            52,
+            57
+          ],
+          [
+            120,
+            271
+          ]
+        ],
+        "liepin": [
+          [
+            69,
+            53
+          ],
+          [
+            150,
+            228
+          ]
+        ]
+      }
+    },
+    {
+      "a": "数据",
+      "b": "沟通",
+      "table": [
+        [
+          619,
+          286
+        ],
+        [
+          614,
+          481
+        ]
+      ],
+      "bySource": {
+        "51job": [
+          [
+            286,
+            128
+          ],
+          [
+            300,
+            286
+          ]
+        ],
+        "boss": [
+          [
+            165,
+            84
+          ],
+          [
+            144,
+            107
+          ]
+        ],
+        "liepin": [
+          [
+            168,
+            74
+          ],
+          [
+            170,
+            88
+          ]
+        ]
+      }
+    },
+    {
+      "a": "独立",
+      "b": "协作",
+      "table": [
+        [
+          204,
+          414
+        ],
+        [
+          318,
+          1064
+        ]
+      ],
+      "bySource": {
+        "51job": [
+          [
+            118,
+            235
+          ],
+          [
+            146,
+            501
+          ]
+        ],
+        "boss": [
+          [
+            47,
+            93
+          ],
+          [
+            95,
+            265
+          ]
+        ],
+        "liepin": [
+          [
+            39,
+            86
+          ],
+          [
+            77,
+            298
+          ]
+        ]
+      }
+    },
+    {
+      "a": "闭环",
+      "b": "供应商",
+      "table": [
+        [
+          32,
+          150
+        ],
+        [
+          178,
+          1640
+        ]
+      ],
+      "bySource": {
+        "51job": [
+          [
+            15,
+            58
+          ],
+          [
+            78,
+            849
+          ]
+        ],
+        "boss": [
+          [
+            10,
+            50
+          ],
+          [
+            52,
+            388
+          ]
+        ],
+        "liepin": [
+          [
+            7,
+            42
+          ],
+          [
+            48,
+            403
+          ]
+        ]
+      }
+    }
+  ],
+  "pressure_coordination_length_source_strata": [
+    {
+      "source": "51job",
+      "length_group": "at_or_below_median",
+      "median_characters": 370.0,
+      "table": [
+        [
+          52,
+          51
+        ],
+        [
+          83,
+          316
+        ]
+      ]
+    },
+    {
+      "source": "51job",
+      "length_group": "above_median",
+      "median_characters": 370.0,
+      "table": [
+        [
+          111,
+          56
+        ],
+        [
+          114,
+          217
+        ]
+      ]
+    },
+    {
+      "source": "boss",
+      "length_group": "at_or_below_median",
+      "median_characters": 445.5,
+      "table": [
+        [
+          21,
+          20
+        ],
+        [
+          57,
+          152
+        ]
+      ]
+    },
+    {
+      "source": "boss",
+      "length_group": "above_median",
+      "median_characters": 445.5,
+      "table": [
+        [
+          31,
+          37
+        ],
+        [
+          63,
+          119
+        ]
+      ]
+    },
+    {
+      "source": "liepin",
+      "length_group": "at_or_below_median",
+      "median_characters": 422.5,
+      "table": [
+        [
+          26,
+          20
+        ],
+        [
+          81,
+          123
+        ]
+      ]
+    },
+    {
+      "source": "liepin",
+      "length_group": "above_median",
+      "median_characters": 422.5,
+      "table": [
+        [
+          43,
+          33
+        ],
+        [
+          69,
+          105
+        ]
+      ]
+    }
+  ],
+  "loop_cooccurrences": {
+    "loop_ads": 182,
+    "model_or_algorithm": 47,
+    "exception_or_fault": 66,
+    "overlapping": true
+  },
+  "earlier_pressure_rest_screen": {
+    "table": [
+      [
+        45,
+        534
+      ],
+      [
+        108,
+        1313
+      ]
+    ],
+    "method": "existing broader literal candidate screen; not semantic labels",
+    "version": "literal-candidate-screen-v1-2026-10-26"
+  }
+}

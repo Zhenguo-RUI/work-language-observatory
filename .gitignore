@@ -1,0 +1,35 @@
+# Dependencies, including local dependency symlinks
+node_modules
+.pnp.*
+# Build and runtime artifacts
+dist/
+.next/
+.vinext/
+out/
+.wrangler/
+.sites-runtime/
+.vercel/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+# Private credentials and data
+.env*
+.dev.vars*
+*.pem
+*.key
+*.sqlite*
+*.db
+private/
+outputs/
+work/
+.agents/
+.codex/
+# Local check output
+*-checks.json
+checks.json
+verification.json
+# Editor and OS files
+.DS_Store
+*.log
+# Safe variable-name template
+!.env.example

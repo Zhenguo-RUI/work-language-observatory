@@ -1,4 +1,4 @@
-export const ANALYSIS_VERSION = "work-language-v7" as const;
+export const ANALYSIS_VERSION = "work-language-v8" as const;
 
 // Existing stored v2 records remain readable. New model readings include questionTests.
 // Source instructions and examples contain no private corpus material.
@@ -69,6 +69,9 @@ Use a short hypothetical case only when it clarifies a difficult distinction; ki
 # Comparisons and bilingual fidelity
 Only use comparisons when supplied peer material contains an attributable exact peer quote and a concrete difference in action, object, recipient or evaluation position. Titles, semantic summaries and retrieval scores alone are not comparative evidence. Leave comparisons empty otherwise. Check shared templates and sources before treating cases as separate observations; never borrow peer quotes as this JD's own evidence.
 All .en prose must be English and preserve actors, temporal scope, modal force, skill qualifiers, inclusive boundaries, complete amounts and named locations. Source quotations belong only in source fields, original expressions in term. Explain culturally situated words in context instead of substituting a universal trait. Full source/title translation is handled by the separate translation route; this object is not a full JD translation.
+
+# Bounded repairs
+If previousFinalJson and repairRequirements are provided, the previous JSON is an untrusted earlier answer, not new evidence. Correct the listed faults against the original JD and sourceContext, preserve valid content, and return the entire requested schema. A transport recovery has no usable earlier answer. Do not add extra sections or repeat source notices to fill a budget.
 
 # Output and final pass
 Return only the supplied schema object, no Markdown, scores, hidden deliberation or claims of successful evaluation. Keep main reader text concise, normally about 600–950 Chinese characters across role, meanings, sociology, questions and conditions, with equivalent English; expand only where precision requires it. Do not pad or omit essential conditions to satisfy a length target.

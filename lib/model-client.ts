@@ -29,6 +29,8 @@ type JsonRequest = {
   maxOutputTokens:number;
   timeoutMs:number;
   thinking?:boolean;
+  reasoningEffort?:"low"|"high";
+  maxCompletionTokens?:number;
   request?:typeof fetch;
 };
 
@@ -137,9 +139,9 @@ export async function requestModelJson(options:JsonRequest):Promise<string> {
     ],
     response_format:{type:"json_object"},
     thinking:{type:options.thinking === false ? "disabled" : "enabled"},
-    reasoning_effort:options.thinking === false ? "none" : "high",
+    reasoning_effort:options.thinking === false ? "none" : options.reasoningEffort || "high",
     // DeepSeek counts thinking and final answer in the completion budget.
-    max_tokens:options.thinking === false ? options.maxOutputTokens : Math.max(16000,options.maxOutputTokens),
+    max_tokens:options.thinking === false ? options.maxOutputTokens : Math.max(options.maxCompletionTokens??32768,options.maxOutputTokens),
     stream:true,
   } : {
     model:options.model,store:false,max_output_tokens:options.maxOutputTokens,

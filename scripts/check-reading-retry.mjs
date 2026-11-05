@@ -1,0 +1,29 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {createRequire} from 'node:module';
+import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
+const out=resolve('.sites-runtime/reading-retry-tests');mkdirSync(out,{recursive:true});writeFileSync(out+'/package.json','{"type":"commonjs"}');
+const compiled=spawnSync(process.execPath,['node_modules/typescript/bin/tsc','--target','ES2022','--module','commonjs','--moduleResolution','node','--esModuleInterop','--skipLibCheck','--strict','--outDir',out,'lib/reading-retry.ts'],{encoding:'utf8'});if(compiled.status!==0){console.error(compiled.stdout+compiled.stderr);process.exit(1);}
+const require=createRequire(import.meta.url),{modelRetrySubmission,modelFailureText}=require(out+'/reading-retry.js');
+const checks=[];async function check(name,fn){await fn();checks.push({name,passed:true});}
+const saved={id:'preview-synthetic',title:'Saved role',company:'Saved employer',raw_text:'Saved JD, not a different draft in the input form',source_url:'https://source.org/job',engine:'rules',result:{headline:{zh:'旧草稿',en:'Old draft'},terms:[]},updated_at:'2026-11-05T00:00:00Z'};
+await check('retry snapshots the selected saved JD and requests model analysis',()=>assert.deepEqual(modelRetrySubmission(saved),{title:saved.title,company:saved.company,rawText:saved.raw_text,sourceUrl:saved.source_url,useModel:true}));
+await check('retry submission cannot mutate the retained draft or depend on form-state updates',()=>{const before=structuredClone(saved),request=modelRetrySubmission(saved);request.title='Changed only in request';request.rawText='Changed only in request';assert.deepEqual(saved,before);});
+await check('retry sends only the analysis input fields, without old model output or private history',()=>assert.deepEqual(Object.keys(modelRetrySubmission(saved)).sort(),['company','rawText','sourceUrl','title','useModel']));
+await check('network, rate limit, truncation and contract failures are distinguishable',()=>{const codes=['model_network_error','model_http_429','model_incomplete_output','model_contract_invalid_after_one_repair'];assert.equal(new Set(codes.map(code=>modelFailureText(code).zh)).size,codes.length);assert.equal(new Set(codes.map(code=>modelFailureText(code).en)).size,codes.length);});
+await check('known failures have complete Chinese and English messages',()=>{for(const code of ['model_timeout','model_network_error','model_http_429','model_http_402','model_http_401','model_http_403','model_http_503','model_incomplete_output','model_incomplete_stream','model_contract_invalid_after_one_repair','model_invalid_stream','model_invalid_response','model_provider_invalid_json','model_stream_error','model_quota_storage_unavailable',undefined]){const message=modelFailureText(code);assert(/[\u3400-\u9fff]/u.test(message.zh));assert(!/[\u3400-\u9fff]/u.test(message.en));assert(message.en.length>20);}});
+await check('arbitrary provider errors are not echoed in failure copy',()=>{const value=modelFailureText('private-token-and-private-JD');assert(!JSON.stringify(value).includes('private-token-and-private-JD'));});
+if(process.env.OBSERVATORY_TEST_URL){
+ const base=process.env.OBSERVATORY_TEST_URL;assert(['localhost','127.0.0.1'].includes(new URL(base).hostname));
+ const env={};for(const line of readFileSync('.env.local','utf8').split(/\r?\n/)){const m=line.match(/^([A-Z_]+)=(.*)$/);if(m)env[m[1]]=m[2];}assert(env.DATABASE_URL?.startsWith('pglite:'));
+ const {encode}=await import('@auth/core/jwt');const token=await encode({secret:env.AUTH_SECRET,salt:'authjs.session-token',token:{sub:'github:'+env.OPERATOR_GITHUB_ID,githubId:env.OPERATOR_GITHUB_ID,name:'Synthetic retry QA'},maxAge:3600});const owner={Cookie:'authjs.session-token='+token};
+ async function call(path,data,headers=owner){const response=await fetch(base+path,{method:data?'POST':'GET',headers:{...(data?{'Content-Type':'application/json',Origin:base}:{}),...headers},body:data?JSON.stringify(data):undefined});return {status:response.status,data:await response.json()};}
+ const boot=(await call('/api/bootstrap')).data;assert.equal(boot.settings.modelConnected,false,'HTTP cache test requires an unconnected synthetic local model: no paid calls allowed.');
+ const input={title:'Synthetic retry cache '+randomUUID(),company:'',rawText:'虚构缓存验收：独立核对业务数据，使用Excel制作每周报表，并与财务团队核对口径，向经理提出建议。此为本机合成测试，不对应真实招聘。',sourceUrl:'',useModel:false};let draft;
+ await check('local owner can create and reopen an intentional evidence draft',async()=>{const first=await call('/api/analyses',input);assert.equal(first.status,201);draft=first.data.analysis;assert.equal(draft.engine,'rules');const same=await call('/api/analyses',input);assert.equal(same.data.reused,true);assert.equal(same.data.analysis.id,draft.id);});
+ await check('model retry cannot silently return the existing rules draft as a reused model result',async()=>{const retry=await call('/api/analyses',{...input,useModel:true});assert.equal(retry.status,409);assert(!retry.data.reused);assert(retry.data.error.includes('Connect the analysis model'));});
+ await check('a failed model retry retains the original private draft',async()=>{const after=await call('/api/analyses/'+draft.id);assert.equal(after.status,200);assert.equal(after.data.analysis.id,draft.id);assert.equal(after.data.analysis.engine,'rules');assert.equal((await call('/api/analyses/'+draft.id,undefined,{})).status,404);});
+}
+writeFileSync('reading-retry-checks.json',JSON.stringify({passed:true,count:checks.length,checks,paid_calls:0,local_http:!!process.env.OBSERVATORY_TEST_URL},null,2)+'\n');console.log(JSON.stringify({reading_retry_checks:checks.length,passed:true,paid_calls:0,local_http:!!process.env.OBSERVATORY_TEST_URL}));

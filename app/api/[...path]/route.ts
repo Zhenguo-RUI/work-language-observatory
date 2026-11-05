@@ -1,7 +1,7 @@
 import {handleApi} from "@/lib/observatory-server";
 export const dynamic="force-dynamic";
 export const runtime="nodejs";
-export const maxDuration=180;
+export const maxDuration=300;
 type Context={params:Promise<{path:string[]}>};
 async function route(request:Request,context:Context){
  const path=(await context.params).path;

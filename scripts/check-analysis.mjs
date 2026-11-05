@@ -67,7 +67,7 @@ const copiedMetadata={...structuredClone(valid),context:{company:'Untrusted copi
 const stripped=await runModelReading({...opts,request:async()=>response(copiedMetadata)});
 await check('model-generated context metadata is stripped instead of blocking a valid reading',()=>assert(stripped.calls===1&&!stripped.result.context));
 await check('model-generated full-source translation cannot enter the saved reading',()=>assert(!stripped.result.sourceTranslation));
-await check('the current v7 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v7'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
+await check('the current v7 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v8'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
 let missingCalls=0;const missingRepair=await runModelReading({...opts,request:async()=>response(++missingCalls===1?withoutTests:valid)});
 await check('missing question consequence receives only one bounded repair',()=>assert.equal(missingRepair.calls,2));
 const boundaryRaw=raw+'\n条件：实习3个月以上。';

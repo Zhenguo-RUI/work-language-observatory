@@ -69,6 +69,8 @@ node scripts/check-pdf-export.mjs
 node scripts/check-model-stream.mjs
 node scripts/check-company-search.mjs
 node scripts/check-company-brief.mjs
+node scripts/check-model-recovery.mjs
+node scripts/check-reading-retry.mjs
 ```
 
 Run the analysis checks first: they prepare an isolated test build. `scripts/check-vercel-http.mjs` additionally verifies HTTP/session/ownership behavior against an explicitly configured loopback server and synthetic test identities. `npm run test:live` is optional and sends a synthetic JD to the configured paid API. Ordinary checks do not make paid model calls.

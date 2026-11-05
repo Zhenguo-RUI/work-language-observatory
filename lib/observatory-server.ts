@@ -206,7 +206,7 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    if(!identity)await publicQuota(req);
    const hash=await textHash(d.rawText),effectiveTitle=d.title||d.rawText.split("\n")[0].slice(0,80);
    const existing=identity?await first("SELECT * FROM analyses WHERE owner_id=? AND text_hash=? AND company=? AND title=? AND source_url=? AND status!='archived' ORDER BY updated_at DESC LIMIT 1",user.userId,hash,d.company,effectiveTitle,d.sourceUrl):null;
-   if(existing){const a=readerView(parseRow(existing),op),companyContextFresh=!d.company||(a.result.context?.lookup?.status==="matched"&&a.result.context.briefBasis==="model");if(companyContextFresh){await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}}
+   if(existing){const a=readerView(parseRow(existing),op),companyContextFresh=!d.company||(a.result.context?.lookup?.status==="matched"&&a.result.context.briefBasis==="model");if(companyContextFresh&&(!d.useModel||a.engine!=="rules")){await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}}
    progress("accepted");
    const context=await enrichCompanyContext({raw:d.rawText,title:d.title,company:d.company,onProgress:progress});
    const cs=op?matchesFor(`${d.title} ${d.rawText}`,corpus):[];const cfg=await config();let result=ruleDraft(d.rawText,d.title||d.rawText.split("\n")[0].slice(0,60),cs);let engine="rules",modelError=false,modelFailure:string|undefined;result.context=context;

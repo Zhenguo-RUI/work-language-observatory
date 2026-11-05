@@ -1,7 +1,7 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
 import {Check,Clock3,ExternalLink,MessageSquare,ThumbsDown,ThumbsUp} from "lucide-react";
-import type {Analysis,AnalysisResult} from "@/lib/observatory-types";
+import type {Analysis,AnalysisResult,Bi} from "@/lib/observatory-types";
 import {feedbackIdentity,trackUsage} from "@/lib/usage-client";
 import "./reading-experience.css";
 type Lang="zh"|"en";
@@ -13,11 +13,18 @@ export function GenerationProgress({stage,startedAt,model,lang}:{stage:string;st
  useEffect(()=>{const tick=()=>setElapsed(Math.floor((Date.now()-startedAt)/1000));tick();const timer=setInterval(tick,1000);return()=>clearInterval(timer);},[startedAt]);
  useEffect(()=>{try{const samples=(JSON.parse(localStorage.getItem(timingsKey)||"[]") as {duration:number;model:boolean}[]).filter(s=>s.model===model&&s.duration>0).map(s=>s.duration/1000).sort((a,b)=>a-b);if(samples.length>=3)setEstimate({low:Math.max(1,Math.floor(samples[Math.floor(samples.length*.25)])),high:Math.ceil(samples[Math.min(samples.length-1,Math.floor(samples.length*.9))])});}catch{}},[model]);
  const steps=[t("接收 JD","Receive JD"),t("核对公司与行业语境","Check company and industry context"),t(model?"生成语境分析":"整理证据草稿",model?"Generate situated reading":"Prepare evidence draft"),t("检查证据与双语结构","Check evidence and bilingual structure"),t("整理结果并保存到本机","Prepare result and save locally")];
- const index=stage==="saving"?4:stage==="validating"?3:["analysis","repairing"].includes(stage)?2:stage==="context"?1:0;
+ const index=stage==="saving"?4:stage==="validating"?3:["analysis","repairing","retrying"].includes(stage)?2:stage==="context"?1:0;
  return <section className="generation-progress panel" aria-busy="true" aria-label={t("分析进度","Analysis progress")}>
-  <div className="generation-status"><span className="spinner"/><div><strong role="status" aria-live="polite">{stage==="repairing"?t("正在修正未通过检查的内容","Revising content that did not pass checks"):steps[index]}</strong><p><Clock3 size={13}/>{t(`已等待 ${elapsed} 秒`,`Elapsed: ${elapsed}s`)} · {estimate?t(`本机近期同类分析约 ${estimate.low}–${estimate.high} 秒`,`Recent similar readings on this browser: about ${estimate.low}–${estimate.high}s`):model?t("预计约 1–2 分钟，复杂文本可能更久","Allow about 1–2 minutes; complex texts may take longer"):t("正在处理，通常比模型分析更快","Processing; evidence drafts usually take less time")}</p></div></div>
+  <div className="generation-status"><span className="spinner"/><div><strong role="status" aria-live="polite">{stage==="retrying"?t("正在自动恢复模型分析","Automatically recovering the model analysis"):stage==="repairing"?t("正在修正未通过检查的内容","Revising content that did not pass checks"):steps[index]}</strong><p><Clock3 size={13}/>{t(`已等待 ${elapsed} 秒`,`Elapsed: ${elapsed}s`)} · {stage==="retrying"?t("正在自动恢复，本次可能接近 4 分钟","Automatic recovery is running; this attempt may take close to 4 minutes"):estimate?t(`本机近期同类分析约 ${estimate.low}–${estimate.high} 秒`,`Recent similar readings on this browser: about ${estimate.low}–${estimate.high}s`):model?t("请预留约 1–2 分钟；自动恢复时可能接近 4 分钟","Allow about 1–2 minutes; automatic recovery may take closer to 4 minutes"):t("正在处理，通常比模型分析更快","Processing; evidence drafts usually take less time")}</p></div></div>
   <ol>{steps.map((label,i)=><li key={label} className={i<index?"done":i===index?"current":""}><span>{i<index?<Check size={12}/>:i+1}</span>{label}</li>)}</ol>
   <p className="generation-note">{t("阶段来自实际处理状态；时间为估计，不是倒计时。请保持本页打开。","Stages reflect actual processing. Time is an estimate, not a countdown. Keep this page open.")}</p>
+ </section>;
+}
+export function ModelRetryPanel({lang,message,canRun,disabled,generating,onRetry}:{lang:Lang;message?:Bi;canRun:boolean;disabled:boolean;generating:boolean;onRetry:()=>void}){
+ const t=(zh:string,en:string)=>lang==="zh"?zh:en;
+ return <section className="model-retry-panel" aria-label={t("模型分析重试","Retry model analysis")}>
+  <div><strong role="status">{message?.[lang]||t("当前为规则辅助证据草稿。","This is a rule-assisted evidence draft.")}</strong><p>{canRun?t("重新生成会使用这份已保存的 JD；当前草稿和历史记录会保留。","Retry uses this saved JD. Your current draft and reading history are retained."):t("模型分析暂不可用，当前草稿仍可阅读和下载。","Model analysis is currently unavailable. You can still read and download this draft.")}</p></div>
+  <button className="button primary compact" disabled={!canRun||disabled} onClick={onRetry}>{generating?<span className="spinner small-spinner"/>:<MessageSquare size={15}/>}<span>{generating?t("正在重新生成…","Regenerating…"):t("重新生成模型分析","Retry model analysis")}</span></button>
  </section>;
 }
 export function CompanyContext({context,lang}:{context:NonNullable<AnalysisResult["context"]>;lang:Lang}){

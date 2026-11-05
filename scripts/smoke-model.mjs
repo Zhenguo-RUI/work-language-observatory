@@ -28,7 +28,7 @@ let calls=0;const usage=[];
 const request=async(...args)=>{
   calls++;
   const response=await fetch(...args);
-  if(response.ok){const body=await response.clone().json();if(body.usage)usage.push(body.usage);}
+  if(response.ok&&response.headers.get("content-type")?.includes("application/json")){const body=await response.clone().json();if(body.usage)usage.push(body.usage);}
   return response;
 };
 const started=Date.now();

@@ -9,7 +9,7 @@ export function companyBriefErrors(brief:CompanyBrief|undefined|null,context:Com
  if(!brief)return context?.lookup?.status==="matched"&&context.sources.some(s=>s.excerpt)?["companyBrief: matched public company sources are available; provide a short sourced bilingual overview and a specific connection to this JD, with exact sourceId/quote anchors."]:[];
  if(!context?.lookup||context.lookup.status!=="matched")return ["companyBrief: no matched company source is available; return null rather than resolve an ambiguous company yourself."];
  const errors:string[]=[];
- for(const anchor of brief.anchors){const source=context.sources.find(s=>s.id===anchor.sourceId),match=context.lookup.matches.find(m=>m.id===anchor.sourceId);if(!source?.excerpt?.includes(anchor.quote)||!match||match.match==="candidate")errors.push("companyBrief.anchors: use only identity-matched company sources, with the existing sourceId and an exact source excerpt.");}
+ for(const anchor of brief.anchors){const source=context.sources.find(s=>s.id===anchor.sourceId),match=context.lookup.matches.find(m=>m.id===anchor.sourceId);if(!source?.excerpt?.includes(anchor.quote)||!match||match.match==="candidate"||anchor.sourceId!==context.lookup.selectedId)errors.push("companyBrief.anchors: use only the selected company identity source (lookup.selectedId), with its existing sourceId and an exact source excerpt.");}
  if(/[\u3400-\u9fff]/u.test((brief.nameEn||"")+brief.overview.en+brief.relevance.en))errors.push("companyBrief: translate English prose completely; keep original source quotations only in anchors.");
  return [...new Set(errors)];
 }

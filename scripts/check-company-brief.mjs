@@ -19,6 +19,14 @@ await check('a grounded bilingual company brief is accepted',()=>assert.deepEqua
 await check('company overview is not presented as an independently checked official page',()=>{const c=attachCompanyBrief(context,brief);assert.equal(c.company.basis,'retrieved');assert.equal(c.status,'sourced');assert.equal(c.briefBasis,'model');assert.equal(c.company.name.en,'Meituan');assert.deepEqual(c.lookup,lookup);});
 await check('a company quote cannot be borrowed from the JD or fabricated',()=>{const bad=structuredClone(brief);bad.anchors[0].quote='预算由经理批准';assert(companyBriefErrors(bad,context).length>0);});
 await check('a passing mention or unrelated candidate cannot support a company assertion',()=>{const bad=structuredClone(brief);bad.anchors=[{sourceId:'web-2',quote:'另一家企业的业务介绍'}];assert(companyBriefErrors(bad,context).length>0);});
+await check('an exact-looking result for a different organization cannot support the selected company',()=>{
+ const polluted=structuredClone(context),otherSnippet='美团咨询是一家提供咨询服务的同名测试机构。';
+ polluted.lookup.matches.push({id:'web-other',title:'美团咨询（同名测试机构）',url:'https://other-company.org/about',snippet:otherSnippet,kind:'search',retrievedAt:time,match:'exact'});
+ polluted.sources.push({id:'web-other',title:'美团咨询（同名测试机构）',url:'https://other-company.org/about',retrievedAt:time,kind:'search',excerpt:otherSnippet});
+ assert.equal(polluted.lookup.selectedId,'web-1');
+ const bad=structuredClone(brief);bad.anchors=[{sourceId:'web-other',quote:'提供咨询服务的同名测试机构'}];
+ assert(companyBriefErrors(bad,polluted).length>0);
+});
 await check('ambiguous companies cannot be resolved by the language model alone',()=>assert(companyBriefErrors(brief,{...context,lookup:{...lookup,status:'ambiguous',selectedId:undefined}}).length>0));
 await check('English company brief and name cannot contain untranslated Chinese prose',()=>{const bad=structuredClone(brief);bad.nameEn='美团';assert(companyBriefErrors(bad,context).length>0);});
 await check('no-match searches are still visible and do not manufacture company facts',async()=>{const c=await enrichCompanyContext({company:'无对应资料测试企业',title:'广告投放',raw,search:async query=>({query,status:'not_found',provider:'Test',searchedAt:time,matches:[]})});assert.equal(c.lookup.status,'not_found');assert(c.company.description.zh.includes('已按填写的公司名搜索'));assert.equal(c.company.basis,'jd');assert.equal(c.sources.length,0);assert.deepEqual(companyBriefErrors(null,c),[]);});

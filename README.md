@@ -10,7 +10,8 @@ A bilingual research tool for interpreting competence labels in job advertisemen
 
 - **Situated readings:** concise explanations, exact evidence, concrete work outputs and useful follow-up questions.
 - **Sociological interpretation:** connections between individual qualities, coordination, evaluation and decision rights, with facts and hypotheses distinguished.
-- **Company and industry context:** dated official references for a small reviewed directory, clear employer/platform/client distinctions, and JD-based sector interpretation.
+- **Company and industry context:** company-name searches across public web and encyclopedia sources, short bilingual company briefs linked to the advertised work, and explicit employer/platform/client distinctions.
+- **Continuous reading:** start another JD from the result header or footer, clearing the input while preserving prior readings; edit an existing reading separately.
 - **Personal history and export:** automatic on-device reading history without login; real bilingual PDF and Markdown downloads.
 - **Operations and feedback:** protected usage funnels, timings, downloads, thumbs and comments, with optional private sharing for review.
 - **Bilingual access:** Chinese and English readings; separately validated translations of the job title and complete JD.
@@ -66,6 +67,8 @@ node scripts/check-company-context.mjs
 node scripts/check-usage.mjs
 node scripts/check-pdf-export.mjs
 node scripts/check-model-stream.mjs
+node scripts/check-company-search.mjs
+node scripts/check-company-brief.mjs
 ```
 
 Run the analysis checks first: they prepare an isolated test build. `scripts/check-vercel-http.mjs` additionally verifies HTTP/session/ownership behavior against an explicitly configured loopback server and synthetic test identities. `npm run test:live` is optional and sends a synthetic JD to the configured paid API. Ordinary checks do not make paid model calls.

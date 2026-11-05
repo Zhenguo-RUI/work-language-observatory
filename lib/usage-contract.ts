@@ -3,7 +3,7 @@ import {z} from "zod";
 export const opaqueReadingId=z.string().regex(/^(?:(?:preview|local)-)?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i);
 export const usageEventSchema=z.object({
  eventId:z.string().uuid(),
- name:z.enum(["view_open","analyze_click","history_open","history_read","export_download","feedback_open","keyword_select","analysis_open"]),
+ name:z.enum(["view_open","analyze_click","history_open","history_read","export_download","feedback_open","keyword_select","analysis_open","company_lookup","next_jd"]),
  view:z.enum(["analyze","read","history","keywords","research","ops"]).optional(),
  format:z.enum(["markdown","pdf"]).optional(),
  readingId:opaqueReadingId.optional(),

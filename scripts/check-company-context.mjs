@@ -9,7 +9,9 @@ writeFileSync(resolve(output,'package.json'),'{"type":"commonjs"}');
 const compiled=spawnSync(process.execPath,[resolve('node_modules/typescript/bin/tsc'),'--target','ES2022','--module','commonjs','--moduleResolution','node','--esModuleInterop','--skipLibCheck','--strict','--outDir',output,'lib/company-context.ts','lib/analysis-contract.ts','lib/model-reading.ts'],{encoding:'utf8'});
 if(compiled.status!==0){process.stderr.write(compiled.stdout+compiled.stderr);process.exit(1);}
 const require=createRequire(import.meta.url);
-const {enrichCompanyContext}=require(resolve(output,'company-context.js'));
+const {enrichCompanyContext:baseEnrichCompanyContext}=require(resolve(output,'company-context.js'));
+const noLookup=async query=>({query,status:'unavailable',provider:'Synthetic fixture: no external search',searchedAt:new Date().toISOString(),matches:[]});
+const enrichCompanyContext=options=>baseEnrichCompanyContext({...options,search:options.search||noLookup});
 const {resultSchema}=require(resolve(output,'analysis-contract.js'));
 const {ruleDraft}=require(resolve(output,'analysis-engine.js'));
 const {runModelReading}=require(resolve(output,'model-reading.js'));

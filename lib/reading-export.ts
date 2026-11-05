@@ -17,7 +17,9 @@ export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
   add("subheading",c.company.name[lang]);add("body",c.company.description[lang]);
   add("subheading",c.industry.name[lang]);add("body",c.industry.description[lang]);
   add("body",c.implication[lang]);add("meta",c.notice[lang]);
-  for(const s of c.sources)add("meta",`${s.title}\n${s.url}\n${t("查阅","Retrieved")}: ${s.retrievedAt}`);
+  if(c.lookup)add("meta",`${t("公司检索词","Company search query")}: ${c.lookup.query} · ${c.lookup.provider} · ${c.lookup.status} · ${c.lookup.searchedAt}`);
+  for(const s of c.sources){const kind=s.kind==="search"?t("搜索结果摘要","Search excerpt"):s.kind==="encyclopedia"?t("百科资料","Encyclopedia"):t("官网资料","Official reference");add("meta",`${kind} · ${s.title}\n${s.url}\n${t("查阅","Retrieved")}: ${s.retrievedAt}`);}
+  for(const anchor of c.companyEvidence||[])add("quote",`${anchor.quote} — ${c.sources.find(s=>s.id===anchor.sourceId)?.title||anchor.sourceId}`);
  }
  for(const x of r.terms){
   add("heading",displayTerm(x.term,lang));if(lang==="en")add("meta",`Original term: ${x.term}`);

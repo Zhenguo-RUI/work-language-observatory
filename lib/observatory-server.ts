@@ -57,6 +57,14 @@ async function publicQuota(req:Request){
  }
  await database().prepare("DELETE FROM settings WHERE key LIKE 'rate:%' AND updated_at<?").bind(new Date(Date.now()-48*3600000).toISOString()).run();
 }
+async function companyLookupQuota(req:Request){
+ const hour=new Date().toISOString().slice(0,13),fingerprint=usageFingerprint(req,env.AUTH_SECRET||"company-lookup");
+ for(const [scope,limit] of [["all",500],[fingerprint,40]] as const){
+  const reserved=await database().prepare("INSERT INTO settings(key,value,updated_at) VALUES (?,'1',?) ON CONFLICT(key) DO UPDATE SET value=CAST(CAST(settings.value AS INTEGER)+1 AS TEXT),updated_at=excluded.updated_at WHERE CAST(settings.value AS INTEGER) < ? RETURNING value").bind(`company-search-rate:${hour}:${scope}`,now(),limit).first();
+  if(!reserved)throw new HttpError(429,"公司检索过于频繁，请稍后再试 / Company lookup limit reached; please try later");
+ }
+ await database().prepare("DELETE FROM settings WHERE key LIKE 'company-search-rate:%' AND updated_at<?").bind(new Date(Date.now()-48*3600000).toISOString()).run();
+}
 async function initialize(){
  await ensureDatabase();
  const db=database();
@@ -115,6 +123,12 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    throw new HttpError(503,"保存和复核服务正在配置 / Storage and review are being configured");
   }
   await initialize();
+  if(root==="company-context"&&path.length===1&&req.method==="POST"){
+   const d=z.object({company:z.string().trim().min(2).max(160).refine(value=>!/[<>\u0000-\u001f]|https?:\/\/|\bsk-[a-z\d]{20}/i.test(value),"请输入公司名称 / Enter a company name"),title:z.string().max(160).default(""),rawText:z.string().max(24000).default("")}).strict().parse(await body(req));
+   await companyLookupQuota(req);
+   const context=await enrichCompanyContext({company:d.company,title:d.title,raw:d.rawText});
+   return json({context});
+  }
   if(root==="usage"){
    if(path[1]==="summary"&&req.method==="GET"){await operator(user.userId);await pruneUsage(database());return json(await getUsageSummary(database()));}
    if(req.method==="POST"){
@@ -190,7 +204,9 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    try{runId=await startUsageRun(database(),d.useModel)}catch{console.error("Usage run could not be recorded");}
    const n=await first<{n:number}>("SELECT count(*)::integer n FROM analyses WHERE owner_id=? AND engine!='curated' AND created_at>?",user.userId,new Date(Date.now()-3600000).toISOString());if((n?.n||0)>=30)throw new HttpError(429,"本小时提交已达30份，请稍后再试 / Hourly limit reached");
    if(!identity)await publicQuota(req);
-   const hash=await textHash(d.rawText);const existing=identity?await first("SELECT * FROM analyses WHERE owner_id=? AND text_hash=? AND status!='archived' ORDER BY CASE WHEN engine='curated' THEN 0 ELSE 1 END LIMIT 1",user.userId,hash):null;if(existing){const a=readerView(parseRow(existing),op);await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}
+   const hash=await textHash(d.rawText),effectiveTitle=d.title||d.rawText.split("\n")[0].slice(0,80);
+   const existing=identity?await first("SELECT * FROM analyses WHERE owner_id=? AND text_hash=? AND company=? AND title=? AND source_url=? AND status!='archived' ORDER BY updated_at DESC LIMIT 1",user.userId,hash,d.company,effectiveTitle,d.sourceUrl):null;
+   if(existing){const a=readerView(parseRow(existing),op),companyContextFresh=!d.company||(a.result.context?.lookup?.status==="matched"&&a.result.context.briefBasis==="model");if(companyContextFresh){await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}}
    progress("accepted");
    const context=await enrichCompanyContext({raw:d.rawText,title:d.title,company:d.company,onProgress:progress});
    const cs=op?matchesFor(`${d.title} ${d.rawText}`,corpus):[];const cfg=await config();let result=ruleDraft(d.rawText,d.title||d.rawText.split("\n")[0].slice(0,60),cs);let engine="rules",modelError=false,modelFailure:string|undefined;result.context=context;

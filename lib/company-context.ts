@@ -1,3 +1,5 @@
+import {searchCompany,type CompanySearchResult} from "./company-search";
+import {sourcePreviewText} from "./company-brief";
 import type {Bi,CompanyContext} from "./observatory-types";
 
 const bi=(zh:string,en:string):Bi=>({zh,en});
@@ -5,6 +7,7 @@ type Profile={id:string;aliases:RegExp;name:Bi;kind:"organization"|"platform";ur
 // A small reviewed directory, not a general company search engine. No submitted
 // URLs, JD text, company names or candidate details are sent to these sites.
 const profiles:Profile[]=[
+ {id:"zgc-capital",aliases:/中关村资本|\bZhongguancun Capital\b/i,name:bi("中关村资本","Zhongguancun Capital"),kind:"organization",url:"https://www.zgcgroup.com.cn/xwzx/jtyw/art/2026/art_29b3aa9dd2af476f879ac0b6573430bc.html",title:"中关村发展集团 — 中关村资本公司介绍",marker:/中关村资本.{0,100}投资平台/,description:bi("中关村发展集团官网将中关村资本描述为集团全资子公司、支持科技创新发展的投资平台；这有助于把岗位放在科技项目研究与投资服务流程中理解。","ZGC Group describes Zhongguancun Capital as its wholly owned investment platform supporting technological innovation, placing the role in technology-project research and investment services.")},
  {id:"tencent",aliases:/腾讯|\bTencent\b/i,name:bi("腾讯","Tencent"),kind:"organization",url:"https://www.tencent.com/who-we-are/",title:"Tencent — Who we are",marker:/Tencent.{0,120}(?:internet|technology)|Weixin|WeChat/i,description:bi("腾讯官网将其定位为互联网与科技公司，面向消费者及企业提供产品和服务。","Tencent describes itself as an internet and technology company providing products and services for consumers and businesses.")},
  {id:"xiaomi",aliases:/小米|\bXiaomi\b/i,name:bi("小米","Xiaomi"),kind:"organization",url:"https://www.mi.com/global/about/",title:"Xiaomi — About us",marker:/Xiaomi.{0,180}(?:electronics|manufacturing)|smartphones.{0,100}IoT/i,description:bi("小米官网将其定位为消费电子与智能制造公司，核心业务涉及手机、电动汽车及物联网连接的智能硬件。","Xiaomi describes itself as an electronics and smart manufacturing company spanning smartphones, electric vehicles and IoT-connected smart hardware.")},
  {id:"bytedance",aliases:/字节跳动|\bByteDance\b/i,name:bi("字节跳动","ByteDance"),kind:"organization",url:"https://www.bytedance.com/?locale=en",title:"ByteDance — About us",marker:/ByteDance.{0,150}(?:technology|creativity)|Information\/Content Platforms/i,description:bi("字节跳动官网将其定位为科技公司，展示信息内容平台、AI及交易服务等产品业务。","ByteDance presents itself as a technology company with information and content platforms, AI products and transactional services.")},
@@ -55,7 +58,7 @@ const sectors:Sector[]=[
  {test:/软件(?:开发|测试|架构|工程)|(?:开发|测试).{0,8}软件|接口|后端|前端|数据库|(?:代码|系统|程序|应用|客户端|服务端).{0,8}开发|开发.{0,8}(?:系统|应用|接口|程序)|software (?:develop|test|engineer)|backend|frontend|\bAPI\b/i,name:bi("软件与技术交付","Software and technical delivery"),description:bi("JD的开发或系统职责指向技术交付，不能仅因使用数据或软件就推定公司是科技企业。","Development or system duties point to technical delivery. Using data or software alone does not establish that the employer is a technology business."),implication:bi("“独立”应对应具体的开发、定位问题或交付边界；技术方案提出权、代码评审和发布权可能由不同角色承担，应逐项依据JD解释。","Independence needs a specified development, debugging or delivery scope. Proposing a design, reviewing code and authorizing release can belong to different roles and need separate JD evidence.")}
 ];
 
-export async function enrichCompanyContext(options:{raw:string;title:string;company?:string;request?:typeof fetch;onProgress?:(stage:string)=>void}):Promise<CompanyContext>{
+export async function enrichCompanyContext(options:{raw:string;title:string;company?:string;request?:typeof fetch;onProgress?:(stage:string)=>void;search?:typeof searchCompany}):Promise<CompanyContext>{
  options.onProgress?.("context");
  const raw=options.raw,scope=`${options.title}\n${raw}`,company=options.company?.trim()||"";
  const named=company&&!/代理|服务商|合作商|外包|\bagency\b|reseller|outsourc/i.test(company)?profiles.find(p=>p.aliases.test(company)):undefined;
@@ -73,7 +76,11 @@ export async function enrichCompanyContext(options:{raw:string;title:string;comp
   if(startsWithBrand&&!/代理|服务商|合作商|驻场|外包|客户|\bagency\b|outsourc/i.test(first))relationship="employer";
   else if(/客户|服务|client|customer/i.test(lines.find(v=>profile.aliases.test(v))||""))relationship="client";
  }
- const liveRetrievedAt=profile?await checkOfficial(profile,options.request||fetch):null;
+ const lookupQuery=company||profile?.name.zh||(unverifiedPlatform?"抖音":"");
+ const [liveRetrievedAt,lookup]=await Promise.all([
+  profile?checkOfficial(profile,options.request||fetch):Promise.resolve(null),
+  lookupQuery?(options.search||searchCompany)(lookupQuery,{request:options.request}).catch(():CompanySearchResult=>({query:lookupQuery,status:"unavailable" as const,provider:"DuckDuckGo Lite + Wikidata",searchedAt:new Date().toISOString(),matches:[]})):Promise.resolve(undefined),
+ ]);
  const retrievedAt=liveRetrievedAt||(profile?REVIEWED_ON:null);
  const matchesEmployer=!company||!!named;
  const name=matchesEmployer&&profile?profile.name:company?bi(company,/^[\x20-\x7e]+$/.test(company)?company:"Employer named by the user"):unverifiedPlatform?bi("抖音（材料所提平台）","Douyin (platform mentioned in the JD)"):bi("雇主未明确","Employer not identified");
@@ -82,5 +89,15 @@ export async function enrichCompanyContext(options:{raw:string;title:string;comp
  else if(profile&&retrievedAt)description=bi(`用户填写了雇主名称；材料另提到${profile.name.zh}。下列官方背景只适用于该组织／平台，不能证明用户填写雇主的主营业务、身份或内部考核。`,`An employer name was supplied, and the JD also mentions ${profile.name.en}. The official background applies only to that organization or platform and does not verify the named employer, its business or internal appraisal practices.`);
  else if(profile)description=bi(`${profile.name.zh}出现在材料中；本次未成功核验其官网简介，因此不补充公司事实。`,`${profile.name.en} appears in the supplied material. Its official profile could not be checked for this reading, so no company facts have been added.`);
  const notice=liveRetrievedAt?bi("公司／平台简介来自下列官网；行业归类和岗位含义依据本JD。官网介绍不验证招聘真实性，也不证明团队内部管理。","The company or platform profile comes from the official source below; the sector and role interpretation come from this JD. The profile verifies neither the vacancy nor internal team practices."):profile?bi(`本次未重新获取官网，使用${REVIEWED_ON}核对的官方资料快照；这不是实时公司调查。行业归类依据JD，官网背景不验证招聘真实性或内部管理。`,`The official page could not be fetched for this reading; the profile uses a reviewed reference dated ${REVIEWED_ON}, not a live company investigation. The sector uses the JD; official background verifies neither the vacancy nor internal management.`):bi("本次未获得可核验的官网资料；行业与语境仅依据JD。当前只对少量已核对官网提供补充，不会编造未知公司的介绍。","No official profile was verified for this reading. The sector and context use the JD only; official enrichment currently covers a small reviewed directory and does not invent profiles for unknown employers.");
- return {company:{name,relationship,description,basis:retrievedAt&&matchesEmployer?"official":"jd"},industry:{name:sector?.name||bi("按JD识别的工作场景","Work setting described in the JD"),description:sector?.description||bi("现有文本不足以可靠细分行业；应先区分服务对象、工作产物与协作关系。","The supplied text does not support a precise sector classification; identify the recipients, outputs and work relations first."),basis:"jd"},implication:sector?.implication||bi("同一能力词的含义由它修饰的动作、面向的对象及验收位置决定。公司规模或知名度不能替代JD中对职责与授权的表述。","A competence term takes meaning from its action, recipient and assessment position. Company size or reputation cannot replace the JD's statements about duties and authority."),sources:profile&&retrievedAt?[{title:profile.title,url:profile.url,retrievedAt,verification:liveRetrievedAt?"live":"reviewed"}]:[],status:retrievedAt?"verified":evidence.length||company?"jd_only":"unavailable",evidence,notice};
+ const selected=lookup?.matches.find(match=>match.id===lookup.selectedId);
+ const identityMatched=lookup?.status==="matched"&&!!selected;
+ const sourceName=identityMatched?bi(selected.nameZh||company||selected.title,selected.nameEn||(/^[\x20-\x7e]+$/.test(company)?company:"Company named in the query")):name;
+ if(identityMatched&&(!profile||!matchesEmployer)&&selected.snippet)description=sourcePreviewText(selected.snippet,"zh");
+ if(lookup&&!identityMatched&&!profile){
+  description=lookup.status==="ambiguous"?bi("检索到多个可能匹配的组织，请先核对完整名称或来源；暂不将其中任意一家当成招聘方。","Search found multiple possible organizations. Check the full name and sources before assigning a company profile."):lookup.status==="not_found"?bi("已按填写的公司名搜索公开资料，暂未找到能够明确对应的简介。下方保留检索状态；岗位分析仍依据JD进行。","The supplied company name was searched, but no clearly matching profile was found. The lookup status is recorded below; the role reading still uses the JD."):bi("本次公司检索服务暂未返回可用资料，可点击重新检索；这不表示公司不存在。岗位分析仍依据JD进行。","The company lookup did not return usable material. You can retry; this does not establish that the company does not exist. The role reading still uses the JD.");
+ }
+ const sources:CompanyContext["sources"]=profile&&retrievedAt?[{id:`official-${profile.id}`,title:profile.title,url:profile.url,retrievedAt,verification:liveRetrievedAt?"live":"reviewed",kind:"official"}]:[];
+ for(const match of lookup?.matches||[]){if(!sources.some(s=>s.id===match.id))sources.push({id:match.id,title:match.title,url:match.url,retrievedAt:match.retrievedAt,kind:match.kind,excerpt:match.snippet.slice(0,2500)});}
+ const lookupNotice=lookup?bi("公司名称已用于公开资料检索。搜索结果摘要、百科资料与直接核对的官网分别标记；下方可回查查询词、时间与原始来源。"+(profile&&!liveRetrievedAt?notice.zh:"资料不验证招聘真实性或团队内部安排。"),"The company name was used to search public sources. Search excerpts, encyclopedia entries and directly checked official pages are labelled separately; the query, time and sources are recorded below. "+(profile&&!liveRetrievedAt?notice.en:"The sources verify neither the vacancy nor internal team practices.")):notice;
+ return {company:{name:identityMatched&&(!profile||!matchesEmployer)?sourceName:name,relationship,description,basis:retrievedAt&&matchesEmployer?"official":identityMatched?"retrieved":"jd"},industry:{name:sector?.name||bi("按JD识别的工作场景","Work setting described in the JD"),description:sector?.description||bi("现有文本不足以可靠细分行业；应先区分服务对象、工作产物与协作关系。","The supplied text does not support a precise sector classification; identify the recipients, outputs and work relations first."),basis:"jd"},implication:sector?.implication||bi("填写JD后，可进一步判断公司业务怎样影响这个岗位的工作对象、合作关系与能力词含义。公司背景本身不能替代岗位职责。","With a JD, the company background can clarify work objects, partners and situated competence terms. A company profile cannot replace the advertised duties."),sources,status:retrievedAt&&matchesEmployer?"verified":identityMatched?"sourced":evidence.length||company?"jd_only":"unavailable",evidence,notice:lookupNotice,...(lookup?{lookup}:{}),briefBasis:"source"};
 }

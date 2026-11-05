@@ -1,5 +1,5 @@
 import type {Analysis} from "./observatory-types";
-export type AnalysisResponse={analysis:Analysis;modelError?:boolean;reused?:boolean;ephemeral?:boolean};
+export type AnalysisResponse={analysis:Analysis;modelError?:boolean;modelFailure?:string;reused?:boolean;ephemeral?:boolean};
 export async function requestAnalysis(body:unknown,onStage:(stage:string)=>void):Promise<AnalysisResponse>{
  const response=await fetch("/api/analyses",{method:"POST",headers:{"Content-Type":"application/json",Accept:"text/event-stream"},body:JSON.stringify(body)});
  if(!response.headers.get("content-type")?.includes("text/event-stream")){

@@ -22,6 +22,7 @@ import {enrichCompanyContext} from "./company-context";
 import type {CompanyContext} from "./observatory-types";
 import {usageEventSchema,usageFeedbackSchema,opaqueReadingId} from "./usage-contract";
 import {recordUsageEvent,recordUsageFeedback,reserveUsageWrite,usageFingerprint,getUsageSummary,startUsageRun,finishUsageRun,pruneUsage,UsageRateLimitError} from "./usage-store";
+import {safeModelFailure} from "./usage-diagnostics";
 import {reserveModelCall,ModelBudgetError} from "./model-quota";
 import type {Analysis,AnalysisResult,CorpusEntry} from "./observatory-types";
 const corpus=corpusData as CorpusEntry[];
@@ -192,16 +193,16 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    const hash=await textHash(d.rawText);const existing=identity?await first("SELECT * FROM analyses WHERE owner_id=? AND text_hash=? AND status!='archived' ORDER BY CASE WHEN engine='curated' THEN 0 ELSE 1 END LIMIT 1",user.userId,hash):null;if(existing){const a=readerView(parseRow(existing),op);await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}
    progress("accepted");
    const context=await enrichCompanyContext({raw:d.rawText,title:d.title,company:d.company,onProgress:progress});
-   const cs=op?matchesFor(`${d.title} ${d.rawText}`,corpus):[];const cfg=await config();let result=ruleDraft(d.rawText,d.title||d.rawText.split("\n")[0].slice(0,60),cs);let engine="rules",modelError=false;result.context=context;
+   const cs=op?matchesFor(`${d.title} ${d.rawText}`,corpus):[];const cfg=await config();let result=ruleDraft(d.rawText,d.title||d.rawText.split("\n")[0].slice(0,60),cs);let engine="rules",modelError=false,modelFailure:string|undefined;result.context=context;
    progress("analysis");
-   if(d.useModel){if(!cfg.modelConnected)throw new HttpError(409,"请先在运营端连接模型 / Connect the analysis model first");try{result=await modelAnalysis(d.rawText,d.title,cs,cfg.methodNote,cfg.model,context,d.company,progress);engine="model";}catch(error){if(error instanceof ModelBudgetError)throw error;modelError=true;}}
+   if(d.useModel){if(!cfg.modelConnected)throw new HttpError(409,"请先在运营端连接模型 / Connect the analysis model first");try{result=await modelAnalysis(d.rawText,d.title,cs,cfg.methodNote,cfg.model,context,d.company,progress);engine="model";}catch(error){if(error instanceof ModelBudgetError)throw error;modelError=true;modelFailure=safeModelFailure(error);console.warn("Observatory model fallback",{code:modelFailure,runId});}}
    progress("validating");
    if(!op)result.comparisons=[];
    const id=uid(),stamp=now(),title=d.title||d.rawText.split("\n")[0].slice(0,80);
    const prepared=await readyTranslation(title,d.rawText);if(prepared)result.sourceTranslation=prepared;
    progress("saving");
-   if(!identity){await finish(modelError?"fallback":"succeeded",`preview-${id}`,engine);return json({analysis:{id:`preview-${id}`,title,company:d.company,raw_text:d.rawText,source_url:d.sourceUrl,text_hash:hash,status:"draft",engine,result,revision:1,created_at:stamp,updated_at:stamp},ephemeral:true,modelError},200);}
-   await database().prepare("INSERT INTO analyses (id,owner_id,title,company,raw_text,source_url,text_hash,status,engine,result_json,revision,change_id,created_at,updated_at) VALUES (?,?,?,?,?,?,?,'draft',?,?,1,?,?,?)").bind(id,user.userId,title,d.company,d.rawText,d.sourceUrl,hash,engine,JSON.stringify(result),uid(),stamp,stamp).run();await event(user.userId,modelError?"model_failed":"created",title,id);await finish(modelError?"fallback":"succeeded",id,engine);return json({analysis:await getAnalysis(id,user.userId),modelError},201);
+   if(!identity){await finish(modelError?"fallback":"succeeded",`preview-${id}`,engine,modelFailure);return json({analysis:{id:`preview-${id}`,title,company:d.company,raw_text:d.rawText,source_url:d.sourceUrl,text_hash:hash,status:"draft",engine,result,revision:1,created_at:stamp,updated_at:stamp},ephemeral:true,modelError,modelFailure},200);}
+   await database().prepare("INSERT INTO analyses (id,owner_id,title,company,raw_text,source_url,text_hash,status,engine,result_json,revision,change_id,created_at,updated_at) VALUES (?,?,?,?,?,?,?,'draft',?,?,1,?,?,?)").bind(id,user.userId,title,d.company,d.rawText,d.sourceUrl,hash,engine,JSON.stringify(result),uid(),stamp,stamp).run();await event(user.userId,modelError?"model_failed":"created",title,id);await finish(modelError?"fallback":"succeeded",id,engine,modelFailure);return json({analysis:await getAnalysis(id,user.userId),modelError,modelFailure},201);
   }
   if(root==="analyses"&&path[1]){
    const current=await getAnalysis(path[1],user.userId);

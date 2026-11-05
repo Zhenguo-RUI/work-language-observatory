@@ -87,7 +87,7 @@ export default function Observatory({admin=false}:{admin?:boolean}){
    const d=await requestAnalysis({title,company,rawText:raw,sourceUrl:url,useModel},setGenerationStage);
    setGenerationStage("saving");let stored=true;if(!admin)stored=await rememberReading(d.analysis);
    if(d.ephemeral)setPreview(d.analysis);else await refresh();choose(d.analysis);recordAnalysisTiming(Date.now()-started,useModel);
-   if(d.modelError)setNotice(t("模型未通过完整检查，当前展示证据草稿，可稍后重试模型分析。","The model reading did not pass all checks. This is an evidence draft; you can retry model analysis later."));
+   if(d.modelError){const reason=d.modelFailure==="model_timeout"?t("模型响应超时。","The model response timed out. "):d.modelFailure==="model_incomplete_output"?t("模型输出未完成。","The model output was incomplete. "):d.modelFailure==="model_contract_invalid_after_one_repair"?t("模型分析未通过证据或结构检查。","The model reading did not pass evidence or structure checks. "):t("模型服务暂未返回有效分析。","The model service did not return a valid reading. ");setNotice(reason+t("当前展示证据草稿，已保存到本机，可稍后重试。","An evidence draft is shown and saved in this browser. You can retry later."));}
    else if(d.reused)setNotice(t("已打开同一文本的已有结果。","Opened the existing result for this text."));
    else if(stored&&!admin)setNotice(t("分析已完成，已保存到“我的分析”。","Reading complete. Saved to My readings in this browser."));
   }catch(e){setNotice(localizeError((e as Error).message,lang));}finally{setGenerating(false);setBusy(false);}

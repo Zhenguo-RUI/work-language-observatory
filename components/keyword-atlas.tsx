@@ -1,5 +1,6 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
+import {trackUsage} from "@/lib/usage-client";
 import {ArrowUpRight,Search} from "lucide-react";
 import type {PublicStudy} from "@/lib/public-study-types";
 import "./research-pages.css";
@@ -11,7 +12,7 @@ export function KeywordAtlas({data,lang,initialTerm="",onResearch}:{data:PublicS
  const t=(z:string,e:string)=>lang==="zh"?z:e;
  const selected=data.keywords.find(k=>k.term===term)||data.keywords[0];
  const filtered=data.keywords.filter(k=>[k.term,k.english,k.short[lang]].join(" ").toLowerCase().includes(query.toLowerCase().trim()));
- const choose=(value:string)=>{setTerm(value);const u=new URL(location.href);u.searchParams.set("term",value);history.replaceState(null,"",u);if(window.matchMedia("(max-width: 800px)").matches)detail.current?.scrollIntoView({behavior:"smooth",block:"start"})};
+ const choose=(value:string)=>{trackUsage("keyword_select",{view:"keywords"});setTerm(value);const u=new URL(location.href);u.searchParams.set("term",value);history.replaceState(null,"",u);if(window.matchMedia("(max-width: 800px)").matches)detail.current?.scrollIntoView({behavior:"smooth",block:"start"})};
  if(!selected)return null;
  return <div className="study-page"><div className="section-heading"><div><p className="eyebrow">A WORKING VOCABULARY · 01—20</p><h1>{t("二十个词，六十种工作语境。","Twenty terms. Sixty working contexts.")}</h1><p>{t("把词语放回任务、条件与交付，比较同词不同义。","Read who is expected to do what, under which conditions.")}</p></div>{onResearch&&<button className="button secondary" onClick={onResearch}>{t("阅读研究报告","Read the research")}<ArrowUpRight size={16}/></button>}</div>
  <div className="study-source-strip"><strong>{data.methods.corpusN.toLocaleString()} {t("份去重归档","unique archived ads")}</strong><span>{t("固定33项候选词表内，按文档命中数排序","Ranked by document hits within a fixed 33-expression vocabulary")}</span><span>{t("每词3例 · 三种来源 · 中英双语","3 cases per term · 3 sources · bilingual")}</span></div>

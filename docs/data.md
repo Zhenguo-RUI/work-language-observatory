@@ -17,7 +17,7 @@ The public export deliberately empties:
 - `data/seeds.json`: previously prepared case readings and full JDs;
 - `data/seed-translations.json`: full translations tied to those cases.
 
-User-created records are stored at runtime, never written into these source fixtures. Anonymous analysis is an ephemeral preview rather than a retrievable saved reading. An identity-based deployment still needs a real authentication gateway before private history and operations can be considered protected in that deployment.
+User-created records are stored at runtime, never written into these source fixtures. Anonymous analysis is ephemeral on the server but saved in the visitor’s own browser. Anonymous telemetry contains allowlisted actions, opaque run references, outcomes and durations, not JD bodies. Ratings and optional comments are visible only to the operator. A JD and its result enter the protected server review queue only when a visitor explicitly chooses to attach them; authenticated cloud submissions remain owner-scoped. Auth.js verified sessions protect operations.
 
 ## 中文说明
 

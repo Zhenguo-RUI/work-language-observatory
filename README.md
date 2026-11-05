@@ -10,7 +10,9 @@ A bilingual research tool for interpreting competence labels in job advertisemen
 
 - **Situated readings:** concise explanations, exact evidence, concrete work outputs and useful follow-up questions.
 - **Sociological interpretation:** connections between individual qualities, coordination, evaluation and decision rights, with facts and hypotheses distinguished.
-- **Review workspace:** private saved readings, versioned revisions, feedback and operator review.
+- **Company and industry context:** dated official references for a small reviewed directory, clear employer/platform/client distinctions, and JD-based sector interpretation.
+- **Personal history and export:** automatic on-device reading history without login; real bilingual PDF and Markdown downloads.
+- **Operations and feedback:** protected usage funnels, timings, downloads, thumbs and comments, with optional private sharing for review.
 - **Bilingual access:** Chinese and English readings; separately validated translations of the job title and complete JD.
 
 ## Runtime / 运行方式
@@ -27,7 +29,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://127.0.0.1:5185`. Node.js 22 is required. With no database URL, development uses an on-disk PGlite database under ignored `.runtime/`; production requires Neon Postgres. Local mode has **no mock external identity**. Saving personal histories uses configured GitHub OAuth. The owner can alternatively access operations with a separate securely generated operator key.
+Open `http://127.0.0.1:5185`. Node.js 22 is required. With no database URL, development uses an on-disk PGlite database under ignored `.runtime/`; production requires Neon Postgres. Local mode has **no mock external identity**. Local browser history works without an account; cross-device cloud histories use configured GitHub OAuth. The owner can alternatively access operations with a separate securely generated operator key.
 
 Fill model keys only in `.env.local`. Never commit credentials. For a build, run `npm run build`; `npm start` serves the build locally.
 
@@ -35,7 +37,7 @@ Fill model keys only in `.env.local`. Never commit credentials. For a build, run
 
 Connect the repository to a Vercel project, choose Node.js 22 and install with `npm ci --include=dev`. Add a Neon Free database through the Vercel integration. Configure server-only variables using `.env.example`. GitHub OAuth uses callback `https://YOUR-DOMAIN/api/auth/callback/github`; the GitHub operator is selected by a stable numeric GitHub ID. For owner-only operations without OAuth setup, use a separately generated random `OPERATOR_ACCESS_KEY` of at least 32 characters; never reuse a personal account password. Rotating that key invalidates its earlier sessions. See [deployment instructions](docs/deployment.md).
 
-The public tool works without visitor login. Saving personal histories and operator review require verified sessions. Public-user history stays disabled until GitHub OAuth is configured; owner-key access does not enable public accounts. Public submissions are temporary by default and not saved into the site's history. Deep model calls require a durable database for usage limits. The default anonymous limit is 12 requests per hour per fingerprint, with an additional shared daily model-call budget. Limits count attempts; repairs can add provider requests. Configure provider-level spending limits separately.
+The public tool works without visitor login. Results are saved automatically in the visitor’s browser (IndexedDB, with a localStorage fallback) without login. They survive refresh and later visits in that browser; clearing site data removes them. Optional cross-device cloud history requires GitHub OAuth. The owner-only operator key does not enable public user accounts. Anonymous JDs are not stored in the server history by default; explicitly attaching a JD and reading to feedback adds a private review sample. Deep model calls require a durable database for usage limits. The default anonymous limit is 12 requests per hour per fingerprint, with an additional shared daily model-call budget. Limits count attempts; repairs can add provider requests. Configure provider-level spending limits separately.
 
 公开网站只展示工具与研究汇总。个体记录不会因为标为 published 而对其他访客开放；该状态只表示内部复核状态。
 
@@ -60,6 +62,9 @@ node scripts/check-language.mjs
 node scripts/check-semantic-regressions.mjs
 npm run test:database
 node scripts/check-public-study.mjs
+node scripts/check-company-context.mjs
+node scripts/check-usage.mjs
+node scripts/check-pdf-export.mjs
 ```
 
 Run the analysis checks first: they prepare an isolated test build. `scripts/check-vercel-http.mjs` additionally verifies HTTP/session/ownership behavior against an explicitly configured loopback server and synthetic test identities. `npm run test:live` is optional and sends a synthetic JD to the configured paid API. Ordinary checks do not make paid model calls.
@@ -72,6 +77,7 @@ Run the analysis checks first: they prepare an isolated test build. `scripts/che
 - [Deployment and authentication](docs/deployment.md)
 - [Verification record](docs/verification.md)
 - [DeepSeek configuration](docs/deepseek.md)
+- [Reading history, PDF, progress and operations](docs/reading-experience.md)
 
 The analysis instructions live in `lib/analysis-prompt.ts`; validation, fidelity checks and provider orchestration remain separate modules. Prompt edits alone do not establish a quality improvement.
 

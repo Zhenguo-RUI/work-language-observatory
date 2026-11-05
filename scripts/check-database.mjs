@@ -20,7 +20,7 @@ const driver=await localDriver('memory'),db=new Database(async()=>driver);
 try{
  await check('source parameters are separated from SQL, including quoted question marks',()=>assert.deepEqual(parameterize("SELECT '?' AS literal, ? AS input, 'it''s ?' AS quoted",['untrusted']),{text:"SELECT '?' AS literal, $1 AS input, 'it''s ?' AS quoted",values:['untrusted']}));
  await check('parameter count mismatches fail before sending a query',()=>assert.throws(()=>parameterize('SELECT ? + ?', [1]),/parameter_count/));
- await check('Postgres schema initialization is idempotent',async()=>{await initializeSchema(db);await initializeSchema(db);assert.equal((await db.prepare("SELECT count(*)::integer AS n FROM information_schema.tables WHERE table_schema='public'").first()).n,7);});
+ await check('Postgres schema initialization is idempotent',async()=>{await initializeSchema(db);await initializeSchema(db);assert.equal((await db.prepare("SELECT count(*)::integer AS n FROM information_schema.tables WHERE table_schema='public'").first()).n,10);});
  const stamp=new Date().toISOString();
  await db.prepare('INSERT INTO settings(key,value,updated_at) VALUES (?,?,?)').bind('test','before',stamp).run();
  await check('untrusted values cannot escape into SQL',async()=>{const value="'; DROP TABLE settings; --";await db.prepare('UPDATE settings SET value=? WHERE key=?').bind(value,'test').run();assert.equal((await db.prepare('SELECT value FROM settings WHERE key=?').bind('test').first()).value,value);});

@@ -63,7 +63,7 @@ let calls=0,inputs=[];
 const opts={apiKey:'test-only-not-a-live-key',model:'mock-model',raw,title:'Synthetic evaluator',comparators:[],methodNote:''};
 const one=await runModelReading({...opts,request:async(_url,init)=>{calls++;inputs.push(JSON.parse(init.body));return response(valid);}});
 await check('normal model adapter uses one request',()=>assert(one.calls===1&&calls===1));
-await check('the current v5 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v5'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
+await check('the current v6 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v6'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
 let missingCalls=0;const missingRepair=await runModelReading({...opts,request:async()=>response(++missingCalls===1?withoutTests:valid)});
 await check('missing question consequence receives only one bounded repair',()=>assert.equal(missingRepair.calls,2));
 const boundaryRaw=raw+'\n条件：实习3个月以上。';

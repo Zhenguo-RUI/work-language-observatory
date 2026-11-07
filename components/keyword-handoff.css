@@ -121,23 +121,24 @@
  .public-reader .keyword-atlas .atlas-comparison-summary{font-size:13px;line-height:1.9}
 }
 
-/* v3: the original raised-hand figure has no baked-in stick. */
+/* v3.1: a short marginal gesture follows the selected row. */
 .public-reader .keyword-atlas .atlas-index-track{--rail-w:56px;position:relative;min-width:0;padding-left:var(--rail-w)}
-.public-reader .keyword-atlas .atlas-index-track .atlas-list{position:relative;min-width:0}
-.public-reader .keyword-atlas .atlas-clerk-anchor{position:absolute;left:0;bottom:8px;width:44px;pointer-events:none;z-index:2}
+.public-reader .keyword-atlas .atlas-index-track .atlas-list{position:relative;min-width:0;padding-right:8px;scrollbar-gutter:stable}
+.public-reader .keyword-atlas .atlas-clerk-anchor{position:absolute;left:0;top:0;width:40px;pointer-events:none;z-index:2;visibility:hidden}
+.public-reader .keyword-atlas .atlas-clerk-anchor.has-target{visibility:visible}
 .public-reader .keyword-atlas .atlas-clerk-anchor .wlo-illustration.atlas-index-pointer{display:block;position:relative;width:100%;max-width:none;margin:0;pointer-events:none}
 .public-reader .keyword-atlas .clerk-stick{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1;mix-blend-mode:normal}
 .public-reader .keyword-atlas .clerk-stick path{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round}
 .public-reader .keyword-atlas .clerk-stick circle{fill:var(--slate)}
 .public-reader .keyword-atlas .atlas-term{min-height:62px;gap:8px;padding-left:0;padding-right:5px;border-radius:0}
 .public-reader .keyword-atlas .atlas-term.selected{background:transparent!important;border-left:0;color:var(--slate)}
-.public-reader .keyword-atlas .atlas-rank{font:400 11px/1.5 var(--f-mono);min-width:2ch;text-align:right;color:var(--placeholder);flex-shrink:0}
+.public-reader .keyword-atlas .atlas-rank{font:400 11px/1.5 var(--f-mono);min-width:2ch;text-align:right;color:var(--placeholder);flex-shrink:0;align-self:flex-start;margin-top:3.75px}
 .public-reader .keyword-atlas .atlas-count{font:400 11px/1.5 var(--f-mono);color:var(--placeholder);margin-left:auto;flex-shrink:0}
 .public-reader .keyword-atlas .atlas-index-note{white-space:nowrap;padding:14px 0 0;margin:0;font:400 11px/1.5 var(--f-sans);letter-spacing:0;color:var(--placeholder)}
 .public-reader .keyword-atlas .atlas-detail-count,.public-reader .keyword-atlas .atlas-detail-count strong,.public-reader .keyword-atlas .atlas-contexts-heading>span,.public-reader .keyword-atlas .atlas-example-number{color:var(--placeholder)}
 @media(max-width:900px){
  .public-reader .keyword-atlas .atlas-index-track{--rail-w:44px}
- .public-reader .keyword-atlas .atlas-clerk-anchor{bottom:0;width:36px;visibility:hidden}
+ .public-reader .keyword-atlas .atlas-clerk-anchor{width:30px}
  .public-reader .keyword-atlas .atlas-clerk-anchor.has-target{visibility:visible}
  .public-reader .keyword-atlas .atlas-term{gap:6px;min-height:62px;padding-right:0}
  .public-reader .keyword-atlas .atlas-rank{display:block;font-size:11px}

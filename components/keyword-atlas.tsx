@@ -13,7 +13,7 @@ type Lang = "zh" | "en";
 type PointerLine = {path:string;endX:number;endY:number;width:number;height:number;clerkTop:number|null;visible:boolean};
 
 function PencilOval({index=false}:{index?:boolean}){
-  return <svg className="atlas-pencil-oval" viewBox="0 0 220 90" preserveAspectRatio="none" aria-hidden="true"><path d={index?"M158.4 0C124-5 49 0 18 23C-18 50 20 82 86 85C148 90 210 73 216 44C221 24 195 7 168 3":"M179 10C145-2 54 1 19 25C-18 51 22 83 89 85C146 88 209 72 216 44C222 24 196 12 176 12"}/></svg>;
+  return <svg className="atlas-pencil-oval" viewBox="0 0 220 90" preserveAspectRatio="none" aria-hidden="true"><path d={index?"M0 68C-13 47 14 15 61 7C111-4 185 2 211 27C242 59 191 84 132 86C89 90 53 84 34 77":"M179 10C145-2 54 1 19 25C-18 51 22 83 89 85C146 88 209 72 216 44C222 24 196 12 176 12"}/></svg>;
 }
 function PaperTape({extra=false}:{extra?:boolean}){
   return <svg className={`atlas-tape${extra?" atlas-tape-extra":""}`} viewBox="0 0 150 40" aria-hidden="true"><path d="M7 4L18 3L26 5L37 3L48 5L61 3L72 4L85 3L97 4L111 3L123 4L143 3L140 10L143 15L139 20L142 25L138 30L140 36L126 35L113 37L101 35L89 36L76 35L63 37L50 35L38 36L25 35L12 36L3 35L6 29L3 25L7 20L4 15L8 10Z"/></svg>;
@@ -66,31 +66,43 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
     let frame=0,cancelled=false;
     const measure=()=>{
       frame=0;
-      const ring=track.querySelector<SVGElement>(".atlas-term.selected .atlas-pencil-oval");
+      const active=track.querySelector<HTMLElement>(".atlas-term.selected");
+      const ring=active?.querySelector<SVGElement>(".atlas-pencil-oval");
+      const rank=active?.querySelector<HTMLElement>(".atlas-rank");
       const box=track.getBoundingClientRect(),list=scroll.getBoundingClientRect();
-      if(!ring||!box.width||!box.height){setPointerLine(null);return;}
+      if(!active||!ring||!rank||!box.width||!box.height){setPointerLine(null);return;}
       const target=ring.getBoundingClientRect(),image=figure.getBoundingClientRect();
+      const row=active.getBoundingClientRect(),number=rank.getBoundingClientRect();
       const mobile=window.matchMedia("(max-width: 900px)").matches;
-      // The point is measured on the supplied PNG's CSS viewport, not its white canvas.
-      const tipX=192/220,tipY=22/365;
-      const targetX=target.left-box.left+(mobile?0:target.width*.72);
-      const targetY=target.top-box.top+(mobile?target.height*.55:0);
-      const clerkTop=mobile?Math.max(0,Math.min(box.height-image.height,targetY+4-image.height*tipY)):null;
-      const startX=image.left-box.left+image.width*tipX;
-      const startY=(clerkTop??(image.top-box.top))+image.height*tipY;
-      const dx=targetX-startX,dy=targetY-startY,distance=Math.hypot(dx,dy);
-      // In the narrow rail, a short gesture points toward the ring's left edge.
-      // Reaching the right opening would cross the text or require moving the figure over it.
-      const ratio=mobile&&distance>18?18/distance:1;
-      const endX=startX+dx*ratio,endY=startY+dy*ratio;
-      const seed=(selected?.rank??1)%2===0?1:-1;
-      const bow=mobile?1:2.5;
-      const middleX=(startX+endX)/2+seed*bow;
-      const middleY=(startY+endY)/2-seed*bow;
-      const visible=target.top>=list.top-1&&target.bottom<=list.bottom+1;
+      // Feet follow the selected row, including when the index itself scrolls.
+      const clerkTop=row.bottom-box.top-image.height;
+      // The reference has a short marginal gesture below the numeral, not a
+      // straight pointer from the raised hand through the rank and term.
+      const endX=target.left-box.left;
+      const endY=target.top-box.top+target.height*68/90;
+      const limit=mobile?22:34;
+      let span=limit*.78;
+      let startX=0,startY=0,middleX=0,middleY=0;
+      const point=(t:number)=>({x:(1-t)**2*startX+2*(1-t)*t*middleX+t*t*endX,y:(1-t)**2*startY+2*(1-t)*t*middleY+t*t*endY});
+      // Measure the curve, not only its chord; shorten deterministically to
+      // respect the phone/desktop limits while keeping the oval endpoint fixed.
+      for(let attempt=0;attempt<16;attempt++){
+        startX=endX-span;
+        startY=Math.max(endY+4,number.bottom-box.top+3);
+        const chord=Math.hypot(endX-startX,endY-startY);
+        middleX=(startX+endX)/2-chord*.35;
+        middleY=Math.max(startY,endY)+chord*.35;
+        let length=0,previous=point(0),clear=true;
+        for(let step=1;step<=32;step++){
+          const p=point(step/32);length+=Math.hypot(p.x-previous.x,p.y-previous.y);previous=p;
+          if(p.x>=number.left-box.left-1&&p.x<=number.right-box.left+1&&p.y<number.bottom-box.top+2)clear=false;
+        }
+        if(length<=limit&&clear)break;
+        span*=.88;
+      }
+      const visible=row.top>=list.top-1&&row.bottom<=list.bottom+1;
       const next={path:`M ${startX.toFixed(2)} ${startY.toFixed(2)} Q ${middleX.toFixed(2)} ${middleY.toFixed(2)} ${endX.toFixed(2)} ${endY.toFixed(2)}`,endX,endY,width:box.width,height:box.height,clerkTop,visible};
       setPointerLine(previous=>JSON.stringify(previous)===JSON.stringify(next)?previous:next);
-      if(Boolean(figure.style.top)!==mobile)schedule();
     };
     const schedule=()=>{if(!cancelled&&!frame)frame=requestAnimationFrame(measure)};
     const observer=new ResizeObserver(schedule);

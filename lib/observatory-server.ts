@@ -78,7 +78,23 @@ async function initialize(){
 }
 async function getAnalysis(id:string,userId:string){const op=isOperator(await getUser());const r=await first("SELECT * FROM analyses WHERE id=? AND (owner_id=? OR ?)",id,userId,op);if(!r)throw new HttpError(404,"记录不存在 / Record not found");return readerView(parseRow(r),op);}
 async function body(req:Request){if(!req.headers.get("content-type")?.includes("application/json"))throw new HttpError(415,"请使用JSON提交 / JSON required");const raw=await req.text();if(raw.length>120000)throw new HttpError(413,"提交内容过长 / Request too large");try{return JSON.parse(raw)}catch{throw new HttpError(400,"内容格式无效 / Invalid JSON")}}
-async function config(){const runtime=modelRuntime(env),model=databaseConfigured()?await setting("model",runtime.model):runtime.model;return {provider:runtime.provider,model,modelConnected:databaseConfigured()&&!!runtime.apiKey&&!!model,authConfigured:githubAuthenticationConfigured(),storageConfigured:databaseConfigured(),methodNote:databaseConfigured()?await setting("method_note"):"",version:ANALYSIS_VERSION};}
+async function config(){
+ const runtime=modelRuntime(env),values=databaseConfigured()?Object.fromEntries((await rows<{key:string;value:string}>("SELECT key,value FROM settings WHERE key IN ('model','method_note')")).map(row=>[row.key,row.value])):{};
+ const model=values.model??runtime.model;
+ return {provider:runtime.provider,model,modelConnected:databaseConfigured()&&!!runtime.apiKey&&!!model,authConfigured:githubAuthenticationConfigured(),storageConfigured:databaseConfigured(),methodNote:values.method_note??"",version:ANALYSIS_VERSION};
+}
+async function guestSettings(){
+ const runtime=modelRuntime(env),storageConfigured=databaseConfigured();let model=runtime.model;
+ // Public startup needs one setting, never private history, counts or seed writes.
+ if(storageConfigured&&runtime.apiKey){
+  try{model=await setting("model",runtime.model)}catch(error){
+   // A brand-new database still needs its schema; a network failure is not a migration.
+   if((error as {code?:string})?.code!=="42P01")throw error;
+   await initialize();model=await setting("model",runtime.model);
+  }
+ }
+ return {model:"",modelConnected:storageConfigured&&!!runtime.apiKey&&!!model,authConfigured:githubAuthenticationConfigured(),storageConfigured,methodNote:"",version:ANALYSIS_VERSION};
+}
 function json(value:unknown,status=200){return Response.json(value,{status,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff","Vary":"Cookie"}});}
 async function modelAnalysis(raw:string,title:string,cs:CorpusEntry[],methodNote:string,model:string,context:CompanyContext,company:string,onProgress?:(stage:string)=>void):Promise<AnalysisResult>{
  const runtime=modelRuntime(env);if(!runtime.apiKey)throw new Error("model_not_connected");
@@ -105,9 +121,11 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
  try{
   if(path.join("/")==="health")return json({ok:true,databaseConfigured:databaseConfigured(),authenticationConfigured:authenticationConfigured(),version:ANALYSIS_VERSION});
   if(req.method!=="GET"&&!sameRequestOrigin(req,env.VERCEL==="1"))throw new HttpError(403,"跨站提交已拒绝 / Cross-origin write rejected");
+  // These are published aggregates, identical for every visitor and independent of sessions.
+  if(path[0]==="research"&&req.method==="GET")return Response.json({...research,study:publicStudy},{headers:{"Cache-Control":"public, max-age=300, s-maxage=300","X-Content-Type-Options":"nosniff"}});
   const identity=await getUser(),op=isOperator(identity),user=identity||{userId:"",displayName:"访客 / Guest",email:"",fullName:null};const root=path[0];
   if(root==="bootstrap"&&new URL(req.url).searchParams.get("scope")==="ops"){if(!identity)throw new HttpError(401,"请先登录 / Please sign in");await operator(user.userId);}
-  if(root==="research"&&req.method==="GET")return json({...research,study:publicStudy});
+  if(root==="bootstrap"&&req.method==="GET"&&!identity)return json({user:{displayName:user.displayName,email:"",authenticated:false},operator:false,analyses:[],stats:{total:0,draft:0,in_review:0,published:0,archived:0,feedback:0,reviews:0},feedback:[],activity:[],settings:await guestSettings()});
   if(!databaseConfigured()){
    if(root==="bootstrap"&&req.method==="GET")return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:[],stats:{total:0,draft:0,in_review:0,published:0,archived:0,feedback:0,reviews:0},feedback:[],activity:[],settings:{model:"",modelConnected:false,authConfigured:githubAuthenticationConfigured(),storageConfigured:false,methodNote:"",version:ANALYSIS_VERSION}});
    if(root==="analyses"&&path.length===1&&req.method==="POST"){
@@ -159,13 +177,18 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
   if(root==="bootstrap"&&req.method==="GET"){
    if(new URL(req.url).searchParams.get("scope")==="ops"){if(!identity)throw new HttpError(401,"请先登录 / Please sign in");await operator(user.userId);}
    const where=op?"1=1":"owner_id=?",args=op?[]:[user.userId];
-   const list=(await rows(`SELECT * FROM analyses WHERE ${where} ORDER BY updated_at DESC LIMIT 250`,...args)).map(r=>readerView(parseRow(r),op));
-   const feedback=op?await rows("SELECT f.*,a.title FROM feedback f JOIN analyses a ON a.id=f.analysis_id ORDER BY f.created_at DESC LIMIT 100"):[];
-   const grouped=await rows<{status:string;n:number}>(`SELECT status,count(*)::integer n FROM analyses WHERE ${where} GROUP BY status`,...args);
+   const [listRows,feedback,grouped,feedbackCount,reviewCount,activity,settings,usage]=await Promise.all([
+    rows(`SELECT * FROM analyses WHERE ${where} ORDER BY updated_at DESC LIMIT 250`,...args),
+    op?rows("SELECT f.*,a.title FROM feedback f JOIN analyses a ON a.id=f.analysis_id ORDER BY f.created_at DESC LIMIT 100"):Promise.resolve([]),
+    rows<{status:string;n:number}>(`SELECT status,count(*)::integer n FROM analyses WHERE ${where} GROUP BY status`,...args),
+    op?first<{n:number}>("SELECT count(*)::integer n FROM feedback"):Promise.resolve(null),
+    op?first<{n:number}>("SELECT count(*)::integer n FROM reviews"):Promise.resolve(null),
+    op?rows("SELECT id,action,detail,created_at FROM activities ORDER BY created_at DESC LIMIT 15"):Promise.resolve([]),
+    config(),op?getUsageSummary(database()):Promise.resolve(undefined),
+   ]);
+   const list=listRows.map(r=>readerView(parseRow(r),op));
    const counts=Object.fromEntries(statuses.map(status=>[status,grouped.find(r=>r.status===status)?.n||0]));
-   const feedbackCount=op?await first<{n:number}>("SELECT count(*)::integer n FROM feedback"):null;
-   const reviewCount=op?await first<{n:number}>("SELECT count(*)::integer n FROM reviews"):null;
-   return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:list,...(op?{usage:await getUsageSummary(database())}:{}),stats:{total:grouped.reduce((n,r)=>n+r.n,0),...counts,feedback:feedbackCount?.n||0,reviews:reviewCount?.n||0},feedback,activity:op?await rows("SELECT id,action,detail,created_at FROM activities ORDER BY created_at DESC LIMIT 15"):[],settings:op?await config():{model:"",modelConnected:(await config()).modelConnected,authConfigured:githubAuthenticationConfigured(),storageConfigured:true,methodNote:"",version:ANALYSIS_VERSION}});
+   return json({user:{displayName:user.displayName,email:user.email,authenticated:!!identity},operator:op,analyses:list,...(op?{usage}:{}),stats:{total:grouped.reduce((n,r)=>n+r.n,0),...counts,feedback:feedbackCount?.n||0,reviews:reviewCount?.n||0},feedback,activity,settings:op?settings:{model:"",modelConnected:settings.modelConnected,authConfigured:githubAuthenticationConfigured(),storageConfigured:true,methodNote:"",version:ANALYSIS_VERSION}});
   }
   if(root==="corpus"&&req.method==="GET"){
    await operator(user.userId);
@@ -174,7 +197,6 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    const reviewRows=op?await rows("SELECT * FROM corpus_reviews"):[];const map=Object.fromEntries(reviewRows.map(r=>[r.id,r]));
    return json({total:filtered.length,offset,items:filtered.slice(offset,offset+30).map(c=>({...c,review:map[c.id]||null}))});
   }
-  if(root==="research"&&req.method==="GET")return json({...research,study:publicStudy});
   if(root==="corpus"&&path[1]&&req.method==="PATCH"){
    await operator(user.userId);if(!corpus.some(c=>c.id===path[1]))throw new HttpError(404,"档案不存在 / Archive record not found");
    const d=z.object({status:z.enum(["unreviewed","verified","rejected"]),note:z.string().max(2000)}).parse(await body(req));

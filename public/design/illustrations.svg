@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<!-- 笔法：stroke #1A1A1A 1.5 round；填色块略溢出轮廓；填色限 sage/slate/sand -->
+<symbol id="wlo-i-pair" viewBox="0 0 120 90">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <circle cx="35" cy="26" r="6"/><path d="M35 32q-1 10 0 18M35 38q-8 4-13 3M35 50q-3 8-5 12M35 50q3 8 5 12"/>
+  <circle cx="85" cy="26" r="6"/><path d="M85 32q1 10 0 18M85 38q8 4 13 3M85 50q-3 8-5 12M85 50q3 8 5 12"/>
+  <path d="M14 34l20-1 1 26-20 1z M86 34l20-1 1 26-20 1z"/>
+  <path d="M56 10q4-6 8-2 3 3-1 6l-2 2"/><path d="M48 20l14-1M48 26l12-1M90 22l12-1"/>
+ </g>
+ <rect x="17" y="42" width="10" height="3" fill="#899B8E" transform="rotate(-2 22 43)"/>
+ <rect x="89" y="48" width="14" height="3" fill="#899B8E" transform="rotate(-2 96 49)"/>
+ <circle cx="60" cy="22" r="1.6" fill="#D9C7A8"/>
+</symbol>
+<symbol id="wlo-i-pointer" viewBox="0 0 90 90">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <circle cx="28" cy="66" r="6"/><path d="M28 72q0 8 0 14M28 86q-3 4-4 6M28 86q3 4 4 6M28 76q9-5 16-26"/>
+  <path d="M44 50 54 18"/><circle cx="55" cy="16" r="1.6"/>
+ </g><path d="M24 74q4 6 8 6" fill="#899B8E"/>
+</symbol>
+<symbol id="wlo-i-twocards" viewBox="0 0 120 80">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <circle cx="60" cy="34" r="6"/><path d="M60 40q0 10 0 16M60 46q-12 2-19-2M60 46q12 2 19-2M60 56q-3 8-4 12M60 56q3 8 4 12"/>
+  <path d="M28 26l16-1 1 12-16 1z M76 26l16-1 1 12-16 1z"/>
+  <path d="M56 16q4-6 8-2 3 3-1 6l-2 2"/>
+ </g>
+ <rect x="31" y="30" width="9" height="3" fill="#899B8E"/><rect x="79" y="30" width="9" height="3" fill="#D9C7A8"/>
+</symbol>
+<symbol id="wlo-i-scale-empty" viewBox="0 0 120 90">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <path d="M60 18 60 70M48 72h24M30 30 90 26M30 30l-4 14M30 30l4 14M90 26l-4 18M90 26l4 18"/>
+  <path d="M24 44q6 6 12 0M84 46q6 6 12 0"/>
+ </g><rect x="27" y="37" width="6" height="6" fill="#899B8E" transform="rotate(-3 30 40)"/>
+</symbol>
+<symbol id="wlo-i-scale-stone" viewBox="0 0 130 90">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <path d="M55 18 55 70M43 72h24M25 30 85 28M25 30l-4 14M25 30l4 14M85 28l-4 16M85 28l4 16"/>
+  <path d="M19 44q6 6 12 0M79 46q6 6 12 0"/>
+  <circle cx="108" cy="38" r="5"/><path d="M108 43q-2 8-2 14M106 57l-2 9M106 57l4 8M108 46q-9-2-16-3M108 48q-4 6-6 12"/>
+ </g>
+ <rect x="22" y="37" width="6" height="6" fill="#899B8E"/><circle cx="85" cy="41" r="3" fill="#D9C7A8"/>
+</symbol>
+<symbol id="wlo-i-ladder" viewBox="0 0 110 90">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <path d="M38 82 44 40M54 82 48 40M40 70h12M41 60h10M42 50h8"/>
+  <circle cx="46" cy="28" r="5"/><path d="M46 33q0 5 0 7M46 36q8-2 12-6M46 40q-2 4-3 6M46 40q2 4 3 6"/>
+  <path d="M70 18 70 72M62 24l14-1 1 10-14 1zM62 40l14-1 1 10-14 1zM62 56l14-1 1 10-14 1z"/>
+ </g><rect x="65" y="27" width="8" height="3" fill="#899B8E"/>
+</symbol>
+<symbol id="wlo-i-reader" viewBox="0 0 110 80">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <path d="M20 68q35 4 70 0"/><circle cx="45" cy="36" r="6"/>
+  <path d="M45 42q-2 10-4 14M41 56q8 2 14 0 5 0 6 7M50 48l22-2 2 14-22 2zM54 52l14-1M54 56l12-1"/>
+  <circle cx="82" cy="22" r="7"/><path d="M82 22v-5M82 22l4 2"/>
+ </g><rect x="56" y="50" width="10" height="3" fill="#899B8E"/>
+</symbol>
+<symbol id="wlo-i-torn" viewBox="0 0 120 80">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <circle cx="32" cy="34" r="6"/><path d="M32 40q0 10 0 16M32 46q9-3 14-8M32 56q-3 8-4 12M32 56q3 8 4 12"/>
+  <path d="M46 18l24-2 2 20-10 1-2 6-4-5-12 1z"/>
+  <path d="M82 48q8-8 12 0 4 8-4 8-8 0-4-8 4-8 10-2M104 30q4-6 8-2 3 3-1 6l-2 2"/>
+ </g><circle cx="106" cy="40" r="1.6" fill="#D9C7A8"/>
+</symbol>
+<symbol id="wlo-i-drawer" viewBox="0 0 110 80">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <path d="M34 36h56M34 52h56M44 52l30 0 0 12-30 0z"/>
+  <circle cx="24" cy="46" r="5"/><path d="M24 51q4 6 10 6M34 57q6 0 10-2M24 57q-2 6-3 9"/>
+ </g><circle cx="76" cy="28" r="3" fill="#899B8E"/>
+</symbol>
+<symbol id="wlo-i-shelf" viewBox="0 0 120 90">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <path d="M28 28h64M28 42h64M28 56h64M28 70h64M60 42l14-6 3 10-14 6z"/>
+  <circle cx="16" cy="44" r="5"/><path d="M16 49q0 9 0 14M16 54q6 2 9 0M16 63q-2 5-3 7M16 63q2 5 3 7"/>
+  <circle cx="102" cy="52" r="5"/><path d="M102 57q-3 6-6 8M96 65q4 3 8 2M102 57q2 6 3 9"/>
+  <circle cx="70" cy="62" r="4"/><path d="M70 58q0-3 0-4M66 62q-2 3-3 5"/>
+ </g>
+ <rect x="40" y="32" width="8" height="3" fill="#899B8E"/><rect x="80" y="60" width="8" height="3" fill="#4A6B7C"/>
+ <circle cx="50" cy="20" r="2" fill="#D9C7A8"/>
+</symbol>
+<symbol id="wlo-i-flag" viewBox="0 0 90 70">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <circle cx="45" cy="34" r="4"/><path d="M45 38q0 4 0 6M45 44l-2 4M45 44l2 4M45 40q6-4 8-8M53 32V18"/>
+ </g>
+ <rect x="20" y="48" width="50" height="8" fill="#899B8E"/>
+ <path d="M53 18l10 3-10 3z" fill="#4A6B7C"/>
+</symbol>
+<symbol id="wlo-i-hand" viewBox="0 0 40 44">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M14 40q-3-1-4-4l-4-9q-1-3 2-4 2-1 3 1l2 4V10q0-3 3-3t3 3v10q2-2 4-1 2 0 2 2 2-1 4 0 2 1 2 3v8q0 7-6 7z"/>
+ </g>
+</symbol>
+<symbol id="wlo-i-peek" viewBox="0 0 90 50">
+ <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round">
+  <circle cx="45" cy="26" r="6"/><path d="M39 30q-2 3-3 6M51 30q2 3 3 6M10 40h70"/>
+ </g><path d="M56 34q4-2 6 2 1 3-2 4-4 1-5-2z" fill="#899B8E"/>
+</symbol>
+</svg>

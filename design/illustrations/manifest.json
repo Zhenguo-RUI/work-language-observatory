@@ -1,0 +1,230 @@
+{
+  "provenance": "Original artwork supplied by the project owner. Files are copied unchanged; this record does not grant a separate licence.",
+  "assets": [
+    {
+      "name": "pair",
+      "file": "pair.png",
+      "sourceFilename": "插画资产 背对背举纸双人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3533482,
+      "sha256": "09d94676e86318f972c124c3bc52bc83de9ce39700106cbec4a07d030e02c291",
+      "cssViewport": [
+        145,
+        727,
+        2608,
+        1418
+      ]
+    },
+    {
+      "name": "pointer",
+      "file": "pointer.png",
+      "sourceFilename": "插画资产 举教鞭小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 2697411,
+      "sha256": "5e9a098c3f6cc1235779817520ce811e5cc0e1e79d4d97bc126de6b30abaf7ce",
+      "cssViewport": [
+        1177,
+        71,
+        480,
+        2694
+      ]
+    },
+    {
+      "name": "peek",
+      "file": "peek.png",
+      "sourceFilename": "插画资产 卡后探头小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 2898242,
+      "sha256": "e0de33c5cfc60114e99d4ff9792c0c4e172e52f03267b9a89a885835850f7b63",
+      "cssViewport": [
+        1125,
+        724,
+        633,
+        1449
+      ]
+    },
+    {
+      "name": "clerk-card",
+      "file": "clerk-card.png",
+      "sourceFilename": "插画资产 捧空白卡小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3462189,
+      "sha256": "f52eea123db5d2d63bf89c8b8fbecd8dfa281a1bcba13cdaf20e9a12e6b7821e",
+      "cssViewport": [
+        273,
+        411,
+        2242,
+        2125
+      ]
+    },
+    {
+      "name": "ladder",
+      "file": "ladder.png",
+      "sourceFilename": "插画资产 梯子贴纸小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGBA",
+      "bytes": 3543611,
+      "sha256": "5b8e217bd528f67c5b761a5f056211c9f2f86a61ad8e8ab0530bf974f89d2eec",
+      "cssViewport": [
+        0,
+        0,
+        2200,
+        2580
+      ]
+    },
+    {
+      "name": "scale-stone",
+      "file": "scale-stone.png",
+      "sourceFilename": "插画资产 踮脚放石天平.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3380965,
+      "sha256": "6ec72b8dacddc382174f2480229f502ada128fc41b19dec557d93623395ea7e9",
+      "cssViewport": [
+        309,
+        855,
+        2385,
+        1192
+      ]
+    },
+    {
+      "name": "drawer",
+      "file": "drawer.png",
+      "sourceFilename": "插画资产 看空抽屉小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3612771,
+      "sha256": "5bffca03b689db227c21cf373dd0fdf4d77e0ecb97a1453f76b9049e4919c608",
+      "cssViewport": [
+        328,
+        769,
+        2207,
+        1392
+      ]
+    },
+    {
+      "name": "scale-empty",
+      "file": "scale-empty.png",
+      "sourceFilename": "插画资产 空盘天平.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3100443,
+      "sha256": "ce427d6aee3f6af5e4f261f6df132315011152f4b7b232a2b0acb4279052c523",
+      "cssViewport": [
+        342,
+        799,
+        2253,
+        1340
+      ]
+    },
+    {
+      "name": "twocards",
+      "file": "twocards.png",
+      "sourceFilename": "插画资产 两手举卡小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3294778,
+      "sha256": "1027cada0c565b2f3587cbbaa3281729bfce3545e3e39e04cfa9617c40656b91",
+      "cssViewport": [
+        314,
+        466,
+        2254,
+        1748
+      ]
+    },
+    {
+      "name": "torn",
+      "file": "torn.png",
+      "sourceFilename": "插画资产 缺角纸与乱线小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3314485,
+      "sha256": "7b6f4637f54d6dadd3d9f4e5d4374ae47ad17d8b149d43a04fb52784228ae7bb",
+      "cssViewport": [
+        275,
+        712,
+        2280,
+        1374
+      ]
+    },
+    {
+      "name": "shelf",
+      "file": "shelf.png",
+      "sourceFilename": "插画资产 三人空档案架.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3760414,
+      "sha256": "43bcf6604e53f3ee9dea5fc1c6365001ab0efcaef2cccae71f428b40a38cbecd",
+      "cssViewport": [
+        152,
+        341,
+        2582,
+        2072
+      ]
+    },
+    {
+      "name": "reader",
+      "file": "reader.png",
+      "sourceFilename": "插画资产 坐读等钟小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3430378,
+      "sha256": "eb4c35c932e5caae445f7cdc7738aa69fff01e9aa58b8078fa9be61f8f677a2b",
+      "cssViewport": [
+        274,
+        525,
+        2330,
+        1723
+      ]
+    },
+    {
+      "name": "flag",
+      "file": "flag.png",
+      "sourceFilename": "插画资产 柱顶插旗小人.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 3293658,
+      "sha256": "f8203a63e8481abb4d0715a58bcdfd10cec290e81e5d61e63c3a00e66df72162",
+      "cssViewport": [
+        725,
+        708,
+        1529,
+        1527
+      ]
+    },
+    {
+      "name": "hand",
+      "file": "hand.png",
+      "sourceFilename": "插画资产 指目录的手.png",
+      "width": 2880,
+      "height": 2880,
+      "mode": "RGB",
+      "bytes": 2949950,
+      "sha256": "a4afdad4d5e4d4b0c5d1510edb592d233398146ebb2a5fb1cd702d777bce77d6",
+      "cssViewport": [
+        1035,
+        695,
+        904,
+        1404
+      ]
+    }
+  ],
+  "display": "CSS clips unused canvas only. Original PNG files are unchanged. Viewport is [left, top, width, height] in native pixels, with safe margins around all ink; the ladder label is retained."
+}

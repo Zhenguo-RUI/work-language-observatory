@@ -1,3 +1,4 @@
+import {withOperationalModelFields} from './fixtures/operational-model.mjs';
 import {spawnSync} from "node:child_process";
 import {mkdirSync,writeFileSync,readFileSync} from "node:fs";
 import {resolve} from "node:path";
@@ -41,11 +42,12 @@ const short=ruleDraft('安全检查岗位\n负责检查设备隐患并形成可�
 await check('short authority and availability clauses are not discarded',()=>assert(short.depth.workMap.authority.zh.includes('有权叫停')&&short.conditions.some(c=>c.zh.includes('每周5天'))));
 const preferred=ruleDraft('工作职责：协助研究市场并独立思考，形成结构化报告。任职条件：连续实习六个月优先，每周到岗四天优先，相关经验优先。','研究实习',[]);
 await check('preferred conditions retain their source modality',()=>assert(preferred.conditions.some(c=>c.zh.includes('优先'))&&!preferred.conditions.some(c=>c.zh.includes('必需'))));
-const valid=structuredClone(drafted);valid.depth.basis='model';
+const valid=withOperationalModelFields(drafted,raw,'evaluation');
 valid.questions[0]={zh:'人与机评发生分歧时，裁决能否修改判定规则？',en:'When human and machine judgments disagree, can adjudication change the evaluation rules?'};
 valid.depth.questionTests=[{questionIndex:0,quote:'与算法同事处理机评和人工标注分歧',answerA:{zh:'裁决可提出规则修订，并需在保留案例上复验。',en:'Adjudication can propose a rule revision, followed by retesting on held-out cases.'},answerB:{zh:'裁决只执行既定标注标准，规则另由团队维护。',en:'Adjudication only applies an established annotation standard; rule maintenance belongs elsewhere.'},difference:{zh:'A包含把个案判断转成规则修订的工作；B主要是运用既定标准。两者都可能需要分析案例。',en:'A includes turning case judgments into rule revisions; B mainly applies existing standards. Both may involve case analysis.'}}];
 await check('model-shaped fixture satisfies the deeper evidence contract',()=>assert.deepEqual(deepEvidenceErrors(resultSchema.parse(valid),raw,true),[]));
 await check('new model fixture satisfies the v5 possible-answer contract',()=>assert.deepEqual(deepEvidenceErrors(resultSchema.parse(valid),raw,true,true),[]));
+await check('new model fixture satisfies the v10 operational contract',()=>assert.deepEqual(deepEvidenceErrors(resultSchema.parse(valid),raw,true,true,true),[]));
 const withoutTests=structuredClone(valid);delete withoutTests.depth.questionTests;
 await check('stored v2 without possible-answer tests remains valid',()=>assert(resultSchema.safeParse(withoutTests).success&&deepEvidenceErrors(withoutTests,raw,true).length===0));
 await check('new generation cannot omit possible-answer tests',()=>assert(deepEvidenceErrors(withoutTests,raw,true,true).some(x=>x.startsWith('depth.questionTests'))));
@@ -67,9 +69,13 @@ const copiedMetadata={...structuredClone(valid),context:{company:'Untrusted copi
 const stripped=await runModelReading({...opts,request:async()=>response(copiedMetadata)});
 await check('model-generated context metadata is stripped instead of blocking a valid reading',()=>assert(stripped.calls===1&&!stripped.result.context));
 await check('model-generated full-source translation cannot enter the saved reading',()=>assert(!stripped.result.sourceTranslation));
-await check('the current v7 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v8'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
+await check('the current v10 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v10'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
 let missingCalls=0;const missingRepair=await runModelReading({...opts,request:async()=>response(++missingCalls===1?withoutTests:valid)});
 await check('missing question consequence receives only one bounded repair',()=>assert.equal(missingRepair.calls,2));
+const noBreakdown=structuredClone(valid);delete noBreakdown.depth.preparation;for(const item of noBreakdown.depth.deliverables)for(const key of ['object','action','purpose','scenario'])delete item[key];
+await check('legacy operational shape remains readable but cannot satisfy a new generation',()=>{assert(resultSchema.safeParse(noBreakdown).success);assert(deepEvidenceErrors(noBreakdown,raw,true,true,true).length>0);});
+let breakdownCalls=0;const breakdownRepair=await runModelReading({...opts,request:async()=>response(++breakdownCalls===1?noBreakdown:valid)});
+await check('missing v10 breakdown receives one bounded repair without accepting old-shaped generation',()=>assert.equal(breakdownRepair.calls,2));
 const boundaryRaw=raw+'\n条件：实习3个月以上。';
 const wrongBoundary=structuredClone(valid);wrongBoundary.conditions=[{zh:'实习3个月以上',en:'Over three months of availability.'}];
 const rightBoundary=structuredClone(valid);rightBoundary.conditions=[{zh:'实习3个月以上',en:'At least three months of availability.'}];
@@ -96,7 +102,17 @@ await check('incomplete model output is rejected without a second request',()=>a
 const leaking=structuredClone(valid);leaking.comparisons=[{id:'not-supplied',title:'Unapproved comparison',reading:{zh:'不应出现',en:'Not supplied'}}];
 await check('unsupplied archive comparisons cannot pass the adapter',async()=>assert.rejects(()=>runModelReading({...opts,request:async()=>response(leaking)}),/after_one_repair/));
 const md=readingMarkdown({id:'test',title:'Synthetic',company:'',raw_text:raw,source_url:'',text_hash:'test',status:'draft',engine:'rules',result:drafted,revision:1,created_at:'test',updated_at:'test'},'en');
-await check('export retains proposed-output and hypothetical-example labels',()=>assert(md.includes('Proposed outputs and checks')&&md.includes('Fictional example — not measured')));
+await check('export retains proposed-output and hypothetical-example labels',()=>assert(md.includes('What you hand over (proposed output):')&&md.includes('What good work looks like (proposed check):')&&md.includes('Fictional example — not measured')));
+for(const language of ['zh','en'])await check(`${language}: all v10 duty and preparation content survives the shared Markdown/PDF projection`,()=>{
+ const text=readingMarkdown({id:'v9-export',title:'Synthetic',company:'',raw_text:raw,source_url:'',text_hash:'test',status:'draft',engine:'model',result:valid,revision:1,created_at:'test',updated_at:'test'},language);
+ for(const item of valid.depth.deliverables){for(const key of ['object','action','purpose','output','check'])assert(text.includes(item[key][language]));assert(text.includes(item.scenario.text[language]));assert(text.includes(item.quote));}
+ for(const material of valid.depth.preparation.materials)assert(text.includes(material[language]));for(const item of valid.depth.preparation.practice){assert(text.includes(item.question[language]));assert(text.includes(item.approach[language]));}
+ assert(text.includes(valid.depth.sociologySummary[language]));assert(text.includes('https://mitpress.mit.edu/9780262522953/sorting-things-out/'));assert(!text.includes('并非招聘方已经答复'));assert(text.includes(language==='zh'?'情境示例':'illustrative scenario'));assert(text.includes(language==='zh'?'面试练习':'Interview practice'));
+});
+await check('an omitted sociological reading leaves no empty heading or fabricated citation in either export',()=>{
+ const omitted=structuredClone(valid);omitted.sociology={zh:'',en:''};omitted.depth.sociologySummary={zh:'',en:''};omitted.depth.sociologyConceptId=null;omitted.depth.sociologyQuotes=[];
+ for(const language of ['zh','en']){const text=readingMarkdown({id:'omitted',title:'Synthetic',raw_text:raw,result:omitted,engine:'model',revision:1,updated_at:'test'},language);assert(!text.includes(language==='zh'?'## 社会学分析':'## Sociological reading'));assert(!text.includes('mitpress.mit.edu'));}
+});
 const fixtureFlag=process.argv.indexOf('--source');
 await check('DeepSeek is selected from its server key without changing OpenAI defaults',()=>{assert.equal(modelRuntime({DEEPSEEK_API_KEY:'test-only'}).provider,'deepseek');assert.equal(modelRuntime({DEEPSEEK_API_KEY:'test-only'}).model,'deepseek-flash');assert.equal(modelRuntime({OPENAI_API_KEY:'test-only'}).provider,'openai');});
 let deepCalls=0;

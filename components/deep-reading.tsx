@@ -13,7 +13,6 @@ export function QuestionsPanel({questions,tests,lang,onEvidence}:{questions:Bi[]
     <h3>{questionIndex+1}. {question[lang]}</h3>
     {!!questionTests.length&&<details className="question-tests">
      <summary>{t("哪些回答会改变判断","Which answers would change the reading?")}</summary>
-     <p className="hypothesis-note">{t("下面是两种可能的回答，用来说明判断如何变化；并非招聘方已经答复，也不是访谈记录。","These are two possible answers illustrating how the reading could change. They are not employer replies or interview evidence.")}</p>
      {questionTests.map((test,i)=><div className="question-test" key={i}>
       <dl className="question-answers">
        <div><dt>{t("可能回答 A","Possible answer A")}</dt><dd>{test.answerA[lang]}</dd></div>

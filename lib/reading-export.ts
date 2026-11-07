@@ -1,4 +1,5 @@
 import {displayTerm} from "./localization";
+import {sociologyReference} from "./sociology-references";
 import type {Analysis} from "./observatory-types";
 
 export type ReadingBlock={kind:"title"|"heading"|"subheading"|"body"|"quote"|"meta";text:string};
@@ -6,7 +7,7 @@ export type ReadingBlock={kind:"title"|"heading"|"subheading"|"body"|"quote"|"me
 /** Shared content keeps PDF and Markdown exports faithful to the reading on screen. */
 export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
  const r=a.result,t=(zh:string,en:string)=>lang==="zh"?zh:en,translation=r.sourceTranslation;
- const blocks:ReadingBlock[]=[];
+ const blocks:ReadingBlock[]=[],attachedTerms=new Set<number>();
  const add=(kind:ReadingBlock["kind"],text:string|undefined)=>{if(text?.trim())blocks.push({kind,text:text.trim()});};
  add("title",lang==="en"&&translation?translation.titleEn:a.title);
  if(lang==="en")add("meta",`${translation?"Original job title":"Original job title (full translation not yet generated)"}: ${a.title}`);
@@ -21,19 +22,54 @@ export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
   for(const s of c.sources){const kind=s.kind==="search"?t("搜索结果摘要","Search excerpt"):s.kind==="encyclopedia"?t("百科资料","Encyclopedia"):t("官网资料","Official reference");add("meta",`${kind} · ${s.title}\n${s.url}\n${t("查阅","Retrieved")}: ${s.retrievedAt}`);}
   for(const anchor of c.companyEvidence||[])add("quote",`${anchor.quote} — ${c.sources.find(s=>s.id===anchor.sourceId)?.title||anchor.sourceId}`);
  }
- for(const x of r.terms){
+ if(r.depth){
+  const d=r.depth;
+  if(d.deliverables.length){add("heading",t("逐条拆解工作职责","The work, step by step"));
+   for(const [index,x] of d.deliverables.entries()){
+    add("subheading",`${index+1}. ${x.task[lang]}`);add("quote",x.quote);
+    if(x.object)add("body",`${t("对象","Object")}: ${x.object[lang]}`);
+    if(x.action)add("body",`${t("具体做什么（参考做法）","What you do (suggested approach)")}: ${x.action[lang]}`);
+    if(x.purpose)add("body",`${t("为什么要做","Why it matters")}: ${x.purpose[lang]}`);
+    if(x.scenario)add("body",`${t("举个例子（情境示例）","An example (illustrative scenario)")}: ${x.scenario.text[lang]}`);
+    add("body",`${t("最后交什么（建议）","What you hand over (proposed output)")}: ${x.output[lang]}`);
+    add("body",`${t("做到什么算好（建议标准）","What good work looks like (proposed check)")}: ${x.check[lang]}`);
+    for(const [termIndex,term] of r.terms.entries())if(term.quote===x.quote||x.quote.includes(term.quote)||term.quote.includes(x.quote)){
+     attachedTerms.add(termIndex);add("subheading",`${t("这项里的词","Words in this task")} · ${displayTerm(term.term,lang)}`);
+     add("body",term.meaning[lang]);add("body",term.alternative[lang]);add("body",term.question[lang]);
+    }
+   }
+  }
+  if(d.preparation){
+   add("heading",t("能力与准备","Skills and preparation"));
+   const labels={required:t("明确要求","Required"),preferred:t("优先考虑","Preferred"),suggested:t("准备建议","Suggested"),clarify:t("待确认","Clarify")};
+   for(const item of d.preparation.competencies){add("subheading",`${labels[item.level]} · ${item.skill[lang]}`);add("body",item.application[lang]);if(item.quote)add("quote",item.quote);}
+   if(d.preparation.materials.length){add("subheading",t("可以准备的材料（建议）","Materials you could prepare (suggested)"));for(const item of d.preparation.materials)add("body",item[lang]);}
+   if(d.preparation.practice.length){add("subheading",t("面试练习","Interview practice"));for(const item of d.preparation.practice){add("body",item.question[lang]);add("body",item.approach[lang]);}}
+  }
+  add("heading",t("工具、协作与决定权","Tools, collaboration and decisions"));
+  for(const key of ["object","tools","partners","authority"] as const){
+   const label={object:t("工作对象","Work object"),tools:t("工具","Tools"),partners:t("协作对象","Participants"),authority:t("权限","Authority")}[key];
+   add("body",`${label}: ${d.workMap[key][lang]}`);
+  }
+  if(d.example){add("heading",t("虚构案例（非实测）","Fictional example — not measured"));add("body",d.example.scenario[lang]);d.example.steps.forEach((s,i)=>add("body",`${i+1}. ${s[lang]}`));add("body",d.example.lesson[lang]);}
+ }
+ for(const [index,x] of r.terms.entries()){
+  if(attachedTerms.has(index))continue;
   add("heading",displayTerm(x.term,lang));if(lang==="en")add("meta",`Original term: ${x.term}`);
   add("body",x.meaning[lang]);add("quote",x.quote);
   add("body",x.alternative[lang]);add("body",x.question[lang]);
  }
+ if(r.sociology[lang].trim()){
  add("heading",t(a.engine==="rules"?"规则辅助观察":"社会学分析",a.engine==="rules"?"Rule-assisted observations":"Sociological reading"));
+ if(r.depth?.sociologySummary)add("subheading",r.depth.sociologySummary[lang]);
  add("body",r.sociology[lang]);for(const q of r.depth?.sociologyQuotes||[])add("quote",q);
+ const concept=sociologyReference(r.depth?.sociologyConceptId);if(concept)add("meta",`${concept.concept[lang]} · ${concept.citation}\n${concept.url}`);
+ }
  if(r.questions.length){
   add("heading",t("最值得确认","Useful follow-ups"));
   r.questions.forEach((q,index)=>{
    add("subheading",`${index+1}. ${q[lang]}`);
    const tests=(r.depth?.questionTests||[]).filter(test=>test.questionIndex===index);
-   if(tests.length)add("meta",t("以下为可能回答，用来说明判断如何变化；并非招聘方已经答复，也不是访谈记录。","The possible answers below illustrate how the reading could change. They are not employer replies or interview evidence."));
    for(const test of tests){
     add("body",`${t("可能回答 A","Possible answer A")}: ${test.answerA[lang]}`);
     add("body",`${t("可能回答 B","Possible answer B")}: ${test.answerB[lang]}`);
@@ -42,17 +78,6 @@ export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
   });
  }
  if(r.conditions.length){add("heading",t("工作条件","Advertised conditions"));for(const c of r.conditions){add("body",c[lang]);if(lang==="en"&&c.zh!==c.en)add("quote",`Original condition: ${c.zh}`);}}
- if(r.depth){
-  const d=r.depth;add("heading",t("工作关系","Work relations"));
-  for(const key of ["object","tools","partners","authority"] as const){
-   const label={object:t("工作对象","Work object"),tools:t("工具","Tools"),partners:t("协作对象","Participants"),authority:t("权限","Authority")}[key];
-   add("body",`${label}: ${d.workMap[key][lang]}`);
-  }
-  if(d.deliverables.length){add("heading",t("建议交付与验证","Proposed outputs and checks"));add("meta",t("以下为分析建议，不是招聘方公布的验收清单。","These are analytical proposals, not the employer’s acceptance checklist."));
-   for(const x of d.deliverables){add("subheading",x.output[lang]);add("body",x.task[lang]);add("body",`${t("怎样验证","How to check")}: ${x.check[lang]}`);add("quote",x.quote);}
-  }
-  if(d.example){add("heading",t("虚构案例（非实测）","Fictional example — not measured"));add("body",d.example.scenario[lang]);d.example.steps.forEach((s,i)=>add("body",`${i+1}. ${s[lang]}`));add("body",d.example.lesson[lang]);}
- }
  if(r.comparisons.length){add("heading",t("放在相近岗位旁边看","Read beside another role"));for(const c of r.comparisons){add("subheading",lang==="en"?(c.titleEn||c.title):c.title);add("body",c.reading[lang]);}}
  if(r.gaps.length){add("heading",t("解释范围","Scope"));for(const g of r.gaps)add("body",g[lang]);}
  if(translation){add("heading",t("附录：JD全文英文译文","Appendix: full English job description"));for(const p of translation.paragraphs)add("body",p.en);}

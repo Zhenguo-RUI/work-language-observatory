@@ -1,3 +1,4 @@
+import type {SociologyConceptId} from "./sociology-references";
 export type SourceTranslation={titleEn:string;paragraphs:{source:string;en:string}[];basis:"model"|"curated"|"browser"|"original";sourceHash:string};
 export type Bi={zh:string;en:string};
 export type CompanyLookupMatch={id:string;title:string;url:string;snippet:string;kind:"encyclopedia"|"search";retrievedAt:string;nameZh?:string;nameEn?:string;match:"exact"|"alias"|"candidate"};
@@ -5,7 +6,10 @@ export type CompanyLookup={query:string;status:"matched"|"ambiguous"|"not_found"
 export type CompanyContext={company:{name:Bi;relationship:"employer"|"platform"|"client"|"unresolved";description:Bi;basis:"official"|"retrieved"|"jd"};industry:{name:Bi;description:Bi;basis:"jd"};implication:Bi;sources:{id?:string;title:string;url:string;retrievedAt:string;verification?:"live"|"reviewed";kind?:"official"|"encyclopedia"|"search";excerpt?:string}[];status:"verified"|"sourced"|"jd_only"|"unavailable";evidence:string[];notice:Bi;lookup?:CompanyLookup;companyEvidence?:{sourceId:string;quote:string}[];briefBasis?:"model"|"source"};
 export type QuestionTest={questionIndex:number;answerA:Bi;answerB:Bi;difference:Bi;quote:string};
 export type TermReading={term:string;meaning:Bi;quote:string;alternative:Bi;question:Bi};
-export type DeepReading={protocol:"work-language-v2";basis:"model"|"rules";workMap:{object:Bi;tools:Bi;partners:Bi;authority:Bi;quotes:string[]};deliverables:{task:Bi;quote:string;output:Bi;check:Bi}[];example:{kind:"hypothetical";scenario:Bi;steps:Bi[];lesson:Bi}|null;sociologyQuotes:string[];questionTests?:QuestionTest[]};
+export type DutyBreakdown={task:Bi;quote:string;output:Bi;check:Bi;object?:Bi;action?:Bi;purpose?:Bi;scenario?:{kind:"hypothetical";text:Bi}};
+export type ReadingPreparation={competencies:{level:"required"|"preferred"|"suggested"|"clarify";skill:Bi;application:Bi;quote:string}[];materials:Bi[];practice:{question:Bi;approach:Bi}[]};
+// Optional additions preserve stored v2 readings; new model responses supply the full breakdown.
+export type DeepReading={protocol:"work-language-v2";basis:"model"|"rules";workMap:{object:Bi;tools:Bi;partners:Bi;authority:Bi;quotes:string[]};deliverables:DutyBreakdown[];preparation?:ReadingPreparation;example:{kind:"hypothetical";scenario:Bi;steps:Bi[];lesson:Bi}|null;sociologySummary?:Bi;sociologyConceptId?:SociologyConceptId|null;sociologyQuotes:string[];questionTests?:QuestionTest[]};
 export type AnalysisResult={headline:Bi;role:Bi;terms:TermReading[];sociology:Bi;questions:Bi[];conditions:Bi[];gaps:Bi[];comparisons:{id:string;title:string;titleEn?:string;reading:Bi}[];depth?:DeepReading;sourceTranslation?:SourceTranslation;context?:CompanyContext};
 export type Analysis={id:string;title:string;company:string;raw_text:string;source_url:string;text_hash:string;status:"draft"|"in_review"|"published"|"archived";engine:"curated"|"rules"|"model";result:AnalysisResult;revision:number;created_at:string;updated_at:string};
 export type CorpusEntry={id:string;title:string;employer:string|null;platform:string;url:string;terms:string[];semantic?:string;question?:string};

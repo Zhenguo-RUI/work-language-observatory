@@ -151,3 +151,65 @@
 
 /* Absolute PNG offsets are relative to the illustration frame, never the report. */
 .public-reader .wlo-research .wlo-illustration.illo-frame{overflow:clip}
+
+/* Short observations stay readable; cases and coding decisions unfold in place. */
+.public-reader .wlo-research .research-scope-note { font-size: 12px; line-height: 1.8; max-width: 580px; }
+.public-reader .wlo-research .research-observation-heading { display: flex; align-items: baseline; gap: 12px; }
+.public-reader .wlo-research .research-observation-heading h3 { margin: 0; font: 600 19px/1.65 var(--f-serif); }
+.public-reader .wlo-research .research-observation-heading .finding-index { flex: 0 0 22px; }
+.public-reader .wlo-research .research-observation-takeaway { color: var(--ink); line-height: 1.85; }
+.public-reader .wlo-research .research-observation-numbers { border-left: 3px solid var(--sage); padding: 9px 0 9px 16px; font-size: 14px; line-height: 1.85; font-variant-numeric: tabular-nums; }
+.public-reader .wlo-research .research-observation-details > summary { display: flex; align-items: center; gap: 10px; color: var(--slate); min-height: 44px; font-size: 13px; line-height: 1.6; list-style: none; cursor: pointer; }
+.public-reader .wlo-research .research-observation-details > summary::-webkit-details-marker { display: none; }
+.public-reader .wlo-research .research-observation-details[open] > summary .research-finding-chevron { transform: rotate(90deg); }
+.public-reader .wlo-research .research-observation-details .research-paraphrase-note { margin: 4px 0 14px; color: var(--grey); font-size: 11px; line-height: 1.7; }
+.public-reader .wlo-research .research-context-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin: 16px 0 24px; }
+.public-reader .wlo-research .research-context { min-width: 0; border-top: 1px solid var(--hairline); padding-top: 14px; }
+.public-reader .wlo-research .research-context h4,
+.public-reader .wlo-research .research-counterexample h4,
+.public-reader .wlo-research .research-interpretation h4 { margin: 0 0 8px; font: 500 14px/1.6 var(--f-sans); }
+.public-reader .wlo-research .research-context p,
+.public-reader .wlo-research .research-counterexample p,
+.public-reader .wlo-research .research-interpretation p { font-size: 14px; line-height: 1.85; }
+.public-reader .wlo-research .research-context .research-context-work { border-left: 2px solid var(--sage); padding-left: 12px; color: var(--ink); }
+.public-reader .wlo-research .research-counterexample { border-left: 3px solid var(--sand); padding: 10px 0 2px 16px; margin-bottom: 22px; }
+.public-reader .wlo-research .research-counting { margin: 14px 0 20px; }
+.public-reader .wlo-research .research-counting > summary { min-height: 36px; align-content: center; cursor: pointer; color: var(--grey); font-size: 12px; }
+.public-reader .wlo-research .research-counting > p { font-size: 12px; line-height: 1.85; color: var(--grey); }
+.public-reader .wlo-research .research-practical-question { margin: 16px 0 8px; padding: 14px 16px; background: color-mix(in srgb,var(--sage) 9%,transparent); border-radius: 5px; }
+.public-reader .wlo-research .research-practical-question > span { color: var(--grey); font-size: 11px; }
+.public-reader .wlo-research .research-practical-question > p { margin: 5px 0 0; font-size: 14px; line-height: 1.8; }
+.public-reader .wlo-research .research-observation-term { font-size: 12px; }
+@media(max-width:600px) {
+ .public-reader .wlo-research .research-observation-heading { gap: 8px; }
+ .public-reader .wlo-research .research-observation-heading h3 { font-size: 18px; }
+ .public-reader .wlo-research .research-context-grid { grid-template-columns: minmax(0,1fr); gap: 10px; }
+ .public-reader .wlo-research .research-observation-numbers { padding-left: 12px; }
+ .public-reader .wlo-research .research-observation-details > summary { font-size: 12px; }
+}
+@media print {
+ .public-reader .wlo-research .research-context-grid { display: block; }
+ .public-reader .wlo-research .research-observation-details > summary,
+ .public-reader .wlo-research .research-counting > summary { display: none; }
+ .public-reader .wlo-research .research-context,
+ .public-reader .wlo-research .research-practical-question { break-inside: avoid; }
+}
+
+.public-reader .wlo-research .research-micro-table { max-width: 100%; margin: 20px 0 12px; }
+.public-reader .wlo-research .research-micro-table table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; line-height: 1.65; }
+.public-reader .wlo-research .research-micro-table th,
+.public-reader .wlo-research .research-micro-table td { padding: 12px 9px; border-bottom: 1px solid var(--hairline); text-align: left; vertical-align: top; font-weight: 400; overflow-wrap: anywhere; }
+.public-reader .wlo-research .research-micro-table thead th { color: var(--grey); font-size: 11px; border-top: 1px solid var(--ink); }
+.public-reader .wlo-research .research-micro-table tbody tr:last-child > * { border-bottom-color: var(--ink); }
+.public-reader .wlo-research .research-micro-comparison > .small { font-size: 12px; line-height: 1.8; }
+.public-reader .wlo-research .research-alternatives > details { border-bottom: 1px solid var(--hairline); padding: 8px 0; }
+.public-reader .wlo-research .research-alternatives summary { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; line-height: 1.7; cursor: pointer; color: var(--slate); list-style: none; }
+.public-reader .wlo-research .research-alternatives summary::-webkit-details-marker { display: none; }
+.public-reader .wlo-research .research-alternatives summary svg { flex: 0 0 15px; }
+.public-reader .wlo-research .research-alternatives details[open] summary svg { transform: rotate(90deg); }
+.public-reader .wlo-research .research-alternatives p { font-size: 14px; line-height: 1.85; margin: 8px 0 16px; }
+@media(max-width:600px) {
+ .public-reader .wlo-research .research-micro-table table { font-size: 12px; }
+ .public-reader .wlo-research .research-micro-table th,
+ .public-reader .wlo-research .research-micro-table td { padding: 10px 5px; }
+}

@@ -22,7 +22,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
       {
         "task": {
           "zh": "把试模异常讲清楚",
-          "en": "Make a trial fault actionable"
+          "en": "Explain a mould-trial fault clearly"
         },
         "expertTake": {
           "zh": "沟通要把现场看到的异常和试过的调整说清，让下一位处理者知道从哪里接手。",
@@ -48,8 +48,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Procurement communication brings price, quality and delivery into an agreement that fits the material requirement."
         },
         "scenario": {
-          "zh": "供应商报价便宜但交期偏晚，可以把报价、到货日期与生产缺料风险列在同一张表里，和供应商核实替代方案，再交给有决定权的人选择。",
-          "en": "If a cheaper supplier would deliver late, compare price, delivery dates and the risk of a material shortage. Clarify alternatives with the supplier and put the trade-off to whoever can approve it."
+          "zh": "供应商报价便宜但交期偏晚，可以把报价、到货日期与生产缺料风险列在同一张表里，和供应商核实替代方案，再确认各项条件由谁决定。",
+          "en": "If a cheaper supplier would deliver late, compare price, delivery dates and the risk of a material shortage. Check alternatives with the supplier, then clarify who decides each part of the trade-off."
         },
         "deliverable": {
           "zh": "包含报价、交期和待确认条件的采购比较表",
@@ -60,7 +60,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
       {
         "task": {
           "zh": "让活动安排落实到人",
-          "en": "Make event arrangements usable"
+          "en": "Make event arrangements clear"
         },
         "expertTake": {
           "zh": "这里的沟通围绕活动执行，把时间、地点、参与者和现场安排传达到位。",
@@ -145,8 +145,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
   },
   "数据": {
     "summary": {
-      "zh": "实验中的数据先要记录得可比较，招聘数据用来定位流程卡点，客诉数据要形成可处理的问题。数据能力的深浅，取决于需要完成记录、诊断，还是推动后续改进。",
-      "en": "Experimental data need comparable records; recruitment data locate process bottlenecks; complaint data must become actionable issues. The required skill depends on whether the job asks for recording, diagnosis or follow-through on improvements."
+      "zh": "实验中的数据要记录得可比较，招聘数据用来定位流程卡点，客诉数据要形成可处理的问题。看到数据能力要求，可以问：这份工作需要记录什么、解释什么，结论交给谁使用？",
+      "en": "Test data need comparable records; recruitment data help locate delays; complaint data help identify problems to investigate. Ask what you would record, what you would explain, and who would use your findings."
     },
     "examples": [
       {
@@ -194,7 +194,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
         },
         "expertTake": {
           "zh": "数据工作把分散的客诉归类、找出重复问题，再让技术部门看懂需要改什么。",
-          "en": "The work groups scattered complaints, identifies recurring issues and makes the improvement need legible to the technical team."
+          "en": "The work groups complaints, identifies recurring issues and gives the technical team enough detail to investigate them."
         },
         "scenario": {
           "zh": "多位客户都说产品不好用时，可以把描述拆成不同问题，整理出现条件、影响和复现线索，附上代表案例，避免把所有反馈都放进一个模糊类别。",
@@ -240,7 +240,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
         },
         "expertTake": {
           "zh": "设备协调贯穿立项、采购、登记和保养，关键是每一步的信息能交到下一步。",
-          "en": "Equipment coordination carries information through project approval, purchasing, asset registration and maintenance."
+          "en": "Equipment coordination carries information through project setup, purchasing, asset registration and maintenance."
         },
         "scenario": {
           "zh": "一台设备需要维修时，可以先核对资产信息与故障记录，再把维修需求、可能涉及的采购事项和使用安排汇总，分别确认下一步由谁处理。",
@@ -327,7 +327,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Editing, presentation work and commercial compliance meet in material that needs to be understandable and checkable."
         },
         "scenario": {
-          "zh": "把一组财报信息制作成视频时，可以保留数字来源，核对字幕和图表口径，并标出需要合规确认的表达，避免画面更新后解说仍沿用旧数字。",
+          "zh": "把一组财报信息制作成视频时，可以保留数字来源，核对字幕和图表的统计范围，并标出需要合规确认的表达，避免画面更新后解说仍沿用旧数字。",
           "en": "When turning financial-report information into a video, retain the sources, align captions and chart definitions and flag wording for compliance review. Check that narration is updated when figures change."
         },
         "deliverable": {
@@ -341,7 +341,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
   "独立": {
     "summary": {
       "zh": "三例都要求自己推进一段工作：检验零件、完成辅助财务工作，或处理分配的案件。具体分水岭是做到哪一步、交给谁复核，以及哪些决定需要另外确认。",
-      "en": "All three roles ask someone to take work forward: inspect parts, complete supporting finance tasks or handle assigned cases. The dividing lines are where the task ends, who reviews it and which decisions require separate approval."
+      "en": "All three roles ask someone to take work forward: inspect parts, complete supporting finance tasks or handle assigned cases. Ask where the task ends, who reviews it, and which decisions the role can make."
     },
     "examples": [
       {
@@ -350,8 +350,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Complete the parts inspection"
         },
         "expertTake": {
-          "zh": "独立落实在检验这一段：做出可核对的检验结果，同时参与主管安排的品质工作。",
-          "en": "Independence attaches to the inspection task: produce a checkable result while also assisting with quality management."
+          "zh": "这里的独立指自己完成零件检验，同时协助主管管理品质；是否有处置决定权，需要另行确认。",
+          "en": "Here, working independently means completing the parts inspection while assisting the supervisor with quality management. Who decides what happens to defective parts still needs clarification."
         },
         "scenario": {
           "zh": "发现一批零件尺寸异常时，可以记录测量值、数量和批次，整理需要处理的异常项；是否隔离、返工或放行，再确认由谁决定。",
@@ -435,7 +435,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
         },
         "expertTake": {
           "zh": "机器人销售需要和实施团队配合，把客户承诺转成可以推进的项目事项。",
-          "en": "Robotics sales works with implementation teams to translate customer commitments into actionable project work."
+          "en": "Robotics sales works with implementation teams to turn customer commitments into specific delivery tasks."
         },
         "scenario": {
           "zh": "客户希望增加一项功能时，可以先整理使用场景，与实施团队核对范围和条件，再把能做、待确认和需调整的内容反馈给客户及内部负责人。",
@@ -470,8 +470,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
   },
   "抗压": {
     "summary": {
-      "zh": "直播的压力来自现场并发任务，招聘的压力夹在期限和多方决定之间，需求分析还明确出现投标加班。先识别压力来源，再问突发任务怎样分工、延期或超时怎样处理。",
-      "en": "Live-session pressure comes from concurrent tasks; recruitment pressure combines deadlines with other people's decisions; the systems role explicitly mentions bid-related overtime. Identify the source, then ask how incidents, delays and extra hours are handled."
+      "zh": "直播例把抗压与多项现场任务并列，招聘例写出紧急补编和多方协作，需求分析例明确提到投标加班。可以据此追问：任务撞在一起时怎样分工，延期或超时怎样处理？",
+      "en": "The live-session example pairs pressure with concurrent tasks; the recruitment example describes urgent hiring and coordination; the systems role explicitly mentions bid-related overtime. Ask how competing tasks, delays and extra hours are handled."
     },
     "examples": [
       {
@@ -579,15 +579,15 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
       },
       {
         "task": {
-          "zh": "把区域执行跟进到底",
-          "en": "Follow through on regional execution"
+          "zh": "跟进区域策略的执行情况",
+          "en": "Track regional strategy implementation"
         },
         "expertTake": {
           "zh": "渠道责任围绕市场维护、策略落实和政策传达，需要持续记录执行情况与反馈。",
           "en": "Channel responsibility covers market relationships, strategy execution and policy communication, with ongoing attention to progress and feedback."
         },
         "scenario": {
-          "zh": "某项区域销售安排落地不顺时，可以逐个核对渠道收到的政策、执行情况和具体阻碍，整理需要公司确认的事项，再跟踪答复是否传达到位。",
+          "zh": "某项区域销售安排没有按计划推进时，可以核对渠道收到的政策、已完成的工作和具体阻碍，整理需要公司确认的事项，再跟踪答复是否传达到位。",
           "en": "If a regional sales initiative stalls, check what each channel received, what it has done and what is blocking progress. Consolidate questions for the company and track whether the answers reach the channels."
         },
         "deliverable": {
@@ -679,7 +679,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The role combines care services with product recommendations, bringing the customer experience and sales results into the same job."
         },
         "scenario": {
-          "zh": "顾客做完护理后询问产品，你需要说明产品信息，并把服务反馈与购买情况分别记录，便于看清问题出在服务还是销售环节。",
+          "zh": "顾客做完护理后询问产品，可以说明产品信息，并把服务反馈与购买情况分别记录，便于看清问题出在服务还是销售环节。",
           "en": "A customer asks about a product after a session. Explain the product information and record service feedback separately from any purchase, so the two parts of the encounter can be reviewed."
         },
         "deliverable": {
@@ -694,11 +694,11 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Review performance across stores"
         },
         "expertTake": {
-          "zh": "片区销售、建店和培训都在职责内，需要把各店的经营进展放在同一张工作图里。",
-          "en": "The remit spans regional sales, store development and training, requiring a view of how these activities progress across locations."
+          "zh": "片区销售、建店和培训都在职责内，需要分别整理各店的经营进展、待办和问题。",
+          "en": "The role covers regional sales, store openings and training. It involves keeping track of each store's progress, outstanding tasks and problems."
         },
         "scenario": {
-          "zh": "一间店销售下降，另一间店正在筹备开业，你要分别整理销售变化、开店待办和培训缺口，让团队看清哪些事项需要先推进。",
+          "zh": "一间店销售下降，另一间店正在筹备开业，可以分别整理销售变化、开店待办和培训缺口，让团队看清哪些事项需要先推进。",
           "en": "One store has falling sales while another is preparing to open. Separate the sales changes, opening tasks and training gaps so the team can see what needs attention."
         },
         "deliverable": {
@@ -717,7 +717,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Channel development connects equipment vendors with specific customer financing needs, linking contact information to transaction progress."
         },
         "scenario": {
-          "zh": "设备厂商转来一个有融资需求的客户，你要先整理需求和已有材料，再跟进缺失信息与办理进展，说明业务目前卡在哪一步。",
+          "zh": "设备厂商转来一个有融资需求的客户，可以先整理需求和已有材料，再跟进缺失信息与办理进展，说明业务目前卡在哪一步。",
           "en": "An equipment vendor refers a customer seeking financing. Organize the request and available documents, follow up missing information, and show where the transaction currently stands."
         },
         "deliverable": {
@@ -744,7 +744,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Here, service means supplying designs and technical explanations that manufacturing teams can use to understand the structure and address technical questions."
         },
         "scenario": {
-          "zh": "装配人员发现图纸与现场理解不一致，你需要核对相关设计，整理差异和说明，让制造方清楚下一步应依据哪个版本继续沟通。",
+          "zh": "装配人员发现图纸与现场理解不一致，可以核对相关设计，整理差异和说明，让制造方清楚下一步应依据哪个版本继续沟通。",
           "en": "An assembly team interprets a drawing differently from the design intent. Check the relevant material and document the discrepancy, making the version under discussion clear to manufacturing."
         },
         "deliverable": {
@@ -763,7 +763,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The deputy manager translates the desired customer experience into reception practices that staff can learn, rehearse and improve."
         },
         "scenario": {
-          "zh": "顾客进店后反复等待指引，你可以梳理从迎接到介绍产品的步骤，用实际情境带店员演练，再记录哪里仍容易让顾客等候。",
+          "zh": "顾客进店后反复等待指引，可以梳理从迎接到介绍产品的步骤，用实际情境带店员演练，再记录哪里仍容易让顾客等候。",
           "en": "Visitors repeatedly wait for guidance. Map the steps from greeting to product introduction, rehearse a typical encounter with staff, and note where customers are still left waiting."
         },
         "deliverable": {
@@ -782,7 +782,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "After-sales support helps customers troubleshoot remotely and feeds both the resolution record and satisfaction feedback back to the delivery team."
         },
         "scenario": {
-          "zh": "海外客户反馈设备无法正常使用，你先整理现象和排查经过；恢复使用后再记录客户反馈，把尚未解决的问题一并转给交付团队。",
+          "zh": "海外客户反馈设备无法正常使用，可以先整理现象和排查经过；恢复使用后再记录客户反馈，把尚未解决的问题一并转给交付团队。",
           "en": "An overseas customer reports that a device is not working properly. Record the symptoms and troubleshooting steps; after use resumes, collect feedback and pass any unresolved issues to delivery."
         },
         "deliverable": {
@@ -795,7 +795,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
   },
   "逻辑": {
     "summary": {
-      "zh": "逻辑分别落在账务规则、程序运行和业务解释上。三者都需要让别人看懂推导过程，但检查方式不同：对单据、跑程序，还是核对分析口径？",
+      "zh": "逻辑分别落在账务规则、程序运行和业务解释上。三者都需要让别人看懂推导过程，但检查方式不同：对单据、跑程序，还是核对数据的统计范围和计算方法？",
       "en": "Logic is applied to accounting rules, program behaviour and business explanations. Each requires a traceable line of reasoning, but the check differs: reconcile documents, run the program, or verify the analytical definitions."
     },
     "examples": [
@@ -809,7 +809,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "A trade accountant connects transactions, foreign-currency amounts and account records, understanding how the underlying business enters the books."
         },
         "scenario": {
-          "zh": "一笔外币收款与台账金额对不上，你要把相关业务记录、币种和计算依据列在一起，区分是登记差异还是需要进一步核对的事项。",
+          "zh": "一笔外币收款与台账金额对不上，可以把相关业务记录、币种和计算依据列在一起，区分是登记差异还是需要进一步核对的事项。",
           "en": "A foreign-currency receipt does not match the ledger. Bring together the transaction record, currency and calculation basis, distinguishing recording differences from items requiring further checks."
         },
         "deliverable": {
@@ -828,7 +828,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "In software development, reasoning appears in how a module accepts inputs, handles different cases and produces a result."
         },
         "scenario": {
-          "zh": "一个表单偶尔提交失败，你要梳理输入、校验和保存的过程，找出哪种情况会中断，再用对应测试确认修改后流程能够走通。",
+          "zh": "一个表单偶尔提交失败，可以梳理输入、校验和保存的过程，找出哪种情况会中断，再用对应测试确认修改后流程能够走通。",
           "en": "A form sometimes fails to submit. Trace input, validation and saving to identify the failing case, then test that case to check whether the change fixes the flow."
         },
         "deliverable": {
@@ -847,7 +847,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Operations analysis connects changes in customers and revenue, locates the anomaly and develops a supported direction for improvement."
         },
         "scenario": {
-          "zh": "营收下滑但客户数没有减少，你要拆看客户购买金额和统计范围，先排除口径变化，再整理哪些客户或业务环节值得继续追查。",
+          "zh": "营收下滑但客户数没有减少，可以拆看客户购买金额，并检查两期数据是否采用相同的统计范围和计算方法，再整理值得继续追查的客户或业务环节。",
           "en": "Revenue falls while customer numbers stay steady. Examine spending and the reporting scope, check for changed definitions, then identify customers or activities that warrant further investigation."
         },
         "deliverable": {
@@ -874,8 +874,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "This internship combines technical learning with production support, applying what is learned to current shop-floor tasks and workplace organization."
         },
         "scenario": {
-          "zh": "刚接触一道生产工序时，你可以先记录操作步骤和注意事项，再对照实际辅助任务整理疑问，把不清楚的地方集中向带教人员确认。",
-          "en": "When introduced to a production step, note the procedure and points requiring attention. Compare those notes with the support task and gather questions to discuss with the trainer."
+          "zh": "刚接触一道生产工序时，可以先记录操作步骤和注意事项，再对照辅助任务整理疑问；同时确认由谁答疑、哪些操作需要指导后才能进行。",
+          "en": "When introduced to a production step, note the procedure and points requiring attention. Compare those notes with the support task, then ask who can answer questions and which operations require guidance first."
         },
         "deliverable": {
           "zh": "工序学习记录与现场问题清单",
@@ -893,7 +893,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "For a design manager, learning supports the visual system and communications work, with updated methods demonstrated through actual designs."
         },
         "scenario": {
-          "zh": "同一品牌在不同渠道的画面不够统一，你可以对照现有作品找出差异，试做一组新版样稿，并说明新方法改善了哪些表达问题。",
+          "zh": "同一品牌在不同渠道的画面不够统一，可以对照现有作品找出差异，试做一组新版样稿，并说明新方法改善了哪些表达问题。",
           "en": "A brand looks inconsistent across channels. Compare existing work, identify the differences, and produce a revised sample set that shows what the new approach improves."
         },
         "deliverable": {
@@ -912,7 +912,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The recruiter turns business knowledge into an understanding of roles and explanations that can be used with candidates in domestic and overseas hiring."
         },
         "scenario": {
-          "zh": "接到一个陌生业务的岗位后，你先整理产品、团队和工作任务，再把不懂的术语列给用人方确认，形成能向候选人讲清楚的介绍。",
+          "zh": "接到一个陌生业务的岗位后，可以先整理产品、团队和工作任务，再把不懂的术语列给用人方确认，形成能向候选人讲清楚的介绍。",
           "en": "For an unfamiliar business role, outline the product, team and tasks. Take unclear terms back to the hiring team, then prepare an explanation a candidate can understand."
         },
         "deliverable": {
@@ -939,7 +939,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The dyeing engineer connects initial sample approval, process monitoring and adjustments so colour requirements remain checkable throughout production."
         },
         "scenario": {
-          "zh": "首样与后续批次出现色差时，你要整理各阶段样品和过程记录，标出差异从哪里出现，再跟进相关调整后颜色是否达到要求。",
+          "zh": "首样与后续批次出现色差时，可以整理各阶段样品和过程记录，标出差异从哪里出现，再跟进相关调整后颜色是否达到要求。",
           "en": "Later batches differ in colour from the initial sample. Compare samples and process records to locate where the difference emerged, then check the colour after the relevant adjustments."
         },
         "deliverable": {
@@ -958,7 +958,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The regional manager handles both project delivery and government or enterprise relationships, organizing milestones, dependencies and progress across these commitments."
         },
         "scenario": {
-          "zh": "一个项目等交付材料，另一个项目要准备对接活动，你要列清两边的节点、待办和所需协作，把时间冲突及影响范围提交讨论。",
+          "zh": "一个项目等交付材料，另一个项目要准备对接活动，可以列清两边的节点、待办和所需协作，把时间冲突及影响范围提交讨论。",
           "en": "One project needs delivery materials while another is preparing a stakeholder event. List the milestones, tasks and coordination needed, then bring scheduling conflicts and their consequences into discussion."
         },
         "deliverable": {
@@ -977,7 +977,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Art-resource management brings together internal talent, outsourcing capacity and project needs to provide a basis for comparing allocation options."
         },
         "scenario": {
-          "zh": "两个项目同时需要同类美术能力，你先整理需求时间、工作量和可用人选，再列出不同安排的影响，供资源调度时讨论取舍。",
+          "zh": "两个项目同时需要同类美术能力，可以先整理需求时间、工作量和可用人选，再列出不同安排的影响，供资源调度时讨论取舍。",
           "en": "Two projects need the same art specialization. Gather timing, workload and available talent, then show how different assignments would affect each project so the trade-offs can be discussed."
         },
         "deliverable": {
@@ -990,8 +990,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
   },
   "主动": {
     "summary": {
-      "zh": "主动可以是先获取市场信息、先跟进客户，也可以是先把订单问题报出来。三者指向不同的起手动作；值得问清的是：行动做到哪里可以自己推进，哪里需要交接？",
-      "en": "Initiative may mean gathering market information, following up a customer or flagging an order problem. These are different starting actions. Ask how far each can be taken independently and where a handover is required."
+      "zh": "主动可以是先获取市场信息、先跟进客户，也可以是先把订单问题报出来。值得问清的是：哪些事需要主动发现，能自行推进到哪一步，什么时候需要交接？",
+      "en": "Initiative may mean gathering market information, following up with a customer or flagging an order problem. Ask what you are expected to notice, what you can handle yourself, and when to involve someone else."
     },
     "examples": [
       {
@@ -1004,7 +1004,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Initiative in financial channels means engaging contacts, collecting market information and turning customer feedback into questions the business can discuss."
         },
         "scenario": {
-          "zh": "渠道反复提到客户看不懂某项产品说明，你可以整理具体疑问与出现情境，汇总给业务团队，跟进是否需要补充解释材料。",
+          "zh": "渠道反复提到客户看不懂某项产品说明，可以整理具体疑问与出现情境，汇总给业务团队，跟进是否需要补充解释材料。",
           "en": "Channel contacts repeatedly report that customers struggle with part of a product explanation. Gather the actual questions and contexts, share them with the business team, and follow up on explanatory material."
         },
         "deliverable": {
@@ -1023,7 +1023,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "In car sales, initiative means moving the conversation and follow-up forward around the customer’s needs within the sales process."
         },
         "scenario": {
-          "zh": "客户看过车后仍在比较，你可以整理其用途、关注点和未解答的问题，约定下一次沟通内容，再记录后续反馈和需求变化。",
+          "zh": "客户看过车后仍在比较，可以整理其用途、关注点和未解答的问题，约定下一次沟通内容，再记录后续反馈和需求变化。",
           "en": "After a visit, a customer is still comparing cars. Record their intended use, priorities and unanswered questions, agree on the next conversation, and update the notes as their needs become clearer."
         },
         "deliverable": {
@@ -1042,7 +1042,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "For an order coordinator, initiative means monitoring orders, dispatch and payments, then getting emerging problems to the relevant part of the process."
         },
         "scenario": {
-          "zh": "发现出货信息与客户约定不一致时，你先核对订单和当前进展，再把差异及可能影响反馈出去，持续记录后续处理与客户回复。",
+          "zh": "发现出货信息与客户约定不一致时，可以先核对订单和当前进展，再把差异及可能影响反馈出去，持续记录后续处理与客户回复。",
           "en": "Dispatch information differs from the customer agreement. Check the order and current progress, report the discrepancy and its potential impact, then track the response and the customer’s reply."
         },
         "deliverable": {
@@ -1069,7 +1069,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Overseas registration uses English to read technical requirements, organize submission materials and discuss related questions with reviewers and customers."
         },
         "scenario": {
-          "zh": "审核方要求补充一项材料时，你要读清问题指向，找到已有资料中的对应部分，整理待补内容，再写明准备回应的要点。",
+          "zh": "审核方要求补充一项材料时，可以读清问题指向，找到已有资料中的对应部分，整理待补内容，再写明准备回应的要点。",
           "en": "A reviewer requests additional material. Identify precisely what is being asked, locate the relevant existing information, list what is missing, and draft the points the response needs to cover."
         },
         "deliverable": {
@@ -1088,7 +1088,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "English reading and writing support technical documentation, test cases and issue explanations, allowing technical information to be communicated accurately."
         },
         "scenario": {
-          "zh": "阅读一段英文接口说明后，你需要把关键限制写进测试用例；若测试失败，再用清楚的英文描述输入条件、复现步骤和观察到的结果。",
+          "zh": "阅读一段英文接口说明后，可以把关键限制写进测试用例；若测试失败，再用清楚的英文描述输入条件、复现步骤和观察到的结果。",
           "en": "After reading an English interface specification, carry its key constraints into a test case. If the test fails, describe the inputs, reproduction steps and observed result clearly in English."
         },
         "deliverable": {
@@ -1107,7 +1107,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Overseas procurement uses English for quotations, negotiations and logistics reconciliation, translating conversations into business information that can be checked."
         },
         "scenario": {
-          "zh": "供应商报价与后来提供的运输费用不一致，你要把报价条件、货物信息和费用项列清，再用英语逐项询问并记录对方确认的内容。",
+          "zh": "供应商报价与后来提供的运输费用不一致，可以把报价条件、货物信息和费用项列清，再用英语逐项询问并记录对方确认的内容。",
           "en": "A supplier’s quotation differs from the subsequent freight charges. Set out the quoted terms, shipment information and charges, then query each item in English and record the supplier’s clarification."
         },
         "deliverable": {
@@ -1134,7 +1134,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The process engineer connects sample changes, process data and customer technical records so subsequent checks and adjustments have a traceable basis."
         },
         "scenario": {
-          "zh": "调整工艺后样品表现发生变化，你要保留调整前后的参数、样品标识和观察结果，避免下一轮只记得效果，却找不到对应做法。",
+          "zh": "调整工艺后样品表现发生变化，可以保留调整前后的参数、样品标识和观察结果，避免下一轮只记得效果，却找不到对应做法。",
           "en": "A process adjustment changes a sample’s performance. Retain the before-and-after parameters, sample identifiers and observations so the next trial can connect the result to the method used."
         },
         "deliverable": {
@@ -1153,7 +1153,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Rigor in procurement means checking supplier terms, contracts and system records against one another so the same commitment is represented consistently."
         },
         "scenario": {
-          "zh": "供应商改了交期，但采购系统仍是旧日期，你要核对双方确认的内容，标出哪些合同或订单记录需要同步，留下变更的依据。",
+          "zh": "供应商改了交期，但采购系统仍是旧日期，可以核对双方确认的内容，标出哪些合同或订单记录需要同步，留下变更的依据。",
           "en": "A supplier changes the delivery date while the purchasing system still shows the old one. Check what was confirmed, identify the affected contract or order records, and retain the basis for the change."
         },
         "deliverable": {
@@ -1172,7 +1172,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "General-ledger work connects costs, consolidated statements and supporting material so reviewers can trace reported figures and adjustments."
         },
         "scenario": {
-          "zh": "合并报表出现一项难以解释的差额，你要回到明细和调整记录逐项核对，整理差异来源及待确认事项，供后续复核处理。",
+          "zh": "合并报表出现一项难以解释的差额，可以回到明细和调整记录逐项核对，整理差异来源及待确认事项，供后续复核处理。",
           "en": "An unexplained difference appears in a consolidated statement. Work back through the details and adjustment records, then document the sources of the difference and the items still requiring review."
         },
         "deliverable": {
@@ -1199,7 +1199,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The shift lead carries a production issue from its initial record into improvement follow-up, keeping the response and eventual result available for checking."
         },
         "scenario": {
-          "zh": "生产中反复出现同类异常，你先整理发生环节和处理记录，跟进改善事项，再对照后续记录检查问题是否仍在重复出现。",
+          "zh": "生产中反复出现同类异常，可以先整理发生环节和处理记录，跟进改善事项，再对照后续记录检查问题是否仍在重复出现。",
           "en": "The same problem recurs in production. Gather where it occurs and how it has been handled, follow the improvement actions, then check later records to see whether it continues to recur."
         },
         "deliverable": {
@@ -1211,14 +1211,14 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
       {
         "task": {
           "zh": "把现场失败变成改进线索",
-          "en": "Turn field failures into actionable model feedback"
+          "en": "Turn field failures into useful model feedback"
         },
         "expertTake": {
           "zh": "AI 交付运营要把接管和失败案例整理成模型团队能够定位的问题，再跟进后续表现。",
           "en": "AI delivery operations organizes interventions and failures into problems the model team can investigate, then follows subsequent performance."
         },
         "scenario": {
-          "zh": "现场同一类任务多次需要人工接管，你要整理任务条件、失败表现和接管原因，将相似案例放在一起，便于模型团队检查改进方向。",
+          "zh": "现场同一类任务多次需要人工接管，可以整理任务条件、失败表现和接管原因，将相似案例放在一起，便于模型团队检查改进方向。",
           "en": "A type of field task repeatedly needs human intervention. Collect the task conditions, failure behaviour and reason for intervention, then group similar cases for the model team to investigate."
         },
         "deliverable": {
@@ -1237,7 +1237,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The algorithm engineer translates data-cycle needs into compression specifications while checking power, performance and area constraints."
         },
         "scenario": {
-          "zh": "某种压缩设置减少了数据量，却丢失后续使用需要的画面信息，你要比较不同设置的保留效果和资源开销，说明可选方案的取舍。",
+          "zh": "某种压缩设置减少了数据量，却丢失后续使用需要的画面信息，可以比较不同设置的保留效果和资源开销，说明可选方案的取舍。",
           "en": "A compression setting reduces data volume but loses visual information needed later. Compare information retention and resource costs across settings, then explain the trade-offs between the options."
         },
         "deliverable": {
@@ -1264,7 +1264,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Local-services operations develops a marketing plan around a merchant’s situation and turns it into actions that can be followed through."
         },
         "scenario": {
-          "zh": "商户认可了活动方向，却还没有准备好上线材料，你要列清待办、信息缺口和需要配合的人，把方案推进到具体准备与执行步骤。",
+          "zh": "商户认可了活动方向，却还没有准备好上线材料，可以列清待办、信息缺口和需要配合的人，把方案推进到具体准备与执行步骤。",
           "en": "A merchant agrees with the campaign direction but has not prepared the launch material. Identify tasks, missing information and people whose input is needed, then move the plan into preparation and delivery."
         },
         "deliverable": {
@@ -1283,7 +1283,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Execution for an equipment engineer includes handling faults, proposing preventive measures and tracking whether machine performance improves."
         },
         "scenario": {
-          "zh": "一台设备反复出现同类告警，你要整理发生条件与处理经过，提出可检查的预防措施，再对照后续运行记录跟踪异常是否减少。",
+          "zh": "一台设备反复出现同类告警，可以整理发生条件与处理经过，提出可检查的预防措施，再对照后续运行记录跟踪异常是否减少。",
           "en": "A machine repeatedly raises the same alarm. Document the conditions and responses, propose preventive measures that can be checked, then follow later operating records to see whether the problem recurs less often."
         },
         "deliverable": {
@@ -1302,7 +1302,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "The city operations supervisor handles orders and vehicle quality or safety matters through established procedures and external coordination processes."
         },
         "scenario": {
-          "zh": "订单处理中出现车辆质量反馈，你要按现有流程整理订单、车辆情况和处理进度，标记尚未解决的事项，方便后续岗位继续跟进。",
+          "zh": "订单处理中出现车辆质量反馈，可以按现有流程整理订单、车辆情况和处理进度，标记尚未解决的事项，方便后续岗位继续跟进。",
           "en": "A vehicle-quality concern arises while an order is being handled. Follow the existing procedure to organize the order details, vehicle information and progress, marking unresolved items for subsequent follow-up."
         },
         "deliverable": {

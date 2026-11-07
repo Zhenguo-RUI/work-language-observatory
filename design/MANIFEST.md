@@ -1,4 +1,4 @@
-# 截图与资产清单
+# 截图与资产清单（v3）
 ## screens/（从画布下载）
 desktop-01-home.png      P1 输入态        首页 v13 活版
 desktop-02-result.png    P2              结果页 v13 六层任务单元
@@ -7,24 +7,40 @@ desktop-04-dict.png      P4              词典页 v11 索引卡活版
 desktop-05-research.png  P5              研究页 v11 天平叙事活版
 desktop-06-tokens.png    TOKENS 对照      设计令牌表
 desktop-07-logo.png      标志模数         标志规范 A
-mobile-01-home.png       P1 手机          手机端首页 v13 活版
-mobile-02-result.png     P2 手机          手机端结果页 v13
-mobile-03-history.png    P3 手机          手机端我的分析 v12 活版
-mobile-04-empty.png      P3 空态          手机端我的分析 空状态
-mobile-05-loading.png    P1 生成中        手机端生成中状态
-mobile-06-fail.png       P1 失败          手机端失败重试状态
-mobile-07-noresult.png   P3 无结果        手机端搜索无结果状态
-mobile-08-dict.png       P4 手机          手机端词典页 v11
-mobile-09-research.png   P5 手机          手机端研究页 v11
+mobile-01-home.png / mobile-02-result.png / mobile-03-history.png / mobile-04-empty.png
+mobile-05-loading.png / mobile-06-fail.png / mobile-07-noresult.png / mobile-08-dict.png
+mobile-09-research.png   （对应 v13/v12/v11 各版）
 en-01-home.png / en-02-result.png / en-03-dict.png / en-04-research.png
-## illustrations/（14 张原始 PNG，multiply 融合）
+自检只比版式节奏与插画位置；文字以 COPY.md 为准。
 
-全部文件已按最终清单到位，原始尺寸均为 2880 × 2880。文件名与交付源一一对应：
+## illustrations/（白底 PNG，.illo multiply；代码线条除外）
+ladder.png        梯子贴纸小人        P1 输入框左缘
+clerk-card.png    捧空白卡小人        P3「新建分析」旁
+peek.png          卡后探头            P3 末卡 / P4 卡一右缘
+pair.png          背对背举纸双人      P1 按钮下方
+pointer-hand.png  举手指引小人（无教鞭）P4 左留轨   ← v3 新增，替代 pointer.png
+twocards.png      两手举卡+问号       P4 右页边注
+scale-empty.png   空盘下沉天平        P5 假设旁
+scale-stone.png   踮脚放石天平        P5 反例旁
+reader.png        坐读等钟小人        P1 生成中
+torn.png          缺角纸+乱线         P1 失败 / P2 JD 问题旁
+drawer.png        看空抽屉小人        P3 搜索无结果
+shelf.png         三人空档案架        P3 空状态
+flag.png          柱顶插旗小人        P5 最高柱顶
+hand.png          指目录的手          P4 手机「目录 ☰」下方
+作废：pointer.png（教鞭已烘进图，v3 起不得使用）
 
-| 网站文件名 | 用户交付原名 |
+## 代码绘制件（非 PNG，见 SPEC P4）
+.clerk-stick 教鞭（词典）· .ring 铅笔圈 · .scribble 下划线 · .arrowline 弯箭头/花括号/双向箭头
+
+## 当前资产实收与授权范围
+
+当前提供的 14 张 PNG 均按原字节保存。pointer-hand.png 为 2048 × 2048，其余 13 张为 2880 × 2880。指引人物的 CSS 显示窗口为 `[849,1575,220,365]`；手套端原图坐标约 `(1041,1597)`，转换到显示窗口的比例为 `(0.872727,0.060274)`。这些坐标只用于摆放线条，不改位图。
+
+| 网站文件 | 用户原文件 |
 | --- | --- |
 | `pair.png` | 插画资产 背对背举纸双人.png |
-| `pointer.png` | 插画资产 举教鞭小人.png |
+| `pointer-hand.png` | 插画资产 举手指引小人（无教鞭版）.png |
 | `peek.png` | 插画资产 卡后探头小人.png |
 | `clerk-card.png` | 插画资产 捧空白卡小人.png |
 | `ladder.png` | 插画资产 梯子贴纸小人.png |
@@ -38,10 +54,10 @@ en-01-home.png / en-02-result.png / en-03-dict.png / en-04-research.png
 | `flag.png` | 插画资产 柱顶插旗小人.png |
 | `hand.png` | 插画资产 指目录的手.png |
 
-原图哈希、字节数、色彩模式及页面显示窗口见 [illustrations/manifest.json](illustrations/manifest.json)。显示窗口仅处理空余画布，不编辑 PNG，不截掉人物、手、脚、教鞭或原图标记。`ladder.png` 的左上生成标记保留。
+文件尺寸、字节数和 SHA-256 见 [illustrations/manifest.json](illustrations/manifest.json)。原图由用户提供；代码许可不授予插画或标志的独立复制、转售许可。旧 pointer.png 已停止使用并从当前分发目录移除，其哈希保留在 manifest 的 retiredAssets 中。
 
 ## 截图实收情况
 
-当前 `screens/` 已收到并归档：`desktop-02-result.png`、`desktop-05-research.png`、`mobile-02-result.png`、`mobile-08-dict.png`、`mobile-09-research.png`。上面其他截图名为设计清单中的预期参考，未据此伪称已完成逐像素核对。
+`desktop-01-home.png` · `desktop-02-result.png` · `desktop-03-history.png` · `desktop-05-research.png` · `mobile-02-result.png` · `mobile-08-dict.png` · `mobile-09-research.png`
 
-自检只比较版式节奏与插画位置；界面文字以 COPY.md 为准，研究数字来自实际数据。
+以上是实收文件清单，不代表所有预期截图已收到或所有页面已逐像素验收。

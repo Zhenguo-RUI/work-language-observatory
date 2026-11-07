@@ -1,9 +1,9 @@
-type IllustrationName = "pair" | "pointer" | "twocards" | "scale-empty" | "scale-stone" | "ladder" | "reader" | "torn" | "drawer" | "shelf" | "flag" | "hand" | "peek" | "clerk-card";
+type IllustrationName = "pair" | "pointer-hand" | "twocards" | "scale-empty" | "scale-stone" | "ladder" | "reader" | "torn" | "drawer" | "shelf" | "flag" | "hand" | "peek" | "clerk-card";
 
 // Only display original artwork supplied by the user. Missing assets stay absent.
 const originalImages: Partial<Record<IllustrationName, string>> = {
  "pair": "/design/illustrations/pair.png",
- "pointer": "/design/illustrations/pointer.png",
+ "pointer-hand": "/design/illustrations/pointer-hand.png",
  "peek": "/design/illustrations/peek.png",
  "clerk-card": "/design/illustrations/clerk-card.png",
  "ladder": "/design/illustrations/ladder.png",
@@ -21,7 +21,7 @@ const originalImages: Partial<Record<IllustrationName, string>> = {
 // The ladder viewport deliberately includes its faint top-left generation label.
 const imageViewports: Record<IllustrationName, readonly [number, number, number, number]> = {
  "pair": [145, 727, 2608, 1418],
- "pointer": [1177, 71, 480, 2694],
+ "pointer-hand": [849, 1575, 220, 365],
  "peek": [1125, 724, 633, 1449],
  "clerk-card": [273, 411, 2242, 2125],
  "ladder": [0, 0, 2200, 2580],
@@ -39,14 +39,13 @@ export function WloIllustration({name,width=120,className=""}:{name:Illustration
  const source = originalImages[name];
  if (!source) return null;
  const [left,top,cropWidth,cropHeight]=imageViewports[name];
- // Retain the entire long pointer; its full-height artwork needs a narrow frame.
- const displayWidth=name==="pointer"?Math.min(width,130*cropWidth/cropHeight):width;
- const frameStyle={"--illo-width":`${displayWidth}px`,aspectRatio:`${cropWidth} / ${cropHeight}`} as const;
- const imageStyle={position:"absolute",left:`${-left/cropWidth*100}%`,top:`${-top/cropHeight*100}%`,width:`${2880/cropWidth*100}%`,height:"auto",maxWidth:"none",mixBlendMode:"multiply",pointerEvents:"none"} as const;
+ const nativeSize=name==="pointer-hand"?2048:2880;
+ const frameStyle={"--illo-width":`${width}px`,aspectRatio:`${cropWidth} / ${cropHeight}`} as const;
+ const imageStyle={position:"absolute",left:`${-left/cropWidth*100}%`,top:`${-top/cropHeight*100}%`,width:`${nativeSize/cropWidth*100}%`,height:"auto",maxWidth:"none",mixBlendMode:"multiply",pointerEvents:"none"} as const;
  return <span className={`wlo-illustration illo-frame illo-${name} ${className}`} style={frameStyle} aria-hidden="true">
   {/* Keep the supplied PNG exactly; no optimiser, redraw or bitmap crop. */}
   {/* eslint-disable-next-line @next/next/no-img-element */}
-  <img className="illo" src={source} width={2880} height={2880} alt="" loading="lazy" decoding="async" style={imageStyle}/>
+  <img className="illo" src={source} width={nativeSize} height={nativeSize} alt="" loading="lazy" decoding="async" style={imageStyle}/>
  </span>;
 }
 export function WloMark(){return <svg className="wlo-mark" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="16" height="2"/><rect x="4" y="3" width="2" height="11"/><rect x="4" y="12" width="16" height="2"/><rect x="7" y="7" width="9" height="4"/><rect x="4" y="17" width="9" height="4"/></svg>}

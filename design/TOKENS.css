@@ -6,6 +6,7 @@
   --sp-1:4px; --sp-2:8px; --sp-3:16px; --sp-4:24px; --sp-5:40px; --sp-6:56px;
   --radius:6px; --hair:1px; --touch:44px;
   --col-read:680px; --col-read-en-label:200px; --margin-m:20px;
+  --rail-w:56px;                 /* v3 词典左留轨（手机 44px） */
   --f-serif:"Source Han Serif CN","Source Serif 4",serif;
   --f-sans:"Source Han Sans SC","Inter",sans-serif;
   --f-mono:"Roboto Mono",monospace;
@@ -39,12 +40,21 @@
 .card-index .tab{position:absolute;top:-7px;left:14px;width:56px;height:14px;
   border:1.5px solid var(--ink);border-radius:2px}
 .tab--ok{background:var(--sage)} .tab--draft{background:var(--sand)} .tab--fail{background:transparent}
-/* 手绘笔触（内联 SVG 用） */
+/* 手绘笔触 */
 .scribble{fill:none;stroke:var(--sage);stroke-width:2;stroke-linecap:round}
 .ring{fill:none;stroke:var(--slate);stroke-width:2;stroke-linecap:round}
 .arrowline{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round}
 /* 插画 */
 .illo{display:block;mix-blend-mode:multiply}
+/* v3 词典左留轨 + 代码教鞭 */
+.term-index{position:relative;padding-left:var(--rail-w)}
+.clerk{position:absolute;left:0;bottom:8px;width:44px;mix-blend-mode:multiply;pointer-events:none}
+.clerk-stick{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.clerk-stick path{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round}
+.clerk-stick circle{fill:var(--slate)}
+.term{min-height:var(--touch);display:flex;align-items:center;gap:8px}
+.term .idx{font:400 11px var(--f-mono);color:var(--placeholder);min-width:2ch;text-align:right}
+.term .ct{font:400 11px var(--f-mono);color:var(--placeholder);margin-left:auto}
 /* 状态/进度 */
 .stepper i{width:16px;height:16px;border-radius:50%}
 .stepper .done{background:var(--sage)} .stepper .now{outline:2px solid var(--slate)} .stepper .todo{outline:1px solid var(--hairline)}
@@ -53,10 +63,12 @@
 .progress .done{background:var(--sage);outline:0}
 .drawer{border-top:var(--hair) solid var(--hairline);border-radius:var(--radius) var(--radius) 0 0;background:var(--paper)}
 .hairline{border-top:var(--hair) solid var(--hairline)}
-/* 防横向溢出（手机硬约束） */
+/* 防横向溢出 */
 @media (max-width:430px){
   .card-index{--tilt:0deg}
   .card-index .tape{width:min(56px,18%)}
+  .term-index{--rail-w:44px}
+  .clerk{width:36px;bottom:0}
 }
 /* QA：375px 下必须满足 document.documentElement.scrollWidth === clientWidth；
    不通过先修偏移，禁止用 overflow-x:hidden 掩盖。 */

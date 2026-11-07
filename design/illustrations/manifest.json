@@ -18,20 +18,29 @@
       ]
     },
     {
-      "name": "pointer",
-      "file": "pointer.png",
-      "sourceFilename": "插画资产 举教鞭小人.png",
-      "width": 2880,
-      "height": 2880,
+      "name": "pointer-hand",
+      "file": "pointer-hand.png",
+      "sourceFilename": "插画资产 举手指引小人（无教鞭版）.png",
+      "width": 2048,
+      "height": 2048,
       "mode": "RGB",
-      "bytes": 2697411,
-      "sha256": "5e9a098c3f6cc1235779817520ce811e5cc0e1e79d4d97bc126de6b30abaf7ce",
+      "bytes": 1784950,
+      "sha256": "98ffa57aa9e76aba1dcad70f10907725d35d06e1ef9c4bf3fa1dc09c4476ca2e",
       "cssViewport": [
-        1177,
-        71,
-        480,
-        2694
-      ]
+        849,
+        1575,
+        220,
+        365
+      ],
+      "fingertipNative": [
+        1041,
+        1597
+      ],
+      "fingertipRatio": [
+        0.8727272727272727,
+        0.06027397260273973
+      ],
+      "note": "CSS viewport only; original bitmap unchanged. Hand anchor is measured in the native 2048px artwork. The movable pointer line is drawn separately in code."
     },
     {
       "name": "peek",
@@ -226,5 +235,13 @@
       ]
     }
   ],
-  "display": "CSS clips unused canvas only. Original PNG files are unchanged. Viewport is [left, top, width, height] in native pixels, with safe margins around all ink; the ladder label is retained."
+  "display": "CSS clips unused canvas only. Original PNG files are unchanged. Viewport is [left, top, width, height] in native pixels, with safe margins around all ink; the ladder label is retained.",
+  "retiredAssets": [
+    {
+      "name": "pointer",
+      "file": "pointer.png",
+      "sha256": "5e9a098c3f6cc1235779817520ce811e5cc0e1e79d4d97bc126de6b30abaf7ce",
+      "reason": "Retired in v3: a fixed pointer is baked into the artwork. Use pointer-hand.png with the measured code-drawn line."
+    }
+  ]
 }

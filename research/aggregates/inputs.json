@@ -1,0 +1,1783 @@
+{
+  "schema_version": "wlo-input-audit-v1",
+  "step": 0,
+  "generated_at_utc": "2026-11-08T03:30:03.386914+00:00",
+  "status": "input_inventory_complete; permission_and_design_confirmation_pending",
+  "input": {
+    "local_file": "research/private/corpus-2000.private.json",
+    "sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "bytes": 9914392,
+    "assembled_date_recorded": "2026-10-26",
+    "unit": "Archived advertisement record, not a verified unique vacancy or worker"
+  },
+  "sample": {
+    "n": 2000,
+    "by_platform": {
+      "51job": 1000,
+      "boss": 500,
+      "liepin": 500
+    },
+    "unique_record_ids": 2000,
+    "unique_exact_bodies": 2000,
+    "unique_normalized_bodies": 2000,
+    "normalization": "Unicode NFKC, lower(), remove [\\W_]+ with Python Unicode regex",
+    "body_hash_mismatch_n": 0,
+    "stored_normalized_hash_mismatch_n": 0,
+    "fresh_primary_scrapes": 0,
+    "semantic_gold_standard": false
+  },
+  "all_records": {
+    "n": 2000,
+    "fields": {
+      "analysis_body": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "archive_locator": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "dict": 1000
+        }
+      },
+      "archive_manifest_generated_at": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "archive_record_id": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "archive_repository": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "body": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "body_sha256": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "capture_scope": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "chinese_character_count": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "int": 1000
+        }
+      },
+      "city": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "list": 1000
+        }
+      },
+      "cleaning_notes": {
+        "present_n": 1000,
+        "nonempty_n": 998,
+        "types": {
+          "NoneType": 1000,
+          "list": 1000
+        }
+      },
+      "company_scale_archived": {
+        "present_n": 1000,
+        "nonempty_n": 498,
+        "types": {
+          "NoneType": 1502,
+          "str": 498
+        }
+      },
+      "dataset": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "dataset_file": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "dataset_revision": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "employer": {
+        "present_n": 2000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "experience_archived": {
+        "present_n": 1000,
+        "nonempty_n": 436,
+        "types": {
+          "NoneType": 1564,
+          "str": 436
+        }
+      },
+      "family_assignment_method": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "first_scraped_at": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "fullness_independently_checked": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "bool": 1000
+        }
+      },
+      "has_duties_header": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "bool": 1000
+        }
+      },
+      "has_requirements_header": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "bool": 1000
+        }
+      },
+      "id": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "live_source_checked": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "bool": 1000
+        }
+      },
+      "normalized_body_hash": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "origin": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "original_body_sha256": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "original_language_label": {
+        "present_n": 1000,
+        "nonempty_n": 847,
+        "types": {
+          "NoneType": 1153,
+          "str": 847
+        }
+      },
+      "original_title_rule_group": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "platform": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "posting_date": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "preliminary_title_family": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "published_at": {
+        "present_n": 1000,
+        "nonempty_n": 0,
+        "types": {
+          "NoneType": 2000
+        }
+      },
+      "publisher_duplicate_flag": {
+        "present_n": 1000,
+        "nonempty_n": 1,
+        "types": {
+          "NoneType": 1999,
+          "str": 1
+        }
+      },
+      "recruitment_type_archived": {
+        "present_n": 1000,
+        "nonempty_n": 499,
+        "types": {
+          "NoneType": 1501,
+          "str": 499
+        }
+      },
+      "retrieval_date": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "sample_id": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "sampling_key": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "section_spans": {
+        "present_n": 1000,
+        "nonempty_n": 830,
+        "types": {
+          "NoneType": 1000,
+          "list": 1000
+        }
+      },
+      "source_body": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_body_sha256": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_collected_at": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_job_id": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_kind": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_record_type": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_type": {
+        "present_n": 1000,
+        "nonempty_n": 1000,
+        "types": {
+          "NoneType": 1000,
+          "str": 1000
+        }
+      },
+      "source_updated_at": {
+        "present_n": 1000,
+        "nonempty_n": 500,
+        "types": {
+          "NoneType": 1500,
+          "str": 500
+        }
+      },
+      "title": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "title_rule_group": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      },
+      "url": {
+        "present_n": 2000,
+        "nonempty_n": 2000,
+        "types": {
+          "str": 2000
+        }
+      }
+    },
+    "employer_nonempty_n": 1000,
+    "distinct_employer_strings": 179,
+    "dates": {
+      "posting_date": {
+        "nonempty_n": 1000,
+        "iso_date_prefix_n": 1000,
+        "min_recorded_date": "2026-10-04",
+        "max_recorded_date": "2026-10-22"
+      },
+      "published_at": {
+        "nonempty_n": 0,
+        "iso_date_prefix_n": 0,
+        "min_recorded_date": null,
+        "max_recorded_date": null
+      },
+      "first_scraped_at": {
+        "nonempty_n": 1000,
+        "iso_date_prefix_n": 1000,
+        "min_recorded_date": "2026-10-05",
+        "max_recorded_date": "2026-10-22"
+      },
+      "retrieval_date": {
+        "nonempty_n": 1000,
+        "iso_date_prefix_n": 1000,
+        "min_recorded_date": "2026-10-26",
+        "max_recorded_date": "2026-10-26"
+      },
+      "source_collected_at": {
+        "nonempty_n": 1000,
+        "iso_date_prefix_n": 1000,
+        "min_recorded_date": "2026-08-05",
+        "max_recorded_date": "2026-08-09"
+      },
+      "source_updated_at": {
+        "nonempty_n": 500,
+        "iso_date_prefix_n": 500,
+        "min_recorded_date": "2026-08-08",
+        "max_recorded_date": "2026-08-09"
+      },
+      "archive_manifest_generated_at": {
+        "nonempty_n": 1000,
+        "iso_date_prefix_n": 1000,
+        "min_recorded_date": "2026-08-25",
+        "max_recorded_date": "2026-08-25"
+      }
+    }
+  },
+  "by_source": {
+    "51job": {
+      "n": 1000,
+      "fields": {
+        "analysis_body": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "archive_locator": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "archive_manifest_generated_at": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "archive_record_id": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "archive_repository": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "body": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "body_sha256": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "capture_scope": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "chinese_character_count": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "int": 1000
+          }
+        },
+        "city": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "cleaning_notes": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "company_scale_archived": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "dataset": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "dataset_file": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "dataset_revision": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "employer": {
+          "present_n": 1000,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "experience_archived": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "family_assignment_method": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "first_scraped_at": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "fullness_independently_checked": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "has_duties_header": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "bool": 1000
+          }
+        },
+        "has_requirements_header": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "bool": 1000
+          }
+        },
+        "id": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "live_source_checked": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "normalized_body_hash": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "origin": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "original_body_sha256": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "original_language_label": {
+          "present_n": 1000,
+          "nonempty_n": 847,
+          "types": {
+            "NoneType": 153,
+            "str": 847
+          }
+        },
+        "original_title_rule_group": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "platform": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "posting_date": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "preliminary_title_family": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "published_at": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "publisher_duplicate_flag": {
+          "present_n": 1000,
+          "nonempty_n": 1,
+          "types": {
+            "NoneType": 999,
+            "str": 1
+          }
+        },
+        "recruitment_type_archived": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "retrieval_date": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "sample_id": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "sampling_key": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "section_spans": {
+          "present_n": 1000,
+          "nonempty_n": 830,
+          "types": {
+            "list": 1000
+          }
+        },
+        "source_body": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "source_body_sha256": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "source_collected_at": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "source_job_id": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "source_kind": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "source_record_type": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "source_type": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "source_updated_at": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 1000
+          }
+        },
+        "title": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "title_rule_group": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        },
+        "url": {
+          "present_n": 1000,
+          "nonempty_n": 1000,
+          "types": {
+            "str": 1000
+          }
+        }
+      },
+      "employer_nonempty_n": 0,
+      "distinct_employer_strings": 0,
+      "dates": {
+        "posting_date": {
+          "nonempty_n": 1000,
+          "iso_date_prefix_n": 1000,
+          "min_recorded_date": "2026-10-04",
+          "max_recorded_date": "2026-10-22"
+        },
+        "published_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "first_scraped_at": {
+          "nonempty_n": 1000,
+          "iso_date_prefix_n": 1000,
+          "min_recorded_date": "2026-10-05",
+          "max_recorded_date": "2026-10-22"
+        },
+        "retrieval_date": {
+          "nonempty_n": 1000,
+          "iso_date_prefix_n": 1000,
+          "min_recorded_date": "2026-10-26",
+          "max_recorded_date": "2026-10-26"
+        },
+        "source_collected_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "source_updated_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "archive_manifest_generated_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        }
+      }
+    },
+    "boss": {
+      "n": 500,
+      "fields": {
+        "analysis_body": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "archive_locator": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "dict": 500
+          }
+        },
+        "archive_manifest_generated_at": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "archive_record_id": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "archive_repository": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "body": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "body_sha256": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "capture_scope": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "chinese_character_count": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "city": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "list": 500
+          }
+        },
+        "cleaning_notes": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "list": 500
+          }
+        },
+        "company_scale_archived": {
+          "present_n": 500,
+          "nonempty_n": 498,
+          "types": {
+            "NoneType": 2,
+            "str": 498
+          }
+        },
+        "dataset": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "dataset_file": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "dataset_revision": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "employer": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "experience_archived": {
+          "present_n": 500,
+          "nonempty_n": 436,
+          "types": {
+            "NoneType": 64,
+            "str": 436
+          }
+        },
+        "family_assignment_method": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "first_scraped_at": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "fullness_independently_checked": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "bool": 500
+          }
+        },
+        "has_duties_header": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "has_requirements_header": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "id": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "live_source_checked": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "bool": 500
+          }
+        },
+        "normalized_body_hash": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "origin": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "original_body_sha256": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "original_language_label": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "original_title_rule_group": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "platform": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "posting_date": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "preliminary_title_family": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "published_at": {
+          "present_n": 500,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "publisher_duplicate_flag": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "recruitment_type_archived": {
+          "present_n": 500,
+          "nonempty_n": 499,
+          "types": {
+            "NoneType": 1,
+            "str": 499
+          }
+        },
+        "retrieval_date": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "sample_id": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "sampling_key": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "section_spans": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "source_body": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_body_sha256": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_collected_at": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_job_id": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "source_kind": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_record_type": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_type": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "source_updated_at": {
+          "present_n": 500,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "title": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "title_rule_group": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "url": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        }
+      },
+      "employer_nonempty_n": 500,
+      "distinct_employer_strings": 63,
+      "dates": {
+        "posting_date": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "published_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "first_scraped_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "retrieval_date": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "source_collected_at": {
+          "nonempty_n": 500,
+          "iso_date_prefix_n": 500,
+          "min_recorded_date": "2026-08-05",
+          "max_recorded_date": "2026-08-09"
+        },
+        "source_updated_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "archive_manifest_generated_at": {
+          "nonempty_n": 500,
+          "iso_date_prefix_n": 500,
+          "min_recorded_date": "2026-08-25",
+          "max_recorded_date": "2026-08-25"
+        }
+      }
+    },
+    "liepin": {
+      "n": 500,
+      "fields": {
+        "analysis_body": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "archive_locator": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "dict": 500
+          }
+        },
+        "archive_manifest_generated_at": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "archive_record_id": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "archive_repository": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "body": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "body_sha256": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "capture_scope": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "chinese_character_count": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "city": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "list": 500
+          }
+        },
+        "cleaning_notes": {
+          "present_n": 500,
+          "nonempty_n": 498,
+          "types": {
+            "list": 500
+          }
+        },
+        "company_scale_archived": {
+          "present_n": 500,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "dataset": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "dataset_file": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "dataset_revision": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "employer": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "experience_archived": {
+          "present_n": 500,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "family_assignment_method": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "first_scraped_at": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "fullness_independently_checked": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "bool": 500
+          }
+        },
+        "has_duties_header": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "has_requirements_header": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "id": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "live_source_checked": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "bool": 500
+          }
+        },
+        "normalized_body_hash": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "origin": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "original_body_sha256": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "original_language_label": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "original_title_rule_group": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "platform": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "posting_date": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "preliminary_title_family": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "published_at": {
+          "present_n": 500,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "publisher_duplicate_flag": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "recruitment_type_archived": {
+          "present_n": 500,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "retrieval_date": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "sample_id": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "sampling_key": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "section_spans": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "source_body": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_body_sha256": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_collected_at": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_job_id": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "source_kind": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_record_type": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "source_type": {
+          "present_n": 0,
+          "nonempty_n": 0,
+          "types": {
+            "NoneType": 500
+          }
+        },
+        "source_updated_at": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "title": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "title_rule_group": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        },
+        "url": {
+          "present_n": 500,
+          "nonempty_n": 500,
+          "types": {
+            "str": 500
+          }
+        }
+      },
+      "employer_nonempty_n": 500,
+      "distinct_employer_strings": 116,
+      "dates": {
+        "posting_date": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "published_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "first_scraped_at": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "retrieval_date": {
+          "nonempty_n": 0,
+          "iso_date_prefix_n": 0,
+          "min_recorded_date": null,
+          "max_recorded_date": null
+        },
+        "source_collected_at": {
+          "nonempty_n": 500,
+          "iso_date_prefix_n": 500,
+          "min_recorded_date": "2026-08-08",
+          "max_recorded_date": "2026-08-09"
+        },
+        "source_updated_at": {
+          "nonempty_n": 500,
+          "iso_date_prefix_n": 500,
+          "min_recorded_date": "2026-08-08",
+          "max_recorded_date": "2026-08-09"
+        },
+        "archive_manifest_generated_at": {
+          "nonempty_n": 500,
+          "iso_date_prefix_n": 500,
+          "min_recorded_date": "2026-08-25",
+          "max_recorded_date": "2026-08-25"
+        }
+      }
+    }
+  },
+  "provenance": {
+    "51job": {
+      "dataset": "Shifat2110724169/job-market-intel-corpus",
+      "dataset_url": "https://huggingface.co/datasets/Shifat2110724169/job-market-intel-corpus",
+      "recorded_revision": "c9384eb2ca887b266ecfbf5328cd00c4ec67f502",
+      "dataset_metadata_last_modified": "2026-10-25T05:38:02.000Z",
+      "shard": "shards/source=51job/dt=2026-10-25/part-0.parquet",
+      "selection": "Existing deterministic-hash subset of 1,000 eligible original-language records; no new sampling in this audit.",
+      "declared_license": "other",
+      "third_party_jd_use_permission": "unknown",
+      "permission_confirmation_required": true,
+      "license_evidence": "The saved card says license: other; its caveat does not grant redistribution of job text.",
+      "first_party_revalidation": "not performed",
+      "employer_and_city": "not retained in this corpus",
+      "date_basis": "Publisher-recorded posting_date and first_scraped_at; local retrieval_date is a different field.",
+      "evidence_files": [
+        "51job-dataset-README.md",
+        "51job-dataset-metadata.json",
+        "51job-precursor-sample-audit.json"
+      ]
+    },
+    "boss_and_liepin": {
+      "dataset": "zeitvex/JobResearchHub",
+      "dataset_url": "https://github.com/zeitvex/JobResearchHub",
+      "recorded_revision": "unknown",
+      "fetch_reference": "main (not an immutable commit)",
+      "archive_manifest_generated_at": "2026-08-25T16:03:51.938291+00:00",
+      "archive_manifest_total": 74655,
+      "archive_shards": 15,
+      "selection": "Existing source/role quotas: 500 per platform, up to 10 per normalized employer string; not a random market sample.",
+      "recorded_selection_counts": {
+        "boss": {
+          "selected_n": 500,
+          "employers": 63,
+          "max_per_employer": 10
+        },
+        "liepin": {
+          "selected_n": 500,
+          "employers": 116,
+          "max_per_employer": 10
+        }
+      },
+      "declared_code_license": "MIT (scope stated in saved DATA_NOTICE)",
+      "third_party_jd_use_permission": "unknown",
+      "permission_confirmation_required": true,
+      "license_evidence": "DATA_NOTICE explicitly excludes third-party JD rights from its code/documentation licence.",
+      "date_basis": "source_collected_at is collection time; source_updated_at and manifest time are not posting dates.",
+      "first_party_revalidation": "not performed",
+      "independent_fullness_check": "not performed",
+      "local_download_timestamp": "unknown",
+      "evidence_files": [
+        "github-DATA_NOTICE.md",
+        "github-manifest.json",
+        "github-download-audit.json",
+        "github-sampling-summary.json"
+      ]
+    }
+  },
+  "source_evidence": [
+    {
+      "local_file": "research/private/source-notes/51job-dataset-README.md",
+      "sha256": "c64fc32459a801379f02963900d57b167b714bbad859500b428b749499f6278e"
+    },
+    {
+      "local_file": "research/private/source-notes/51job-dataset-metadata.json",
+      "sha256": "6cb60ab4cba4f39df685f64d30911fa68027d164ffdc38738ea1295037310d03"
+    },
+    {
+      "local_file": "research/private/source-notes/51job-precursor-sample-audit.json",
+      "sha256": "c0e294dab432f827beb23fe4de9b1fe6cd625792e85f9f17063b64dcda7e8b83"
+    },
+    {
+      "local_file": "research/private/source-notes/github-DATA_NOTICE.md",
+      "sha256": "c660c8fe95e766b2f486b92c17e75403ea5e3cf5bd4530d83208aa84aa3792ba"
+    },
+    {
+      "local_file": "research/private/source-notes/github-download-audit.json",
+      "sha256": "ca15c657715b67c4559f15f51bdfc0dd866117292da216fad9c963b1de7ba149"
+    },
+    {
+      "local_file": "research/private/source-notes/github-manifest.json",
+      "sha256": "3782acb7d342cbc2c8eb8391ddf0ab70b829242890655e17b9121790aac88786"
+    },
+    {
+      "local_file": "research/private/source-notes/github-sampling-summary.json",
+      "sha256": "4933914f83782dac728d28c3e5553317ff1ce6aa36ac7c1f6450638e2a787963"
+    }
+  ],
+  "gaps_requiring_confirmation": [
+    "The scope of permission for third-party JD analysis and derived public material is unknown for both archives.",
+    "The GitHub archive commit and local download timestamp were not recorded; file hashes and manifest time remain available.",
+    "51job lacks employer and city in this corpus; BOSS/Liepin lack posting dates. Dates and source mix cannot be separated as platform effects.",
+    "No reliable salary field, validated occupation labels, human gold standard or reviewed-public-paraphrase sign-off is present.",
+    "The saved 51job card and precursor sample audit describe other snapshot totals; the current counts are recomputed from this exact input."
+  ],
+  "excluded_license_evidence": "Bingapplier/china-ai-jobs was evaluated elsewhere but contributes no records here; its CC-BY card cannot license this corpus.",
+  "privacy": {
+    "raw_records_public": false,
+    "private_ignored": true,
+    "private_tracked_files": 0,
+    "public_payload_contains_record_ids_or_employer_names": false
+  },
+  "next_action": "Review permissions and exploratory design. Stop before step 2; no human labels or model coding generated."
+}

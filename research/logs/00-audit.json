@@ -1,0 +1,52 @@
+{
+  "step": 0,
+  "generated_at_utc": "2026-11-08T03:30:03.386914+00:00",
+  "repository_head": "d9aa8ddb2cc967a877d1e5efcfe27d38a69472f4",
+  "script": "research/scripts/00_audit_inputs.py",
+  "script_sha256": "886eaa70fa93d933c4372027839c5dc0850f9c7a1ce072a9ffd4f34a1681c534",
+  "script_is_committed_at_head": false,
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "source_evidence": [
+    {
+      "local_file": "research/private/source-notes/51job-dataset-README.md",
+      "sha256": "c64fc32459a801379f02963900d57b167b714bbad859500b428b749499f6278e"
+    },
+    {
+      "local_file": "research/private/source-notes/51job-dataset-metadata.json",
+      "sha256": "6cb60ab4cba4f39df685f64d30911fa68027d164ffdc38738ea1295037310d03"
+    },
+    {
+      "local_file": "research/private/source-notes/51job-precursor-sample-audit.json",
+      "sha256": "c0e294dab432f827beb23fe4de9b1fe6cd625792e85f9f17063b64dcda7e8b83"
+    },
+    {
+      "local_file": "research/private/source-notes/github-DATA_NOTICE.md",
+      "sha256": "c660c8fe95e766b2f486b92c17e75403ea5e3cf5bd4530d83208aa84aa3792ba"
+    },
+    {
+      "local_file": "research/private/source-notes/github-download-audit.json",
+      "sha256": "ca15c657715b67c4559f15f51bdfc0dd866117292da216fad9c963b1de7ba149"
+    },
+    {
+      "local_file": "research/private/source-notes/github-manifest.json",
+      "sha256": "3782acb7d342cbc2c8eb8391ddf0ab70b829242890655e17b9121790aac88786"
+    },
+    {
+      "local_file": "research/private/source-notes/github-sampling-summary.json",
+      "sha256": "4933914f83782dac728d28c3e5553317ff1ce6aa36ac7c1f6450638e2a787963"
+    }
+  ],
+  "seed_reserved_not_used": 20261108,
+  "model": null,
+  "model_call_date": null,
+  "prompt_hash": null,
+  "temperature": null,
+  "model_calls": 0,
+  "output": "research/aggregates/inputs.json",
+  "human_labels_generated": 0,
+  "raw_text_or_record_ids_logged": false,
+  "waiting_for": [
+    "source permissions",
+    "research design confirmation"
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": "wlo-occupation-draft-v1",
+  "version": "occupations-v1-draft",
+  "written_date": "2026-11-08",
+  "status": "draft_not_applied",
+  "purpose": "供编码前计划的step3讨论工作职能与文本角色边界；本文件未运行映射、抽样或模型。",
+  "unit": "advertisement",
+  "basis": "岗位名及完整职责说明；以具体工作对象、动作和产出为主要依据。",
+  "not_a_standard_occupation_code": true,
+  "decision_rules": [
+    "工作职能与行业、职级、实际劳动体验分开；不凭公司所属行业归类。",
+    "岗位名只作线索，正文优先；不凭经理、主管、总监等头衔判断人员管理。",
+    "不以独立、抗压等焦点词的出现、责任或权限标签决定职能，避免与H1-H3循环定义。",
+    "正文明确指向一个主要职能时填写primary_function；可并列记录secondary_functions，但一份广告不因此变成多份独立观察。",
+    "跨多个职能且主次不明时primary_function保留null，并记录mixed_functions_no_stated_priority；不依据词频、条目数量或设想的工时强选主类。",
+    "其他是已辨认但不适合前七类的职能；信息不足不是其他，而是primary_function=null并保留原因。",
+    "职业与角色都只描述广告写出的安排；没有人员管理条款不证明现实中没有管理职责。",
+    "候选规则与人工判定分开保存；未完成100份人工核对前，不把候选映射称为真实职业标签。"
+  ],
+  "functions": [
+    {
+      "id": "technical_rd",
+      "label_zh": "技术研发",
+      "label_en": "Technical development",
+      "includes": "软件、算法、硬件、系统或实验方案的设计开发、测试、技术验证与技术诊断；信息系统运维亦可归入本类。",
+      "boundary": "持续产线运行、机台维护和生产工艺执行归生产制造；工程验证以设计或技术方案为产出时归本类。技术售前若主要承担客户成交归销售与客户。",
+      "illustrative_tasks": ["编写并测试程序", "设计电路并验证性能", "诊断信息系统故障"]
+    },
+    {
+      "id": "product",
+      "label_zh": "产品",
+      "label_en": "Product work",
+      "includes": "将用户或业务需求转为产品功能、使用流程、需求文档、优先级建议及验收标准。",
+      "boundary": "主要完成代码或工程验证归技术研发；主要执行持续活动、内容供给或业务流程归运营。产品经理的头衔不蕴含人员管理。",
+      "illustrative_tasks": ["梳理使用需求", "定义功能流程", "编写功能验收标准"]
+    },
+    {
+      "id": "operations",
+      "label_zh": "运营",
+      "label_en": "Operations",
+      "includes": "持续维护内容、社区、活动、商户或业务流程，制作与发布内容，监测运行情况并改进执行安排。",
+      "boundary": "不把所有含运营的岗位归入本类：厂区生产运营归生产制造，直接生活服务归生活服务。以个人客户成交或售后处理为核心归销售与客户；业务分析按其服务的主要任务判定，不因数据一词归技术。",
+      "illustrative_tasks": ["维护内容分类", "执行并复盘活动", "跟进商户活动材料"]
+    },
+    {
+      "id": "sales_customer",
+      "label_zh": "销售与客户",
+      "label_en": "Sales and customer work",
+      "includes": "获客、渠道和账户维护、销售谈判、订单跟进、续约、投诉处理及客户售后支持。",
+      "boundary": "客户经理不自动是人员管理。售后技术岗位按正文主要产出区分：处理客户问题归本类，开发诊断工具或独立工程方案归技术研发；两者主次不明时保留跨职能。现场餐饮、护理或家政服务不因面向客户就归本类。",
+      "illustrative_tasks": ["比较客户采购条件", "跟踪订单和回款", "整理客诉并跟进处理"]
+    },
+    {
+      "id": "organizational_support",
+      "label_zh": "职能支持",
+      "label_en": "Organizational support",
+      "includes": "支持组织内部运作的财务、人力资源、行政、法务、采购、合规及内部战略研究。",
+      "boundary": "依据服务对象和产出辨认，不将所有办公室工作归入本类。对外医疗、教育、法律或咨询等专业服务如不能合理进入前述类别，记其他并注明职能；对外金融销售可归销售与客户，投资研究不能仅因金融行业自动归财务支持。",
+      "illustrative_tasks": ["核对会计报表", "组织招聘流程", "比较供应商报价和合同"]
+    },
+      {
+      "id": "production_manufacturing",
+      "label_zh": "生产制造",
+      "label_en": "Production and manufacturing",
+      "includes": "制造现场的生产组织、设备操作和维护、工艺执行、在制品检验、装配及与生产直接相关的物料安排。",
+      "boundary": "不因雇主是制造企业就归本类；其软件开发、采购和销售按实际职能另分。建筑施工、仓储运输或公共设施运行不自动当作制造，需辨认具体工作，必要时归其他并保留子职能。",
+      "illustrative_tasks": ["记录批次检验结果", "调整并核对产线工序", "跟进生产机台维修"]
+    },
+    {
+      "id": "everyday_services",
+      "label_zh": "生活服务",
+      "label_en": "Everyday services",
+      "includes": "直接面向日常生活的餐饮、住宿接待、清洁、家政及明确属于生活服务的个人照料。",
+      "boundary": "本类不是低学历或低地位的代称。临床诊疗、学校教学及其他专业服务不为凑数并入本类。零售若以销售为主要产出归销售与客户；同一岗位兼做实质性服务和销售而未说明主次时保留跨职能。",
+      "illustrative_tasks": ["准备并提供餐饮服务", "安排住宿接待", "完成场所清洁与交接"]
+    },
+    {
+      "id": "other",
+      "label_zh": "其他",
+      "label_en": "Other identifiable functions",
+      "includes": "职责可以辨认，但不能合理纳入前七类的工作；必须填写other_function_description。",
+      "boundary": "可记录医疗、教学、施工、运输、专业咨询等具体子职能，不能把它们当作同质劳动组。信息不足、文字矛盾或无法区分主次的记录保留null，而非塞入其他。",
+      "illustrative_tasks": ["开展临床诊疗", "实施课程教学", "开展明确的外部专业研究服务"]
+    }
+  ],
+  "role_expression": {
+    "scope": "广告对工作角色的表述，与职能标签独立填写。",
+    "values": [
+      {
+        "id": "individual_tasks",
+        "label_zh": "个人任务",
+        "rule": "正文能够辨认本人直接完成的实质性任务，且在可读职责中没有明确人员管理任务。此值是文本角色编码，不是对真实无管理权的断言。"
+      },
+      {
+        "id": "explicit_people_management",
+        "label_zh": "明确人员管理",
+        "rule": "正文明确安排或管理他人的工作，例如下属分工、排班、监督或绩效考核；可辨认的实质职责集中于人员管理。制定团队目标或汇总管理进展本身不另算个人专业产出。"
+      },
+      {
+        "id": "mixed",
+        "label_zh": "兼有两者",
+        "rule": "既明确本人直接承担的实质性专业或服务产出，也明确管理其他人员的职责；两部分均保存证据，不能因经理需要写报告就自动判为混合。"
+      },
+      {
+        "id": "unclear",
+        "label_zh": "无法判断",
+        "rule": "正文过短、泛称负责团队或统筹而未说明人员关系，或角色安排相互矛盾，不能按前三类作出可复核判断。"
+      }
+    ],
+    "insufficient_management_cues": [
+      "产品经理、客户经理等头衔",
+      "跨部门协调或供应商对接",
+      "管理预算、设备、客户或项目",
+      "与团队协作、推动项目、责任心或领导力品质要求",
+      "为客户或同事提供一次培训但未说明带教或管理责任"
+    ],
+    "inference_limits": "不能从人员管理推定有招聘、预算、解雇或最终审批权；这些具体权利依研究手册另行编码。兼有两者与无法判断单列，不强并入H3的两个主比较组。"
+  },
+  "proposed_record_fields": {
+    "primary_function": "一个function id或null",
+    "secondary_functions": "其余有明确任务依据的function id列表；可为空",
+    "other_function_description": "primary_function为other时必填的具体职能说明",
+    "function_unknown_reason": "insufficient_duties / mixed_functions_no_stated_priority / contradictory_description / unreadable_text / other_documented_reason；仅null时填写",
+    "role_expression": "一个role_expression id",
+    "role_unclear_reason": "无法判断时记录原因",
+    "evidence_spans": "只保存在本机的正文位置及相应理由；不写入公共配置",
+    "review_status": "candidate / human_reviewed / disagreement / unresolved",
+    "codebook_version": "使用的配置版本，不能覆盖先前版本"
+  },
+  "later_review_plan": {
+    "planned_advertisements": 100,
+    "sampling_status": "not_started",
+    "mapping_status": "not_started",
+    "human_reviewed_n": null,
+    "accuracy": null,
+    "note": "遵循preregistration.md，职业与角色分别核对，保留冲突与未知；此草案不执行匹配或推断。"
+  }
+}

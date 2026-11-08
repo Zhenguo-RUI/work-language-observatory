@@ -1,0 +1,160 @@
+{
+  "version": "terms-v1-exploratory",
+  "seed": 20261108,
+  "scope": "The existing 20 dictionary entries; six are a later deep-coding subset. No new Top-20 selection.",
+  "text_field": "body",
+  "normalization": "Unicode NFKC followed by casefold; retain whitespace and punctuation; offsets refer to normalized text, not the original.",
+  "matching": "Exact substring in body only. A title-only hit is not included. No stemming, synonym expansion, whitespace joining or automatic person/nonperson classification.",
+  "counts": "Count each advertisement once per term; retain separate literal occurrence counts, candidate-kept counts and exclusion candidates. Candidate-kept does not mean person-directed.",
+  "exclusion_rule": "Flag a literal hit only when its entire span is contained in a listed compound. Retain all flagged hits privately; never discard an ad that also contains a kept hit of the same term.",
+  "sampling": {
+    "unit": "advertisement-term pair with at least one candidate-kept occurrence",
+    "per_term": 20,
+    "selection": "Lowest SHA256(seed|term|record_id) among eligible distinct advertisement IDs, with record_id as tie break; equivalent fixed-seed pseudorandom selection, not stratified.",
+    "review_target": "Whether at least one kept occurrence in this advertisement describes a person's requirement or way of working. Inspect all kept occurrences and the full text.",
+    "human_labels": [
+      "person_or_workstyle",
+      "nonperson_only",
+      "unclear"
+    ],
+    "initial_review_status": "pending",
+    "shortfall": "Take all eligible pairs if fewer than 20; report actual n and inclusion probability. Do not substitute another term or duplicate records.",
+    "exclusions": "All exclusion candidates are available separately for false-negative review. No recall estimate without a suitable human sample.",
+    "exclusion_per_term": 10,
+    "exclusion_sampling": "Separately hash-sample up to 10 advertisement-term pairs with a candidate exclusion; show all excluded hits, exploratory false-negative review only, not a recall estimate."
+  },
+  "terms": [
+    {
+      "term": "沟通",
+      "group": "协作与服务",
+      "deep_coding": true,
+      "exclude_compounds": []
+    },
+    {
+      "term": "分析",
+      "group": "技能与工具",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "数据",
+      "group": "技能与工具",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "协调",
+      "group": "协作与服务",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "熟练",
+      "group": "技能与工具",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "独立",
+      "group": "品质与工作方式",
+      "deep_coding": true,
+      "exclude_compounds": [
+        "独立站"
+      ]
+    },
+    {
+      "term": "协作",
+      "group": "协作与服务",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "抗压",
+      "group": "品质与工作方式",
+      "deep_coding": true,
+      "exclude_compounds": []
+    },
+    {
+      "term": "责任心",
+      "group": "品质与工作方式",
+      "deep_coding": true,
+      "exclude_compounds": []
+    },
+    {
+      "term": "适应",
+      "group": "品质与工作方式",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "目标",
+      "group": "管理用语",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "服务",
+      "group": "协作与服务",
+      "deep_coding": false,
+      "exclude_compounds": [
+        "服务器"
+      ]
+    },
+    {
+      "term": "逻辑",
+      "group": "技能与工具",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "学习",
+      "group": "品质与工作方式",
+      "deep_coding": false,
+      "exclude_compounds": [
+        "机器学习",
+        "深度学习",
+        "强化学习",
+        "迁移学习"
+      ]
+    },
+    {
+      "term": "统筹",
+      "group": "协作与服务",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "主动",
+      "group": "品质与工作方式",
+      "deep_coding": true,
+      "exclude_compounds": []
+    },
+    {
+      "term": "英语",
+      "group": "技能与工具",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "严谨",
+      "group": "品质与工作方式",
+      "deep_coding": false,
+      "exclude_compounds": []
+    },
+    {
+      "term": "闭环",
+      "group": "管理用语",
+      "deep_coding": true,
+      "exclude_compounds": []
+    },
+    {
+      "term": "执行力",
+      "group": "管理用语",
+      "deep_coding": false,
+      "exclude_compounds": []
+    }
+  ],
+  "provisional_exclusions_note": "These compound rules distinguish surface senses for retrieval only. A role can require machine-learning skill or independent-site work. Such hits are not declared irrelevant, and all candidate exclusions are retained for human review.",
+  "occupation_breakdown": "pending step 3 human-checked occupation mapping; do not treat legacy title heuristics as validated occupation groups.",
+  "publication": "Local exploratory preparation only; no automatic page updates, public quotations, precision or semantic proportions. Third-party text permissions remain unknown."
+}

@@ -1,0 +1,17 @@
+{
+  "verified_at_utc": "2026-11-08T07:49:59.196368+00:00",
+  "code_commit": "abb41ffc86137ac47b4c693a6e4f22bcc70e9967",
+  "plan_commit": "7db06ee85c4d7c045e8220211e3e9c6201ed747e",
+  "tracked_code_matches_worktree": true,
+  "code_sha256": {
+    "research/scripts/02_terms.py": "aba968d9c57105281cbd175597c68a9486e38e0244c3ea035b1876e06b801d39",
+    "research/config/terms.yaml": "1e6af0966ba15a9e8aaf0d142a53a80474f13d8bfd2d5b228ffb24723a293bb5",
+    "research/scripts/02_test_terms.py": "6c09c04da09448cf112fbc824359ee611e7792d4a79d244ef42900b8f8c02024"
+  },
+  "replay_command": "python3 research/scripts/02_terms.py --run --plan-commit 7db06ee --verify-existing",
+  "replay_result": "all immutable private packages and aggregate match",
+  "independent_literal_recount": "20 of 20 agree",
+  "human_labels": "all blank",
+  "private_tracked": false,
+  "model_calls": 0
+}

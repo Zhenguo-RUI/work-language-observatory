@@ -15,7 +15,7 @@
     "D4 20-case baseline and 20 model scores"
   ],
   "not_completed": [
-    "D4 candidate and two-order blind comparison; production prompt remains v11",
+    "D4 held-out candidate comparison; development judge unstable",
     "human reference labels and DSL correction"
   ],
   "checks": {
@@ -25,5 +25,14 @@
     "next_production_build": true,
     "reading_flow_bilingual_ssr": true
   },
-  "private_text_published": false
+  "private_text_published": false,
+  "later_jd_experiment": {
+    "candidate": "concise-v1",
+    "dev_generated": 10,
+    "actual_paired_review_requests": 20,
+    "dev_order_agreement": 0.2,
+    "holdout_candidate_run": false,
+    "production_prompt_changed": false,
+    "decision": "Review ordering instability prevents a release decision."
+  }
 }

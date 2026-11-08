@@ -7,9 +7,13 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 const arg=(name,fallback)=>{const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];};
 const candidate=arg('--candidate',null),base=resolve('private/jd-eval'),baseline='baseline-v11';
+const split=arg('--split',null);
 const cases=readFileSync(resolve(base,'set-v1.jsonl'),'utf8').trim().split('\n').map(JSON.parse);
 if(cases.length!==20||cases.some(x=>!x.source_note.startsWith('合成')))throw Error('Synthetic frozen set required');
-for(const version of [baseline,...(candidate?[candidate]:[])])if(cases.some(x=>!existsSync(resolve(base,version,x.id+'.json'))))throw Error('Complete generation run required before review');
+const selected=cases.filter(c=>!split||c.split===split);
+if(!selected.length)throw Error('Invalid split');
+if(cases.some(x=>!existsSync(resolve(base,baseline,x.id+'.json'))))throw Error('Complete baseline required before review');
+if(candidate&&selected.some(x=>!existsSync(resolve(base,candidate,x.id+'.json'))))throw Error('Complete selected candidate split required before review');
 const require=createRequire(import.meta.url);
 const {modelRuntime,requestModelJson}=require(resolve(base,'compiled-v11/model-client.js'));
 const settings={...process.env};
@@ -31,8 +35,12 @@ const hash=s=>createHash('sha256').update(s).digest('hex');
 const manifest={date:new Date().toISOString(),model:runtime.model,provider:runtime.provider,same_model_as_generator:true,
  independent_requests:true,human_review:false,thinking:false,temperature:null,prompt_sha256:hash(instructions),rubric_sha256:hash(rubric),
  candidate,requested_orderings:candidate?['AB','BA']:['single'],baseline_complete_before_review:true};
-writeFileSync(resolve(folder,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-const tasks=cases.flatMap(c=>(candidate?['AB','BA']:['single']).map(order=>({item:c,order})));
+const manifestFile=resolve(folder,'manifest.json');
+if(existsSync(manifestFile)){
+ const old=JSON.parse(readFileSync(manifestFile,'utf8'));
+ for(const k of ['model','prompt_sha256','rubric_sha256','candidate'])if(old[k]!==manifest[k])throw Error('Review identity mismatch');
+}else writeFileSync(manifestFile,JSON.stringify(manifest,null,2)+'\n');
+const tasks=selected.flatMap(c=>(candidate?['AB','BA']:['single']).map(order=>({item:c,order})));
 let next=0;
 async function review({item,order}){
  const file=resolve(folder,item.id+'-'+order+'.json');if(existsSync(file))return;
@@ -53,8 +61,9 @@ async function review({item,order}){
  console.log(JSON.stringify({id:item.id,order,review_completed:!!judgment,error}));
 }
 await Promise.all(Array.from({length:2},async()=>{while(next<tasks.length){if(existsSync(resolve(base,'STOP')))break;await review(tasks[next++]);}}));
-const reviews=tasks.map(({item,order})=>resolve(folder,item.id+'-'+order+'.json')).filter(existsSync).map(p=>JSON.parse(readFileSync(p,'utf8')));
-const result={manifest,completed:reviews.filter(x=>x.judgment).length,planned:tasks.length,rows:reviews};
+const allTasks=cases.flatMap(c=>(candidate?['AB','BA']:['single']).map(order=>({item:c,order})));
+const reviews=allTasks.map(({item,order})=>resolve(folder,item.id+'-'+order+'.json')).filter(existsSync).map(p=>JSON.parse(readFileSync(p,'utf8')));
+const result={manifest:JSON.parse(readFileSync(manifestFile,'utf8')),completed:reviews.filter(x=>x.judgment).length,planned:allTasks.length,rows:reviews};
 if(!candidate){
  writeFileSync(resolve(base,baseline,'review.private.json'),JSON.stringify(result,null,2)+'\n');
 }else{

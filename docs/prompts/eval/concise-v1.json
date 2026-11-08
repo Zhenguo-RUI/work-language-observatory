@@ -1,0 +1,1583 @@
+{
+  "version": "concise-v1",
+  "baseline": "baseline-v11",
+  "synthetic_jds": 20,
+  "real_jds": 0,
+  "generation_completed": 10,
+  "generation_calls": 11,
+  "generation_tokens": {
+    "prompt_tokens": 69942,
+    "completion_tokens": 155343,
+    "total_tokens": 225285
+  },
+  "review_completed": 20,
+  "review_planned": 40,
+  "review_tokens": {
+    "prompt_tokens": 141750,
+    "completion_tokens": 2307,
+    "total_tokens": 144057
+  },
+  "manifest": {
+    "version": "concise-v1",
+    "model": "deepseek-flash",
+    "provider": "deepseek",
+    "set_sha256": "b8924d221d5cb4ebe2842b6e286d4a8e7dc639ecb8da622bac5c62ce1ec0c963",
+    "prompt_sha256": "3cf89a28b3e8a83a48d9154ae15a824b5f114193c8faa9414a55275c2aeb7ccb",
+    "source_prompt_sha256": "7716e450c019716c4dd0362cfcce674b4a5d369d0b816f4e3b3ffdc02095aba2",
+    "compiled_reader_sha256": "9a82d1e8ce40cf8213267de551a356fe350e98dd8c34e04072c5fbf0894c8adc",
+    "created_at": "2026-11-08T19:09:57.944Z",
+    "git_head": "9f0a1bfca5dc2bb386b2d9a991b0dd89fac9f932",
+    "synthetic_n": 20,
+    "real_n": 0,
+    "concurrency": 2,
+    "temperature": null,
+    "temperature_note": "Existing production default, not explicitly sent",
+    "reasoning": "Existing production first-call high and bounded recovery settings",
+    "cost_usd": null,
+    "cost_note": "Provider billing not independently queried; token usage recorded where returned.",
+    "candidate_module_sha256": "acff9d321229c41493a66ae5304c2bcce3981aadee74ce1d162c092579607109"
+  },
+  "review_manifest": {
+    "date": "2026-11-08T19:18:50.485Z",
+    "model": "deepseek-flash",
+    "provider": "deepseek",
+    "same_model_as_generator": true,
+    "independent_requests": true,
+    "human_review": false,
+    "thinking": false,
+    "temperature": null,
+    "prompt_sha256": "36a1ee8c8eb14a36f05b0b13b866ab480b6b57dc0ccd83a2484342c721cada3a",
+    "rubric_sha256": "5afdfb06c802ae78d8c33bf60825f852ff4a32e2cc0be131fb1e7eb17d991873",
+    "candidate": "concise-v1",
+    "requested_orderings": [
+      "AB",
+      "BA"
+    ],
+    "baseline_complete_before_review": true
+  },
+  "groups": {
+    "dev": {
+      "n": 10,
+      "baseline_n": 10,
+      "paired_cases": 10,
+      "order_agreement": 0.2,
+      "outcomes": {
+        "baseline": 2,
+        "candidate": 0,
+        "tie": 8
+      },
+      "by_family": {
+        "everyday_services": {
+          "baseline": 1,
+          "candidate": 0,
+          "tie": 0
+        },
+        "operations": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 1
+        },
+        "organizational_support": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 1
+        },
+        "other": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 1
+        },
+        "product": {
+          "baseline": 1,
+          "candidate": 0,
+          "tie": 1
+        },
+        "production_manufacturing": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 1
+        },
+        "sales_customer": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 1
+        },
+        "technical_rd": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 2
+        }
+      },
+      "hard_checks": {
+        "schema": {
+          "baseline": 10,
+          "candidate": 10
+        },
+        "quote_exact": {
+          "baseline": 10,
+          "candidate": 10
+        },
+        "bilingual": {
+          "baseline": 10,
+          "candidate": 10
+        }
+      },
+      "median_ms": {
+        "baseline": 82521.5,
+        "candidate": 90675.0
+      },
+      "latency_change_pct": 9.880455396472442,
+      "gates": {
+        "complete": true,
+        "hard_checks_not_worse": true,
+        "order_agreement_at_least_70pct": false,
+        "wins_at_least_losses": false,
+        "no_family_all_losses": false,
+        "median_not_over_20pct_slower": true
+      },
+      "gates_pass": false
+    },
+    "holdout": {
+      "n": 0,
+      "baseline_n": 10,
+      "paired_cases": 0,
+      "order_agreement": null,
+      "outcomes": {
+        "baseline": 0,
+        "candidate": 0,
+        "tie": 0
+      },
+      "by_family": {
+        "everyday_services": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "operations": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "organizational_support": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "other": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "product": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "production_manufacturing": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "sales_customer": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        },
+        "technical_rd": {
+          "baseline": 0,
+          "candidate": 0,
+          "tie": 0
+        }
+      },
+      "hard_checks": {
+        "schema": {
+          "baseline": 10,
+          "candidate": 0
+        },
+        "quote_exact": {
+          "baseline": 10,
+          "candidate": 0
+        },
+        "bilingual": {
+          "baseline": 10,
+          "candidate": 0
+        }
+      },
+      "median_ms": {
+        "baseline": 94222.0,
+        "candidate": null
+      },
+      "latency_change_pct": null,
+      "gates": {
+        "complete": false,
+        "hard_checks_not_worse": null,
+        "order_agreement_at_least_70pct": null,
+        "wins_at_least_losses": null,
+        "no_family_all_losses": null,
+        "median_not_over_20pct_slower": null
+      },
+      "gates_pass": false
+    }
+  },
+  "rows": [
+    {
+      "id": "D01",
+      "split": "dev",
+      "family": "technical_rd",
+      "difficulty": [],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 76569,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1928,
+          "sociology_zh_characters": 172,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6544,
+          "completion_tokens": 13248,
+          "total_tokens": 19792
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 122098,
+        "call_count": 2,
+        "retries": 1,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1544,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 15428,
+          "completion_tokens": 22017,
+          "total_tokens": 37445
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D01",
+        "split": "dev",
+        "family": "technical_rd",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D02",
+      "split": "dev",
+      "family": "product",
+      "difficulty": [
+        "sparse"
+      ],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 62841,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1380,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6499,
+          "completion_tokens": 11102,
+          "total_tokens": 17601
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 45386,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 818,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6024,
+          "completion_tokens": 6880,
+          "total_tokens": 12904
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D02",
+        "split": "dev",
+        "family": "product",
+        "orders_completed": 2,
+        "consistent": true,
+        "choice": "baseline"
+      }
+    },
+    {
+      "id": "D03",
+      "split": "dev",
+      "family": "operations",
+      "difficulty": [
+        "english"
+      ],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 79529,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1555,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6544,
+          "completion_tokens": 14032,
+          "total_tokens": 20576
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 84091,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1190,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6069,
+          "completion_tokens": 14248,
+          "total_tokens": 20317
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D03",
+        "split": "dev",
+        "family": "operations",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D04",
+      "split": "dev",
+      "family": "sales_customer",
+      "difficulty": [
+        "contradiction"
+      ],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 103675,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 2237,
+          "sociology_zh_characters": 229,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6546,
+          "completion_tokens": 18242,
+          "total_tokens": 24788
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 104711,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1457,
+          "sociology_zh_characters": 142,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6071,
+          "completion_tokens": 18252,
+          "total_tokens": 24323
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D04",
+        "split": "dev",
+        "family": "sales_customer",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D05",
+      "split": "dev",
+      "family": "organizational_support",
+      "difficulty": [],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 85514,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1878,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6540,
+          "completion_tokens": 14467,
+          "total_tokens": 21007
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 87687,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1513,
+          "sociology_zh_characters": 0,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6065,
+          "completion_tokens": 15067,
+          "total_tokens": 21132
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D05",
+        "split": "dev",
+        "family": "organizational_support",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D06",
+      "split": "dev",
+      "family": "production_manufacturing",
+      "difficulty": [
+        "nonoffice"
+      ],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 105793,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1933,
+          "sociology_zh_characters": 205,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6545,
+          "completion_tokens": 17953,
+          "total_tokens": 24498
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 90017,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1678,
+          "sociology_zh_characters": 212,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6070,
+          "completion_tokens": 15007,
+          "total_tokens": 21077
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D06",
+        "split": "dev",
+        "family": "production_manufacturing",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D07",
+      "split": "dev",
+      "family": "everyday_services",
+      "difficulty": [
+        "sparse",
+        "nonoffice"
+      ],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 70871,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1413,
+          "sociology_zh_characters": 171,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6496,
+          "completion_tokens": 11781,
+          "total_tokens": 18277
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 91333,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1023,
+          "sociology_zh_characters": 132,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6021,
+          "completion_tokens": 14865,
+          "total_tokens": 20886
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D07",
+        "split": "dev",
+        "family": "everyday_services",
+        "orders_completed": 2,
+        "consistent": true,
+        "choice": "baseline"
+      }
+    },
+    {
+      "id": "D08",
+      "split": "dev",
+      "family": "other",
+      "difficulty": [
+        "nonoffice"
+      ],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 105881,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 2201,
+          "sociology_zh_characters": 184,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6544,
+          "completion_tokens": 18295,
+          "total_tokens": 24839
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 101066,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1427,
+          "sociology_zh_characters": 164,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6069,
+          "completion_tokens": 16465,
+          "total_tokens": 22534
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D08",
+        "split": "dev",
+        "family": "other",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D09",
+      "split": "dev",
+      "family": "technical_rd",
+      "difficulty": [],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 117192,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 2049,
+          "sociology_zh_characters": 204,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6541,
+          "completion_tokens": 20130,
+          "total_tokens": 26671
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 88618,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1837,
+          "sociology_zh_characters": 180,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6066,
+          "completion_tokens": 14147,
+          "total_tokens": 20213
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D09",
+        "split": "dev",
+        "family": "technical_rd",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    },
+    {
+      "id": "D10",
+      "split": "dev",
+      "family": "product",
+      "difficulty": [],
+      "baseline": {
+        "accepted": true,
+        "elapsed_ms": 68531,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 2500,
+          "sociology_zh_characters": 208,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6534,
+          "completion_tokens": 11673,
+          "total_tokens": 18207
+        }
+      },
+      "candidate": {
+        "accepted": true,
+        "elapsed_ms": 111532,
+        "call_count": 1,
+        "retries": 0,
+        "checks": {
+          "json_object": true,
+          "schema": true,
+          "quote_exact": true,
+          "bilingual": true,
+          "all_contract": true,
+          "authored_zh_characters": 1350,
+          "sociology_zh_characters": 153,
+          "sociology_within_limit": true,
+          "style_flag_fields": [],
+          "bilingual_error_fields": [],
+          "quote_error_fields": [],
+          "error_fields": []
+        },
+        "tokens": {
+          "prompt_tokens": 6059,
+          "completion_tokens": 18395,
+          "total_tokens": 24454
+        }
+      },
+      "domain": null,
+      "paired": {
+        "id": "D10",
+        "split": "dev",
+        "family": "product",
+        "orders_completed": 2,
+        "consistent": false,
+        "choice": "tie"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "id": "D01",
+      "order": "AB",
+      "elapsed_ms": 2094,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7527,
+        "completion_tokens": 153,
+        "total_tokens": 7680,
+        "prompt_tokens_details": {
+          "cached_tokens": 512
+        },
+        "prompt_cache_hit_tokens": 512,
+        "prompt_cache_miss_tokens": 7015
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D01",
+      "order": "BA",
+      "elapsed_ms": 1383,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7527,
+        "completion_tokens": 95,
+        "total_tokens": 7622,
+        "prompt_tokens_details": {
+          "cached_tokens": 512
+        },
+        "prompt_cache_hit_tokens": 512,
+        "prompt_cache_miss_tokens": 7015
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 3,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 1
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "篇幅合适"
+    },
+    {
+      "id": "D02",
+      "order": "AB",
+      "elapsed_ms": 1373,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 5038,
+        "completion_tokens": 100,
+        "total_tokens": 5138,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 4142
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D02",
+      "order": "BA",
+      "elapsed_ms": 1812,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 5038,
+        "completion_tokens": 116,
+        "total_tokens": 5154,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 4142
+      },
+      "scores": {
+        "甲": {
+          "忠实": 2,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 1,
+          "篇幅合适": 1
+        }
+      },
+      "choice": "乙",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D03",
+      "order": "AB",
+      "elapsed_ms": 1493,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 6252,
+        "completion_tokens": 103,
+        "total_tokens": 6355,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 5356
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "有用"
+    },
+    {
+      "id": "D03",
+      "order": "BA",
+      "elapsed_ms": 1934,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 6252,
+        "completion_tokens": 120,
+        "total_tokens": 6372,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 5356
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 3,
+          "篇幅合适": 3
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 2,
+          "不像模板": 2,
+          "篇幅合适": 2
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "忠实"
+    },
+    {
+      "id": "D04",
+      "order": "AB",
+      "elapsed_ms": 963,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7722,
+        "completion_tokens": 104,
+        "total_tokens": 7826,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6826
+      },
+      "scores": {
+        "甲": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D04",
+      "order": "BA",
+      "elapsed_ms": 1498,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7722,
+        "completion_tokens": 116,
+        "total_tokens": 7838,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6826
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 3,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 1
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "忠实"
+    },
+    {
+      "id": "D05",
+      "order": "AB",
+      "elapsed_ms": 2403,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7386,
+        "completion_tokens": 142,
+        "total_tokens": 7528,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6490
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "忠实"
+    },
+    {
+      "id": "D05",
+      "order": "BA",
+      "elapsed_ms": 1584,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7386,
+        "completion_tokens": 124,
+        "total_tokens": 7510,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6490
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 3
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "篇幅合适"
+    },
+    {
+      "id": "D06",
+      "order": "AB",
+      "elapsed_ms": 1918,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7779,
+        "completion_tokens": 119,
+        "total_tokens": 7898,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6883
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "平局",
+      "biggest_difference": "有用"
+    },
+    {
+      "id": "D06",
+      "order": "BA",
+      "elapsed_ms": 2975,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7779,
+        "completion_tokens": 108,
+        "total_tokens": 7887,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6883
+      },
+      "scores": {
+        "甲": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        }
+      },
+      "choice": "乙",
+      "biggest_difference": "有用"
+    },
+    {
+      "id": "D07",
+      "order": "AB",
+      "elapsed_ms": 1993,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 5757,
+        "completion_tokens": 111,
+        "total_tokens": 5868,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 4861
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 2,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D07",
+      "order": "BA",
+      "elapsed_ms": 947,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 5757,
+        "completion_tokens": 114,
+        "total_tokens": 5871,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 4861
+      },
+      "scores": {
+        "甲": {
+          "忠实": 2,
+          "具体": 3,
+          "有用": 2,
+          "不像模板": 2,
+          "篇幅合适": 3
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "乙",
+      "biggest_difference": "忠实"
+    },
+    {
+      "id": "D08",
+      "order": "AB",
+      "elapsed_ms": 1728,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7976,
+        "completion_tokens": 112,
+        "total_tokens": 8088,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 7080
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D08",
+      "order": "BA",
+      "elapsed_ms": 1228,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7976,
+        "completion_tokens": 108,
+        "total_tokens": 8084,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 7080
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 3,
+          "篇幅合适": 3
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 1
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "篇幅合适"
+    },
+    {
+      "id": "D09",
+      "order": "AB",
+      "elapsed_ms": 1654,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7630,
+        "completion_tokens": 104,
+        "total_tokens": 7734,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6734
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 2,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D09",
+      "order": "BA",
+      "elapsed_ms": 2290,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7630,
+        "completion_tokens": 134,
+        "total_tokens": 7764,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6734
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "篇幅合适"
+    },
+    {
+      "id": "D10",
+      "order": "AB",
+      "elapsed_ms": 1401,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7808,
+        "completion_tokens": 116,
+        "total_tokens": 7924,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6912
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 3,
+          "有用": 3,
+          "不像模板": 2,
+          "篇幅合适": 2
+        },
+        "乙": {
+          "忠实": 3,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "具体"
+    },
+    {
+      "id": "D10",
+      "order": "BA",
+      "elapsed_ms": 1232,
+      "error": null,
+      "usage": {
+        "prompt_tokens": 7808,
+        "completion_tokens": 108,
+        "total_tokens": 7916,
+        "prompt_tokens_details": {
+          "cached_tokens": 896
+        },
+        "prompt_cache_hit_tokens": 896,
+        "prompt_cache_miss_tokens": 6912
+      },
+      "scores": {
+        "甲": {
+          "忠实": 3,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 3,
+          "篇幅合适": 3
+        },
+        "乙": {
+          "忠实": 2,
+          "具体": 2,
+          "有用": 2,
+          "不像模板": 2,
+          "篇幅合适": 2
+        }
+      },
+      "choice": "甲",
+      "biggest_difference": "忠实"
+    }
+  ],
+  "holdout_gates_pass": false,
+  "production_changed": false,
+  "raw_position_choices": {
+    "甲": 16,
+    "乙": 3,
+    "平局": 1
+  },
+  "limits": [
+    "All cases are synthetic; no reader-utility or population validity claim.",
+    "Same-model independent-request review; no human scoring or independent ground truth.",
+    "Each AB and BA judgment is a real request. Order disagreements count as ties.",
+    "No raw JD, generated prose or judge rationale is published.",
+    "Single frozen candidate; no tuning using holdout cases. AI domain routing has unit cases but no AI-domain JD in this fixed evaluation set."
+  ]
+}

@@ -6,6 +6,7 @@ import {createRequire} from 'node:module';
 import {existsSync,mkdirSync,readFileSync,writeFileSync,cpSync,symlinkSync,readdirSync,lstatSync,unlinkSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
 const arg=(name,fallback)=>{const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];};
 const version=arg('--version','baseline-v11');
 if(!/^[a-z0-9-]+$/.test(version))throw Error('Invalid version');
@@ -22,8 +23,10 @@ for(const split of ['dev','holdout']){
  for(const [tag,n]of [['sparse',2],['english',1],['contradiction',1],['nonoffice',2]])if(group.filter(c=>c.difficulty.includes(tag)).length<n)throw Error('Difficulty coverage missing');
 }
 const promptFile=arg('--instructions',null);
+const moduleFile=arg('--instructions-module',null);
+const candidateModule=moduleFile?await import(pathToFileURL(resolve(moduleFile))):null;
 if(version!=='baseline-v11'){
- if(!promptFile||cases.some(x=>!existsSync(resolve(base,'baseline-v11',x.id+'.json'))))throw Error('Complete baseline required before candidate');
+ if((!promptFile&&!moduleFile)||cases.some(x=>!existsSync(resolve(base,'baseline-v11',x.id+'.json'))))throw Error('Complete baseline required before candidate');
 }
 mkdirSync(out,{recursive:true});mkdirSync(compiled,{recursive:true});
 writeFileSync(resolve(compiled,'package.json'),'{"type":"commonjs"}');
@@ -47,6 +50,7 @@ if(!existsSync(resolve(compiled,'model-reading.js'))){
 const prompt=require(resolve(compiled,'analysis-prompt.js'));
 if(prompt.ANALYSIS_VERSION!=='work-language-v11')throw Error('Expected v11 baseline');
 if(promptFile)prompt.ANALYSIS_INSTRUCTIONS=readFileSync(promptFile,'utf8');
+if(candidateModule)prompt.ANALYSIS_INSTRUCTIONS=candidateModule.createBase(prompt.ANALYSIS_INSTRUCTIONS);
 const {runModelReading}=require(resolve(compiled,'model-reading.js'));
 const {modelRuntime}=require(resolve(compiled,'model-client.js'));
 const {resultSchema,deepEvidenceErrors}=require(resolve(compiled,'analysis-contract.js'));
@@ -66,10 +70,11 @@ const manifest={version,model:runtime.model,provider:runtime.provider,set_sha256
  created_at:new Date().toISOString(),git_head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),
  synthetic_n:20,real_n:0,concurrency:2,temperature:null,temperature_note:'Existing production default, not explicitly sent',
  reasoning:'Existing production first-call high and bounded recovery settings',cost_usd:null,cost_note:'Provider billing not independently queried; token usage recorded where returned.'};
+if(moduleFile)manifest.candidate_module_sha256=hash(readFileSync(moduleFile));
 const mfile=resolve(out,'manifest.json');
 if(existsSync(mfile)){
  const old=JSON.parse(readFileSync(mfile,'utf8'));
- for(const k of ['model','set_sha256','prompt_sha256','compiled_reader_sha256'])if(old[k]!==manifest[k])throw Error('Frozen run identity mismatch');
+ for(const k of ['model','set_sha256','prompt_sha256','compiled_reader_sha256','candidate_module_sha256'])if(old[k]!==manifest[k])throw Error('Frozen run identity mismatch');
 }else writeFileSync(mfile,JSON.stringify(manifest,null,2)+'\n');
 function checks(result,raw){
  const parse=resultSchema.safeParse(result);if(!parse.success)return {json_object:!!result,schema:false,quote_exact:false,bilingual:false,all_contract:false,error_fields:parse.error.issues.map(x=>x.path.join('.'))};
@@ -98,7 +103,13 @@ function checks(result,raw){
 async function one(item){
  const file=resolve(out,item.id+'.json');if(existsSync(file))return;
  const calls=[],diagnostics=[],pending=[];const started=Date.now();
+ const selected=candidateModule?candidateModule.instructionsFor(prompt.ANALYSIS_INSTRUCTIONS,item.title,item.raw):{instructions:prompt.ANALYSIS_INSTRUCTIONS,domain:null};
  const request=async(url,init)=>{
+  if(candidateModule&&typeof init?.body==='string'){
+   const body=JSON.parse(init.body);
+   for(const m of body.messages||[])if(m.role==='system'&&m.content.startsWith(prompt.ANALYSIS_INSTRUCTIONS))m.content=selected.instructions+m.content.slice(prompt.ANALYSIS_INSTRUCTIONS.length);
+   init={...init,body:JSON.stringify(body)};
+  }
   const ordinal=calls.length+1;const call={ordinal,http_status:null,usage:null,final_content:''};calls.push(call);
   const response=await fetch(url,init);call.http_status=response.status;
   if(response.ok){
@@ -119,7 +130,7 @@ async function one(item){
  await Promise.allSettled(pending);
  let last=result;if(!last)for(const c of calls){try{last=JSON.parse(c.final_content);}catch{}}
  const report={id:item.id,split:item.split,family:item.family,difficulty:item.difficulty,version,
-   elapsed_ms:Date.now()-started,call_count:calls.length,retries:Math.max(0,calls.length-1),accepted:!!result,error,
+   selected_domain:selected.domain,elapsed_ms:Date.now()-started,call_count:calls.length,retries:Math.max(0,calls.length-1),accepted:!!result,error,
    checks:checks(last,item.raw),result,last_provider_json:result?null:last,calls,diagnostics};
  writeFileSync(file,JSON.stringify(report,null,2)+'\n');
  console.log(JSON.stringify({id:item.id,version,accepted:report.accepted,error,elapsed_ms:report.elapsed_ms,calls:calls.length,usage_available:calls.some(c=>!!c.usage)}));

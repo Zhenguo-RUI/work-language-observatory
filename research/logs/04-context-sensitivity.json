@@ -1,0 +1,19 @@
+{
+  "script": "research/scripts/04_context_sensitivity.py",
+  "script_sha256": "e4ac013244315ab1141796c627a5d49caf33d057b3892dd8e0b4f6b356fb701e",
+  "base_commit": "923521497790cc19493fffcc262bc5643e2e6ae9",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "timestamp": "2026-11-08T15:58:02.817160+00:00",
+  "seed": null,
+  "sampling": "deterministic census",
+  "model": null,
+  "model_calls": 0,
+  "prompt_hash": null,
+  "temperature": null,
+  "outputs": [
+    "research/aggregates/context-sensitivity.json",
+    "research/aggregates/stats.json"
+  ],
+  "human_annotations_read": 0,
+  "human_annotations_written": 0
+}

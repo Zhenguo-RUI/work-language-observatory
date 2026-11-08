@@ -1,0 +1,25 @@
+{
+  "schema_version": "wlo-ai-semantic-review-notes-v1",
+  "date": "2026-11-09",
+  "status": "Completed AI reading, not human validation",
+  "source_of_numbers": "research/aggregates/automated-coding.json",
+  "authorization": "Latest user instruction authorizes AI coding/review without waiting for human annotation. Existing human-reference plan is not represented as fulfilled.",
+  "actual_work": [
+    "The current agent read every development context before writing and freezing rules.",
+    "The current agent read every held-out review context and wrote its own D1/D3/D4/D5 labels and reasons before viewing per-item rule comparisons.",
+    "No separate API model call was made. The script performs regex candidate coding, not LLM inference.",
+    "Reviewer and rule author are the same conversational agent. Label independence means per-item rule outputs were not used to fill AI labels, not independent training, researcher identity or blinded evaluation.",
+    "Full source bodies remain in local private files; actual review used title and focal plus adjacent clauses. No claim of reading every full advertisement for review.",
+    "Post-review diagnostic categories were added without changing frozen candidate rules or relabeling the review set."
+  ],
+  "substantive_reading": [
+    "Named-role flags and generic-team flags yield substantially different descriptive patterns. Broad team language must not silently substitute for identifiable counterpart roles.",
+    "Ability clauses can contain explicit completion expectations; a blanket removal of ability-framed clauses misses some result responsibility.",
+    "Role dictionaries miss descriptive titles, government counterparts and enumerated departments; product attributes or the applicant addressee can also be mistaken for partners.",
+    "Authority is a rare positive label in the review sample. High overall agreement masks missed positive cases, so this rule is not accepted for H2 semantic estimation.",
+    "A whole advertisement can fall into one mechanical clause when formatting is lost. The resulting expanded context is a measurement artifact, not evidence of a tighter work relationship.",
+    "Pure people-management and individual-task comparisons do not have adequate common function support; mixed roles are not reallocated to manufacture H3 comparisons."
+  ],
+  "release_scope": "Publish candidate distributions, comparison diagnostics and failure categories; do not claim validated semantic proportions, final H1/H2 support, H3 estimates, DSL, actual worker authority or market prevalence.",
+  "remaining_uncertainty": "AI labels themselves can be contested, especially when capacity language carries an outcome expectation or one clause contains multiple matters. The current small, non-human review does not settle construct validity."
+}

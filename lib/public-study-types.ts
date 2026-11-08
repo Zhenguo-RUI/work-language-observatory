@@ -1,5 +1,5 @@
 import type {Bi} from "./observatory-types";
-export type ReviewStatus="model_draft"|"author_reviewed"|"revised";
+export type ReviewStatus="model_draft"|"ai_reviewed"|"author_reviewed"|"revised";
 export type KeywordEntry={term:string;english:string;rank:number;documents:number;group:Bi;short:Bi;precisionKeys?:{n_checked:string;k_correct:string;precision:string};occupations?:{group:Bi;adsKey:string;totalKey:string}[];collocates?:{group:Bi;words:{word:string;zKey:string;windowsKey:string;exampleId:string}[]}[];senses?:{id:string;label:Bi;statKey:string}[];examples:{role:Bi;context:Bi;reading:Bi;question:Bi;reviewStatus?:ReviewStatus;senseId?:string}[]};
 export type Finding={id:string;title:Bi;interpretation:Bi;quantitative:Bi;contrast?:Bi;mechanism?:Bi;caveat?:Bi;terms:string[];statKeys?:string[]};
 export type CrossTab={title:Bi;rowLabels:Bi[];columns:Bi[];cells:number[][];note:Bi;statKeys?:string[]};

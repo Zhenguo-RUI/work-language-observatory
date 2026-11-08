@@ -1,0 +1,577 @@
+{
+  "n": 2000,
+  "normalization": "Unicode NFKC then casefold",
+  "status": "Exploratory sensitivity check chosen after inspecting earlier lexical results; not H1–H3 validation",
+  "sentence_rule": "Split on Chinese full stop, ASCII period/semicolon/exclamation/question marks and CR/LF after NFKC; preserve commas; discard empty fragments; no numbered-item inference",
+  "proximity_rule": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+  "template_rule": {
+    "minimum_han_characters": 12,
+    "minimum_distinct_ads": 3,
+    "normalization": "Remove Unicode punctuation, numeric characters and whitespace from each normalized clause; exact remaining strings must match",
+    "provenance": "Unconfirmed repeated-clause candidates; no attribution to platform or employer; no employer threshold or approximate matching",
+    "removal": "Remove every matching whole clause. Keep every advertisement, including empty ones, in the denominator; never join retained clauses into words."
+  },
+  "interpretation_limit": "Literal proximity and repetition only; these are neither semantic judgments nor proof that repeated clauses have no meaning. Removal changes lexical presence, not actual work arrangements.",
+  "templates": {
+    "patterns": 103,
+    "ads_affected": 79,
+    "clauses_removed": 543,
+    "empty_ads": 0,
+    "newly_empty_ads": 0,
+    "original_empty_ads": 0
+  },
+  "comparisons": [
+    {
+      "terms": [
+        "抗压",
+        "协调"
+      ],
+      "proximity": {
+        "ad_both": 284,
+        "same_clause": 115,
+        "adjacent_clause": 157,
+        "same_rate": 0.40492957746478875,
+        "adjacent_rate": 0.5528169014084507,
+        "rate_denominator": 284,
+        "unit": "advertisement"
+      },
+      "before": {
+        "cells": [
+          [
+            284,
+            217
+          ],
+          [
+            467,
+            1032
+          ]
+        ],
+        "cell_order": [
+          [
+            "both",
+            "first_only"
+          ],
+          [
+            "second_only",
+            "neither"
+          ]
+        ],
+        "n": 2000,
+        "first_n": 501,
+        "other_n": 1499,
+        "first_rate": 0.5668662674650699,
+        "other_rate": 0.3115410273515677,
+        "or": 2.892154057174434
+      },
+      "after": {
+        "cells": [
+          [
+            281,
+            217
+          ],
+          [
+            463,
+            1039
+          ]
+        ],
+        "cell_order": [
+          [
+            "both",
+            "first_only"
+          ],
+          [
+            "second_only",
+            "neither"
+          ]
+        ],
+        "n": 2000,
+        "first_n": 498,
+        "other_n": 1502,
+        "first_rate": 0.5642570281124498,
+        "other_rate": 0.30825565912117175,
+        "or": 2.905903195947089
+      },
+      "by_source": {
+        "51job": {
+          "proximity": {
+            "ad_both": 163,
+            "same_clause": 74,
+            "adjacent_clause": 101,
+            "same_rate": 0.4539877300613497,
+            "adjacent_rate": 0.6196319018404908,
+            "rate_denominator": 163,
+            "unit": "advertisement"
+          },
+          "before": {
+            "cells": [
+              [
+                163,
+                107
+              ],
+              [
+                197,
+                533
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 1000,
+            "first_n": 270,
+            "other_n": 730,
+            "first_rate": 0.6037037037037037,
+            "other_rate": 0.26986301369863014,
+            "or": 4.121590208264149
+          },
+          "after": {
+            "cells": [
+              [
+                163,
+                107
+              ],
+              [
+                197,
+                533
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 1000,
+            "first_n": 270,
+            "other_n": 730,
+            "first_rate": 0.6037037037037037,
+            "other_rate": 0.26986301369863014,
+            "or": 4.121590208264149
+          }
+        },
+        "boss": {
+          "proximity": {
+            "ad_both": 52,
+            "same_clause": 13,
+            "adjacent_clause": 20,
+            "same_rate": 0.25,
+            "adjacent_rate": 0.38461538461538464,
+            "rate_denominator": 52,
+            "unit": "advertisement"
+          },
+          "before": {
+            "cells": [
+              [
+                52,
+                57
+              ],
+              [
+                120,
+                271
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 109,
+            "other_n": 391,
+            "first_rate": 0.47706422018348627,
+            "other_rate": 0.3069053708439898,
+            "or": 2.060233918128655
+          },
+          "after": {
+            "cells": [
+              [
+                49,
+                57
+              ],
+              [
+                120,
+                274
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 106,
+            "other_n": 394,
+            "first_rate": 0.46226415094339623,
+            "other_rate": 0.30456852791878175,
+            "or": 1.9628654970760233
+          }
+        },
+        "liepin": {
+          "proximity": {
+            "ad_both": 69,
+            "same_clause": 28,
+            "adjacent_clause": 36,
+            "same_rate": 0.4057971014492754,
+            "adjacent_rate": 0.5217391304347826,
+            "rate_denominator": 69,
+            "unit": "advertisement"
+          },
+          "before": {
+            "cells": [
+              [
+                69,
+                53
+              ],
+              [
+                150,
+                228
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 122,
+            "other_n": 378,
+            "first_rate": 0.5655737704918032,
+            "other_rate": 0.3968253968253968,
+            "or": 1.9788679245283018
+          },
+          "after": {
+            "cells": [
+              [
+                69,
+                53
+              ],
+              [
+                146,
+                232
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 122,
+            "other_n": 378,
+            "first_rate": 0.5655737704918032,
+            "other_rate": 0.3862433862433862,
+            "or": 2.0687516154044974
+          }
+        }
+      }
+    },
+    {
+      "terms": [
+        "数据",
+        "沟通"
+      ],
+      "proximity": {
+        "ad_both": 619,
+        "same_clause": 61,
+        "adjacent_clause": 238,
+        "same_rate": 0.09854604200323101,
+        "adjacent_rate": 0.38449111470113084,
+        "rate_denominator": 619,
+        "unit": "advertisement"
+      },
+      "before": {
+        "cells": [
+          [
+            619,
+            286
+          ],
+          [
+            614,
+            481
+          ]
+        ],
+        "cell_order": [
+          [
+            "both",
+            "first_only"
+          ],
+          [
+            "second_only",
+            "neither"
+          ]
+        ],
+        "n": 2000,
+        "first_n": 905,
+        "other_n": 1095,
+        "first_rate": 0.6839779005524862,
+        "other_rate": 0.5607305936073059,
+        "or": 1.695513769618004
+      },
+      "after": {
+        "cells": [
+          [
+            608,
+            281
+          ],
+          [
+            607,
+            504
+          ]
+        ],
+        "cell_order": [
+          [
+            "both",
+            "first_only"
+          ],
+          [
+            "second_only",
+            "neither"
+          ]
+        ],
+        "n": 2000,
+        "first_n": 889,
+        "other_n": 1111,
+        "first_rate": 0.6839145106861643,
+        "other_rate": 0.5463546354635463,
+        "or": 1.7965491566363951
+      },
+      "by_source": {
+        "51job": {
+          "proximity": {
+            "ad_both": 286,
+            "same_clause": 24,
+            "adjacent_clause": 129,
+            "same_rate": 0.08391608391608392,
+            "adjacent_rate": 0.45104895104895104,
+            "rate_denominator": 286,
+            "unit": "advertisement"
+          },
+          "before": {
+            "cells": [
+              [
+                286,
+                128
+              ],
+              [
+                300,
+                286
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 1000,
+            "first_n": 414,
+            "other_n": 586,
+            "first_rate": 0.6908212560386473,
+            "other_rate": 0.5119453924914675,
+            "or": 2.1301041666666665
+          },
+          "after": {
+            "cells": [
+              [
+                285,
+                129
+              ],
+              [
+                298,
+                288
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 1000,
+            "first_n": 414,
+            "other_n": 586,
+            "first_rate": 0.6884057971014492,
+            "other_rate": 0.5085324232081911,
+            "or": 2.135164663649134
+          }
+        },
+        "boss": {
+          "proximity": {
+            "ad_both": 165,
+            "same_clause": 20,
+            "adjacent_clause": 52,
+            "same_rate": 0.12121212121212122,
+            "adjacent_rate": 0.3151515151515151,
+            "rate_denominator": 165,
+            "unit": "advertisement"
+          },
+          "before": {
+            "cells": [
+              [
+                165,
+                84
+              ],
+              [
+                144,
+                107
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 249,
+            "other_n": 251,
+            "first_rate": 0.6626506024096386,
+            "other_rate": 0.5737051792828686,
+            "or": 1.4595734126984128
+          },
+          "after": {
+            "cells": [
+              [
+                162,
+                78
+              ],
+              [
+                137,
+                123
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 240,
+            "other_n": 260,
+            "first_rate": 0.675,
+            "other_rate": 0.5269230769230769,
+            "or": 1.8646827624929814
+          }
+        },
+        "liepin": {
+          "proximity": {
+            "ad_both": 168,
+            "same_clause": 17,
+            "adjacent_clause": 57,
+            "same_rate": 0.10119047619047619,
+            "adjacent_rate": 0.3392857142857143,
+            "rate_denominator": 168,
+            "unit": "advertisement"
+          },
+          "before": {
+            "cells": [
+              [
+                168,
+                74
+              ],
+              [
+                170,
+                88
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 242,
+            "other_n": 258,
+            "first_rate": 0.6942148760330579,
+            "other_rate": 0.6589147286821705,
+            "or": 1.1751987281399046
+          },
+          "after": {
+            "cells": [
+              [
+                161,
+                74
+              ],
+              [
+                172,
+                93
+              ]
+            ],
+            "cell_order": [
+              [
+                "both",
+                "first_only"
+              ],
+              [
+                "second_only",
+                "neither"
+              ]
+            ],
+            "n": 500,
+            "first_n": 235,
+            "other_n": 265,
+            "first_rate": 0.6851063829787234,
+            "other_rate": 0.6490566037735849,
+            "or": 1.1763827781269642
+          }
+        }
+      }
+    }
+  ],
+  "human_annotations_read": 0,
+  "human_annotations_written": 0,
+  "model_calls": 0,
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+}

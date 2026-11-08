@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-09",
+  "completed": [
+    "B1 source-stratified OR and 95% intervals",
+    "B6 exact and near-repeat sensitivity",
+    "C1 20 keyword summaries",
+    "E2 static style gate",
+    "D1 homepage copy",
+    "D2 sociology display",
+    "D3 three-line first screen",
+    "E1 history copy",
+    "400 AI retrieval reviews",
+    "60 AI editorial case reviews",
+    "4029 rule-coded occurrences and 120 AI comparisons",
+    "D4 20-case baseline and 20 model scores"
+  ],
+  "not_completed": [
+    "D4 candidate and two-order blind comparison; production prompt remains v11",
+    "human reference labels and DSL correction"
+  ],
+  "checks": {
+    "public_study_groups": 10,
+    "static_copy_fields": 1955,
+    "types": true,
+    "next_production_build": true,
+    "reading_flow_bilingual_ssr": true
+  },
+  "private_text_published": false
+}

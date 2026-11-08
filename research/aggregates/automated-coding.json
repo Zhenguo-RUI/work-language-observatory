@@ -1,0 +1,545 @@
+{
+  "schema_version": "wlo-automated-coding-v1",
+  "date": "2026-11-09",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "corpus_ads": 2000,
+  "all_occurrences": 4029,
+  "development_excluded_n": 60,
+  "analysis_occurrences": 3969,
+  "method": "Deterministic regex candidate coding of six terms; actual independent-label AI reading of 120 held-out occurrences in the existing conversation; not a 2,000-document LLM coding run.",
+  "human_gold_standard_n": 0,
+  "human_evaluation": false,
+  "dsl_estimation": false,
+  "sampling": [
+    {
+      "term": "独立",
+      "all_occurrences": 813,
+      "development_n": 10,
+      "remaining_frame_n": 803,
+      "review_n": 20,
+      "review_inclusion_probability": 0.024906600249066
+    },
+    {
+      "term": "抗压",
+      "all_occurrences": 505,
+      "development_n": 10,
+      "remaining_frame_n": 495,
+      "review_n": 20,
+      "review_inclusion_probability": 0.04040404040404041
+    },
+    {
+      "term": "沟通",
+      "all_occurrences": 1650,
+      "development_n": 10,
+      "remaining_frame_n": 1640,
+      "review_n": 20,
+      "review_inclusion_probability": 0.012195121951219513
+    },
+    {
+      "term": "责任心",
+      "all_occurrences": 547,
+      "development_n": 10,
+      "remaining_frame_n": 537,
+      "review_n": 20,
+      "review_inclusion_probability": 0.037243947858473
+    },
+    {
+      "term": "主动",
+      "all_occurrences": 275,
+      "development_n": 10,
+      "remaining_frame_n": 265,
+      "review_n": 20,
+      "review_inclusion_probability": 0.07547169811320754
+    },
+    {
+      "term": "闭环",
+      "all_occurrences": 239,
+      "development_n": 10,
+      "remaining_frame_n": 229,
+      "review_n": 20,
+      "review_inclusion_probability": 0.08733624454148471
+    }
+  ],
+  "by_term": {
+    "独立": {
+      "n_occurrences": 803,
+      "d1": {
+        "B": 179,
+        "A": 604,
+        "C": 20
+      },
+      "eligible_person_or_work_n": 783,
+      "d3_named_role_n": 194,
+      "d3_broad_role_n": 305,
+      "d4_result_n": 69,
+      "d5_authority_n": 0,
+      "d5_limited_n": 0,
+      "d3_rate": 0.24776500638569604,
+      "d4_rate": 0.08812260536398467,
+      "d5_rate": 0.0,
+      "d4_minus_d5": 0.08812260536398467,
+      "small_group_suppressed": false
+    },
+    "抗压": {
+      "n_occurrences": 495,
+      "d1": {
+        "A": 495
+      },
+      "eligible_person_or_work_n": 495,
+      "d3_named_role_n": 83,
+      "d3_broad_role_n": 271,
+      "d4_result_n": 1,
+      "d5_authority_n": 0,
+      "d5_limited_n": 0,
+      "d3_rate": 0.16767676767676767,
+      "d4_rate": 0.00202020202020202,
+      "d5_rate": 0.0,
+      "d4_minus_d5": 0.00202020202020202,
+      "small_group_suppressed": false
+    },
+    "沟通": {
+      "n_occurrences": 1640,
+      "d1": {
+        "A": 1269,
+        "B": 371
+      },
+      "eligible_person_or_work_n": 1640,
+      "d3_named_role_n": 465,
+      "d3_broad_role_n": 1023,
+      "d4_result_n": 162,
+      "d5_authority_n": 1,
+      "d5_limited_n": 0,
+      "d3_rate": 0.28353658536585363,
+      "d4_rate": 0.09878048780487805,
+      "d5_rate": 0.0006097560975609756,
+      "d4_minus_d5": 0.09817073170731708,
+      "small_group_suppressed": false
+    },
+    "责任心": {
+      "n_occurrences": 537,
+      "d1": {
+        "A": 537
+      },
+      "eligible_person_or_work_n": 537,
+      "d3_named_role_n": 62,
+      "d3_broad_role_n": 285,
+      "d4_result_n": 11,
+      "d5_authority_n": 0,
+      "d5_limited_n": 0,
+      "d3_rate": 0.1154562383612663,
+      "d4_rate": 0.020484171322160148,
+      "d5_rate": 0.0,
+      "d4_minus_d5": 0.020484171322160148,
+      "small_group_suppressed": false
+    },
+    "主动": {
+      "n_occurrences": 265,
+      "d1": {
+        "A": 171,
+        "B": 88,
+        "C": 6
+      },
+      "eligible_person_or_work_n": 259,
+      "d3_named_role_n": 80,
+      "d3_broad_role_n": 159,
+      "d4_result_n": 34,
+      "d5_authority_n": 0,
+      "d5_limited_n": 0,
+      "d3_rate": 0.3088803088803089,
+      "d4_rate": 0.13127413127413126,
+      "d5_rate": 0.0,
+      "d4_minus_d5": 0.13127413127413126,
+      "small_group_suppressed": false
+    },
+    "闭环": {
+      "n_occurrences": 229,
+      "d1": {
+        "B": 180,
+        "A": 47,
+        "C": 2
+      },
+      "eligible_person_or_work_n": 227,
+      "d3_named_role_n": 98,
+      "d3_broad_role_n": 135,
+      "d4_result_n": 128,
+      "d5_authority_n": 1,
+      "d5_limited_n": 0,
+      "d3_rate": 0.43171806167400884,
+      "d4_rate": 0.5638766519823789,
+      "d5_rate": 0.004405286343612335,
+      "d4_minus_d5": 0.5594713656387665,
+      "small_group_suppressed": false
+    }
+  },
+  "H1": {
+    "抗压": {
+      "rule_distribution": {
+        "n_occurrences": 495,
+        "d1": {
+          "A": 495
+        },
+        "eligible_person_or_work_n": 495,
+        "d3_named_role_n": 83,
+        "d3_broad_role_n": 271,
+        "d4_result_n": 1,
+        "d5_authority_n": 0,
+        "d5_limited_n": 0,
+        "d3_rate": 0.16767676767676767,
+        "d4_rate": 0.00202020202020202,
+        "d5_rate": 0.0,
+        "d4_minus_d5": 0.00202020202020202,
+        "small_group_suppressed": false
+      },
+      "status": "descriptive_rule_flags_not_hypothesis_test"
+    },
+    "沟通": {
+      "rule_distribution": {
+        "n_occurrences": 1640,
+        "d1": {
+          "A": 1269,
+          "B": 371
+        },
+        "eligible_person_or_work_n": 1640,
+        "d3_named_role_n": 465,
+        "d3_broad_role_n": 1023,
+        "d4_result_n": 162,
+        "d5_authority_n": 1,
+        "d5_limited_n": 0,
+        "d3_rate": 0.28353658536585363,
+        "d4_rate": 0.09878048780487805,
+        "d5_rate": 0.0006097560975609756,
+        "d4_minus_d5": 0.09817073170731708,
+        "small_group_suppressed": false
+      },
+      "status": "descriptive_rule_flags_not_hypothesis_test"
+    },
+    "责任心": {
+      "rule_distribution": {
+        "n_occurrences": 537,
+        "d1": {
+          "A": 537
+        },
+        "eligible_person_or_work_n": 537,
+        "d3_named_role_n": 62,
+        "d3_broad_role_n": 285,
+        "d4_result_n": 11,
+        "d5_authority_n": 0,
+        "d5_limited_n": 0,
+        "d3_rate": 0.1154562383612663,
+        "d4_rate": 0.020484171322160148,
+        "d5_rate": 0.0,
+        "d4_minus_d5": 0.020484171322160148,
+        "small_group_suppressed": false
+      },
+      "status": "descriptive_rule_flags_not_hypothesis_test"
+    }
+  },
+  "H2": {
+    "独立": {
+      "rule_distribution": {
+        "n_occurrences": 803,
+        "d1": {
+          "B": 179,
+          "A": 604,
+          "C": 20
+        },
+        "eligible_person_or_work_n": 783,
+        "d3_named_role_n": 194,
+        "d3_broad_role_n": 305,
+        "d4_result_n": 69,
+        "d5_authority_n": 0,
+        "d5_limited_n": 0,
+        "d3_rate": 0.24776500638569604,
+        "d4_rate": 0.08812260536398467,
+        "d5_rate": 0.0,
+        "d4_minus_d5": 0.08812260536398467,
+        "small_group_suppressed": false
+      },
+      "status": "descriptive_rule_flags_not_hypothesis_test"
+    },
+    "主动": {
+      "rule_distribution": {
+        "n_occurrences": 265,
+        "d1": {
+          "A": 171,
+          "B": 88,
+          "C": 6
+        },
+        "eligible_person_or_work_n": 259,
+        "d3_named_role_n": 80,
+        "d3_broad_role_n": 159,
+        "d4_result_n": 34,
+        "d5_authority_n": 0,
+        "d5_limited_n": 0,
+        "d3_rate": 0.3088803088803089,
+        "d4_rate": 0.13127413127413126,
+        "d5_rate": 0.0,
+        "d4_minus_d5": 0.13127413127413126,
+        "small_group_suppressed": false
+      },
+      "status": "descriptive_rule_flags_not_hypothesis_test"
+    },
+    "闭环": {
+      "rule_distribution": {
+        "n_occurrences": 229,
+        "d1": {
+          "B": 180,
+          "A": 47,
+          "C": 2
+        },
+        "eligible_person_or_work_n": 227,
+        "d3_named_role_n": 98,
+        "d3_broad_role_n": 135,
+        "d4_result_n": 128,
+        "d5_authority_n": 1,
+        "d5_limited_n": 0,
+        "d3_rate": 0.43171806167400884,
+        "d4_rate": 0.5638766519823789,
+        "d5_rate": 0.004405286343612335,
+        "d4_minus_d5": 0.5594713656387665,
+        "small_group_suppressed": false
+      },
+      "status": "descriptive_rule_flags_not_hypothesis_test"
+    }
+  },
+  "H3": {
+    "独立": {
+      "role_candidate_counts": {
+        "mixed": 94,
+        "individual_tasks": 691,
+        "unclear": 18
+      },
+      "eligible_common_function_strata": {},
+      "status": "not_estimated_unvalidated_role_mapping_and_insufficient_common_support",
+      "mixed_not_merged": true
+    },
+    "主动": {
+      "role_candidate_counts": {
+        "individual_tasks": 220,
+        "mixed": 40,
+        "unclear": 4,
+        "explicit_people_management": 1
+      },
+      "eligible_common_function_strata": {},
+      "status": "not_estimated_unvalidated_role_mapping_and_insufficient_common_support",
+      "mixed_not_merged": true
+    },
+    "闭环": {
+      "role_candidate_counts": {
+        "individual_tasks": 174,
+        "mixed": 51,
+        "unclear": 4
+      },
+      "eligible_common_function_strata": {},
+      "status": "not_estimated_unvalidated_role_mapping_and_insufficient_common_support",
+      "mixed_not_merged": true
+    }
+  },
+  "rule_vs_ai_review": {
+    "D1": {
+      "n": 120,
+      "agreement_n": 114,
+      "agreement_rate": 0.95,
+      "macro_f1_against_ai_observed_classes": 0.8530141190914672,
+      "matrix_rows_ai_columns_rules": {
+        "A": {
+          "A": 88,
+          "B": 2,
+          "C": 1,
+          "D": 0
+        },
+        "B": {
+          "A": 1,
+          "B": 23,
+          "C": 0,
+          "D": 0
+        },
+        "C": {
+          "A": 1,
+          "B": 1,
+          "C": 3,
+          "D": 0
+        },
+        "D": {
+          "A": 0,
+          "B": 0,
+          "C": 0,
+          "D": 0
+        }
+      },
+      "per_class": {
+        "A": {
+          "precision_against_ai": 0.9777777777777777,
+          "recall_against_ai": 0.967032967032967,
+          "support": 91
+        },
+        "B": {
+          "precision_against_ai": 0.8846153846153846,
+          "recall_against_ai": 0.9583333333333334,
+          "support": 24
+        },
+        "C": {
+          "precision_against_ai": 0.75,
+          "recall_against_ai": 0.6,
+          "support": 5
+        },
+        "D": {
+          "precision_against_ai": null,
+          "recall_against_ai": null,
+          "support": 0
+        }
+      }
+    },
+    "D3": {
+      "n": 114,
+      "agreement_n": 103,
+      "agreement_rate": 0.9035087719298246,
+      "macro_f1_against_ai_observed_classes": 0.8793650793650793,
+      "matrix_rows_ai_columns_rules": {
+        "false": {
+          "false": 77,
+          "true": 2
+        },
+        "true": {
+          "false": 9,
+          "true": 26
+        }
+      },
+      "per_class": {
+        "False": {
+          "precision_against_ai": 0.8953488372093024,
+          "recall_against_ai": 0.9746835443037974,
+          "support": 79
+        },
+        "True": {
+          "precision_against_ai": 0.9285714285714286,
+          "recall_against_ai": 0.7428571428571429,
+          "support": 35
+        }
+      }
+    },
+    "D4": {
+      "n": 114,
+      "agreement_n": 102,
+      "agreement_rate": 0.8947368421052632,
+      "macro_f1_against_ai_observed_classes": 0.8248847926267281,
+      "matrix_rows_ai_columns_rules": {
+        "false": {
+          "false": 87,
+          "true": 1
+        },
+        "true": {
+          "false": 11,
+          "true": 15
+        }
+      },
+      "per_class": {
+        "False": {
+          "precision_against_ai": 0.8877551020408163,
+          "recall_against_ai": 0.9886363636363636,
+          "support": 88
+        },
+        "True": {
+          "precision_against_ai": 0.9375,
+          "recall_against_ai": 0.5769230769230769,
+          "support": 26
+        }
+      }
+    },
+    "D5": {
+      "n": 114,
+      "agreement_n": 110,
+      "agreement_rate": 0.9649122807017544,
+      "macro_f1_against_ai_observed_classes": 0.3273809523809524,
+      "matrix_rows_ai_columns_rules": {
+        "yes": {
+          "yes": 0,
+          "limited": 0,
+          "both": 0,
+          "not_stated": 3
+        },
+        "limited": {
+          "yes": 0,
+          "limited": 0,
+          "both": 0,
+          "not_stated": 0
+        },
+        "both": {
+          "yes": 0,
+          "limited": 0,
+          "both": 0,
+          "not_stated": 1
+        },
+        "not_stated": {
+          "yes": 0,
+          "limited": 0,
+          "both": 0,
+          "not_stated": 110
+        }
+      },
+      "per_class": {
+        "yes": {
+          "precision_against_ai": null,
+          "recall_against_ai": 0.0,
+          "support": 3
+        },
+        "limited": {
+          "precision_against_ai": null,
+          "recall_against_ai": null,
+          "support": 0
+        },
+        "both": {
+          "precision_against_ai": null,
+          "recall_against_ai": 0.0,
+          "support": 1
+        },
+        "not_stated": {
+          "precision_against_ai": 0.9649122807017544,
+          "recall_against_ai": 1.0,
+          "support": 110
+        }
+      }
+    }
+  },
+  "disagreement_counts": {
+    "D1": 6,
+    "D3": 11,
+    "D4": 12,
+    "D5": 4
+  },
+  "failure_types": {
+    "nonperson_compound_overexclusion": 1,
+    "nonperson_object_missed": 2,
+    "trait_keyword_overrides_task": 1,
+    "past_experience_missed": 2,
+    "role_lexicon_incomplete": 9,
+    "attribute_or_addressee_mistaken_for_partner": 2,
+    "result_expression_missed": 4,
+    "long_clause_mixes_requirements_and_duties": 1,
+    "capability_frame_suppresses_explicit_result": 6,
+    "employer_promise_mistaken_for_worker_accountability": 1,
+    "authority_expression_missed": 4
+  },
+  "authority_review_diagnostic": {
+    "ai_positive_n": 4,
+    "rule_caught_n": 0,
+    "recall_against_ai": 0.0,
+    "rule_rejected_for_H2": true
+  },
+  "release_decision": {
+    "D1": "candidate_only",
+    "D3": "descriptive_rule_flags_with_sensitivity",
+    "D4": "candidate_only",
+    "D5": "not_fit_for_semantic_prevalence_or_H2_due_to_missed_positive_AI_cases",
+    "H1": "not_validated",
+    "H2": "not_validated",
+    "H3": "not_estimated"
+  },
+  "limits": [
+    "AI reader is not a human expert or gold standard; shared model/rule-author background may correlate errors.",
+    "All rates describe automatic text flags in this fixed archive, not validated semantic prevalence or the job market.",
+    "Review has equal allocation by term, unequal selection probabilities; pooled agreement is a sample diagnostic, not population accuracy.",
+    "D3 and D4 use the focal clause plus immediate neighbors; D5 lexical same-matter linkage is approximate.",
+    "Not stated describes text, never actual lack of authority. No inferential confidence intervals or final hypothesis verdicts."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-09",
+  "git_head": "1d6603d0a5827c262ef68a58e39f8492fe8c4ae5",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "file_sha256": {
+    "research/scripts/05_automated_coding.py": "48fa8424f0b767f2588bcb2faac6bfcfb7950d16ca047b6f9fb9a518f90dca84",
+    "research/codebook/automated-v1.md": "9b85d0a957de47f10fa063a0d1cadb9cdc7be4d3982ed17d6716cb72512ab1a9",
+    "research/config/prompts/automated-review-v1.md": "7dd673468a6431fc20fe43e33019a95ce0605a4d7aa91ab5d80738915eaca20c"
+  },
+  "review_input_sha256": "cba9b2407f334f127bd0d8d43482cdd24fde6e11ef76f7424ea8734a3ac0872e",
+  "review_labels_sha256": "d92cbce9a9edc15312b1a5573a62feb563fec9314811805f13e46c957d1be743",
+  "failure_categories_sha256": "c7b6ec35feebecfd8d91585e989ea97e71404d1e84d74fb756e0952e0c75fa86",
+  "model": "current Codex conversation; exact model identifier not exposed to reviewer",
+  "temperature": null,
+  "temperature_note": "Existing conversational session; not controlled or recorded by agent",
+  "api_calls_by_script": 0,
+  "reviewed_occurrences": 120,
+  "human_records_written": 0,
+  "stage_order": [
+    "60 development contexts read",
+    "rules and review instructions frozen",
+    "all occurrence rules run",
+    "120 independent AI labels read and saved without per-item rule output",
+    "comparison computed"
+  ],
+  "public_outputs": [
+    "research/aggregates/automated-coding.json"
+  ],
+  "private_outputs": [
+    "rule-coded.json",
+    "ai-review.json",
+    "development.json",
+    "review-input.json"
+  ]
+}

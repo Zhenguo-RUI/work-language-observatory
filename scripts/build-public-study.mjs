@@ -24,9 +24,9 @@ assert.equal(config.terms.length,20);assert.equal(counts.corpus_ads,value('corpu
 const keywords=config.terms.map((item,index)=>{
  const old=previous.keywords.find(k=>k.term===item.term),count=counts.terms.find(k=>k.term===item.term),context=keywordContexts[item.term];
  assert(old&&count&&context,`Missing existing term ${item.term}`);assert.equal(old.examples.length,3);assert.equal(value(`term.${item.term}.ads`),count.literal_ads);
- return {...old,rank:index+1,documents:count.literal_ads,group:keywordGroups[item.group],short:context.summary,
+ return {...old,rank:index+1,documents:count.literal_ads,group:keywordGroups[item.group],short:context.short,
   precisionKeys:{n_checked:`term.${item.term}.n_checked`,k_correct:`term.${item.term}.k_correct`,precision:`term.${item.term}.precision`},
-  occupations:[],collocates:[],senses:[],examples:old.examples.map(example=>({...example,reviewStatus:'model_draft'}))};
+  occupations:[],collocates:[],senses:[],examples:old.examples.map((example,i)=>({...example,reading:context.examples[i].expertTake,question:context.examples[i].question??example.question,reviewStatus:'ai_reviewed'}))};
 });
 const crossTabs=researchObservations.map((observation,index)=>{
  const [focus,other]=observation.rows,a=value(focus.countKey),n=value(focus.denominatorKey),c=value(other.countKey),m=value(other.denominatorKey);
@@ -37,14 +37,14 @@ const data={
  methods:{corpusN:value('corpus.n'),archivedN:value('corpus.n'),uniqueN:value('corpus.n'),sources:[['51job','51job'],['boss','boss'],['liepin','liepin']].map(([label,key])=>({label,n:counts.by_source[key]})),
  scope:{zh:'{{stat:corpus.n|int}}份历史招聘归档，正文与规范化哈希均去重；采用非概率选样。',en:'{{stat:corpus.n|int}} historical advertisements, deduplicated by exact and normalized text; a non-probability sample.'},
  frequencyNote:{zh:'保留既有词表，正文经Unicode NFKC及大小写规范化后精确检索，每广告每词计一次。复合词排除另存候选，公开广告数为完整词面命中数，尚未判定全部用法是否指向劳动者。',en:'The existing vocabulary is retained. Body text is searched by exact substring after Unicode NFKC normalization and case folding, once per ad per term. Compound exclusions are retained separately as candidates. Published ad counts include all literal hits; their worker-directed meaning has not been fully reviewed.'},
- sampleNote:{zh:'案例是沿用的去识别释义，均为模型草稿，尚未经过人工确认；这些挑选的对照不能代表用法比例。',en:'The retained examples are deidentified paraphrases, all model drafts awaiting human review. These selected contrasts do not represent a distribution of meanings.'},
- candidateVocabulary:config.terms.map(k=>k.term),publishedAt:'2026-11-08',caseN:keywords.reduce((n,k)=>n+k.examples.length,0),semanticValidation:'human_review_pending'},
+ sampleNote:{zh:'案例是沿用的去识别释义，已做AI编辑复核，尚未经过人工确认；这些挑选的对照不能代表用法比例。',en:'The retained examples are deidentified paraphrases, edited and reviewed by AI, without human validation. These selected contrasts do not represent a distribution of meanings.'},
+ candidateVocabulary:config.terms.map(k=>k.term),publishedAt:'2026-11-09',caseN:keywords.reduce((n,k)=>n+k.examples.length,0),semanticValidation:'human_review_pending'},
  keywords,
  report:{title:researchFraming.title,standfirst:researchFraming.lead,thesis:researchFraming.question,
   findings:researchObservations.map(o=>({id:o.id,title:o.title,interpretation:o.interpretation,quantitative:o.numbers,terms:[o.term],statKeys:o.rows.flatMap(r=>[r.rateKey,r.countKey,r.denominatorKey])})),
   crossTabs,conclusion:researchFraming.discussion,bibliography:researchMethodReferences}
 };
-const serialized=JSON.stringify(data,null,2)+'\n';
+const serialized=(JSON.stringify(data,null,2)+'\n').replaceAll('人才发展政策落地','人才发展政策实施').replaceAll('沉淀工艺数据','整理并保存工艺数据');
 assert(!/120-ad|122\/156|71\/114|pilotN|51J-\d|GH-BOSS-\d|GH-LIEPIN-\d|"(?:raw_text|body|employer|source_job_id|record_id|phone|email)"\s*:/.test(serialized));
 mkdirSync(resolve(root,'public/research'),{recursive:true});
 writeFileSync(resolve(root,'data/public-study.json'),serialized);

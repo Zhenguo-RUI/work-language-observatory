@@ -1,0 +1,534 @@
+{
+  "version": "keyword-ai-review-v1",
+  "reviewed_at": "2026-11-09",
+  "reviewer_type": "AI",
+  "method": "Editorial review by Codex in the current session; no separate model API calls.",
+  "scope": [
+    "All 60 displayed cases: existing public source paraphrase, role, task, interpretation, suggested deliverable and question in Chinese and English",
+    "All 20 entry summaries"
+  ],
+  "not_verified": [
+    "Private original JD provenance",
+    "Real working conditions",
+    "Human agreement or retrieval precision",
+    "Hidden teaching scenarios"
+  ],
+  "input_sha256": {
+    "keyword_contexts_before": "2b5c320244937ac4a2c191e4b857edd3ad9e9209ca3fa8a2d241045fac988f45",
+    "public_study": "51d8a271b0e51cd3340a5d63214bb99b3432a04e0ac3b784076aaac21cde49b7"
+  },
+  "reviewed_items": 60,
+  "modified_items": 10,
+  "summary_changes": [
+    "熟练：将产物改为材料或作品。"
+  ],
+  "human_reviewed_items": 0,
+  "items": [
+    {
+      "id": "keyword-01-01",
+      "term": "沟通",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "异常与已试调整对应，追问交接和升级而不假定支持兑现。"
+    },
+    {
+      "id": "keyword-01-02",
+      "term": "沟通",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "采购条款与比较表具体，决定取舍仍作为待答问题。"
+    },
+    {
+      "id": "keyword-01-03",
+      "term": "沟通",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "活动执行范围清楚，未把实习协助写成政策制定权。"
+    },
+    {
+      "id": "keyword-02-01",
+      "term": "分析",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "差异追查对应记录，建议成果没有增加审批权限。"
+    },
+    {
+      "id": "keyword-02-02",
+      "term": "分析",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "市场判断连接推广建议，未承诺分析必然增加销售。"
+    },
+    {
+      "id": "keyword-02-03",
+      "term": "分析",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "模型与仿真对应已有任务，验收指标保留为追问。"
+    },
+    {
+      "id": "keyword-03-01",
+      "term": "数据",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "expertTake",
+        "deliverable"
+      ],
+      "reason": "移除未经释义支持的配方工作，改为测试条件与结果。"
+    },
+    {
+      "id": "keyword-03-02",
+      "term": "数据",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "招聘流程统计与改进建议相连，未把时效变化归责个人。"
+    },
+    {
+      "id": "keyword-03-03",
+      "term": "数据",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "分类、案例和质量报告对应已有描述，排期作为问题。"
+    },
+    {
+      "id": "keyword-04-01",
+      "term": "协调",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "方案与现场约束对应，未把协调等同最终决定。"
+    },
+    {
+      "id": "keyword-04-02",
+      "term": "协调",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "事项跟踪建议明确，交接未被称作已经兑现的支持。"
+    },
+    {
+      "id": "keyword-04-03",
+      "term": "协调",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "区分政策传达与例外申请，没有假定个人可改政策。"
+    },
+    {
+      "id": "keyword-05-01",
+      "term": "熟练",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "工具熟练对应登记和接待，检查方式可具体回答。"
+    },
+    {
+      "id": "keyword-05-02",
+      "term": "熟练",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "材料初稿与信息核对可准备，发布权限留为追问。"
+    },
+    {
+      "id": "keyword-05-03",
+      "term": "熟练",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "制作与合规区分，建议材料未冒充岗位硬性门槛。"
+    },
+    {
+      "id": "keyword-06-01",
+      "term": "独立",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "独立检验与协助管理分开，未据此判定实际无权。"
+    },
+    {
+      "id": "keyword-06-02",
+      "term": "独立",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "task"
+      ],
+      "reason": "删除必须交人复核的标题推断，保留辅助工作范围。"
+    },
+    {
+      "id": "keyword-06-03",
+      "term": "独立",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "专业处理与案件分配并存，未推断缺乏协作支持。"
+    },
+    {
+      "id": "keyword-07-01",
+      "term": "协作",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "工艺说明与培训对应，协作没有被等同放权。"
+    },
+    {
+      "id": "keyword-07-02",
+      "term": "协作",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "交付范围与销售承诺分开，失败时如何改目标仍是问题。"
+    },
+    {
+      "id": "keyword-07-03",
+      "term": "协作",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "task",
+        "expertTake",
+        "deliverable"
+      ],
+      "reason": "收回未经释义支持的评估职责，改为需求核对和寻访。"
+    },
+    {
+      "id": "keyword-08-01",
+      "term": "抗压",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "任务切换来自并列现场职责，没有推定实际情绪损耗。"
+    },
+    {
+      "id": "keyword-08-02",
+      "term": "抗压",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "多方进度作为协作条件，未推定招聘目标无法调整。"
+    },
+    {
+      "id": "keyword-08-03",
+      "term": "抗压",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "只保留明确写出的加班线索，未编造频率或补偿。"
+    },
+    {
+      "id": "keyword-09-01",
+      "term": "责任心",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "expertTake"
+      ],
+      "reason": "替换空泛品质判断，具体到差异核对和工作交接。"
+    },
+    {
+      "id": "keyword-09-02",
+      "term": "责任心",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "发布检查对应现有职责，未假设实习生独担审核责任。"
+    },
+    {
+      "id": "keyword-09-03",
+      "term": "责任心",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "question"
+      ],
+      "reason": "追问改为策略调整范围，不预设个人承担业绩责任。"
+    },
+    {
+      "id": "keyword-10-01",
+      "term": "适应",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "作业条件与防护作为可核实问题，没有判定环境危险。"
+    },
+    {
+      "id": "keyword-10-02",
+      "term": "适应",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "优先级是待澄清安排，未把快节奏等同无偿加班。"
+    },
+    {
+      "id": "keyword-10-03",
+      "term": "适应",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "出差需求明确，未补写频率数值或费用制度。"
+    },
+    {
+      "id": "keyword-11-01",
+      "term": "目标",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "服务与销售同时出现，评价方式仍需问清。"
+    },
+    {
+      "id": "keyword-11-02",
+      "term": "目标",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "门店经营与培训分别追问，未强行归为单一业绩指标。"
+    },
+    {
+      "id": "keyword-11-03",
+      "term": "目标",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "question"
+      ],
+      "reason": "追问改为融资步骤与审批分工，删除未支持的回款预设。"
+    },
+    {
+      "id": "keyword-12-01",
+      "term": "服务",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "技术文件面向制造使用，未套用情绪劳动结论。"
+    },
+    {
+      "id": "keyword-12-02",
+      "term": "服务",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "培训与接待做法对应，未假定全部标准由该岗位决定。"
+    },
+    {
+      "id": "keyword-12-03",
+      "term": "服务",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "task",
+        "expertTake"
+      ],
+      "reason": "将解决故障收紧为协助排查，处理记录不等于已解决。"
+    },
+    {
+      "id": "keyword-13-01",
+      "term": "逻辑",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "账务对应和差异解释具体，没有新增法定资质要求。"
+    },
+    {
+      "id": "keyword-13-02",
+      "term": "逻辑",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "question"
+      ],
+      "reason": "移除面试背诵对立，改问开发说明和设计评审。"
+    },
+    {
+      "id": "keyword-13-03",
+      "term": "逻辑",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "待验证原因与既成结论分开，未将相关变化当成因果。"
+    },
+    {
+      "id": "keyword-14-01",
+      "term": "学习",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "现场辅助与学习并列，未声称带教一定兑现。"
+    },
+    {
+      "id": "keyword-14-02",
+      "term": "学习",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "作品与方法修改对应，学习时间仍待确认。"
+    },
+    {
+      "id": "keyword-14-03",
+      "term": "学习",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "业务理解用于招聘沟通，未编造语言等级。"
+    },
+    {
+      "id": "keyword-15-01",
+      "term": "统筹",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "过程检查与调整衔接，暂停或改配方权限留作追问。"
+    },
+    {
+      "id": "keyword-15-02",
+      "term": "统筹",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "多项目安排明确，未凭经理头衔判定人员管理权。"
+    },
+    {
+      "id": "keyword-15-03",
+      "term": "统筹",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "调配建议与实际决定权分开，没有假定完整控制权。"
+    },
+    {
+      "id": "keyword-16-01",
+      "term": "主动",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "task",
+        "expertTake"
+      ],
+      "reason": "去掉必然进入产品讨论的安排，改为收集并问清去向。"
+    },
+    {
+      "id": "keyword-16-02",
+      "term": "主动",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "跟进围绕客户需求，未把主动等同无限可用时间。"
+    },
+    {
+      "id": "keyword-16-03",
+      "term": "主动",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "反馈问题不等于独自解决，直接处理边界保留。"
+    },
+    {
+      "id": "keyword-17-01",
+      "term": "英语",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "语言要求对应注册材料和沟通，不虚设证书门槛。"
+    },
+    {
+      "id": "keyword-17-02",
+      "term": "英语",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "读写与测试文档对应，跨国协作作为问题而非事实。"
+    },
+    {
+      "id": "keyword-17-03",
+      "term": "英语",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "询价和对账任务具体，未把流利等同谈判权限。"
+    },
+    {
+      "id": "keyword-18-01",
+      "term": "严谨",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "保留参数和修改依据可执行，未编造统一留档制度。"
+    },
+    {
+      "id": "keyword-18-02",
+      "term": "严谨",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "核对条款与流程相符，不把系统记录当合规已成立。"
+    },
+    {
+      "id": "keyword-18-03",
+      "term": "严谨",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "建议核对表对应报表工作，复核者仍需确认。"
+    },
+    {
+      "id": "keyword-19-01",
+      "term": "闭环",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "记录与跟进并列，未把上报写成问题已被解决。"
+    },
+    {
+      "id": "keyword-19-02",
+      "term": "闭环",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "现场案例进入改进需求，未保证模型已完成优化。"
+    },
+    {
+      "id": "keyword-19-03",
+      "term": "闭环",
+      "status": "ai_reviewed",
+      "modified": true,
+      "changed_fields": [
+        "task",
+        "question"
+      ],
+      "reason": "删除数据闭环必然等于回传的推断，保留工程约束。"
+    },
+    {
+      "id": "keyword-20-01",
+      "term": "执行力",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "方案落实对应商户任务，例外权限保留为追问。"
+    },
+    {
+      "id": "keyword-20-02",
+      "term": "执行力",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "异常与预防措施相连，停机和恢复权限没有预设。"
+    },
+    {
+      "id": "keyword-20-03",
+      "term": "执行力",
+      "status": "ai_reviewed",
+      "modified": false,
+      "changed_fields": [],
+      "reason": "遵循流程与申请例外分开，未把执行解释为绝对服从。"
+    }
+  ]
+}

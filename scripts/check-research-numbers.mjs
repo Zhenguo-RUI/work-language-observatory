@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import ts from 'typescript';
 
-const formats=new Set(['int','pct','ci','or']);
+const formats=new Set(['int','pct','ci','or','or-ci']);
 export function inspectCopy(text,path,stats){
  const errors=[],keys=[];
  const plain=text.replace(/\{\{stat:([^{}|]+)(?:\|([^{}]+))?\}\}/g,(token,key,fmt)=>{

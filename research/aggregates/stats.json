@@ -3045,5 +3045,196 @@
     "script": "research/scripts/05_template_sensitivity.py",
     "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
     "n": 2000
+  },
+  "auto.all_occurrences": {
+    "value": 4029,
+    "unit": "occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.development_excluded_n": {
+    "value": 60,
+    "unit": "occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.analysis_occurrences": {
+    "value": 3969,
+    "unit": "occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.抗压.eligible_person_or_work_n": {
+    "value": 495,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.抗压.d3_named_role_n": {
+    "value": 83,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.抗压.d3_broad_role_n": {
+    "value": 271,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.抗压.narrow_rate": {
+    "value": 0.16767676767676767,
+    "unit": "share of rule-eligible occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 495
+  },
+  "auto.抗压.broad_rate": {
+    "value": 0.5474747474747474,
+    "unit": "share of rule-eligible occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 495
+  },
+  "auto.沟通.eligible_person_or_work_n": {
+    "value": 1640,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.沟通.d3_named_role_n": {
+    "value": 465,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.沟通.d3_broad_role_n": {
+    "value": 1023,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.沟通.narrow_rate": {
+    "value": 0.28353658536585363,
+    "unit": "share of rule-eligible occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1640
+  },
+  "auto.沟通.broad_rate": {
+    "value": 0.623780487804878,
+    "unit": "share of rule-eligible occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1640
+  },
+  "auto.责任心.eligible_person_or_work_n": {
+    "value": 537,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.责任心.d3_named_role_n": {
+    "value": 62,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.责任心.d3_broad_role_n": {
+    "value": 285,
+    "unit": "rule-flagged occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.责任心.narrow_rate": {
+    "value": 0.1154562383612663,
+    "unit": "share of rule-eligible occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 537
+  },
+  "auto.责任心.broad_rate": {
+    "value": 0.5307262569832403,
+    "unit": "share of rule-eligible occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 537
+  },
+  "auto.D5.n": {
+    "value": 114,
+    "unit": "AI-reviewed occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.D5.agreement_n": {
+    "value": 110,
+    "unit": "AI-reviewed occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.D5.agreement_rate": {
+    "value": 0.9649122807017544,
+    "unit": "sample agreement",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 114
+  },
+  "auto.D5.ai_positive_n": {
+    "value": 4,
+    "unit": "AI-reviewed occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "auto.D5.rule_caught_n": {
+    "value": 0,
+    "unit": "AI-reviewed occurrences",
+    "method": "rule-candidate diagnostics with AI review; not human validation",
+    "source": "research/aggregates/automated-coding.json",
+    "script": "research/scripts/06_public_diagnostics.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
   }
 }

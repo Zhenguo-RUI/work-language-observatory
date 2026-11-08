@@ -1,0 +1,216 @@
+{
+  "status": "AI review complete; no independent human validation",
+  "date": "2026-11-08T16:29:01.244887+00:00",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "review_source_sha256": "612e4bd0d932db111a2fc14a3fa7c20d381fa9a53c471306b5d9f46943cfc1ec",
+  "unit": "sampled advertisement–term pair",
+  "reviewed": 400,
+  "yes": 387,
+  "no": 8,
+  "uncertain": 5,
+  "ai_review_pass_rate": 0.9675,
+  "rate_name_zh": "AI复核通过率",
+  "denominator": "400 fixed sampled advertisement–term pairs, 20 per term; uncertain included",
+  "not_estimated": [
+    "human retrieval precision",
+    "corpus-wide proportion",
+    "model accuracy against human gold standard"
+  ],
+  "by_term": [
+    {
+      "term": "沟通",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "分析",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "数据",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "协调",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "熟练",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "独立",
+      "reviewed": 20,
+      "yes": 19,
+      "no": 1,
+      "uncertain": 0,
+      "ai_review_pass_rate": 0.95,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "协作",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "抗压",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "责任心",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "适应",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "目标",
+      "reviewed": 20,
+      "yes": 18,
+      "no": 2,
+      "uncertain": 0,
+      "ai_review_pass_rate": 0.9,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "服务",
+      "reviewed": 20,
+      "yes": 12,
+      "no": 5,
+      "uncertain": 3,
+      "ai_review_pass_rate": 0.6,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "逻辑",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "学习",
+      "reviewed": 20,
+      "yes": 19,
+      "no": 0,
+      "uncertain": 1,
+      "ai_review_pass_rate": 0.95,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "统筹",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "主动",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "英语",
+      "reviewed": 20,
+      "yes": 19,
+      "no": 0,
+      "uncertain": 1,
+      "ai_review_pass_rate": 0.95,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "严谨",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "闭环",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    },
+    {
+      "term": "执行力",
+      "reviewed": 20,
+      "yes": 20,
+      "no": 0,
+      "uncertain": 0,
+      "ai_review_pass_rate": 1.0,
+      "denominator": "fixed sampled ad–term pairs for this term; uncertain retained in denominator"
+    }
+  ],
+  "method": "The Codex agent read all retained-hit context snippets in four batches of 100 and assigned each label and reason explicitly. Additional surrounding/full text was opened for ambiguous cases. No regex assigned labels; no external model API calls.",
+  "criterion": "至少一处暂定保留命中描述候选人能力、岗位任务或工作方式，而非仅机构/设施/产品系统特征；AI复核不是人工金标准",
+  "limitations": [
+    "Single-agent semantic review; model judgments can be wrong and no independent human gold standard exists.",
+    "Equal allocation per term: pooled rate describes this review pack, not the corpus or labour market.",
+    "Boundary cases retained as uncertain: service-provider/department mentions, learning opportunities offered as benefits, and a bare language tag.",
+    "Technical targets and service-robot types, accommodation features, licensing and general organization descriptions are not automatically personal competence requirements."
+  ],
+  "independent_human_review": false,
+  "human_annotations_read": 0,
+  "human_annotations_written": 0,
+  "external_model_calls": 0,
+  "original_human_fields_blank": true,
+  "original_review_source_unchanged": true,
+  "human_field_integrity_check": "Checked blankness only; did not read any completed human labels."
+}

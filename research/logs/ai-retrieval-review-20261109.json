@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-08T16:29:01.244887+00:00",
+  "reviewer": "Codex agent",
+  "model_snapshot": "not exposed by session",
+  "external_model_calls": 0,
+  "source_sha256": "612e4bd0d932db111a2fc14a3fa7c20d381fa9a53c471306b5d9f46943cfc1ec",
+  "decisions_sha256": "d0b74eef869ad84f1b8228f983ed65e2945b84b3aab465f290a236a4caa6f376",
+  "base_commit": "923521497790cc19493fffcc262bc5643e2e6ae9",
+  "reviewed": 400,
+  "human_annotations_written": 0,
+  "outputs": [
+    "research/private/ai-retrieval-review-20261109/decisions.private.json",
+    "research/aggregates/ai-retrieval-review-20261109.json"
+  ]
+}

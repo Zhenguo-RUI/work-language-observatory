@@ -1,17 +1,18 @@
 import type {Bi} from "./observatory-types";
 
-/** Model-drafted explanations and teaching illustrations, not additional JD facts.
+/** AI-reviewed explanations and suggested materials, not additional JD facts.
  * The original archive paraphrases and counts remain in public-study.json.
  */
 export type KeywordContextExample = {
   sourceRoleZh: string;
-  reviewStatus: "model_draft" | "author_reviewed" | "revised";
+  reviewStatus: "model_draft" | "ai_reviewed" | "author_reviewed" | "revised";
+  question?: Bi;
   task: Bi;
   expertTake: Bi;
   scenario: Bi;
   deliverable: Bi;
 };
-export type KeywordContextEntry = {group: KeywordGroup; summary: Bi; examples: KeywordContextExample[]};
+export type KeywordContextEntry = {group: KeywordGroup; short: Bi; examples: KeywordContextExample[]};
 
 /** Navigation groups mirror research/config/terms.yaml; they are not measured senses. */
 export const keywordGroups = {
@@ -25,10 +26,6 @@ export type KeywordGroup = keyof typeof keywordGroups;
 export const keywordContexts: Record<string, KeywordContextEntry> = {
   "沟通": {
     "group": "协作与服务",
-    "summary": {
-      "zh": "试模要交清现场问题，采购要谈清交易条件，活动支持要把安排落实到人。比较沟通要求时，先问信息交给谁、要促成什么动作、出现分歧由谁定案。",
-      "en": "The mould-trial lead passes on a usable fault record; procurement settles commercial terms; the HR intern turns plans into practical arrangements. Ask who needs the information, what they should do next, and who resolves a disagreement."
-    },
     "examples": [
       {
         "task": {
@@ -47,7 +44,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "带参数、缺陷位置和试验结果的异常记录",
           "en": "A fault record with settings, defect location and trial results"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "试模领班"
       },
       {
@@ -67,7 +64,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "包含报价、交期和待确认条件的采购比较表",
           "en": "A purchasing comparison with prices, delivery dates and open terms"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "采购主管"
       },
       {
@@ -87,17 +84,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "更新后的活动通知、分工表与待办清单",
           "en": "An updated event notice, responsibility list and open-action list"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "人力资源实习生"
       }
-    ]
+    ],
+    "short": {
+      "zh": "把信息讲清楚，让对方知道下一步要做什么。",
+      "en": "Explain information clearly enough for someone else to act on it."
+    }
   },
   "分析": {
     "group": "技能与工具",
-    "summary": {
-      "zh": "会计分析要能核对账目，技术销售分析要能安排市场行动，机器人分析要经模型与测试检查。判断分析能力时，先看结论交给谁，以及对方凭什么接受它。",
-      "en": "An accountant's conclusion must reconcile with records; a technical salesperson's must inform market action; a robotics engineer's must stand up to modelling and tests. Ask who uses the conclusion and what makes it acceptable."
-    },
     "examples": [
       {
         "task": {
@@ -116,7 +113,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "应收账龄表及逐项差异说明",
           "en": "A receivables ageing schedule with itemized explanations"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "会计"
       },
       {
@@ -136,7 +133,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "客户需求对照与推广方案建议",
           "en": "A customer-needs comparison and proposed marketing plan"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "技术销售代表"
       },
       {
@@ -156,17 +153,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "轨迹对照、参数记录与仿真结果说明",
           "en": "A trajectory comparison, parameter record and simulation note"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "机器人算法工程师"
       }
-    ]
+    ],
+    "short": {
+      "zh": "用记录、数据或模型解释问题，提出有依据的判断。",
+      "en": "Use records, data or models to explain a problem and support a judgment."
+    }
   },
   "数据": {
     "group": "技能与工具",
-    "summary": {
-      "zh": "实验中的数据要记录得可比较，招聘数据用来定位流程卡点，客诉数据要形成可处理的问题。看到数据能力要求，可以问：这份工作需要记录什么、解释什么，结论交给谁使用？",
-      "en": "Test data need comparable records; recruitment data help locate delays; complaint data help identify problems to investigate. Ask what you would record, what you would explain, and who would use your findings."
-    },
     "examples": [
       {
         "task": {
@@ -174,18 +171,18 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Make test observations comparable"
         },
         "expertTake": {
-          "zh": "数据来自打印测试，重点是把配方表现与测试条件对应起来，供下一轮验证使用。",
-          "en": "The data come from printing tests: formulation performance needs to stay connected to the conditions under which it was observed."
+          "zh": "数据来自打印测试，需要把流畅性、颜色、干燥和牢度的结果与测试条件对应起来，便于比较。",
+          "en": "The data come from printing tests. Flow, colour, drying and fastness results need to be recorded alongside test conditions so they can be compared."
         },
         "scenario": {
           "zh": "比较两种墨水的干燥表现时，可以在相同纸张和测试条件下分别记录干燥、颜色与牢度表现，保留条件差异，避免把测试方式不同看成配方差异。",
           "en": "When comparing two inks, record drying, colour and fastness under comparable paper and test conditions. Preserve any differences in setup so a test-method difference is not mistaken for a formulation effect."
         },
         "deliverable": {
-          "zh": "带测试条件的配方表现记录表",
-          "en": "A formulation test record with the test conditions attached"
+          "zh": "带测试条件和各项结果的打印测试记录表",
+          "en": "A printing-test record with conditions and results"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "化学工程师"
       },
       {
@@ -205,7 +202,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "分环节招聘看板与流程改进建议",
           "en": "A stage-by-stage hiring view and process recommendations"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "招聘主管"
       },
       {
@@ -225,17 +222,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "客诉分类表、代表案例与质量问题报告",
           "en": "A complaint taxonomy, representative cases and quality report"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "售后客服"
       }
-    ]
+    ],
+    "short": {
+      "zh": "按用途记录和整理信息，支持核对、解释或改进。",
+      "en": "Record and organize information for checking, explanation or improvement."
+    }
   },
   "协调": {
     "group": "协作与服务",
-    "summary": {
-      "zh": "成本协调处理方案与产线的冲突，设备协调连接采购和维护，渠道协调衔接统一政策与地方执行。先确认冲突发生在哪里，再问你负责传递、促成一致，还是有权改方案。",
-      "en": "Cost coordination reconciles proposals with production constraints; equipment coordination connects purchasing and maintenance; channel coordination connects company policy with local execution. Ask where conflicts arise and whether the role relays, negotiates or decides."
-    },
     "examples": [
       {
         "task": {
@@ -254,7 +251,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "降本方案、生产影响与待验证事项表",
           "en": "A cost proposal with production impacts and validation questions"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "成本工程师"
       },
       {
@@ -274,7 +271,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "设备事项跟踪表与采购维护交接记录",
           "en": "An equipment action tracker and purchasing–maintenance handover"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "设备管理岗"
       },
       {
@@ -294,17 +291,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "渠道执行问题清单与政策答复记录",
           "en": "A channel implementation issue list and policy-response log"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "渠道业务经理"
       }
-    ]
+    ],
+    "short": {
+      "zh": "核对各方安排，处理影响工作进展的分歧。",
+      "en": "Check the parties’ arrangements and address disagreements that affect progress."
+    }
   },
   "熟练": {
     "group": "技能与工具",
-    "summary": {
-      "zh": "前台的熟练表现为流程准确，公关的熟练要产出可用传播材料，财经视频还要把内容处理与合规核对接上。准备技能证明时，用一份完整产物说明自己做到了哪一步。",
-      "en": "Reception proficiency means reliable handling; PR proficiency produces usable communications; financial-video work also connects production with compliance checks. Demonstrate the skill through a finished item and explain exactly which parts you handled."
-    },
     "examples": [
       {
         "task": {
@@ -323,7 +320,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "准确的来访登记与接待安排表",
           "en": "An accurate visitor register and reception schedule"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "商务前台"
       },
       {
@@ -343,7 +340,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "可供审核的视频初稿与信息核对表",
           "en": "A review-ready video draft and information checklist"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "市场公关实习生"
       },
       {
@@ -363,17 +360,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "附数字来源与待审核项的视频或演示稿",
           "en": "A video or slide draft with figure sources and review points"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "财经视频运营"
       }
-    ]
+    ],
+    "short": {
+      "zh": "用指定工具准确完成常见任务，处理必要的修改。",
+      "en": "Use the specified tools accurately for routine tasks and necessary revisions."
+    }
   },
   "独立": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "三例都要求自己推进一段工作：检验零件、完成辅助财务工作，或处理分配的案件。具体分水岭是做到哪一步、交给谁复核，以及哪些决定需要另外确认。",
-      "en": "All three roles ask someone to take work forward: inspect parts, complete supporting finance tasks or handle assigned cases. Ask where the task ends, who reviews it, and which decisions the role can make."
-    },
     "examples": [
       {
         "task": {
@@ -392,13 +389,13 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "可对应批次与测量结果的检验记录",
           "en": "An inspection record tied to batches and measurements"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "五金品质组长"
       },
       {
         "task": {
-          "zh": "自行整理，交人复核",
-          "en": "Prepare the work for review"
+          "zh": "自行安排辅助财务工作",
+          "en": "Organize assigned finance-support work"
         },
         "expertTake": {
           "zh": "这里强调自己安排学习和工作，具体核算、审核与归档仍以协助身份参与。",
@@ -412,7 +409,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "整理后的核对表、差异项与归档材料",
           "en": "An organized reconciliation, exception list and filing set"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "财务实习生"
       },
       {
@@ -432,17 +429,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "案件进度记录、材料清单与处理方案",
           "en": "A case progress record, document checklist and proposed next steps"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "法务经理"
       }
-    ]
+    ],
+    "short": {
+      "zh": "自行推进指定工作，并弄清需要协助或确认的事项。",
+      "en": "Take assigned work forward and clarify where assistance or confirmation is needed."
+    }
   },
   "协作": {
     "group": "协作与服务",
-    "summary": {
-      "zh": "工艺协作让方法进入产线，销售协作连接承诺与交付，招聘协作把需求与评估标准对上。读到协作时，找出各方交接的东西，再问标准不一致时怎样解决。",
-      "en": "Process collaboration gets a method onto the production line; sales collaboration connects promises with delivery; recruitment collaboration aligns requirements and assessment. Identify what passes between the parties and how mismatched expectations are resolved."
-    },
     "examples": [
       {
         "task": {
@@ -454,14 +451,14 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Collaboration connects process documentation, shop-floor practice and training so an improvement can be understood and used."
         },
         "scenario": {
-          "zh": "某道工序更新后，可以和现场使用者逐项核对操作变化，记录试做中不清楚的步骤，再更新说明与培训材料，把纸面做法和实际操作对齐。",
+          "zh": "某道工序更新后，可以和现场使用者逐项核对操作变化，记录试做中不清楚的步骤，再更新说明与培训材料，确认更新后的说明与现场操作一致。",
           "en": "After a process change, review the changed steps with the people using it, note ambiguities found during a trial and update the instructions and training material to match workable practice."
         },
         "deliverable": {
           "zh": "修订后的工艺说明、试做反馈与培训材料",
           "en": "Revised process instructions, trial feedback and training material"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "工艺工程师"
       },
       {
@@ -481,37 +478,37 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "客户需求、交付范围与待确认事项对照表",
           "en": "A comparison of customer needs, delivery scope and open issues"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "机器人销售经理"
       },
       {
         "task": {
-          "zh": "把招聘需求对成同一标准",
-          "en": "Align the hiring criteria"
+          "zh": "弄清招聘需求和寻访范围",
+          "en": "Clarify hiring needs and the sourcing scope"
         },
         "expertTake": {
-          "zh": "招聘协作把用人团队的需求、人才寻访和评估连接起来，减少各说各的标准。",
-          "en": "Recruitment collaboration connects hiring needs, talent sourcing and assessment so the parties are working with compatible criteria."
+          "zh": "与用人团队核对需要什么人才，再把需求用于渠道拓展和人才寻访。具体筛选标准怎样确定，还可以继续问。",
+          "en": "Check what talent the hiring team needs, then use that information to develop channels and source candidates. How selection criteria are agreed remains a useful question."
         },
         "scenario": {
           "zh": "用人方希望候选人懂某项技术时，可以追问实际要完成的任务，整理可观察的经验和评估问题，再用候选人案例核对双方对要求的理解。",
           "en": "If a hiring team asks for expertise in a technology, clarify the work it supports, define observable experience and assessment questions, then use candidate examples to check that both sides mean the same thing."
         },
         "deliverable": {
-          "zh": "岗位要求、人才画像与评估问题的对照记录",
-          "en": "A record linking role requirements, candidate profiles and assessment questions"
+          "zh": "招聘需求澄清记录与人才地图",
+          "en": "A hiring-requirements note and talent map"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "招聘专家"
       }
-    ]
+    ],
+    "short": {
+      "zh": "和相关人员共同完成任务，交清各自需要的信息与材料。",
+      "en": "Work with others and provide the information and materials each person needs."
+    }
   },
   "抗压": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "直播例把抗压与多项现场任务并列，招聘例写出紧急补编和多方协作，需求分析例明确提到投标加班。可以据此追问：任务撞在一起时怎样分工，延期或超时怎样处理？",
-      "en": "The live-session example pairs pressure with concurrent tasks; the recruitment example describes urgent hiring and coordination; the systems role explicitly mentions bid-related overtime. Ask how competing tasks, delays and extra hours are handled."
-    },
     "examples": [
       {
         "task": {
@@ -530,7 +527,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "直播执行记录与现场问题跟进清单",
           "en": "A session execution record and follow-up list for live issues"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "直播助播"
       },
       {
@@ -550,7 +547,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "候选人进度表、排期变更与阻碍事项",
           "en": "A candidate tracker with scheduling changes and blockers"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "技术招聘负责人"
       },
       {
@@ -570,17 +567,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "需求变更、研发待答与投标材料缺口清单",
           "en": "A list of requirements changes, development questions and bid-material gaps"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "人力数字化需求分析师"
       }
-    ]
+    ],
+    "short": {
+      "zh": "在时限、突发情况或多任务要求下继续处理工作。",
+      "en": "Continue handling work under deadlines, unexpected events or competing demands."
+    }
   },
   "责任心": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "门店责任心围绕货品与交接，活动运营围绕发布准确，渠道管理围绕关系维护和策略执行。把品质词落到具体错误与检查动作，才能说明自己负责什么、完成如何被看见。",
-      "en": "Retail responsibility concerns stock and handovers; campaign operations concerns publishing accurately; channel management concerns relationships and execution. Connect the quality to specific errors and checks so responsibility has a visible object and completion point."
-    },
     "examples": [
       {
         "task": {
@@ -588,8 +585,8 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "en": "Keep stock and handovers clear"
         },
         "expertTake": {
-          "zh": "责任心连接接待、整理、收银与盘点，体现为日常记录和交接能被核对。",
-          "en": "Responsibility links service, stock handling, checkout and stocktaking through daily records and handovers that others can check."
+          "zh": "接待、货品整理、收银和盘点都在职责中，责任心可以具体问到货品差异怎样核对、未结事项怎样交接。",
+          "en": "The duties include service, stock handling, checkout and stocktaking. Responsibility can be clarified through questions about checking stock differences and handing over unfinished work."
         },
         "scenario": {
           "zh": "交班时发现货架数量和记录不一致，可以先核对销售、退换与移位情况，把未查清的差异记进交接单，交给负责核对的人继续处理。",
@@ -599,7 +596,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "货品核对表与未结事项交接单",
           "en": "A stock check and handover note for unresolved items"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "服装门店兼职"
       },
       {
@@ -619,7 +616,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "上线核对清单、测试记录与待审核项",
           "en": "A publication checklist, test record and review points"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "频道运营实习生"
       },
       {
@@ -639,17 +636,21 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "渠道执行跟踪表与政策问题答复记录",
           "en": "A channel execution tracker and policy question log"
         },
-        "reviewStatus": "model_draft",
-        "sourceRoleZh": "区域渠道经理"
+        "reviewStatus": "ai_reviewed",
+        "sourceRoleZh": "区域渠道经理",
+        "question": {
+          "zh": "区域策略中哪些事项可以自行调整，哪些需要确认？",
+          "en": "Which parts of the regional strategy can this role adjust, and which require confirmation?"
+        }
       }
-    ]
+    ],
+    "short": {
+      "zh": "核对自己负责的事项，跟进差错与未完成的工作。",
+      "en": "Check the work assigned to you and follow up errors and unfinished tasks."
+    }
   },
   "适应": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "施工适应的是作业环境，人力伙伴适应的是任务节奏，医疗销售适应的是跨地点工作。别只回答自己能吃苦，分别确认环境与防护、优先级安排，以及出差频率和费用。",
-      "en": "The site role adapts to working conditions, the HR partner to changing demands, and the sales role to travel. Clarify protection and site conditions, how priorities are set, and the frequency and cost arrangements of travel."
-    },
     "examples": [
       {
         "task": {
@@ -668,7 +669,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "现场检查记录与工序交接事项表",
           "en": "A site inspection record and process-handover list"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "工程施工员"
       },
       {
@@ -688,7 +689,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "需求优先级、依赖事项与进度安排",
           "en": "A prioritized request list with dependencies and timing"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "人力业务伙伴"
       },
       {
@@ -708,17 +709,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "客户事项、行程与拜访后跟进记录",
           "en": "A client-action itinerary and post-visit follow-up record"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "医疗器械销售代表"
       }
-    ]
+    ],
+    "short": {
+      "zh": "根据现场条件、任务变化或出差要求安排工作。",
+      "en": "Arrange work around site conditions, changing tasks or travel requirements."
+    }
   },
   "目标": {
     "group": "管理用语",
-    "summary": {
-      "zh": "目标可能对准一次服务中的销售、多家门店的经营，或一笔融资业务的推进。先看哪些结果算在自己名下，再问质量、进度和收入发生冲突时怎样评价。",
-      "en": "Targets may concern sales within a service encounter, performance across stores, or progress on a financing transaction. Establish which outcomes belong to the role, then ask how quality, timing and revenue are assessed when they conflict."
-    },
     "examples": [
       {
         "task": {
@@ -737,7 +738,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "服务反馈记录与产品销售记录",
           "en": "A service-feedback record and a separate product-sales record"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "足疗技师"
       },
       {
@@ -757,7 +758,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "片区经营汇总与分店行动清单",
           "en": "A regional operating review with an action list for each store"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "体验店运营代表"
       },
       {
@@ -777,17 +778,21 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "客户融资需求摘要与业务进度表",
           "en": "A customer financing brief and a transaction-progress tracker"
         },
-        "reviewStatus": "model_draft",
-        "sourceRoleZh": "融资渠道经理"
+        "reviewStatus": "ai_reviewed",
+        "sourceRoleZh": "融资渠道经理",
+        "question": {
+          "zh": "融资办理中哪些进度由我负责，审批和风险判断由谁负责？",
+          "en": "Which financing steps would I own, and who handles approval and risk assessment?"
+        }
       }
-    ]
+    ],
+    "short": {
+      "zh": "围绕指定结果安排工作，并按约定标准检查进展。",
+      "en": "Organize work around specified results and review progress against agreed criteria."
+    }
   },
   "服务": {
     "group": "协作与服务",
-    "summary": {
-      "zh": "服务的对象可能是制造现场、进店顾客，也可能是远程使用产品的客户。对应的完成标准分别落在技术可用、接待体验和故障处理上：谁来确认服务已完成？",
-      "en": "Service may support a manufacturing team, a store visitor or a remote product user. Completion therefore concerns technical usability, the customer experience or fault resolution. Ask who confirms that the service has achieved its purpose."
-    },
     "examples": [
       {
         "task": {
@@ -806,7 +811,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "设计疑问清单与技术说明记录",
           "en": "A design-query list and a record of technical clarifications"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "结构工程师"
       },
       {
@@ -826,17 +831,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "接待演练清单与服务改进记录",
           "en": "A service-rehearsal checklist and a record of improvements"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "体验店副店长"
       },
       {
         "task": {
-          "zh": "解决故障，也收回使用反馈",
-          "en": "Resolve faults and collect user feedback"
+          "zh": "在线协助排障并记录反馈",
+          "en": "Help troubleshoot remotely and record feedback"
         },
         "expertTake": {
-          "zh": "售后支持要在线协助客户排障，再把处理情况和满意度反馈给交付团队。",
-          "en": "After-sales support helps customers troubleshoot remotely and feeds both the resolution record and satisfaction feedback back to the delivery team."
+          "zh": "售后支持在线协助客户排查故障，并把处理过程和满意度反馈给交付团队。问题是否解决，需要核对处理结果。",
+          "en": "After-sales support helps customers investigate faults remotely and passes the handling record and satisfaction feedback to the delivery team. Whether a fault is resolved needs to be checked."
         },
         "scenario": {
           "zh": "海外客户反馈设备无法正常使用，可以先整理现象和排查经过；恢复使用后再记录客户反馈，把尚未解决的问题一并转给交付团队。",
@@ -846,17 +851,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "故障处理记录与客户反馈摘要",
           "en": "A troubleshooting record and a customer-feedback summary"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "售后技术支持"
       }
-    ]
+    ],
+    "short": {
+      "zh": "回应使用者的需要，完成接待、说明或问题处理。",
+      "en": "Respond to users’ needs through reception, explanation or problem handling."
+    }
   },
   "逻辑": {
     "group": "技能与工具",
-    "summary": {
-      "zh": "逻辑分别落在账务规则、程序运行和业务解释上。三者都需要让别人看懂推导过程，但检查方式不同：对单据、跑程序，还是核对数据的统计范围和计算方法？",
-      "en": "Logic is applied to accounting rules, program behaviour and business explanations. Each requires a traceable line of reasoning, but the check differs: reconcile documents, run the program, or verify the analytical definitions."
-    },
     "examples": [
       {
         "task": {
@@ -875,7 +880,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "外币往来核对表与差异说明",
           "en": "A foreign-currency reconciliation with explanations of differences"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "外贸会计"
       },
       {
@@ -895,8 +900,12 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "功能流程说明与测试用例记录",
           "en": "A feature-flow description and a set of test-case results"
         },
-        "reviewStatus": "model_draft",
-        "sourceRoleZh": "软件开发工程师"
+        "reviewStatus": "ai_reviewed",
+        "sourceRoleZh": "软件开发工程师",
+        "question": {
+          "zh": "开发前需要提交哪些流程或接口说明，由谁评审？",
+          "en": "Which flow or interface descriptions are needed before development, and who reviews them?"
+        }
       },
       {
         "task": {
@@ -915,17 +924,21 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "营收变化拆解与待验证原因清单",
           "en": "A revenue-change breakdown and a list of explanations to test"
         },
-        "reviewStatus": "model_draft",
-        "sourceRoleZh": "运营分析专员"
+        "reviewStatus": "ai_reviewed",
+        "sourceRoleZh": "运营分析专员",
+        "question": {
+          "zh": "解释营收变化前，需要核对哪些统计定义和计算方法？",
+          "en": "Which statistical definitions and calculation methods need checking before explaining a revenue change?"
+        }
       }
-    ]
+    ],
+    "short": {
+      "zh": "讲清判断的步骤、依据和条件，让别人能够检查。",
+      "en": "Make the steps, evidence and conditions of a judgment clear enough to check."
+    }
   },
   "学习": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "学习可能是掌握现场操作、更新设计方法，或理解招聘业务。成果也不同：能完成任务、能改进作品、能讲清岗位。可以追问：学到什么程度，由谁通过什么成果确认？",
-      "en": "Learning may mean acquiring production skills, updating design methods or understanding a hiring business. The result could be completing a task, improving a design or explaining a role. Ask what demonstrates learning and who reviews that evidence."
-    },
     "examples": [
       {
         "task": {
@@ -944,7 +957,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "工序学习记录与现场问题清单",
           "en": "A process-learning log and a list of shop-floor questions"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "生产实习生"
       },
       {
@@ -964,7 +977,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "视觉对照样稿与方法改进说明",
           "en": "Comparative visual samples and an explanation of the revised approach"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "品牌设计经理"
       },
       {
@@ -984,17 +997,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "岗位业务说明与候选人沟通提纲",
           "en": "A role-and-business brief with a candidate-conversation outline"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "海外招聘专员"
       }
-    ]
+    ],
+    "short": {
+      "zh": "掌握当前任务所需的知识与方法，并用于具体工作。",
+      "en": "Acquire the knowledge and methods needed for current tasks and use them at work."
+    }
   },
   "统筹": {
     "group": "协作与服务",
-    "summary": {
-      "zh": "统筹可能串起连续工序，也可能同时照看多个项目，或安排跨项目的人力需求。先辨认自己协调的是流程还是资源，再问：冲突出现时，谁确定优先次序？",
-      "en": "Coordination may connect production stages, oversee several projects or organize staffing needs across projects. Identify whether the role coordinates a process or allocates resources, then ask who sets priorities when demands conflict."
-    },
     "examples": [
       {
         "task": {
@@ -1013,7 +1026,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "颜色监控记录与调整跟踪表",
           "en": "A colour-monitoring record and an adjustment tracker"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "染色工程师"
       },
       {
@@ -1033,7 +1046,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "多项目进度表与协作事项清单",
           "en": "A multi-project schedule and a list of coordination tasks"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "区域项目经理"
       },
       {
@@ -1053,26 +1066,26 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "美术需求排期与资源调配方案",
           "en": "An art-demand schedule and resource-allocation options"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "游戏美术资源经理"
       }
-    ]
+    ],
+    "short": {
+      "zh": "把多个工序、项目或资源需求排出可执行的安排。",
+      "en": "Organize stages, projects or resource needs into a workable schedule."
+    }
   },
   "主动": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "主动可以是先获取市场信息、先跟进客户，也可以是先把订单问题报出来。值得问清的是：哪些事需要主动发现，能自行推进到哪一步，什么时候需要交接？",
-      "en": "Initiative may mean gathering market information, following up with a customer or flagging an order problem. Ask what you are expected to notice, what you can handle yourself, and when to involve someone else."
-    },
     "examples": [
       {
         "task": {
-          "zh": "把渠道反馈带回产品讨论",
-          "en": "Bring channel feedback into product discussions"
+          "zh": "主动收集渠道和客户反馈",
+          "en": "Gather channel and customer feedback"
         },
         "expertTake": {
-          "zh": "金融渠道工作中的主动，落实在接触渠道、收集市场信息，并把客户反馈整理成可讨论的问题。",
-          "en": "Initiative in financial channels means engaging contacts, collecting market information and turning customer feedback into questions the business can discuss."
+          "zh": "主动落实在接触渠道、收集市场信息和客户反馈。收集之后交给谁、怎样处理，需要把后续步骤问清。",
+          "en": "Initiative involves contacting channels and collecting market information and customer feedback. Ask who receives that information and what happens next."
         },
         "scenario": {
           "zh": "渠道反复提到客户看不懂某项产品说明，可以整理具体疑问与出现情境，汇总给业务团队，跟进是否需要补充解释材料。",
@@ -1082,7 +1095,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "渠道反馈摘要与问题跟进记录",
           "en": "A channel-feedback summary and an issue-follow-up log"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "金融渠道经理"
       },
       {
@@ -1102,7 +1115,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "客户需求记录与后续跟进清单",
           "en": "A customer-needs record and a follow-up list"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "汽车销售"
       },
       {
@@ -1122,17 +1135,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "订单异常清单与客户沟通记录",
           "en": "An order-exception list and a customer-communication log"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "客户跟单专员"
       }
-    ]
+    ],
+    "short": {
+      "zh": "及时发现需要处理的事项，跟进或向相关人员反馈。",
+      "en": "Notice matters that need attention, follow up or inform the relevant people."
+    }
   },
   "英语": {
     "group": "技能与工具",
-    "summary": {
-      "zh": "英语可能用于读懂监管要求、写清技术问题，也可能贯穿采购谈判与对账。准备时应拿对应任务来练；面试可以问：日常最常读、写或说的材料分别是什么？",
-      "en": "English may be used to interpret registration requirements, document technical issues, or conduct procurement discussions and reconciliations. Practise the relevant task, and ask which materials and conversations are most common in the role."
-    },
     "examples": [
       {
         "task": {
@@ -1151,7 +1164,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "补充材料清单与英文回应提纲",
           "en": "A supplemental-material checklist and an English response outline"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "医疗器械海外注册"
       },
       {
@@ -1171,7 +1184,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "英文测试用例与问题复现说明",
           "en": "English test cases and an issue-reproduction note"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "自动驾驶系统工程师"
       },
       {
@@ -1191,17 +1204,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "英文询价记录与费用核对表",
           "en": "An English quotation record and a cost-reconciliation sheet"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "海外采购工程师"
       }
-    ]
+    ],
+    "short": {
+      "zh": "用英语完成岗位涉及的阅读、写作或交流任务。",
+      "en": "Use English for the reading, writing or conversations required by the role."
+    }
   },
   "严谨": {
     "group": "品质与工作方式",
-    "summary": {
-      "zh": "严谨在这里分别保护试样过程、采购约定和财务报表的可追溯性。关键不只是少犯错，还要让别人找到依据。可以问：哪些变更必须留痕，最终由谁复核？",
-      "en": "Rigor preserves traceability in sample trials, purchasing commitments and financial reporting. It means not only avoiding errors but leaving evidence others can follow. Ask which changes must be recorded and who performs the final review."
-    },
     "examples": [
       {
         "task": {
@@ -1220,7 +1233,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "试样参数对照与技术档案更新",
           "en": "A trial-parameter comparison and updated technical records"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "涂料工艺工程师"
       },
       {
@@ -1240,7 +1253,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "采购变更核对表与确认记录",
           "en": "A purchasing-change checklist and confirmation record"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "采购主管"
       },
       {
@@ -1260,17 +1273,17 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "报表勾稽核对表与调整说明",
           "en": "A statement-reconciliation worksheet and adjustment notes"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "总账会计"
       }
-    ]
+    ],
+    "short": {
+      "zh": "核对关键细节并保留依据，让错误和修改能够追查。",
+      "en": "Check important details and retain evidence so errors and revisions can be traced."
+    }
   },
   "闭环": {
     "group": "管理用语",
-    "summary": {
-      "zh": "闭环可能指追完一次生产异常、把现场问题送进模型改进，或建设技术数据回路。先认清它围绕什么对象运转，再问：什么证据才算完成，谁来确认？",
-      "en": "A closed loop may mean following a production issue through, feeding field problems into model improvement, or supporting a technical data cycle. Identify the object of the loop, then ask what evidence establishes completion and who confirms it."
-    },
     "examples": [
       {
         "task": {
@@ -1289,7 +1302,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "生产异常记录与改善跟踪表",
           "en": "A production-issue record and improvement tracker"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "生产班组长"
       },
       {
@@ -1309,13 +1322,13 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "任务失败案例集与模型改进需求摘要",
           "en": "A task-failure case set and a model-improvement brief"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "AI 交付技术运营"
       },
       {
         "task": {
-          "zh": "让压缩规格服务数据回传",
-          "en": "Align compression specifications with data return needs"
+          "zh": "按数据闭环需求改进压缩规格",
+          "en": "Improve compression specifications for the data cycle"
         },
         "expertTake": {
           "zh": "算法工程师要把数据回路的需求转成压缩规格，并同时检查功耗、性能和面积约束。",
@@ -1329,17 +1342,21 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "压缩方案对比与工程约束验证记录",
           "en": "A compression-option comparison and engineering-constraint checks"
         },
-        "reviewStatus": "model_draft",
-        "sourceRoleZh": "AI 视频压缩算法工程师"
+        "reviewStatus": "ai_reviewed",
+        "sourceRoleZh": "AI 视频压缩算法工程师",
+        "question": {
+          "zh": "压缩规格和功耗、性能、面积要求分别怎样验收？",
+          "en": "How are compression specifications and power, performance and area requirements assessed?"
+        }
       }
-    ]
+    ],
+    "short": {
+      "zh": "把问题或反馈接回处理流程，检查后续结果。",
+      "en": "Feed issues or feedback back into the relevant process and check subsequent results."
+    }
   },
   "执行力": {
     "group": "管理用语",
-    "summary": {
-      "zh": "执行可能是把商户方案落实、把设备诊断推进到改善，或按既定流程处理城市业务。要看从什么动作开始、以什么结果结束，再问：遇到例外时能调整哪些步骤？",
-      "en": "Execution may put a merchant plan into practice, carry equipment diagnosis into improvement, or apply an established city-operations procedure. Identify the starting action and end result, then ask which steps can change when an exception arises."
-    },
     "examples": [
       {
         "task": {
@@ -1358,7 +1375,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "商户活动执行清单与进度记录",
           "en": "A merchant-campaign action list and progress record"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "本地生活运营"
       },
       {
@@ -1378,7 +1395,7 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "设备异常分析与预防措施跟踪表",
           "en": "An equipment-issue analysis and preventive-action tracker"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "半导体设备工程师"
       },
       {
@@ -1398,9 +1415,13 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
           "zh": "订单与车辆问题记录及流程跟踪表",
           "en": "An order-and-vehicle issue record with procedural follow-up"
         },
-        "reviewStatus": "model_draft",
+        "reviewStatus": "ai_reviewed",
         "sourceRoleZh": "城市业务主管"
       }
-    ]
+    ],
+    "short": {
+      "zh": "按要求推进具体事项，处理阻碍并跟进完成情况。",
+      "en": "Carry out assigned actions, address obstacles and follow progress to completion."
+    }
   }
 };

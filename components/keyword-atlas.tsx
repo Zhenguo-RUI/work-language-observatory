@@ -53,9 +53,9 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
   const selected = data.keywords.find(k => k.term === term) || data.keywords[0];
   const expansion = selected ? keywordContexts[selected.term] : undefined;
   const filtered = data.keywords.filter(k => (!group || keywordContexts[k.term]?.group === group) && [k.term, k.english, k.short[lang]].join(" ").toLowerCase().includes(query.toLowerCase().trim()));
-  const hasUnreviewedExamples = selected?.examples.some((example, i) => {
+  const allAIReviewed = selected?.examples.every((example, i) => {
     const context = expansion?.examples[i];
-    return context?.sourceRoleZh !== example.role.zh || context.reviewStatus === "model_draft";
+    return context?.sourceRoleZh === example.role.zh && context.reviewStatus === "ai_reviewed";
   });
   const choose = (value: string) => {
     trackUsage("keyword_select", {view: "keywords"});
@@ -152,7 +152,7 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
       <section className="atlas-detail" ref={detail} aria-labelledby="atlas-detail-title">
         <header className="atlas-detail-heading">
           <div className="atlas-title-row"><h2 id="atlas-detail-title" tabIndex={-1}><span>{lang === "zh" ? selected.term : selected.english}</span><PencilOval/></h2><p className="atlas-gloss">{lang === "zh" ? selected.english : selected.term}</p></div>
-          <p className="atlas-definition atlas-term-summary">{selected.short[lang]}<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7Q23 2 43 6T86 6T128 7T169 6T213 7T255 6T298 5"/></svg></p>
+          <p className="atlas-definition atlas-term-summary">{(expansion?.short || selected.short)[lang]}<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7Q23 2 43 6T86 6T128 7T169 6T213 7T255 6T298 5"/></svg></p>
           <p className="atlas-data-line">{stat(`term.${selected.term}.ads`)} {t("份广告命中", "ads matched")} / {stat("corpus.n")} {t("份广告", "ads")}{expansion&&<span>{keywordGroups[expansion.group][lang]}</span>}</p>
           <p className="atlas-pending-note">{t("用法尚未编码。以下是挑选的工作对照，不代表词义分布。", "Meanings have not yet been coded. The selected contrasts below do not show their prevalence.")}</p>
         </header>
@@ -165,10 +165,10 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
           <div className="atlas-example-top"><span className="atlas-example-number">{String(i + 1).padStart(2, "0")}</span><h3>{example.role[lang]}</h3></div>
           <span className="atlas-detail-label">{t("这里做什么", "What the work involves")}</span><p className="atlas-reading">{context?.task[lang] || example.reading[lang]}</p>
           {context&&<><p className="atlas-expert-reading">{context.expertTake[lang]}</p><p className="atlas-deliverable"><span>{t("可能的交付","Possible deliverable")}</span>{context.deliverable[lang]}</p></>}
-          <div className="atlas-follow-up"><span className="atlas-detail-label">{t("可以问", "Ask the employer")}</span><p>{example.question[lang]}</p></div>
+          <div className="atlas-follow-up"><span className="atlas-detail-label">{t("可以问", "Ask the employer")}</span><p>{(context?.question || example.question)[lang]}</p></div>
         </article>})}</div>
-        <p className="atlas-review-note">{hasUnreviewedExamples?t("卡片依据归档广告写成去识别释义，并补充任务说明与交付建议；由模型起草，尚未经作者逐条核对。交付建议不等于雇主要求。", "The cards paraphrase archived ads without identifying details and add task explanations and suggested deliverables. They are model drafts, not yet checked individually by the author. Suggested deliverables are not employer requirements."):t("卡片依据归档广告写成去识别释义。任务说明与交付建议已经作者逐条核对；交付建议不等于雇主要求。", "The cards paraphrase archived ads without identifying details. The author has checked the task explanations and suggested deliverables individually; suggestions are not employer requirements.")}</p>
-        <div className="atlas-closing">{expansion&&<p className="atlas-comparison-summary">{expansion.summary[lang]}</p>}<WloIllustration name="twocards" width={120} className="atlas-two-cards"/></div>
+        <p className="atlas-review-note">{allAIReviewed?t("卡片使用归档广告的去识别释义，已经AI编辑复核，尚无人工审核结果；交付建议供准备时参考。", "The cards use deidentified paraphrases of archived ads and have received an AI editorial review. No human review results are available; suggested deliverables are preparation ideas."):t("卡片使用归档广告的去识别释义，任务说明与交付建议由AI起草，尚无人工审核结果。", "The cards use deidentified paraphrases of archived ads. Task explanations and suggested deliverables were drafted by AI; no human review results are available.")}</p>
+        <div className="atlas-closing"><WloIllustration name="twocards" width={120} className="atlas-two-cards"/></div>
         <details className="atlas-archive-contexts"><summary>{t("查看归档中的职责描述", "Read the archived duty descriptions")}</summary>{selected.examples.map((example, i)=><div key={selected.term+i}><h4>{example.role[lang]}</h4><p>{example.context[lang]}</p></div>)}</details>
       </section>
     </div>

@@ -1,0 +1,435 @@
+{
+  "n": 2000,
+  "method": {
+    "status": "Exploratory, chosen after earlier results; no human or model semantic classification",
+    "split": "NFKC/casefold; split 。 . ; ! ? CR LF, preserve commas; empty fragments discarded",
+    "company_mask": "Exact matches to observed nonempty employer-field names replaced by companytoken before signature creation; aliases and unobserved company names are not inferred",
+    "signature": "Remove Unicode punctuation, numeric characters and whitespace; no minimum clause length for exact matching",
+    "near": "Set of character 5-grams; exact Jaccard >=0.8; clauses shorter than 5 characters exact-only; direct neighborhood, never transitive components",
+    "threshold": "At least 3 distinct advertisements; duplicate clauses inside an ad do not increase support",
+    "categories": {
+      "known_employers": "At least 2 distinct observed employer names among supporting ads",
+      "cross_source": "At least 2 archive sources among supporting ads",
+      "unknown_within_source": "At least 3 ads with unavailable employer in one archive source"
+    },
+    "overlap": "Categories can overlap; union counts count each clause/ad once; provenance of copying is unconfirmed",
+    "difference_from_04": "04 used exact signatures with >=12 Han characters and no company masking. This analysis adds company masking, near matches and explicit provenance categories; it includes short exact repeats.",
+    "limit": "Repeated language may be substantively meaningful. Short headings and labels qualify under the exact rule: affected-ad counts do not mean that job duties were copied. Unobserved aliases and approximate paraphrases can be missed. These are archive-source comparisons, not identified platform effects."
+  },
+  "summary": {
+    "unique_signatures": 23991,
+    "candidate_signatures": 254,
+    "exact_candidate_signatures": 245,
+    "ads_affected": 1289,
+    "clauses_removed": 3882,
+    "empty_ads": 0,
+    "company_masked_clauses": 203,
+    "short_candidate_clauses": 3565,
+    "ads_with_long_candidates": 82,
+    "candidate_pairs_checked": 304,
+    "near_edges": 31
+  },
+  "categories": {
+    "known_employers": {
+      "signatures": 246,
+      "ads": 1275,
+      "clause_occurrences": 3851
+    },
+    "cross_source": {
+      "signatures": 56,
+      "ads": 1261,
+      "clause_occurrences": 2510
+    },
+    "unknown_within_source": {
+      "signatures": 25,
+      "ads": 1253,
+      "clause_occurrences": 2307
+    }
+  },
+  "terms": [
+    {
+      "term": "沟通",
+      "literal_occurrences": 1719,
+      "candidate_occurrences": 8,
+      "candidate_rate": 0.004653868528214078,
+      "literal_ads": 1233,
+      "candidate_ads": 8,
+      "by_category": {
+        "known_employers": 8,
+        "cross_source": 5,
+        "unknown_within_source": 5
+      }
+    },
+    {
+      "term": "分析",
+      "literal_occurrences": 2322,
+      "candidate_occurrences": 16,
+      "candidate_rate": 0.0068906115417743325,
+      "literal_ads": 1004,
+      "candidate_ads": 13,
+      "by_category": {
+        "known_employers": 16,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "数据",
+      "literal_occurrences": 2578,
+      "candidate_occurrences": 21,
+      "candidate_rate": 0.008145849495733127,
+      "literal_ads": 905,
+      "candidate_ads": 18,
+      "by_category": {
+        "known_employers": 21,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "协调",
+      "literal_occurrences": 1119,
+      "candidate_occurrences": 3,
+      "candidate_rate": 0.002680965147453083,
+      "literal_ads": 751,
+      "candidate_ads": 3,
+      "by_category": {
+        "known_employers": 3,
+        "cross_source": 3,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "熟练",
+      "literal_occurrences": 938,
+      "candidate_occurrences": 4,
+      "candidate_rate": 0.0042643923240938165,
+      "literal_ads": 747,
+      "candidate_ads": 4,
+      "by_category": {
+        "known_employers": 4,
+        "cross_source": 4,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "独立",
+      "literal_occurrences": 823,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 618,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "协作",
+      "literal_occurrences": 632,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 522,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "抗压",
+      "literal_occurrences": 507,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 501,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "责任心",
+      "literal_occurrences": 548,
+      "candidate_occurrences": 5,
+      "candidate_rate": 0.009124087591240875,
+      "literal_ads": 498,
+      "candidate_ads": 5,
+      "by_category": {
+        "known_employers": 5,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "适应",
+      "literal_occurrences": 493,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 452,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "目标",
+      "literal_occurrences": 702,
+      "candidate_occurrences": 10,
+      "candidate_rate": 0.014245014245014245,
+      "literal_ads": 447,
+      "candidate_ads": 5,
+      "by_category": {
+        "known_employers": 10,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "服务",
+      "literal_occurrences": 1185,
+      "candidate_occurrences": 74,
+      "candidate_rate": 0.06244725738396625,
+      "literal_ads": 427,
+      "candidate_ads": 49,
+      "by_category": {
+        "known_employers": 74,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "逻辑",
+      "literal_occurrences": 489,
+      "candidate_occurrences": 3,
+      "candidate_rate": 0.006134969325153374,
+      "literal_ads": 395,
+      "candidate_ads": 3,
+      "by_category": {
+        "known_employers": 3,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "学习",
+      "literal_occurrences": 486,
+      "candidate_occurrences": 5,
+      "candidate_rate": 0.0102880658436214,
+      "literal_ads": 368,
+      "candidate_ads": 5,
+      "by_category": {
+        "known_employers": 5,
+        "cross_source": 5,
+        "unknown_within_source": 5
+      }
+    },
+    {
+      "term": "统筹",
+      "literal_occurrences": 460,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 295,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "主动",
+      "literal_occurrences": 290,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 237,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "英语",
+      "literal_occurrences": 299,
+      "candidate_occurrences": 18,
+      "candidate_rate": 0.06020066889632107,
+      "literal_ads": 230,
+      "candidate_ads": 17,
+      "by_category": {
+        "known_employers": 18,
+        "cross_source": 5,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "严谨",
+      "literal_occurrences": 242,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 219,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "闭环",
+      "literal_occurrences": 247,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 182,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    },
+    {
+      "term": "执行力",
+      "literal_occurrences": 211,
+      "candidate_occurrences": 0,
+      "candidate_rate": 0.0,
+      "literal_ads": 180,
+      "candidate_ads": 0,
+      "by_category": {
+        "known_employers": 0,
+        "cross_source": 0,
+        "unknown_within_source": 0
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "terms": [
+        "抗压",
+        "协调"
+      ],
+      "before": {
+        "cells": [
+          [
+            284,
+            217
+          ],
+          [
+            467,
+            1032
+          ]
+        ],
+        "n": 2000,
+        "first_n": 501,
+        "other_n": 1499,
+        "first_rate": 0.5668662674650699,
+        "other_rate": 0.3115410273515677,
+        "or": 2.892154057174434,
+        "or_ci95": [
+          2.349510442391158,
+          3.5601267989759244
+        ],
+        "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+      },
+      "after": {
+        "cells": [
+          [
+            284,
+            217
+          ],
+          [
+            467,
+            1032
+          ]
+        ],
+        "n": 2000,
+        "first_n": 501,
+        "other_n": 1499,
+        "first_rate": 0.5668662674650699,
+        "other_rate": 0.3115410273515677,
+        "or": 2.892154057174434,
+        "or_ci95": [
+          2.349510442391158,
+          3.5601267989759244
+        ],
+        "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+      }
+    },
+    {
+      "terms": [
+        "数据",
+        "沟通"
+      ],
+      "before": {
+        "cells": [
+          [
+            619,
+            286
+          ],
+          [
+            614,
+            481
+          ]
+        ],
+        "n": 2000,
+        "first_n": 905,
+        "other_n": 1095,
+        "first_rate": 0.6839779005524862,
+        "other_rate": 0.5607305936073059,
+        "or": 1.695513769618004,
+        "or_ci95": [
+          1.4104602055267803,
+          2.0381765693918195
+        ],
+        "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+      },
+      "after": {
+        "cells": [
+          [
+            618,
+            281
+          ],
+          [
+            607,
+            494
+          ]
+        ],
+        "n": 2000,
+        "first_n": 899,
+        "other_n": 1101,
+        "first_rate": 0.6874304783092324,
+        "other_rate": 0.5513169845594914,
+        "or": 1.7898655660239084,
+        "or_ci95": [
+          1.488500756717974,
+          2.152245291095324
+        ],
+        "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+      }
+    }
+  ],
+  "source_summary": {
+    "51job": {
+      "n": 1000,
+      "ads_affected": 306
+    },
+    "boss": {
+      "n": 500,
+      "ads_affected": 483
+    },
+    "liepin": {
+      "n": 500,
+      "ads_affected": 500
+    }
+  },
+  "human_annotations_read": 0,
+  "human_annotations_written": 0,
+  "model_calls": 0,
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+}

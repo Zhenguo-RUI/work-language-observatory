@@ -1810,5 +1810,1240 @@
       2.0104628237088153
     ],
     "ci_method": "Robins–Breslow–Greenland (1986) pooled log-OR variance; normal 95% interval"
+  },
+  "template.unique_signatures": {
+    "value": 23991,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.candidate_signatures": {
+    "value": 254,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.exact_candidate_signatures": {
+    "value": 245,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.ads_affected": {
+    "value": 1289,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.clauses_removed": {
+    "value": 3882,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.empty_ads": {
+    "value": 0,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.company_masked_clauses": {
+    "value": 203,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.candidate_pairs_checked": {
+    "value": 304,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.near_edges": {
+    "value": 31,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.沟通.literal_occurrences": {
+    "value": 1719,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1719
+  },
+  "template.term.沟通.candidate_occurrences": {
+    "value": 8,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1719
+  },
+  "template.term.沟通.candidate_rate": {
+    "value": 0.004653868528214078,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1719
+  },
+  "template.term.沟通.literal_ads": {
+    "value": 1233,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.沟通.candidate_ads": {
+    "value": 8,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.分析.literal_occurrences": {
+    "value": 2322,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2322
+  },
+  "template.term.分析.candidate_occurrences": {
+    "value": 16,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2322
+  },
+  "template.term.分析.candidate_rate": {
+    "value": 0.0068906115417743325,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2322
+  },
+  "template.term.分析.literal_ads": {
+    "value": 1004,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.分析.candidate_ads": {
+    "value": 13,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.数据.literal_occurrences": {
+    "value": 2578,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2578
+  },
+  "template.term.数据.candidate_occurrences": {
+    "value": 21,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2578
+  },
+  "template.term.数据.candidate_rate": {
+    "value": 0.008145849495733127,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2578
+  },
+  "template.term.数据.literal_ads": {
+    "value": 905,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.数据.candidate_ads": {
+    "value": 18,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.协调.literal_occurrences": {
+    "value": 1119,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1119
+  },
+  "template.term.协调.candidate_occurrences": {
+    "value": 3,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1119
+  },
+  "template.term.协调.candidate_rate": {
+    "value": 0.002680965147453083,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1119
+  },
+  "template.term.协调.literal_ads": {
+    "value": 751,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.协调.candidate_ads": {
+    "value": 3,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.熟练.literal_occurrences": {
+    "value": 938,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 938
+  },
+  "template.term.熟练.candidate_occurrences": {
+    "value": 4,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 938
+  },
+  "template.term.熟练.candidate_rate": {
+    "value": 0.0042643923240938165,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 938
+  },
+  "template.term.熟练.literal_ads": {
+    "value": 747,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.熟练.candidate_ads": {
+    "value": 4,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.独立.literal_occurrences": {
+    "value": 823,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 823
+  },
+  "template.term.独立.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 823
+  },
+  "template.term.独立.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 823
+  },
+  "template.term.独立.literal_ads": {
+    "value": 618,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.独立.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.协作.literal_occurrences": {
+    "value": 632,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 632
+  },
+  "template.term.协作.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 632
+  },
+  "template.term.协作.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 632
+  },
+  "template.term.协作.literal_ads": {
+    "value": 522,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.协作.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.抗压.literal_occurrences": {
+    "value": 507,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 507
+  },
+  "template.term.抗压.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 507
+  },
+  "template.term.抗压.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 507
+  },
+  "template.term.抗压.literal_ads": {
+    "value": 501,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.抗压.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.责任心.literal_occurrences": {
+    "value": 548,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 548
+  },
+  "template.term.责任心.candidate_occurrences": {
+    "value": 5,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 548
+  },
+  "template.term.责任心.candidate_rate": {
+    "value": 0.009124087591240875,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 548
+  },
+  "template.term.责任心.literal_ads": {
+    "value": 498,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.责任心.candidate_ads": {
+    "value": 5,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.适应.literal_occurrences": {
+    "value": 493,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 493
+  },
+  "template.term.适应.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 493
+  },
+  "template.term.适应.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 493
+  },
+  "template.term.适应.literal_ads": {
+    "value": 452,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.适应.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.目标.literal_occurrences": {
+    "value": 702,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 702
+  },
+  "template.term.目标.candidate_occurrences": {
+    "value": 10,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 702
+  },
+  "template.term.目标.candidate_rate": {
+    "value": 0.014245014245014245,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 702
+  },
+  "template.term.目标.literal_ads": {
+    "value": 447,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.目标.candidate_ads": {
+    "value": 5,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.服务.literal_occurrences": {
+    "value": 1185,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1185
+  },
+  "template.term.服务.candidate_occurrences": {
+    "value": 74,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1185
+  },
+  "template.term.服务.candidate_rate": {
+    "value": 0.06244725738396625,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1185
+  },
+  "template.term.服务.literal_ads": {
+    "value": 427,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.服务.candidate_ads": {
+    "value": 49,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.逻辑.literal_occurrences": {
+    "value": 489,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 489
+  },
+  "template.term.逻辑.candidate_occurrences": {
+    "value": 3,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 489
+  },
+  "template.term.逻辑.candidate_rate": {
+    "value": 0.006134969325153374,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 489
+  },
+  "template.term.逻辑.literal_ads": {
+    "value": 395,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.逻辑.candidate_ads": {
+    "value": 3,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.学习.literal_occurrences": {
+    "value": 486,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 486
+  },
+  "template.term.学习.candidate_occurrences": {
+    "value": 5,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 486
+  },
+  "template.term.学习.candidate_rate": {
+    "value": 0.0102880658436214,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 486
+  },
+  "template.term.学习.literal_ads": {
+    "value": 368,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.学习.candidate_ads": {
+    "value": 5,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.统筹.literal_occurrences": {
+    "value": 460,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 460
+  },
+  "template.term.统筹.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 460
+  },
+  "template.term.统筹.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 460
+  },
+  "template.term.统筹.literal_ads": {
+    "value": 295,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.统筹.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.主动.literal_occurrences": {
+    "value": 290,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 290
+  },
+  "template.term.主动.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 290
+  },
+  "template.term.主动.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 290
+  },
+  "template.term.主动.literal_ads": {
+    "value": 237,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.主动.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.英语.literal_occurrences": {
+    "value": 299,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 299
+  },
+  "template.term.英语.candidate_occurrences": {
+    "value": 18,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 299
+  },
+  "template.term.英语.candidate_rate": {
+    "value": 0.06020066889632107,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 299
+  },
+  "template.term.英语.literal_ads": {
+    "value": 230,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.英语.candidate_ads": {
+    "value": 17,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.严谨.literal_occurrences": {
+    "value": 242,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 242
+  },
+  "template.term.严谨.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 242
+  },
+  "template.term.严谨.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 242
+  },
+  "template.term.严谨.literal_ads": {
+    "value": 219,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.严谨.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.闭环.literal_occurrences": {
+    "value": 247,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 247
+  },
+  "template.term.闭环.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 247
+  },
+  "template.term.闭环.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 247
+  },
+  "template.term.闭环.literal_ads": {
+    "value": 182,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.闭环.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.执行力.literal_occurrences": {
+    "value": 211,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 211
+  },
+  "template.term.执行力.candidate_occurrences": {
+    "value": 0,
+    "unit": "occurrences",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 211
+  },
+  "template.term.执行力.candidate_rate": {
+    "value": 0.0,
+    "unit": "proportion",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 211
+  },
+  "template.term.执行力.literal_ads": {
+    "value": 180,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.term.执行力.candidate_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Literal term occurrences in candidate repeated clauses / all literal occurrences; not semantic-use proportion",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.before.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.before.first_n": {
+    "value": 501,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.before.other_n": {
+    "value": 1499,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.before.first_rate": {
+    "value": 0.5668662674650699,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 501
+  },
+  "template.assoc.抗压_协调.before.other_rate": {
+    "value": 0.3115410273515677,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1499
+  },
+  "template.assoc.抗压_协调.before.or": {
+    "value": 2.892154057174434,
+    "unit": "odds ratio",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "ci": [
+      2.349510442391158,
+      3.5601267989759244
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "template.assoc.抗压_协调.after.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.after.first_n": {
+    "value": 501,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.after.other_n": {
+    "value": 1499,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.抗压_协调.after.first_rate": {
+    "value": 0.5668662674650699,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 501
+  },
+  "template.assoc.抗压_协调.after.other_rate": {
+    "value": 0.3115410273515677,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1499
+  },
+  "template.assoc.抗压_协调.after.or": {
+    "value": 2.892154057174434,
+    "unit": "odds ratio",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "ci": [
+      2.349510442391158,
+      3.5601267989759244
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "template.assoc.数据_沟通.before.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.数据_沟通.before.first_n": {
+    "value": 905,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.数据_沟通.before.other_n": {
+    "value": 1095,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.数据_沟通.before.first_rate": {
+    "value": 0.6839779005524862,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 905
+  },
+  "template.assoc.数据_沟通.before.other_rate": {
+    "value": 0.5607305936073059,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1095
+  },
+  "template.assoc.数据_沟通.before.or": {
+    "value": 1.695513769618004,
+    "unit": "odds ratio",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "ci": [
+      1.4104602055267803,
+      2.0381765693918195
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "template.assoc.数据_沟通.after.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.数据_沟通.after.first_n": {
+    "value": 899,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.数据_沟通.after.other_n": {
+    "value": 1101,
+    "unit": "advertisements",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.assoc.数据_沟通.after.first_rate": {
+    "value": 0.6874304783092324,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 899
+  },
+  "template.assoc.数据_沟通.after.other_rate": {
+    "value": 0.5513169845594914,
+    "unit": "proportion",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1101
+  },
+  "template.assoc.数据_沟通.after.or": {
+    "value": 1.7898655660239084,
+    "unit": "odds ratio",
+    "method": "Ad-level lexical 2x2 before/after removing union of repeated-clause candidates; all ads retained",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "ci": [
+      1.488500756717974,
+      2.152245291095324
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "template.short_candidate_clauses": {
+    "value": 3565,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "template.ads_with_long_candidates": {
+    "value": 82,
+    "unit": "count",
+    "method": "Exact/near repeated-clause candidate detection; category origins unconfirmed",
+    "source": "research/aggregates/template-sensitivity.json",
+    "script": "research/scripts/05_template_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
   }
 }

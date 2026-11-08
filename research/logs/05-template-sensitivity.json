@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-11-08T17:03:41.009851+00:00",
+  "script": "research/scripts/05_template_sensitivity.py",
+  "script_sha256": "25bcf847c50d9db51423d4d019eb65cfd16d0054e357ae961c366fa1810ace15",
+  "base_commit": "7270acc556f5e8b337b642a43ed0ed2cccb15a0c",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "seed": null,
+  "sampling": "deterministic census",
+  "model": null,
+  "model_calls": 0,
+  "prompt_hash": null,
+  "temperature": null,
+  "human_annotations_written": 0,
+  "outputs": [
+    "research/aggregates/template-sensitivity.json",
+    "research/aggregates/stats.json",
+    "research/private/template-sensitivity-20261109/clauses.private.json"
+  ]
+}

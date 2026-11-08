@@ -93,7 +93,7 @@
 .public-reader .keyword-atlas .wlo-illustration.atlas-two-cards{width:120px;max-width:120px;margin:0 0 6px;flex-shrink:0}
 @media(max-width:900px){.public-reader .keyword-atlas .atlas-closing{gap:16px}.public-reader .keyword-atlas .wlo-illustration.atlas-two-cards{width:72px;max-width:72px}}
 
-/* Task explanations stay readable at a glance; only one card opens in full. */
+/* Task, suggested output and a concrete question remain visible on every card. */
 .public-reader .keyword-atlas .atlas-reading{font-weight:500;margin-bottom:8px}
 .public-reader .keyword-atlas .atlas-expert-reading{font:400 14px/1.8 var(--f-sans);margin:0 0 12px;color:var(--ink);overflow-wrap:anywhere}
 .public-reader .keyword-atlas .atlas-deliverable{display:block;font:400 13px/1.75 var(--f-sans);margin:0 0 14px;color:var(--ink);overflow-wrap:anywhere}
@@ -121,6 +121,34 @@
  .public-reader .keyword-atlas .atlas-comparison-summary{font-size:13px;line-height:1.9}
 }
 
+/* Research-aligned reading: small counts, visible work examples, one source note. */
+.public-reader .keyword-atlas .atlas-group-filter{display:grid;gap:6px;margin:0 0 18px;font:400 11px/1.5 var(--f-sans);color:var(--grey)}
+.public-reader .keyword-atlas .atlas-group-filter select{width:100%;min-width:0;min-height:40px;padding:7px 26px 7px 0;border:0;border-bottom:1px solid var(--hairline);border-radius:0;background:transparent;font:400 13px/1.6 var(--f-sans);color:var(--ink);cursor:pointer}
+.public-reader .keyword-atlas .atlas-group-filter select:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+.public-reader .keyword-atlas .atlas-term-summary{position:relative;margin:8px 0 15px;font:400 23px/1.6 var(--f-serif);color:var(--ink);max-width:620px}
+.public-reader .keyword-atlas .atlas-term-summary>svg{display:block;width:65%;max-width:300px;height:9px;margin-top:3px;fill:none;stroke:var(--sage);stroke-width:2.2;stroke-linecap:round}
+.public-reader .keyword-atlas .atlas-data-line{display:flex;align-items:baseline;flex-wrap:wrap;gap:5px;margin:0 0 10px;font:400 12px/1.7 var(--f-mono);color:var(--grey)}
+.public-reader .keyword-atlas .atlas-data-line>span{font:400 11px/1.7 var(--f-sans);padding-left:12px;margin-left:7px;border-left:1px solid var(--hairline)}
+.public-reader .keyword-atlas .atlas-pending-note,.public-reader .keyword-atlas .atlas-review-note{font:400 11px/1.85 var(--f-sans);color:var(--grey);max-width:650px;overflow-wrap:anywhere}
+.public-reader .keyword-atlas .atlas-pending-note{margin:0}
+.public-reader .keyword-atlas .atlas-review-note{margin:0 24px 24px;padding-top:2px}
+.public-reader .keyword-atlas .atlas-example>.atlas-detail-label{margin-top:10px}
+.public-reader .keyword-atlas .atlas-closing>.atlas-comparison-summary{flex:1;min-width:0;margin:0;font:400 15px/1.85 var(--f-sans)}
+.public-reader .keyword-atlas .atlas-archive-contexts{border-top:1px solid var(--hairline);margin-top:18px;font:400 13px/1.8 var(--f-sans)}
+.public-reader .keyword-atlas .atlas-archive-contexts>summary{min-height:44px;padding:10px 0;color:var(--slate);cursor:pointer}
+.public-reader .keyword-atlas .atlas-archive-contexts h4{margin:14px 0 5px;font-weight:500}
+.public-reader .keyword-atlas .atlas-archive-contexts p{margin:0 0 15px;border-left:3px solid var(--sage);padding-left:12px}
+.public-reader .keyword-atlas .atlas-index-note{white-space:normal;overflow-wrap:anywhere}
+@media(max-width:900px){
+ .public-reader .keyword-atlas .atlas-term-summary{font-size:20px;line-height:1.65;margin-top:12px}
+ .public-reader .keyword-atlas .atlas-data-line{font-size:11px}
+ .public-reader .keyword-atlas .atlas-data-line>span{padding-left:8px;margin-left:3px;font-size:10px}
+ .public-reader .keyword-atlas .atlas-review-note{margin:0 20px 20px;font-size:10px}
+ .public-reader .keyword-atlas .atlas-closing>.atlas-comparison-summary{font-size:13px;line-height:1.9}
+ .public-reader .keyword-atlas .atlas-closing{gap:12px}
+ .public-reader .keyword-atlas .atlas-pending-note{font-size:10px}
+}
+
 /* v3.1: a short marginal gesture follows the selected row. */
 .public-reader .keyword-atlas .atlas-index-track{--rail-w:56px;position:relative;min-width:0;padding-left:var(--rail-w)}
 .public-reader .keyword-atlas .atlas-index-track .atlas-list{position:relative;min-width:0;padding-right:8px;scrollbar-gutter:stable}
@@ -134,7 +162,7 @@
 .public-reader .keyword-atlas .atlas-term.selected{background:transparent!important;border-left:0;color:var(--slate)}
 .public-reader .keyword-atlas .atlas-rank{font:400 11px/1.5 var(--f-mono);min-width:2ch;text-align:right;color:var(--placeholder);flex-shrink:0;align-self:flex-start;margin-top:3.75px}
 .public-reader .keyword-atlas .atlas-count{font:400 11px/1.5 var(--f-mono);color:var(--placeholder);margin-left:auto;flex-shrink:0}
-.public-reader .keyword-atlas .atlas-index-note{white-space:nowrap;padding:14px 0 0;margin:0;font:400 11px/1.5 var(--f-sans);letter-spacing:0;color:var(--placeholder)}
+.public-reader .keyword-atlas .atlas-index-note{white-space:normal;padding:14px 0 0;margin:0;font:400 11px/1.5 var(--f-sans);letter-spacing:0;color:var(--placeholder)}
 .public-reader .keyword-atlas .atlas-detail-count,.public-reader .keyword-atlas .atlas-detail-count strong,.public-reader .keyword-atlas .atlas-contexts-heading>span,.public-reader .keyword-atlas .atlas-example-number{color:var(--placeholder)}
 @media(max-width:900px){
  .public-reader .keyword-atlas .atlas-index-track{--rail-w:44px}

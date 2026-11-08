@@ -5,7 +5,8 @@ import {ArrowUpRight, Search, X, Menu} from "lucide-react";
 import {WloIllustration} from "./design-symbols";
 import {trackUsage} from "@/lib/usage-client";
 import type {PublicStudy} from "@/lib/public-study-types";
-import {keywordContexts} from "@/lib/keyword-contexts";
+import {keywordContexts, keywordGroups, type KeywordGroup} from "@/lib/keyword-contexts";
+import {fillStats} from "@/lib/research-stats";
 import "./research-pages.css";
 import "./keyword-handoff.css";
 
@@ -33,6 +34,7 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
 }) {
   const [directoryOpen,setDirectoryOpen]=useState(false);
   const [query, setQuery] = useState("");
+  const [group, setGroup] = useState<KeywordGroup | "">("");
   const [term, setTerm] = useState(initialTerm || data.keywords[0]?.term || "");
   const detail = useRef<HTMLElement>(null);
   const indexTrack = useRef<HTMLDivElement>(null);
@@ -43,12 +45,18 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
     if (initialTerm && data.keywords.some(k => k.term === initialTerm)) {
       setTerm(initialTerm);
       setQuery("");
+      setGroup("");
     }
   }, [initialTerm, data.keywords]);
   const t = (z: string, e: string) => lang === "zh" ? z : e;
+  const stat = (key: string) => fillStats(`{{stat:${key}|int}}`, lang);
   const selected = data.keywords.find(k => k.term === term) || data.keywords[0];
   const expansion = selected ? keywordContexts[selected.term] : undefined;
-  const filtered = data.keywords.filter(k => [k.term, k.english, k.short[lang]].join(" ").toLowerCase().includes(query.toLowerCase().trim()));
+  const filtered = data.keywords.filter(k => (!group || keywordContexts[k.term]?.group === group) && [k.term, k.english, k.short[lang]].join(" ").toLowerCase().includes(query.toLowerCase().trim()));
+  const hasUnreviewedExamples = selected?.examples.some((example, i) => {
+    const context = expansion?.examples[i];
+    return context?.sourceRoleZh !== example.role.zh || context.reviewStatus === "model_draft";
+  });
   const choose = (value: string) => {
     trackUsage("keyword_select", {view: "keywords"});
     setTerm(value);setDirectoryOpen(false);
@@ -113,7 +121,7 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
     window.addEventListener("scroll",schedule,{passive:true,capture:true});
     void document.fonts.ready.then(schedule);schedule();
     return()=>{cancelled=true;if(frame)cancelAnimationFrame(frame);observer.disconnect();scroll.removeEventListener("scroll",schedule);window.removeEventListener("resize",schedule);window.removeEventListener("scroll",schedule,true);};
-  },[selected?.term,selected?.rank,lang,query,directoryOpen]);
+  },[selected?.term,selected?.rank,lang,query,group,directoryOpen]);
   if (!selected) return null;
 
   return <div className="study-page keyword-atlas">
@@ -122,54 +130,52 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
       {onResearch && <button className="text-button" onClick={onResearch}>{t("研究报告", "Research report")}<ArrowUpRight size={16}/></button>}
     </header>
     <div className="study-source-strip">
-      <span>{data.methods.corpusN.toLocaleString()} {t("份去重广告", "unique ads")}</span>
-      <span>{t(`${data.keywords.length}个高频词 · ${data.keywords.reduce((n,k)=>n+k.examples.length,0)}个语境案例`, `${data.keywords.length} terms · ${data.keywords.reduce((n,k)=>n+k.examples.length,0)} context examples`)}</span>
+      <span>{stat("corpus.n")} {t("份去重广告", "unique ads")}</span>
+      <span>{stat("corpus.dictionary_terms")} {t("个词条 · 按工作语境读", "terms · read in context")}</span>
     </div>
-    <button className="text-button atlas-directory-toggle" aria-expanded={directoryOpen} aria-controls="keyword-directory" onClick={()=>setDirectoryOpen(!directoryOpen)}><Menu size={18}/>{t("词条目录","Term directory")} · {data.keywords.length}<WloIllustration name="hand" width={44} className="atlas-directory-hand"/></button><div className="atlas-layout">
+    <button className="text-button atlas-directory-toggle" aria-expanded={directoryOpen} aria-controls="keyword-directory" onClick={()=>setDirectoryOpen(!directoryOpen)}><Menu size={18}/>{t("词条目录","Term directory")} · {stat("corpus.dictionary_terms")}<WloIllustration name="hand" width={44} className="atlas-directory-hand"/></button><div className="atlas-layout">
       <aside id="keyword-directory" className={`atlas-index ${directoryOpen?"is-open":""}`} aria-label={t("关键词排名与检索", "Keyword ranking and search")}>
         <button className="icon-button atlas-directory-close" aria-label={t("关闭目录","Close directory")} onClick={()=>setDirectoryOpen(false)}><X size={18}/></button><label className="atlas-search"><Search size={17}/><span className="sr-only">{t("搜索关键词", "Search keywords")}</span><input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder={t("搜索词语", "Search terms")}/></label>
-        <div className="atlas-list-label"><span>{t("按出现频次排序", "By frequency")}</span><span>{t("广告数", "Ads")}</span></div>
+        <label className="atlas-group-filter"><span>{t("按用途查词", "Browse by group")}</span><select value={group} onChange={e => setGroup(e.target.value as KeywordGroup | "")}><option value="">{t("全部词条", "All terms")}</option>{Object.entries(keywordGroups).map(([key, label]) => <option key={key} value={key}>{label[lang]}</option>)}</select></label>
+        <div className="atlas-list-label"><span>{t("词条索引", "Term index")}</span><span>{t("广告数", "Ads")}</span></div>
         <div className="atlas-index-track term-index" ref={indexTrack}><div className="atlas-list" ref={indexScroll}>{filtered.map(k => <button key={k.term} className={`atlas-term ${selected.term === k.term ? "selected" : ""}`} aria-pressed={selected.term === k.term} onClick={() => choose(k.term)}>
           <span className="atlas-rank">{String(k.rank).padStart(2, "0")}</span>
           <span className="atlas-term-name"><span className="atlas-term-label">{lang === "zh" ? k.term : k.english}{selected.term === k.term&&<PencilOval index/>}</span><small>{lang === "zh" ? k.english : k.term}</small></span>
-          <span className="atlas-count">{k.documents.toLocaleString()}</span>
+          <span className="atlas-count">{stat(`term.${k.term}.ads`)}</span>
         </button>)}</div>
         <div ref={clerk} className={`atlas-clerk-anchor${pointerLine?.visible?" has-target":""}`} style={pointerLine?.clerkTop!=null?{top:pointerLine.clerkTop,bottom:"auto"}:undefined}><WloIllustration name="pointer-hand" width={44} className="atlas-index-pointer clerk"/></div>
         {pointerLine?.visible&&<svg className="clerk-stick" width={pointerLine.width} height={pointerLine.height} viewBox={`0 0 ${pointerLine.width} ${pointerLine.height}`} aria-hidden="true"><path d={pointerLine.path}/><circle cx={pointerLine.endX} cy={pointerLine.endY} r="1.8"/></svg>}
         </div>
         {!filtered.length && <p className="atlas-empty">{t("没有找到这个词，试试其他说法。", "No match. Try another term.")}</p>}
-        <p className="atlas-index-note">{t(`${data.methods.candidateVocabulary?.length??data.keywords.length} 项 · 计数 = 含该词的广告数`,`${data.methods.candidateVocabulary?.length??data.keywords.length} terms · Count = ads with term`)}</p>
+        <p className="atlas-index-note">{stat("corpus.candidate_terms")} {t("项候选词 · 每份广告计一次", "candidate terms · counted once per ad")}</p>
       </aside>
       <section className="atlas-detail" ref={detail} aria-labelledby="atlas-detail-title">
         <header className="atlas-detail-heading">
           <div className="atlas-title-row"><h2 id="atlas-detail-title" tabIndex={-1}><span>{lang === "zh" ? selected.term : selected.english}</span><PencilOval/></h2><p className="atlas-gloss">{lang === "zh" ? selected.english : selected.term}</p></div>
-          <p className="atlas-detail-count" title={t("包含该词的广告数 / 样本总数","Ads containing the term / all ads")}><strong>{(data.methods.corpusN?100*selected.documents/data.methods.corpusN:0).toFixed(1)}%</strong><span>{selected.documents.toLocaleString()} / {data.methods.corpusN.toLocaleString()} {t("份", "ads")}</span><span className="atlas-count-slip">{t("样本内","In sample")}</span></p>
-          <p className="atlas-provenance">{t("以下三例来自不同来源广告，均为去识别释义，非原文引句。", "Three deidentified paraphrases from different ad sources, not direct quotations.")}</p>
+          <p className="atlas-definition atlas-term-summary">{selected.short[lang]}<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7Q23 2 43 6T86 6T128 7T169 6T213 7T255 6T298 5"/></svg></p>
+          <p className="atlas-data-line">{stat(`term.${selected.term}.ads`)} {t("份广告命中", "ads matched")} / {stat("corpus.n")} {t("份广告", "ads")}{expansion&&<span>{keywordGroups[expansion.group][lang]}</span>}</p>
+          <p className="atlas-pending-note">{t("用法尚未编码。以下是挑选的工作对照，不代表词义分布。", "Meanings have not yet been coded. The selected contrasts below do not show their prevalence.")}</p>
         </header>
-        <div className="atlas-contexts-heading"><h3>{t("在这些工作里，具体怎么用","What it means in these roles")}</h3><span>{selected.examples.length} {t("例","examples")}</span></div>
+        <div className="atlas-contexts-heading"><h3>{t("在这些工作里，具体怎么用","What it means in these roles")}</h3></div>
         <div className="atlas-examples">{selected.examples.map((example, i) => {
           const added = expansion?.examples[i];
           const context = added?.sourceRoleZh === example.role.zh ? added : undefined;
           return <article className="atlas-example card-index" style={{"--tilt":`${[-1.2,.8,-.6][i%3]}deg`} as React.CSSProperties} key={selected.term + i}>
           <PaperTape/><PaperFold/>{i===0&&<WloIllustration name="peek" width={100} className="atlas-card-peek"/>}{i===1&&<PaperTape extra/>}{i>0&&<ContextArrow/>}
           <div className="atlas-example-top"><span className="atlas-example-number">{String(i + 1).padStart(2, "0")}</span><h3>{example.role[lang]}</h3></div>
-          <p className="atlas-reading">{context?.task[lang] || example.reading[lang]}</p>
-          {context&&<><p className="atlas-expert-reading">{context.expertTake[lang]}</p><p className="atlas-deliverable"><span>{t("交付示例","Possible deliverable")}</span>{context.deliverable[lang]}</p></>}
-          <details className="atlas-context-detail" open={i===0}>
-            <summary><span>{t("看例子与归档语境", "Example and archived context")}</span></summary>
-            {context&&<div className="atlas-scenario"><span className="atlas-detail-label">{t("举例 · 假设场景", "Example · hypothetical scenario")}</span><p>{context.scenario[lang]}</p></div>}
-            <span className="atlas-paraphrase-label">{t("归档释义 · 非原文引句","Archive paraphrase · not a quotation")}</span><p className="atlas-context">{example.context[lang]}</p>
-            <div className="atlas-follow-up"><span className="atlas-detail-label">{t("可以追问", "A useful follow-up")}</span><p>{example.question[lang]}</p></div>
-          </details>
+          <span className="atlas-detail-label">{t("这里做什么", "What the work involves")}</span><p className="atlas-reading">{context?.task[lang] || example.reading[lang]}</p>
+          {context&&<><p className="atlas-expert-reading">{context.expertTake[lang]}</p><p className="atlas-deliverable"><span>{t("可能的交付","Possible deliverable")}</span>{context.deliverable[lang]}</p></>}
+          <div className="atlas-follow-up"><span className="atlas-detail-label">{t("可以问", "Ask the employer")}</span><p>{example.question[lang]}</p></div>
         </article>})}</div>
-        <div className="atlas-closing"><p className="atlas-definition atlas-bottom-reading">{selected.short[lang]}<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7Q23 2 43 6T86 6T128 7T169 6T213 7T255 6T298 5"/></svg></p><WloIllustration name="twocards" width={120} className="atlas-two-cards"/></div>
-        {expansion&&<p className="atlas-comparison-summary">{expansion.summary[lang]}</p>}
+        <p className="atlas-review-note">{hasUnreviewedExamples?t("卡片依据归档广告写成去识别释义，并补充任务说明与交付建议；由模型起草，尚未经作者逐条核对。交付建议不等于雇主要求。", "The cards paraphrase archived ads without identifying details and add task explanations and suggested deliverables. They are model drafts, not yet checked individually by the author. Suggested deliverables are not employer requirements."):t("卡片依据归档广告写成去识别释义。任务说明与交付建议已经作者逐条核对；交付建议不等于雇主要求。", "The cards paraphrase archived ads without identifying details. The author has checked the task explanations and suggested deliverables individually; suggestions are not employer requirements.")}</p>
+        <div className="atlas-closing">{expansion&&<p className="atlas-comparison-summary">{expansion.summary[lang]}</p>}<WloIllustration name="twocards" width={120} className="atlas-two-cards"/></div>
+        <details className="atlas-archive-contexts"><summary>{t("查看归档中的职责描述", "Read the archived duty descriptions")}</summary>{selected.examples.map((example, i)=><div key={selected.term+i}><h4>{example.role[lang]}</h4><p>{example.context[lang]}</p></div>)}</details>
       </section>
     </div>
     <details className="study-method"><summary>{t("词表与统计方法", "Vocabulary and counting method")}</summary>
-      <p>{data.methods.frequencyNote[lang]}</p><p>{data.methods.scope[lang]}</p><p>{data.methods.sampleNote[lang]}</p>
-      <p>{t("例子用于比较语境，不代表各词义的占比；词频也不是岗位质量评分。", "Examples compare contexts, not the prevalence of each meaning. Frequency is not a job-quality score.")}</p>
-      <p>{t("卡片中的举例和交付示例，是依据归档职责编写的说明材料，不是该雇主已发生的事件、额外招聘条件或原文承诺。", "Illustrations and possible deliverables explain the archived duties. They are not reported events, additional job requirements or promises made by the employer.")}</p>
+      <p>{t("按广告正文匹配词表，同一广告重复出现只计一次。暂将独立站、服务器、机器学习等复合词中的命中单独标记，再保留其余命中；这些规则尚待人工抽查。", "Terms are matched in ad bodies, with each ad counted once per term. Matches inside listed compounds, such as independent online stores, servers and machine learning, are flagged separately. The remaining matches still await human checks.")}</p>
+      <p>{t("人工抽查尚未完成，当前不展示匹配精确率。职业分类仍在准备，尚无经核对的职业分布、搭配词或词义比例。", "Human checks are incomplete, so matching precision is not reported. Occupation mapping is still being prepared; there are no validated occupation distributions, collocates or meaning proportions to show.")}</p>
+      <p>{t("分组按词语通常指向品质、协作、工具或管理安排来帮助查找，由作者提出，不是模型测出的词义类别。目录保留现有词条顺序。", "The author proposed groups around qualities, collaboration, skills and management to help readers browse. They are not measured meaning categories. The directory retains its existing term order.")}</p>
       <p className="study-vocabulary">{data.methods.candidateVocabulary?.join(" · ")}</p>
       <a className="text-button" href="/work-language-study-aggregates.json" download>{t("下载词频与交叉表", "Download frequencies and cross-tabs")}<ArrowUpRight size={14}/></a>
     </details>

@@ -1,0 +1,850 @@
+{
+  "corpus.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Audited archive records",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "corpus.dictionary_terms": {
+    "value": 20,
+    "unit": "terms",
+    "method": "Fixed approved term list",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "corpus.candidate_terms": {
+    "value": 20,
+    "unit": "terms",
+    "method": "Fixed approved term list, not a new ranking search",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "corpus.sources.51job": {
+    "value": 1000,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "corpus.sources.boss": {
+    "value": 500,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "corpus.sources.liepin": {
+    "value": 500,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.沟通.ads": {
+    "value": 1233,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.沟通.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.沟通.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.沟通.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.分析.ads": {
+    "value": 1004,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.分析.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.分析.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.分析.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.数据.ads": {
+    "value": 905,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.数据.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.数据.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.数据.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.协调.ads": {
+    "value": 751,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.协调.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.协调.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.协调.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.熟练.ads": {
+    "value": 747,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.熟练.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.熟练.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.熟练.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.独立.ads": {
+    "value": 618,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.独立.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.独立.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.独立.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.协作.ads": {
+    "value": 522,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.协作.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.协作.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.协作.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.抗压.ads": {
+    "value": 501,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.抗压.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.抗压.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.抗压.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.责任心.ads": {
+    "value": 498,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.责任心.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.责任心.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.责任心.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.适应.ads": {
+    "value": 452,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.适应.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.适应.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.适应.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.目标.ads": {
+    "value": 447,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.目标.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.目标.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.目标.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.服务.ads": {
+    "value": 427,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.服务.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.服务.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.服务.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.逻辑.ads": {
+    "value": 395,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.逻辑.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.逻辑.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.逻辑.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.学习.ads": {
+    "value": 368,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.学习.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.学习.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.学习.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.统筹.ads": {
+    "value": 295,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.统筹.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.统筹.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.统筹.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.主动.ads": {
+    "value": 237,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.主动.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.主动.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.主动.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.英语.ads": {
+    "value": 230,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.英语.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.英语.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.英语.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.严谨.ads": {
+    "value": 219,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.严谨.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.严谨.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.严谨.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.闭环.ads": {
+    "value": 182,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.闭环.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.闭环.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.闭环.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.执行力.ads": {
+    "value": 180,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "term.执行力.n_checked": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.执行力.k_correct": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "term.执行力.precision": {
+    "value": null,
+    "unit": "unavailable",
+    "method": "Human review pending; blank fields are not zero judgments",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "review.sample_pairs": {
+    "value": 400,
+    "unit": "ad–term pairs",
+    "method": "Previously generated fixed-seed review packet; not completed annotations",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "design.h1.threshold": {
+    "value": 0.5,
+    "unit": "planned proportion",
+    "method": "Approved exploratory design threshold; not an estimate",
+    "source": "research/aggregates/term_counts.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "assoc.抗压_协调.pressure_n": {
+    "value": 501,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.抗压_协调.pressure_coordination_n": {
+    "value": 284,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.抗压_协调.other_n": {
+    "value": 1499,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.抗压_协调.other_coordination_n": {
+    "value": 467,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.抗压_协调.pressure_rate": {
+    "value": 0.5668662674650699,
+    "unit": "proportion",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 501
+  },
+  "assoc.抗压_协调.other_rate": {
+    "value": 0.3115410273515677,
+    "unit": "proportion",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1499
+  },
+  "assoc.抗压_协调.or": {
+    "value": 2.892154057174434,
+    "unit": "odds ratio",
+    "method": "Unadjusted ad-level cross-product ratio a*d/(b*c)",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  },
+  "assoc.数据_沟通.focus_n": {
+    "value": 905,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.数据_沟通.both_n": {
+    "value": 619,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.数据_沟通.other_n": {
+    "value": 1095,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.数据_沟通.other_both_n": {
+    "value": 614,
+    "unit": "advertisements",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000
+  },
+  "assoc.数据_沟通.focus_rate": {
+    "value": 0.6839779005524862,
+    "unit": "proportion",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 905
+  },
+  "assoc.数据_沟通.other_rate": {
+    "value": 0.5607305936073059,
+    "unit": "proportion",
+    "method": "NFKC/casefold body substring; each ad counted once",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1095
+  },
+  "assoc.数据_沟通.or": {
+    "value": 1.695513769618004,
+    "unit": "odds ratio",
+    "method": "Unadjusted ad-level cross-product ratio a*d/(b*c)",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+  }
+}

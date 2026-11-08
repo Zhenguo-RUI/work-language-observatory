@@ -213,3 +213,58 @@
  .public-reader .wlo-research .research-micro-table th,
  .public-reader .wlo-research .research-micro-table td { padding: 10px 5px; }
 }
+
+/* The research edition separates measured counts from the unfinished coding plan. */
+.public-reader .wlo-research.research-progress-edition .research-margin-nav{padding-top:28px;gap:10px;max-height:calc(100svh - 160px);overflow-y:auto}
+.public-reader .wlo-research.research-progress-edition .research-margin-nav a{font-size:12px;line-height:1.65}
+.public-reader .wlo-research .research-downloads{flex-wrap:wrap;row-gap:12px}
+.public-reader .wlo-research .section-heading .research-scope-note{margin-top:16px;color:var(--grey);font:400 11px/1.7 var(--f-mono)}
+.public-reader .wlo-research .research-plan-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:1.7;color:var(--slate);overflow-wrap:anywhere}
+.public-reader .wlo-research .research-hypotheses{margin-top:20px}
+.public-reader .wlo-research .research-hypotheses>div{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;border-top:1px solid var(--hairline);padding:14px 0}
+.public-reader .wlo-research .research-hypotheses strong{font:500 12px/1.8 var(--f-mono);color:var(--slate)}
+.public-reader .wlo-research .research-hypotheses p{margin:0;font-size:14px;line-height:1.85}
+.public-reader .wlo-research .research-hypothesis{position:relative}
+.public-reader .wlo-research .research-pipeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0;padding:0;list-style:none}
+.public-reader .wlo-research .research-pipeline li{min-width:0;border:1px solid var(--hairline);border-left:3px solid var(--sand);padding:14px 16px;border-radius:5px}
+.public-reader .wlo-research .research-pipeline li.is-complete{border-left-color:var(--sage);background:color-mix(in srgb,var(--sage) 8%,transparent)}
+.public-reader .wlo-research .research-pipeline li>div{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.public-reader .wlo-research .research-pipeline strong{font-size:14px;font-weight:500}
+.public-reader .wlo-research .research-pipeline span{font-size:10px;color:var(--grey)}
+.public-reader .wlo-research .research-pipeline p{font-size:12px;line-height:1.8;margin:8px 0 0;color:var(--grey)}
+.public-reader .wlo-research .research-section-subtitle{display:block;font:400 11px/1.7 var(--f-sans);color:var(--grey);margin-top:6px}
+.public-reader .wlo-research .research-association-chart{margin:24px 0;padding:0}
+.public-reader .wlo-research .research-association-chart figcaption{font-size:11px;color:var(--grey);margin-bottom:32px}
+.public-reader .wlo-research .research-association-row{display:grid;grid-template-columns:140px minmax(0,1fr) 54px;gap:8px 12px;align-items:center;margin:18px 0}
+.public-reader .wlo-research .research-association-label{font-size:13px;line-height:1.65;min-width:0}
+.public-reader .wlo-research .research-association-row>strong{font:500 13px/1.6 var(--f-mono);text-align:right}
+.public-reader .wlo-research .research-association-row>small{grid-column:2/4;font:400 10px/1.6 var(--f-mono);color:var(--grey);text-align:right}
+.public-reader .wlo-research .research-association-track{position:relative;display:block;min-width:0;height:14px;border-bottom:1px solid var(--hairline)}
+.public-reader .wlo-research .research-association-track>i{display:block;height:100%;background:var(--sage);border-radius:2px}
+.public-reader .wlo-research .pattern-1 .research-association-track>i{background:repeating-linear-gradient(125deg,transparent,transparent 2px,var(--grey) 2px,var(--grey) 3px)}
+.public-reader .wlo-research .research-association-track .research-bar-flag{bottom:8px;width:44px;height:44px;left:clamp(0px,calc(var(--bar-value) - 30px),calc(100% - 44px))}
+.public-reader .wlo-research .research-association-track .research-bar-flag>.wlo-illustration{width:44px;height:44px}
+.public-reader .wlo-research .research-practical-question ul,.public-reader .wlo-research .research-limit-list{padding-left:18px;margin:12px 0 0}
+.public-reader .wlo-research .research-practical-question li,.public-reader .wlo-research .research-limit-list li{margin:9px 0;font-size:14px;line-height:1.85}
+.public-reader .wlo-research .research-material-links{display:flex;gap:14px 24px;flex-wrap:wrap;margin-top:18px}
+.public-reader .wlo-research .research-material-links a{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--slate)}
+.public-reader .wlo-research .research-authorship p{font-size:13px;line-height:1.85;color:var(--grey)}
+.public-reader .wlo-research .research-abstract{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:12px 0}
+.public-reader .wlo-research .research-abstract summary{font-size:12px;color:var(--slate);cursor:pointer}
+.public-reader .wlo-research .research-abstract p{font-size:13px;line-height:1.85;margin-bottom:4px}
+@media(max-width:600px){
+ .public-reader .wlo-research .research-pipeline{grid-template-columns:minmax(0,1fr)}
+ .public-reader .wlo-research .research-hypothesis:has(.research-hypothesis-illustration){display:block}
+ .public-reader .wlo-research .research-hypothesis-illustration{display:block;position:relative;inset:auto;margin:16px 0 0 auto;width:80px;max-width:80px}
+ .public-reader .wlo-research .research-association-row,.public-reader[lang=en] .wlo-research .research-association-row{grid-template-columns:minmax(0,1fr) 54px;gap:7px 10px;margin:24px 0}
+ .public-reader .wlo-research .research-association-label{grid-column:1/-1;padding-right:58px}
+ .public-reader .wlo-research .research-association-track{grid-column:1;grid-row:2}
+ .public-reader .wlo-research .research-association-row>strong{grid-column:2;grid-row:2}
+ .public-reader .wlo-research .research-association-row>small{grid-column:1/-1}
+ .public-reader .wlo-research .research-association-chart figcaption{margin-bottom:20px}
+}
+@media print{
+ .public-reader .wlo-research .research-downloads,.public-reader .wlo-research .research-observation-term{display:none}
+ .public-reader .wlo-research .research-pipeline li,.public-reader .wlo-research .research-association-chart{break-inside:avoid}
+ .public-reader .wlo-research .research-association-track>i{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}

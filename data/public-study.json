@@ -18,16 +18,16 @@
       }
     ],
     "scope": {
-      "zh": "2,000份历史招聘归档，正文与规范化哈希均去重；不是当前全市场随机样本。",
-      "en": "2,000 historical advertisements, unique by exact text and stored normalized hash; not a random sample of the current market."
+      "zh": "{{stat:corpus.n|int}}份历史招聘归档，正文与规范化哈希均去重；采用非概率选样。",
+      "en": "{{stat:corpus.n|int}} historical advertisements, deduplicated by exact and normalized text; a non-probability sample."
     },
     "frequencyNote": {
-      "zh": "Top 20来自固定33项候选词表，正文按精确词面检索，每份每词计一次；同频按词表顺序排列。统计不是语义分类，也不把所有命中都视为对劳动者的要求。",
-      "en": "The Top 20 come from a fixed 33-expression vocabulary: exact, case-sensitive substring search, once per document per term; ties follow vocabulary order. Hits are not semantic classes or necessarily worker requirements."
+      "zh": "保留既有词表，正文经Unicode NFKC及大小写规范化后精确检索，每广告每词计一次。复合词排除另存候选，公开广告数为完整词面命中数，尚未判定全部用法是否指向劳动者。",
+      "en": "The existing vocabulary is retained. Body text is searched by exact substring after Unicode NFKC normalization and case folding, once per ad per term. Compound exclusions are retained separately as candidates. Published ad counts include all literal hits; their worker-directed meaning has not been fully reviewed."
     },
     "sampleNote": {
-      "zh": "每词3例，共60份不同归档，三种来源各20份。公开案例为去识别的语料释义，不是原文引句；例子为目的性选择，不能代表该词全部用法。120份“独立”语义试验另计，非新增独立人评。",
-      "en": "Three examples per term use 60 distinct advertisements, 20 per source. Public examples are deidentified paraphrases, not source quotations or a representative sense sample. The separate 120-ad independence pilot remains model-coded, not independently human-validated."
+      "zh": "案例是沿用的去识别释义，均为模型草稿，尚未经过人工确认；这些挑选的对照不能代表用法比例。",
+      "en": "The retained examples are deidentified paraphrases, all model drafts awaiting human review. These selected contrasts do not represent a distribution of meanings."
     },
     "candidateVocabulary": [
       "沟通",
@@ -49,25 +49,11 @@
       "英语",
       "严谨",
       "闭环",
-      "执行力",
-      "洞察",
-      "创新",
-      "SQL",
-      "自驱",
-      "自主",
-      "耐心",
-      "灵活",
-      "结果导向",
-      "细心",
-      "时间管理",
-      "领导力",
-      "应变",
-      "复盘"
+      "执行力"
     ],
-    "publishedAt": "2026-11-05",
+    "publishedAt": "2026-11-08",
     "caseN": 60,
-    "pilotN": 120,
-    "semanticValidation": "model_interpretation_not_independent_human_evaluation"
+    "semanticValidation": "human_review_pending"
   },
   "keywords": [
     {
@@ -76,12 +62,12 @@
       "rank": 1,
       "documents": 1233,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "协作与服务",
+        "en": "Working with others"
       },
       "short": {
-        "zh": "信息怎样交到下一位工作者手里",
-        "en": "How information reaches the next person"
+        "zh": "试模要交清现场问题，采购要谈清交易条件，活动支持要把安排落实到人。比较沟通要求时，先问信息交给谁、要促成什么动作、出现分歧由谁定案。",
+        "en": "The mould-trial lead passes on a usable fault record; procurement settles commercial terms; the HR intern turns plans into practical arrangements. Ask who needs the information, what they should do next, and who resolves a disagreement."
       },
       "examples": [
         {
@@ -100,7 +86,8 @@
           "question": {
             "zh": "试模异常记录由谁接收，何时需要升级？",
             "en": "Who receives a trial-fault report, and when is escalation needed?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -118,7 +105,8 @@
           "question": {
             "zh": "价格和交期发生冲突时，谁决定取舍？",
             "en": "Who decides when price and delivery conflict?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -136,9 +124,18 @@
           "question": {
             "zh": "实习生负责通知、协调，还是也能调整活动方案？",
             "en": "Does the intern communicate arrangements, coordinate them, or also revise the plan?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.沟通.n_checked",
+        "k_correct": "term.沟通.k_correct",
+        "precision": "term.沟通.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "分析",
@@ -146,12 +143,12 @@
       "rank": 2,
       "documents": 1004,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "技能与工具",
+        "en": "Skills and tools"
       },
       "short": {
-        "zh": "同是分析，什么才算一个可用结论",
-        "en": "What makes an analysis usable"
+        "zh": "会计分析要能核对账目，技术销售分析要能安排市场行动，机器人分析要经模型与测试检查。判断分析能力时，先看结论交给谁，以及对方凭什么接受它。",
+        "en": "An accountant's conclusion must reconcile with records; a technical salesperson's must inform market action; a robotics engineer's must stand up to modelling and tests. Ask who uses the conclusion and what makes it acceptable."
       },
       "examples": [
         {
@@ -170,7 +167,8 @@
           "question": {
             "zh": "账龄异常需核对哪些单据，由谁确认处理？",
             "en": "Which documents establish an ageing exception, and who approves its treatment?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -188,7 +186,8 @@
           "question": {
             "zh": "市场判断最终要转成客户名单、方案还是预算建议？",
             "en": "Must the conclusion become a prospect list, a campaign, or a budget proposal?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -206,9 +205,18 @@
           "question": {
             "zh": "模型效果按哪些误差或性能指标验收？",
             "en": "Which error or performance measures determine acceptance?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.分析.n_checked",
+        "k_correct": "term.分析.k_correct",
+        "precision": "term.分析.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "数据",
@@ -216,12 +224,12 @@
       "rank": 3,
       "documents": 905,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "技能与工具",
+        "en": "Skills and tools"
       },
       "short": {
-        "zh": "记录、诊断与改变流程是不同工作",
-        "en": "Recording, diagnosis and process change"
+        "zh": "实验中的数据要记录得可比较，招聘数据用来定位流程卡点，客诉数据要形成可处理的问题。看到数据能力要求，可以问：这份工作需要记录什么、解释什么，结论交给谁使用？",
+        "en": "Test data need comparable records; recruitment data help locate delays; complaint data help identify problems to investigate. Ask what you would record, what you would explain, and who would use your findings."
       },
       "examples": [
         {
@@ -240,7 +248,8 @@
           "question": {
             "zh": "测试记录怎样支持下一轮配方验证？",
             "en": "How do recorded tests inform the next formulation trial?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -258,7 +267,8 @@
           "question": {
             "zh": "数据异常会触发哪个招聘环节的调整？",
             "en": "Which hiring stage changes when a metric deteriorates?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -276,9 +286,18 @@
           "question": {
             "zh": "客诉分类怎样进入技术改进的排期？",
             "en": "How do complaint categories enter the engineering backlog?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.数据.n_checked",
+        "k_correct": "term.数据.k_correct",
+        "precision": "term.数据.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "协调",
@@ -286,12 +305,12 @@
       "rank": 4,
       "documents": 751,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "协作与服务",
+        "en": "Working with others"
       },
       "short": {
-        "zh": "让谁的行动与谁的行动接上",
-        "en": "Whose actions must connect"
+        "zh": "成本协调处理方案与产线的冲突，设备协调连接采购和维护，渠道协调衔接统一政策与地方执行。先确认冲突发生在哪里，再问你负责传递、促成一致，还是有权改方案。",
+        "en": "Cost coordination reconciles proposals with production constraints; equipment coordination connects purchasing and maintenance; channel coordination connects company policy with local execution. Ask where conflicts arise and whether the role relays, negotiates or decides."
       },
       "examples": [
         {
@@ -310,7 +329,8 @@
           "question": {
             "zh": "成本目标与生产限制冲突时由谁调整方案？",
             "en": "Who revises the plan when cost targets conflict with production constraints?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -328,7 +348,8 @@
           "question": {
             "zh": "设备停机后，维修、采购和使用方如何接续？",
             "en": "How do maintenance, procurement and users coordinate after a breakdown?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -346,9 +367,18 @@
           "question": {
             "zh": "渠道无法执行统一政策时，向谁申请调整？",
             "en": "Who handles a channel’s request for a policy exception?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.协调.n_checked",
+        "k_correct": "term.协调.k_correct",
+        "precision": "term.协调.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "熟练",
@@ -356,12 +386,12 @@
       "rank": 5,
       "documents": 747,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "技能与工具",
+        "en": "Skills and tools"
       },
       "short": {
-        "zh": "熟悉工具，还是掌握完整工作判断",
-        "en": "Tool fluency or a wider working judgment"
+        "zh": "前台的熟练表现为流程准确，公关的熟练要产出可用传播材料，财经视频还要把内容处理与合规核对接上。准备技能证明时，用一份完整产物说明自己做到了哪一步。",
+        "en": "Reception proficiency means reliable handling; PR proficiency produces usable communications; financial-video work also connects production with compliance checks. Demonstrate the skill through a finished item and explain exactly which parts you handled."
       },
       "examples": [
         {
@@ -380,7 +410,8 @@
           "question": {
             "zh": "日常主要使用哪些表格和系统，错误怎样核对？",
             "en": "Which forms and systems are used, and how are errors checked?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -398,7 +429,8 @@
           "question": {
             "zh": "AI 生成的材料由谁核实并审核发布？",
             "en": "Who verifies and clears AI-assisted material for publication?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -416,9 +448,18 @@
           "question": {
             "zh": "内容制作与商业合规分别由谁验收？",
             "en": "Who accepts production quality and who clears compliance?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.熟练.n_checked",
+        "k_correct": "term.熟练.k_correct",
+        "precision": "term.熟练.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "独立",
@@ -426,12 +467,12 @@
       "rank": 6,
       "documents": 618,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "完成一段工作，并不自动获得全部决定权",
-        "en": "Completing work does not confer every decision right"
+        "zh": "三例都要求自己推进一段工作：检验零件、完成辅助财务工作，或处理分配的案件。具体分水岭是做到哪一步、交给谁复核，以及哪些决定需要另外确认。",
+        "en": "All three roles ask someone to take work forward: inspect parts, complete supporting finance tasks or handle assigned cases. Ask where the task ends, who reviews it, and which decisions the role can make."
       },
       "examples": [
         {
@@ -450,7 +491,8 @@
           "question": {
             "zh": "发现不合格件时，谁可以决定隔离、返工或放行？",
             "en": "Who can quarantine, rework or release a nonconforming part?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -468,7 +510,8 @@
           "question": {
             "zh": "哪些事项可以自行完成，哪些必须交给财务人员复核？",
             "en": "Which tasks can the intern finish alone, and which require a finance colleague’s review?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -486,9 +529,18 @@
           "question": {
             "zh": "诉讼策略、和解条件与案件分配分别由谁决定？",
             "en": "Who decides litigation strategy, settlement terms and case allocation?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.独立.n_checked",
+        "k_correct": "term.独立.k_correct",
+        "precision": "term.独立.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "协作",
@@ -496,12 +548,12 @@
       "rank": 7,
       "documents": 522,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "协作与服务",
+        "en": "Working with others"
       },
       "short": {
-        "zh": "协作不是一种没有对象的好性格",
-        "en": "Collaboration needs an object"
+        "zh": "工艺协作让方法进入产线，销售协作连接承诺与交付，招聘协作把需求与评估标准对上。读到协作时，找出各方交接的东西，再问标准不一致时怎样解决。",
+        "en": "Process collaboration gets a method onto the production line; sales collaboration connects promises with delivery; recruitment collaboration aligns requirements and assessment. Identify what passes between the parties and how mismatched expectations are resolved."
       },
       "examples": [
         {
@@ -520,7 +572,8 @@
           "question": {
             "zh": "新工艺从文件转到产线，由哪些岗位共同确认？",
             "en": "Who jointly validates a new process before production uses it?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -538,7 +591,8 @@
           "question": {
             "zh": "承诺的交付范围无法实现时，谁重定范围和目标？",
             "en": "Who resets scope and targets if a delivery promise cannot be met?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -556,9 +610,18 @@
           "question": {
             "zh": "招聘标准出现分歧时，用人团队和招聘方如何定案？",
             "en": "How are disagreements over selection criteria resolved?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.协作.n_checked",
+        "k_correct": "term.协作.k_correct",
+        "precision": "term.协作.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "抗压",
@@ -566,12 +629,12 @@
       "rank": 8,
       "documents": 501,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "先定位压力被写在什么任务旁边",
-        "en": "Locate pressure beside its stated task"
+        "zh": "直播例把抗压与多项现场任务并列，招聘例写出紧急补编和多方协作，需求分析例明确提到投标加班。可以据此追问：任务撞在一起时怎样分工，延期或超时怎样处理？",
+        "en": "The live-session example pairs pressure with concurrent tasks; the recruitment example describes urgent hiring and coordination; the systems role explicitly mentions bid-related overtime. Ask how competing tasks, delays and extra hours are handled."
       },
       "examples": [
         {
@@ -590,7 +653,8 @@
           "question": {
             "zh": "直播突发状况怎样分工，谁负责接管？",
             "en": "How are live incidents divided up, and who takes over?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -608,7 +672,8 @@
           "question": {
             "zh": "面试官或候选人延期时，招聘目标由谁调整？",
             "en": "Who adjusts targets when interviewers or candidates delay?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -626,9 +691,18 @@
           "question": {
             "zh": "投标加班的频率、轮换和补偿怎样安排？",
             "en": "How frequent is bid-related overtime, and what rotation and compensation apply?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.抗压.n_checked",
+        "k_correct": "term.抗压.k_correct",
+        "precision": "term.抗压.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "责任心",
@@ -636,12 +710,12 @@
       "rank": 9,
       "documents": 498,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "对什么负责，怎样证明完成",
-        "en": "Responsibility for what, demonstrated how"
+        "zh": "门店责任心围绕货品与交接，活动运营围绕发布准确，渠道管理围绕关系维护和策略执行。把品质词落到具体错误与检查动作，才能说明自己负责什么、完成如何被看见。",
+        "en": "Retail responsibility concerns stock and handovers; campaign operations concerns publishing accurately; channel management concerns relationships and execution. Connect the quality to specific errors and checks so responsibility has a visible object and completion point."
       },
       "examples": [
         {
@@ -660,7 +734,8 @@
           "question": {
             "zh": "盘点差异和交接问题由谁核对处理？",
             "en": "Who checks stock discrepancies and handover problems?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -678,7 +753,8 @@
           "question": {
             "zh": "上线前谁做最终审核，临时配置有无检查清单？",
             "en": "Who gives final approval, and is there a configuration checklist?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -696,9 +772,18 @@
           "question": {
             "zh": "业绩责任对应哪些可以自主调整的事项？",
             "en": "Which adjustable decisions accompany performance responsibility?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.责任心.n_checked",
+        "k_correct": "term.责任心.k_correct",
+        "precision": "term.责任心.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "适应",
@@ -706,12 +791,12 @@
       "rank": 10,
       "documents": 452,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "改变自己去适应的，可能是环境、节奏或地点",
-        "en": "Adapting to environment, pace or location"
+        "zh": "施工适应的是作业环境，人力伙伴适应的是任务节奏，医疗销售适应的是跨地点工作。别只回答自己能吃苦，分别确认环境与防护、优先级安排，以及出差频率和费用。",
+        "en": "The site role adapts to working conditions, the HR partner to changing demands, and the sales role to travel. Clarify protection and site conditions, how priorities are set, and the frequency and cost arrangements of travel."
       },
       "examples": [
         {
@@ -730,7 +815,8 @@
           "question": {
             "zh": "现场作业环境和必要防护具体是什么？",
             "en": "What are the actual site conditions and required protections?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -748,7 +834,8 @@
           "question": {
             "zh": "多项紧急需求相撞时，谁决定优先级？",
             "en": "Who prioritizes competing urgent requests?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -766,9 +853,18 @@
           "question": {
             "zh": "出差范围、频率和费用安排分别怎样？",
             "en": "What travel area, frequency and expense arrangements apply?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.适应.n_checked",
+        "k_correct": "term.适应.k_correct",
+        "precision": "term.适应.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "目标",
@@ -776,12 +872,12 @@
       "rank": 11,
       "documents": 447,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "管理用语",
+        "en": "Management language"
       },
       "short": {
-        "zh": "相同的目标导向，可能连着不同评价对象",
-        "en": "Targets can evaluate different objects"
+        "zh": "目标可能对准一次服务中的销售、多家门店的经营，或一笔融资业务的推进。先看哪些结果算在自己名下，再问质量、进度和收入发生冲突时怎样评价。",
+        "en": "Targets may concern sales within a service encounter, performance across stores, or progress on a financing transaction. Establish which outcomes belong to the role, then ask how quality, timing and revenue are assessed when they conflict."
       },
       "examples": [
         {
@@ -800,7 +896,8 @@
           "question": {
             "zh": "服务质量与产品销售分别怎样考核？",
             "en": "How are service quality and product sales assessed separately?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -818,7 +915,8 @@
           "question": {
             "zh": "销售目标之外，建店和培训是否也有独立评价？",
             "en": "Are store development and training assessed separately from sales?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -836,9 +934,18 @@
           "question": {
             "zh": "落地规模、风险质量与回款分别由谁评价？",
             "en": "Who assesses transaction volume, risk quality and collections?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.目标.n_checked",
+        "k_correct": "term.目标.k_correct",
+        "precision": "term.目标.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "服务",
@@ -846,12 +953,12 @@
       "rank": 12,
       "documents": 427,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "协作与服务",
+        "en": "Working with others"
       },
       "short": {
-        "zh": "服务谁，以及谁定义好服务",
-        "en": "Whom to serve, and who defines quality"
+        "zh": "服务的对象可能是制造现场、进店顾客，也可能是远程使用产品的客户。对应的完成标准分别落在技术可用、接待体验和故障处理上：谁来确认服务已完成？",
+        "en": "Service may support a manufacturing team, a store visitor or a remote product user. Completion therefore concerns technical usability, the customer experience or fault resolution. Ask who confirms that the service has achieved its purpose."
       },
       "examples": [
         {
@@ -870,7 +977,8 @@
           "question": {
             "zh": "制造现场如何提出技术问题，怎样确认已解决？",
             "en": "How does manufacturing raise and close a technical issue?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -888,7 +996,8 @@
           "question": {
             "zh": "服务标准由谁制定，店员能否提出修改？",
             "en": "Who sets service standards, and can staff propose changes?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -906,9 +1015,18 @@
           "question": {
             "zh": "技术问题解决与满意度评分不一致时怎样处理？",
             "en": "How are resolved faults with poor satisfaction ratings handled?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.服务.n_checked",
+        "k_correct": "term.服务.k_correct",
+        "precision": "term.服务.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "逻辑",
@@ -916,12 +1034,12 @@
       "rank": 13,
       "documents": 395,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "技能与工具",
+        "en": "Skills and tools"
       },
       "short": {
-        "zh": "规则、程序与论证不是同一件事",
-        "en": "Rules, programs and arguments differ"
+        "zh": "逻辑分别落在账务规则、程序运行和业务解释上。三者都需要让别人看懂推导过程，但检查方式不同：对单据、跑程序，还是核对数据的统计范围和计算方法？",
+        "en": "Logic is applied to accounting rules, program behaviour and business explanations. Each requires a traceable line of reasoning, but the check differs: reconcile documents, run the program, or verify the analytical definitions."
       },
       "examples": [
         {
@@ -940,7 +1058,8 @@
           "question": {
             "zh": "最需要掌握哪些退税与结汇规则？",
             "en": "Which refund and foreign-exchange rules are essential?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -958,7 +1077,8 @@
           "question": {
             "zh": "面试怎样检验问题拆解，而不只是算法背诵？",
             "en": "How does assessment test decomposition rather than memorization?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -976,9 +1096,18 @@
           "question": {
             "zh": "结论需要排除哪些常见口径或归因错误？",
             "en": "Which definition and attribution errors must a conclusion rule out?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.逻辑.n_checked",
+        "k_correct": "term.逻辑.k_correct",
+        "precision": "term.逻辑.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "学习",
@@ -986,12 +1115,12 @@
       "rank": 14,
       "documents": 368,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "学习可以是履行任务，也可以是更新方法",
-        "en": "Learning can be a task or a way of revising work"
+        "zh": "学习可能是掌握现场操作、更新设计方法，或理解招聘业务。成果也不同：能完成任务、能改进作品、能讲清岗位。可以追问：学到什么程度，由谁通过什么成果确认？",
+        "en": "Learning may mean acquiring production skills, updating design methods or understanding a hiring business. The result could be completing a task, improving a design or explaining a role. Ask what demonstrates learning and who reviews that evidence."
       },
       "examples": [
         {
@@ -1010,7 +1139,8 @@
           "question": {
             "zh": "学习带教与实际生产分别占多少时间？",
             "en": "How is time divided between instruction and production?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1028,7 +1158,8 @@
           "question": {
             "zh": "方法改进有无评审、反馈与可安排的学习时间？",
             "en": "Are review, feedback and learning time provided for method improvement?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1046,9 +1177,18 @@
           "question": {
             "zh": "业务学习由谁带教，英语测试对应哪些真实任务？",
             "en": "Who supports business learning, and which tasks does the language test reflect?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.学习.n_checked",
+        "k_correct": "term.学习.k_correct",
+        "precision": "term.学习.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "统筹",
@@ -1056,12 +1196,12 @@
       "rank": 15,
       "documents": 295,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "协作与服务",
+        "en": "Working with others"
       },
       "short": {
-        "zh": "统筹的是流程、项目组合，还是稀缺资源",
-        "en": "Processes, portfolios or scarce resources"
+        "zh": "统筹可能串起连续工序，也可能同时照看多个项目，或安排跨项目的人力需求。先辨认自己协调的是流程还是资源，再问：冲突出现时，谁确定优先次序？",
+        "en": "Coordination may connect production stages, oversee several projects or organize staffing needs across projects. Identify whether the role coordinates a process or allocates resources, then ask who sets priorities when demands conflict."
       },
       "examples": [
         {
@@ -1080,7 +1220,8 @@
           "question": {
             "zh": "色差异常时谁可以调整配方或暂停流转？",
             "en": "Who may change a formulation or pause production after a colour deviation?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1098,7 +1239,8 @@
           "question": {
             "zh": "多个项目争用资源时，谁确定次序？",
             "en": "Who prioritizes projects competing for resources?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1116,9 +1258,18 @@
           "question": {
             "zh": "资源经理能决定调配，还是只提出调配建议？",
             "en": "Can the resource manager allocate staff, or only recommend allocations?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.统筹.n_checked",
+        "k_correct": "term.统筹.k_correct",
+        "precision": "term.统筹.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "主动",
@@ -1126,12 +1277,12 @@
       "rank": 16,
       "documents": 237,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "主动联系、主动发现与自行决策有不同边界",
-        "en": "Reaching out, noticing problems and deciding differ"
+        "zh": "主动可以是先获取市场信息、先跟进客户，也可以是先把订单问题报出来。值得问清的是：哪些事需要主动发现，能自行推进到哪一步，什么时候需要交接？",
+        "en": "Initiative may mean gathering market information, following up with a customer or flagging an order problem. Ask what you are expected to notice, what you can handle yourself, and when to involve someone else."
       },
       "examples": [
         {
@@ -1150,7 +1301,8 @@
           "question": {
             "zh": "主动获取的反馈怎样进入产品或渠道决策？",
             "en": "How does newly gathered feedback enter product or channel decisions?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1168,7 +1320,8 @@
           "question": {
             "zh": "线索由谁提供，跟进及提成归属怎样确认？",
             "en": "Who supplies leads, and how are follow-up and commission assigned?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1186,9 +1339,18 @@
           "question": {
             "zh": "哪些问题应主动上报，哪些可以直接处理？",
             "en": "Which issues must be reported, and which can be handled directly?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.主动.n_checked",
+        "k_correct": "term.主动.k_correct",
+        "precision": "term.主动.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "英语",
@@ -1196,12 +1358,12 @@
       "rank": 17,
       "documents": 230,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "技能与工具",
+        "en": "Skills and tools"
       },
       "short": {
-        "zh": "读文档、谈条件与应对监管是不同门槛",
-        "en": "Reading, negotiation and regulatory communication differ"
+        "zh": "英语可能用于读懂监管要求、写清技术问题，也可能贯穿采购谈判与对账。准备时应拿对应任务来练；面试可以问：日常最常读、写或说的材料分别是什么？",
+        "en": "English may be used to interpret registration requirements, document technical issues, or conduct procurement discussions and reconciliations. Practise the relevant task, and ask which materials and conversations are most common in the role."
       },
       "examples": [
         {
@@ -1220,7 +1382,8 @@
           "question": {
             "zh": "能否用一项注册任务说明口语与书面材料标准？",
             "en": "Can one registration task illustrate the spoken and written standard?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1238,7 +1401,8 @@
           "question": {
             "zh": "英语主要用于读资料、写文档还是跨国协作？",
             "en": "Is English used mainly for reading, documentation or international collaboration?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1256,9 +1420,18 @@
           "question": {
             "zh": "谈判、合同与对账分别要求怎样的语言能力？",
             "en": "What language skills are needed for negotiation, contracts and reconciliation?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.英语.n_checked",
+        "k_correct": "term.英语.k_correct",
+        "precision": "term.英语.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "严谨",
@@ -1266,12 +1439,12 @@
       "rank": 18,
       "documents": 219,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "品质与工作方式",
+        "en": "Qualities and ways of working"
       },
       "short": {
-        "zh": "什么错误必须被发现和留下证据",
-        "en": "Which errors must be caught and documented"
+        "zh": "严谨在这里分别保护试样过程、采购约定和财务报表的可追溯性。关键不只是少犯错，还要让别人找到依据。可以问：哪些变更必须留痕，最终由谁复核？",
+        "en": "Rigor preserves traceability in sample trials, purchasing commitments and financial reporting. It means not only avoiding errors but leaving evidence others can follow. Ask which changes must be recorded and who performs the final review."
       },
       "examples": [
         {
@@ -1290,7 +1463,8 @@
           "question": {
             "zh": "哪些过程参数与修改记录必须保留？",
             "en": "Which parameters and revision records must be retained?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1308,7 +1482,8 @@
           "question": {
             "zh": "合同、采购单与交期变化如何同步核对？",
             "en": "How are contracts, orders and changed delivery dates reconciled?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1326,9 +1501,18 @@
           "question": {
             "zh": "合并调整由谁复核，差异如何留痕？",
             "en": "Who reviews consolidation adjustments, and how are differences recorded?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.严谨.n_checked",
+        "k_correct": "term.严谨.k_correct",
+        "precision": "term.严谨.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "闭环",
@@ -1336,12 +1520,12 @@
       "rank": 19,
       "documents": 182,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "管理用语",
+        "en": "Management language"
       },
       "short": {
-        "zh": "责任跟进、模型反馈与数据架构不能混成一类",
-        "en": "Follow-through, model feedback and architecture differ"
+        "zh": "闭环可能指追完一次生产异常、把现场问题送进模型改进，或建设技术数据回路。先认清它围绕什么对象运转，再问：什么证据才算完成，谁来确认？",
+        "en": "A closed loop may mean following a production issue through, feeding field problems into model improvement, or supporting a technical data cycle. Identify the object of the loop, then ask what evidence establishes completion and who confirms it."
       },
       "examples": [
         {
@@ -1360,7 +1544,8 @@
           "question": {
             "zh": "谁定义异常关闭，谁能批准工艺或资源变更？",
             "en": "Who closes an exception and who approves process or resource changes?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1378,7 +1563,8 @@
           "question": {
             "zh": "什么证据足以把现场问题纳入模型改进，并验证已改善？",
             "en": "What evidence admits a field issue to model improvement and verifies the fix?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1396,9 +1582,18 @@
           "question": {
             "zh": "压缩规格怎样对应数据回传需求及工程验收？",
             "en": "How do compression specifications meet data-return and engineering acceptance requirements?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.闭环.n_checked",
+        "k_correct": "term.闭环.k_correct",
+        "precision": "term.闭环.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     },
     {
       "term": "执行力",
@@ -1406,12 +1601,12 @@
       "rank": 20,
       "documents": 180,
       "group": {
-        "zh": "语境对照",
-        "en": "Context comparisons"
+        "zh": "管理用语",
+        "en": "Management language"
       },
       "short": {
-        "zh": "执行可以指开拓、工程改善，也可以指遵循流程",
-        "en": "Execution may mean outreach, improvement or compliance"
+        "zh": "执行可能是把商户方案落实、把设备诊断推进到改善，或按既定流程处理城市业务。要看从什么动作开始、以什么结果结束，再问：遇到例外时能调整哪些步骤？",
+        "en": "Execution may put a merchant plan into practice, carry equipment diagnosis into improvement, or apply an established city-operations procedure. Identify the starting action and end result, then ask which steps can change when an exception arises."
       },
       "examples": [
         {
@@ -1430,7 +1625,8 @@
           "question": {
             "zh": "能调整哪些商户方案，哪些规则需要审批？",
             "en": "Which merchant-plan decisions are adjustable and which require approval?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1448,7 +1644,8 @@
           "question": {
             "zh": "设备异常时谁能停机、改参数或批准恢复？",
             "en": "Who can stop equipment, change parameters or authorize restart?"
-          }
+          },
+          "reviewStatus": "model_draft"
         },
         {
           "role": {
@@ -1466,177 +1663,110 @@
           "question": {
             "zh": "SOP 不适用现场情况时，如何申请例外？",
             "en": "How is an exception requested when an SOP does not fit the situation?"
-          }
+          },
+          "reviewStatus": "model_draft"
         }
-      ]
+      ],
+      "precisionKeys": {
+        "n_checked": "term.执行力.n_checked",
+        "k_correct": "term.执行力.k_correct",
+        "precision": "term.执行力.precision"
+      },
+      "occupations": [],
+      "collocates": [],
+      "senses": []
     }
   ],
   "report": {
     "title": {
-      "zh": "招聘如何把组织关系写成个人能力",
-      "en": "How recruitment turns organizational relations into personal abilities"
+      "zh": "能力词旁边，写着什么工作？",
+      "en": "What work surrounds a competence word?"
     },
     "standfirst": {
-      "zh": "2,000份归档的词面比较、60份跨来源语境对照，以及既有120份“独立”语义试验。我们关注的不只是企业要什么人，而是哪些工作关系被写成了一个人应当具备的东西。",
-      "en": "Lexical comparisons across 2,000 archived ads, 60 cross-source contextual cases, and an earlier 120-ad semantic pilot. The question is not only whom employers seek, but which working relationships become something an individual is expected to possess."
+      "zh": "从招聘广告中的合作对象、结果要求和决定权，检查这些词究竟在要求什么。",
+      "en": "Read named collaborators, expected results and decision rights alongside the words used to select people."
     },
     "thesis": {
-      "zh": "能力词提供了一种筛选人的共同形式，却没有自动带来共同的工作标准。相似的“沟通”“独立”“责任心”，把不同的交付和组织依赖表述为个人应当具备的品质。需要比较的，是谁定义结果、谁参与完成，以及谁能改变完成它的条件。",
-      "en": "Competence terms offer a common form for selecting people, without establishing a common standard of work. Similar labels—communication, independence and responsibility—express different deliverables and organizational dependencies as personal qualities. The comparison concerns who defines an outcome, who helps produce it and who can change its conditions."
+      "zh": "招聘要求个人独立、抗压、沟通时，同一项工作写出了哪些合作对象、结果要求和可以决定的事项？",
+      "en": "When an ad asks for independence, pressure tolerance or communication, which collaborators, expected results and decision rights does it name for that work?"
     },
     "findings": [
       {
-        "id": "data-relations",
+        "id": "pressure-coordination",
         "title": {
-          "zh": "01 · 数据能力的产物，常常是组织能够共同使用的依据",
-          "en": "01 · Data work often produces a basis that others can use"
+          "zh": "写抗压的广告，更常同时写协调",
+          "en": "Ads mentioning pressure tolerance more often mention coordination"
         },
         "interpretation": {
-          "zh": "技术语言与关系语言并不分开。数据记录、招聘复盘和客诉分类都需要把局部观察变成其他人能够采用的东西。",
-          "en": "Technical and relational language coexist. Test records, recruitment reviews and complaint categories make local observations usable by others."
+          "zh": "这些词面结果把抗压与合作要求放到同一份文本里，提供了逐条检查合作对象的入口；尚未检验H1中的具体对象，也未调整职业构成。",
+          "en": "The co-occurrence identifies texts in which pressure tolerance accompanies cooperation language. Identifiable collaborators under H1 have not yet been coded, and occupational composition has not been adjusted."
         },
         "quantitative": {
-          "zh": "905份含“数据”的文本中，619份也写“沟通”：68.4%。不含“数据”的文本为614/1,095：56.1%。",
-          "en": "619 of 905 data-mentioning ads also mention communication: 68.4%, versus 614/1,095, or 56.1%, among other ads."
-        },
-        "contrast": {
-          "zh": "化学工程师记录测试；招聘主管用数据调整流程；售后客服把客诉分类并交给技术部门改进。共享“数据”，但接用产物的人、验收依据和可改变的事项不同。",
-          "en": "A chemical engineer records tests; a recruiter reviews a hiring process; service staff classify complaints for engineering action. The recipient, validation standard and adjustable decisions differ."
-        },
-        "mechanism": {
-          "zh": "这里的技能组合不只是“会两种工具”：还有把技术结果翻译成部门之间可交接的证据。它提示应把沟通看作生产技术产物的一部分，而非技术工作之外的软装饰。",
-          "en": "The combination involves more than two tools: results must travel across departments as usable evidence. Communication can be part of producing a technical output, rather than an ornamental soft skill."
-        },
-        "caveat": {
-          "zh": "这是词面同现，不是互补技能的工资溢价测量，也没有把这905份都认定为数据分析岗位。",
-          "en": "This is lexical co-occurrence, not a wage-complementarity estimate or a classification of all 905 ads as analyst jobs."
+          "zh": "{{stat:assoc.抗压_协调.pressure_coordination_n|int}} / {{stat:assoc.抗压_协调.pressure_n|int}}份，对照为{{stat:assoc.抗压_协调.other_coordination_n|int}} / {{stat:assoc.抗压_协调.other_n|int}}份。未调整比值比{{stat:assoc.抗压_协调.or|or}}。",
+          "en": "{{stat:assoc.抗压_协调.pressure_coordination_n|int}} / {{stat:assoc.抗压_协调.pressure_n|int}} ads, versus {{stat:assoc.抗压_协调.other_coordination_n|int}} / {{stat:assoc.抗压_协调.other_n|int}}. Unadjusted odds ratio: {{stat:assoc.抗压_协调.or|or}}."
         },
         "terms": [
-          "数据",
-          "沟通",
-          "分析"
+          "抗压"
+        ],
+        "statKeys": [
+          "assoc.抗压_协调.pressure_rate",
+          "assoc.抗压_协调.pressure_coordination_n",
+          "assoc.抗压_协调.pressure_n",
+          "assoc.抗压_协调.other_rate",
+          "assoc.抗压_协调.other_coordination_n",
+          "assoc.抗压_协调.other_n"
         ]
       },
       {
-        "id": "independence",
+        "id": "data-communication",
         "title": {
-          "zh": "02 · “独立”把工作交给个人，却不自动把条件的决定权一起交给他",
-          "en": "02 · Independence assigns work without automatically assigning control over its conditions"
+          "zh": "写数据的广告，也更常写沟通",
+          "en": "Ads mentioning data also mention communication more often"
         },
         "interpretation": {
-          "zh": "独立检验、独立学习与独立办案分别组织不同的责任边界。称一个人能够独立完成工作，并不等于说他可以独自决定规则。",
-          "en": "Independent inspection, learning and case handling draw different boundaries of responsibility. Ability to complete work alone does not establish authority to determine its rules."
+          "zh": "这些广告值得继续读：数据算给谁看，又要解释什么问题？同现还没有证明沟通与数据属于同一项任务。",
+          "en": "These ads invite a closer reading: who receives the numbers, and what must be explained? Co-occurrence does not establish that communication and data concern the same task."
         },
         "quantitative": {
-          "zh": "既有120份全文试验中，156处劳动者用法有122处为能力或经历要求；114份相关广告中，71份同时写出明确伙伴及协作事项。",
-          "en": "In the earlier 120-ad pilot, 122 of 156 worker-directed uses concern competence or experience. Of 114 relevant ads, 71 also name identifiable collaborators and joint tasks."
-        },
-        "contrast": {
-          "zh": "品质组长能独立检验但协助主管管理；财务实习生的“独立”与多项“协助”并列；法务独立办案仍有案件分配及跨部门沟通。",
-          "en": "The quality lead inspects independently but assists management; the finance intern’s independence accompanies assisted tasks; independent legal work retains case allocation and coordination."
-        },
-        "mechanism": {
-          "zh": "人员筛选由此把组织中“这一段工作能交给谁”表述为个人能力。Abbott的工作分工视角帮助区分：掌握专业判断、承接流程、拥有最终处置权，并不是同一个位置。",
-          "en": "Selection expresses “to whom can this segment of work be entrusted?” as personal ability. A division-of-work perspective distinguishes professional judgment, process responsibility and final authority."
-        },
-        "caveat": {
-          "zh": "122/156与71/114来自既有模型语义编码；没有独立人评准确率。不能由文本未写权限推断现实没有权限。",
-          "en": "These pilot counts are model-coded, without an independent human accuracy estimate. Unstated authority cannot establish that authority is absent in practice."
+          "zh": "{{stat:assoc.数据_沟通.both_n|int}} / {{stat:assoc.数据_沟通.focus_n|int}}份，对照为{{stat:assoc.数据_沟通.other_both_n|int}} / {{stat:assoc.数据_沟通.other_n|int}}份。未调整比值比{{stat:assoc.数据_沟通.or|or}}。",
+          "en": "{{stat:assoc.数据_沟通.both_n|int}} / {{stat:assoc.数据_沟通.focus_n|int}} ads, versus {{stat:assoc.数据_沟通.other_both_n|int}} / {{stat:assoc.数据_沟通.other_n|int}}. Unadjusted odds ratio: {{stat:assoc.数据_沟通.or|or}}."
         },
         "terms": [
-          "独立",
-          "协作",
-          "统筹"
-        ]
-      },
-      {
-        "id": "pressure-exchange",
-        "title": {
-          "zh": "03 · “抗压”与协调要求相连；要求与承诺也可以同时出现",
-          "en": "03 · Pressure accompanies coordination; demands and promises can coexist"
-        },
-        "interpretation": {
-          "zh": "抗压不是一种可以脱离工作对象比较的坚强人格。在跨人、跨部门的交付中，承受他人行动的不确定性，也可能被写为个人的适任条件。",
-          "en": "Pressure tolerance is not a free-standing personality measure. Where delivery spans people and departments, uncertainty about others’ actions can become an individual suitability requirement."
-        },
-        "quantitative": {
-          "zh": "含“抗压”的501份文本中，284份含“协调”：56.7%；其余文本为467/1,499：31.2%。三种来源、各按长度中位数再分两组，六组内方向均一致。",
-          "en": "284 of 501 pressure-mentioning ads mention coordination: 56.7%, versus 467/1,499, or 31.2%. The direction persists in six strata formed by source and within-source median text length."
-        },
-        "contrast": {
-          "zh": "直播助播面对实时互动；技术招聘要承接紧急补编；HR数字化岗位直接写出投标加班。压力所在并不相同，追问也应分别落到接管、目标调整和工时安排。",
-          "en": "Live assistants handle interaction, recruiters handle urgent vacancies, and an HR-systems ad explicitly mentions bid overtime. Useful questions concern takeover, target adjustment and time arrangements respectively."
-        },
-        "mechanism": {
-          "zh": "但“个人品质遮掩全部支持”的强命题没有得到这批筛查支持：沿用较宽的压力词组规则，休息／时间补偿命中为45/579（7.8%），对照108/1,421（7.6%）。招聘既在筛选，也在提出接受工作的交换条件。",
-          "en": "The stronger claim that personal qualities erase support is not supported by the broader screen: rest/time-compensation mentions are 45/579 (7.8%) versus 108/1,421 (7.6%). Recruitment selects people while proposing terms for accepting work."
-        },
-        "caveat": {
-          "zh": "同现不识别管理动机；粗分层也未排除模板、岗位构成和来源选择。压力词组579份与精确“抗压”501份是两个口径；承诺被写出不等于已经兑现。",
-          "en": "Co-occurrence does not identify managerial intent, and coarse strata do not remove template or composition effects. The broader pressure screen (579) differs from the exact term (501); stated promises are not verified delivery."
-        },
-        "terms": [
-          "抗压",
-          "协调",
-          "适应"
-        ]
-      },
-      {
-        "id": "machine-loop",
-        "title": {
-          "zh": "04 · “闭环”的分歧，让现场经验如何进入机器系统变得可见",
-          "en": "04 · Different loops reveal how field experience enters machine systems"
-        },
-        "interpretation": {
-          "zh": "同一个闭环，可能是异常跟进，也可能是模型反馈流程或技术数据回路。先辨认回路里流动的是什么，才谈谁在承担责任。",
-          "en": "A loop may concern exception follow-up, model feedback or technical data infrastructure. Identify what circulates before interpreting who bears responsibility."
-        },
-        "quantitative": {
-          "zh": "182份文本含“闭环”；其中47份也含“模型”或“算法”，66份也含“异常”或“故障”。两组可以重叠，尚不作为182份的词义分布。",
-          "en": "182 ads contain the loop term; 47 also contain model/algorithm language and 66 contain exception/fault language. These overlapping counts are not a distribution of semantic senses."
-        },
-        "contrast": {
-          "zh": "生产班组长跟进异常；AI交付运营把现场问题转成模型改进需求；视频压缩工程师服务于自动驾驶数据回路及功耗、性能、面积约束。",
-          "en": "A production lead follows up exceptions; AI operations translate field issues into model-improvement requests; compression engineering supports driving-data loops under power, performance and area constraints."
-        },
-        "mechanism": {
-          "zh": "数字岗位中的一项关键工作，是决定哪些现场事件值得被记录、分到哪一类、怎样进入改进队列。这不只是操作AI工具，而是参与形成机器可处理的问题；其标准和最终验收应成为分析对象。",
-          "en": "A key task in digital roles is deciding which events are recorded, how they are classified and how they enter improvement work. This helps constitute machine-actionable problems; the standards and acceptance process deserve analysis."
-        },
-        "caveat": {
-          "zh": "这里只对具体广告中的流程进行解释，没有把平台规则直接当作内部奖惩，也没有将所有“闭环”命中都判为责任转嫁。",
-          "en": "The interpretation concerns stated workflows; platform rules are not treated as internal sanctions, nor every loop mention as risk transfer."
-        },
-        "terms": [
-          "闭环",
-          "执行力",
-          "目标"
+          "数据"
+        ],
+        "statKeys": [
+          "assoc.数据_沟通.focus_rate",
+          "assoc.数据_沟通.both_n",
+          "assoc.数据_沟通.focus_n",
+          "assoc.数据_沟通.other_rate",
+          "assoc.数据_沟通.other_both_n",
+          "assoc.数据_沟通.other_n"
         ]
       }
     ],
     "crossTabs": [
       {
         "title": {
-          "zh": "交叉证据 A · “抗压”与“协调”",
-          "en": "Cross-tab A · Pressure and coordination"
+          "zh": "写抗压的广告，更常同时写协调",
+          "en": "Ads mentioning pressure tolerance more often mention coordination"
         },
         "rowLabels": [
           {
-            "zh": "含“抗压”",
+            "zh": "含抗压",
             "en": "Pressure term present"
           },
           {
-            "zh": "不含“抗压”",
+            "zh": "不含抗压",
             "en": "Pressure term absent"
           }
         ],
         "columns": [
           {
-            "zh": "含“协调”",
+            "zh": "含协调",
             "en": "Coordination present"
           },
           {
-            "zh": "不含“协调”",
+            "zh": "不含协调",
             "en": "Coordination absent"
           }
         ],
@@ -1650,110 +1780,93 @@
             1032
           ]
         ],
+        "statKeys": [
+          "assoc.抗压_协调.pressure_coordination_n",
+          "assoc.抗压_协调.pressure_n",
+          "assoc.抗压_协调.other_coordination_n",
+          "assoc.抗压_协调.other_n"
+        ],
         "note": {
-          "zh": "文档为单位，每份仅计一次；不是劳动强度、协调负荷或因果效应的直接测量。",
-          "en": "Documents are counted once; this does not directly measure intensity, coordination load or causation."
+          "zh": "正文规范化后按词面检索，每广告每词计一次；尚未调整职业构成。",
+          "en": "Normalized body text is searched literally, once per ad per term; occupational composition is not adjusted."
         }
       },
       {
         "title": {
-          "zh": "交叉证据 B · 对“支持缺失”预设的检验",
-          "en": "Cross-tab B · Testing a support-absence presumption"
+          "zh": "写数据的广告，也更常写沟通",
+          "en": "Ads mentioning data also mention communication more often"
         },
         "rowLabels": [
           {
-            "zh": "压力词组候选",
-            "en": "Broader pressure candidate"
+            "zh": "含数据",
+            "en": "Data term present"
           },
           {
-            "zh": "无该候选",
-            "en": "No broader candidate"
+            "zh": "不含数据",
+            "en": "Data term absent"
           }
         ],
         "columns": [
           {
-            "zh": "休息／补偿命中",
-            "en": "Rest/compensation hit"
+            "zh": "含沟通",
+            "en": "Communication present"
           },
           {
-            "zh": "未命中",
-            "en": "No hit"
+            "zh": "不含沟通",
+            "en": "Communication absent"
           }
         ],
         "cells": [
           [
-            45,
-            534
+            619,
+            286
           ],
           [
-            108,
-            1313
+            614,
+            481
           ]
         ],
+        "statKeys": [
+          "assoc.数据_沟通.both_n",
+          "assoc.数据_沟通.focus_n",
+          "assoc.数据_沟通.other_both_n",
+          "assoc.数据_沟通.other_n"
+        ],
         "note": {
-          "zh": "沿用既有字面规则筛查。未命中不是没有福利；没有复用已被否定的规划／审查行动码。",
-          "en": "This retains the earlier lexical screen. No hit is not absence of benefits; invalidated planning/review action codes are not reused."
+          "zh": "正文规范化后按词面检索，每广告每词计一次；尚未调整职业构成。",
+          "en": "Normalized body text is searched literally, once per ad per term; occupational composition is not adjusted."
         }
       }
     ],
     "conclusion": {
-      "zh": "这些材料展示了一种可以继续检验的组织过程：招聘先用可迁移的品质标签把人变得可比较，再由任务、接口、指标和承诺规定标签的实际用途。统一标签之下，完成责任与决定空间仍可能分属不同位置。观察站把这种压缩展开为可对照的文本关系，让求职者能问到具体安排，也让研究者能重新检查“同一种能力”究竟是否可比。",
-      "en": "The material identifies an organizational process for further testing: recruitment makes people comparable through portable quality labels, while tasks, interfaces, measures and promises specify their use. Responsibility and decision space may still occupy different positions. The observatory unpacks this compression into comparable textual relations, enabling concrete questions about arrangements and renewed scrutiny of whether the same skill is actually comparable."
+      "zh": "当前最清楚的关系出现在抗压与协调之间。它让研究从一个人的承受能力，转向广告同时写出的合作要求。Urciuoli（2008）关于技能语言的研究提示我们检查这种写法，但词面相伴还没有回答合作对象是谁、承担什么任务。数据与沟通的对照则让我们继续追问，数字需要向谁解释、用来回答什么问题。下一步要由人工阅读具体条目，区分个人能力、工作内容和组织承诺，再检查结果责任与决定权是否指向同一件事。求职者现在可以沿着这些区别，询问能得到明确答复的工作安排。",
+      "en": "The clearest current association links pressure tolerance with coordination. It directs attention from an individual’s ability to cope to the cooperation requirements written alongside it. Urciuoli’s (2008) work motivates examining this wording, but co-occurrence does not identify the collaborators or their tasks. The data–communication comparison also prompts questions about who needs the numbers explained and which decisions they inform. Human reading must next distinguish personal requirements, duties and organizational promises, then check whether outcome responsibility and decision rights concern the same task. Applicants can already use those distinctions to ask specific questions about how the work is arranged."
     },
     "bibliography": [
       {
-        "author": "Raymond Williams",
-        "title": "Keywords: A Vocabulary of Culture and Society",
-        "url": "https://keywords.nyupress.org/american-cultural-studies/keywords-an-introduction/",
-        "contribution": {
-          "zh": "把关键词当作有分歧的社会词汇，而不是给每个词一个永久译法。链接为NYU出版社对Williams方法的说明。",
-          "en": "Keywords as contested social vocabulary, rather than permanent definitions; the linked NYU Press introduction discusses Williams’s method."
-        }
-      },
-      {
-        "author": "Fabian Stephany & Ole Teutloff",
-        "title": "What is the Price of a Skill? The Value of Complementarity",
-        "url": "https://arxiv.org/abs/2210.01535",
-        "contribution": {
-          "zh": "从技能组合提问；本项目不把词面同现直接写成经济互补性或工资溢价。",
-          "en": "Ask about skill combinations without treating lexical co-occurrence as measured economic complementarity or a wage premium."
-        }
-      },
-      {
-        "author": "Martin Wynne (editor / chapter author)",
-        "title": "Developing Linguistic Corpora · Archiving, distribution and preservation",
-        "url": "https://users.ox.ac.uk/~martinw/dlc/chapter6.htm",
-        "contribution": {
-          "zh": "保留语料版本、来源与解释过程，使结果可以复核和重新组织。",
-          "en": "Retain corpus versions, provenance and interpretive decisions so results can be checked and reorganized."
-        }
-      },
-      {
-        "author": "Andrew Abbott",
-        "title": "The System of Professions: An Essay on the Division of Expert Labor",
-        "url": "https://press.uchicago.edu/ucp/books/book/chicago/S/bo5965590.html",
-        "contribution": {
-          "zh": "区分专业判断、工作分工和管辖权；不预设所有岗位拥有完整职业自治。",
-          "en": "Distinguish expert judgment, division of work and jurisdiction without presuming full professional autonomy in every role."
-        }
-      },
-      {
-        "author": "Arlie Russell Hochschild",
-        "title": "The Managed Heart: Commercialization of Human Feeling",
-        "url": "https://www.ucpress.edu/books/the-managed-heart/paper",
-        "contribution": {
-          "zh": "追问情感展示怎样被组织；不把所有技术服务、沟通或客户工作自动归为情绪劳动。",
-          "en": "Ask how emotional display is organized without automatically classifying all technical service, communication or customer work as emotional labour."
-        }
+        "author": "David Deming & Lisa B. Kahn",
+        "title": "Skill Requirements across Firms and Labor Markets: Evidence from Job Postings for Professionals (2018)",
+        "url": "https://doi.org/10.1086/694106"
       },
       {
         "author": "Bonnie Urciuoli",
-        "title": "Skills and selves in the new workplace (2008)",
-        "url": "https://doi.org/10.1111/j.1548-1425.2008.00031.x",
-        "contribution": {
-          "zh": "分析技能词怎样把社会关系表述为可评估的个人品质；不同工作不能因此被假设为天然可比。",
-          "en": "Examine how skill language makes social relations into assessable personal qualities without presuming that different work becomes naturally commensurable."
-        }
+        "title": "Skills and Selves in the New Workplace (2008)",
+        "url": "https://doi.org/10.1111/j.1548-1425.2008.00031.x"
+      },
+      {
+        "author": "Laura K. Nelson",
+        "title": "Computational Grounded Theory: A Methodological Framework (2020)",
+        "url": "https://doi.org/10.1177/0049124117729703"
+      },
+      {
+        "author": "Justin Grimmer & Brandon M. Stewart",
+        "title": "Text as Data: The Promise and Pitfalls of Automatic Content Analysis Methods for Political Texts (2013)",
+        "url": "https://doi.org/10.1093/pan/mps028"
+      },
+      {
+        "author": "Naoki Egami, Musashi Hinck, Brandon M. Stewart & Hanying Wei",
+        "title": "Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models (2023)",
+        "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/d862f7f5445255090de13b825b880d59-Abstract.html"
       }
     ]
   }

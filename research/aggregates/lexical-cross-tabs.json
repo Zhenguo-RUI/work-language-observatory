@@ -1,0 +1,311 @@
+{
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "normalization": "Unicode NFKC followed by casefold; retain whitespace and punctuation; offsets refer to normalized text, not the original.",
+  "comparison_status": "Exploratory pairs revisited after seeing earlier data; unadjusted",
+  "tables": [
+    {
+      "cells": [
+        [
+          284,
+          217
+        ],
+        [
+          467,
+          1032
+        ]
+      ],
+      "n": 2000,
+      "or": 2.892154057174434,
+      "or_ci95": [
+        2.349510442391158,
+        3.5601267989759244
+      ],
+      "terms": [
+        "抗压",
+        "协调"
+      ],
+      "unit": "advertisement",
+      "meaning": "literal co-occurrence; no semantic or causal claim",
+      "source_length_strata": [
+        {
+          "source": "51job",
+          "length_group": "at_or_below_median",
+          "median_characters": 370.0,
+          "cells": [
+            [
+              52,
+              51
+            ],
+            [
+              83,
+              316
+            ]
+          ],
+          "n": 502,
+          "or": 3.881880463028585,
+          "or_ci95": [
+            2.461178486709107,
+            6.122674974862181
+          ]
+        },
+        {
+          "source": "51job",
+          "length_group": "above_median",
+          "median_characters": 370.0,
+          "cells": [
+            [
+              111,
+              56
+            ],
+            [
+              114,
+              217
+            ]
+          ],
+          "n": 498,
+          "or": 3.773026315789474,
+          "or_ci95": [
+            2.5463781687115152,
+            5.590578710798194
+          ]
+        },
+        {
+          "source": "boss",
+          "length_group": "at_or_below_median",
+          "median_characters": 445.5,
+          "cells": [
+            [
+              21,
+              20
+            ],
+            [
+              57,
+              152
+            ]
+          ],
+          "n": 250,
+          "or": 2.8,
+          "or_ci95": [
+            1.4130429773054216,
+            5.548309659307287
+          ]
+        },
+        {
+          "source": "boss",
+          "length_group": "above_median",
+          "median_characters": 445.5,
+          "cells": [
+            [
+              31,
+              37
+            ],
+            [
+              63,
+              119
+            ]
+          ],
+          "n": 250,
+          "or": 1.5825825825825826,
+          "or_ci95": [
+            0.8980593203840235,
+            2.788866585809461
+          ]
+        },
+        {
+          "source": "liepin",
+          "length_group": "at_or_below_median",
+          "median_characters": 422.5,
+          "cells": [
+            [
+              26,
+              20
+            ],
+            [
+              81,
+              123
+            ]
+          ],
+          "n": 250,
+          "or": 1.974074074074074,
+          "or_ci95": [
+            1.0337455975124694,
+            3.769755788376556
+          ]
+        },
+        {
+          "source": "liepin",
+          "length_group": "above_median",
+          "median_characters": 422.5,
+          "cells": [
+            [
+              43,
+              33
+            ],
+            [
+              69,
+              105
+            ]
+          ],
+          "n": 250,
+          "or": 1.9828722002635046,
+          "or_ci95": [
+            1.148710607878916,
+            3.4227786664544118
+          ]
+        }
+      ]
+    },
+    {
+      "cells": [
+        [
+          619,
+          286
+        ],
+        [
+          614,
+          481
+        ]
+      ],
+      "n": 2000,
+      "or": 1.695513769618004,
+      "or_ci95": [
+        1.4104602055267803,
+        2.0381765693918195
+      ],
+      "terms": [
+        "数据",
+        "沟通"
+      ],
+      "unit": "advertisement",
+      "meaning": "literal co-occurrence; no semantic or causal claim",
+      "source_length_strata": [
+        {
+          "source": "51job",
+          "length_group": "at_or_below_median",
+          "median_characters": 370.0,
+          "cells": [
+            [
+              104,
+              58
+            ],
+            [
+              149,
+              191
+            ]
+          ],
+          "n": 502,
+          "or": 2.2985420041657023,
+          "or_ci95": [
+            1.562334226386872,
+            3.3816677991702724
+          ]
+        },
+        {
+          "source": "51job",
+          "length_group": "above_median",
+          "median_characters": 370.0,
+          "cells": [
+            [
+              182,
+              70
+            ],
+            [
+              151,
+              95
+            ]
+          ],
+          "n": 498,
+          "or": 1.6357615894039734,
+          "or_ci95": [
+            1.1223858123556192,
+            2.3839538489476504
+          ]
+        },
+        {
+          "source": "boss",
+          "length_group": "at_or_below_median",
+          "median_characters": 445.5,
+          "cells": [
+            [
+              62,
+              36
+            ],
+            [
+              78,
+              74
+            ]
+          ],
+          "n": 250,
+          "or": 1.6339031339031338,
+          "or_ci95": [
+            0.9719150764134665,
+            2.7467826312869947
+          ]
+        },
+        {
+          "source": "boss",
+          "length_group": "above_median",
+          "median_characters": 445.5,
+          "cells": [
+            [
+              103,
+              48
+            ],
+            [
+              66,
+              33
+            ]
+          ],
+          "n": 250,
+          "or": 1.0729166666666667,
+          "or_ci95": [
+            0.6250385901280906,
+            1.8417265618354917
+          ]
+        },
+        {
+          "source": "liepin",
+          "length_group": "at_or_below_median",
+          "median_characters": 422.5,
+          "cells": [
+            [
+              51,
+              31
+            ],
+            [
+              106,
+              62
+            ]
+          ],
+          "n": 250,
+          "or": 0.9622641509433962,
+          "or_ci95": [
+            0.5577430827262163,
+            1.6601771045995108
+          ]
+        },
+        {
+          "source": "liepin",
+          "length_group": "above_median",
+          "median_characters": 422.5,
+          "cells": [
+            [
+              117,
+              43
+            ],
+            [
+              64,
+              26
+            ]
+          ],
+          "n": 250,
+          "or": 1.1053779069767442,
+          "or_ci95": [
+            0.6223655200185807,
+            1.9632519442847816
+          ]
+        }
+      ]
+    }
+  ]
+}

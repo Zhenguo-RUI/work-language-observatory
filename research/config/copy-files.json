@@ -1,0 +1,7 @@
+{
+  "files": [
+    "lib/research-observations.ts",
+    "lib/keyword-contexts.ts",
+    "data/public-study.json"
+  ]
+}

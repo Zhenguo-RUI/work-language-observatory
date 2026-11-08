@@ -1,0 +1,16 @@
+{
+  "script": "research/scripts/03_public_lexical.py",
+  "script_sha256": "89054334a7f795ca0242ad5e7fa446a264f0178c5698dbfb8108a23fb259e900",
+  "base_commit": "1d4aa8453a8a8c5ad75b247a6870e4d348fb2754",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "seed": 20261108,
+  "model": null,
+  "model_calls": 0,
+  "prompt_hash": null,
+  "temperature": null,
+  "outputs": [
+    "research/aggregates/stats.json",
+    "research/aggregates/lexical-cross-tabs.json"
+  ],
+  "human_annotations_written": 0
+}

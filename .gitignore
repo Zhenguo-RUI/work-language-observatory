@@ -35,3 +35,7 @@ verification.json
 !.env.example
 
 .runtime/
+
+# Python analysis bytecode
+__pycache__/
+*.pyc

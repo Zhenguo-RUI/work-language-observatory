@@ -33,4 +33,15 @@ python3 research/scripts/02_terms.py --run --plan-commit 7db06ee --verify-existi
 
 ## 发布
 
-本轮没有改网站文案或统计。Git只包含脚本、规则、计划、来源元数据及聚合检查；不包含原文、公司清单、逐条记录ID或人评包。后续只有满足验证条件的结果才进入 `stats.json` 和页面；旧网站统计不能冒充新流程的验证结果。
+2026-11-08，按用户要求将已完成的词面统计与新版词典、研究页连接发布。此前“本轮不改页面”的范围已被新的发布要求替代，研究假设及人工验证门槛未改。发布决策见 [publication-20261108.md](publication-20261108.md)。
+
+```sh
+python3 research/scripts/03_public_lexical.py
+node scripts/build-public-study.mjs
+node scripts/check-research-numbers.mjs
+node scripts/check-public-study.mjs
+```
+
+第一个脚本需要本机语料，核验输入哈希并重新计算两组广告层面的词面交叉表；它不执行职业或语义编码。后续构建与验收只读公开聚合数据，不需要私有原文。`stats.json` 保存每个数字的单位、方法、来源和脚本。页面与 Markdown 同源，下载位于 `public/research/`。
+
+20词和60个原有去识别案例保留为明确标记的模型草稿，新增任务说明、交付建议和追问，不作为人评释义或语义分布。人工核对前不发布匹配精确率、职业分布或模型语义比例；历史模型试验已从新报告结果中移除。Git不包含原文、公司清单、逐条记录ID或人评包。

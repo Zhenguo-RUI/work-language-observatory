@@ -15,6 +15,9 @@ import {PUBLIC_DEMO} from "./public-demo";
 import {evidenceErrors,matchesFor,ruleDraft,textHash} from "./analysis-engine";
 import {resultSchema} from "./analysis-contract";
 import {ANALYSIS_VERSION} from "./analysis-prompt";
+import {canReuseAnalysis} from "./analysis-cache";
+// Client submissions cannot claim a server analysis version.
+const submittedResultSchema=resultSchema.omit({analysisVersion:true});
 import {runModelReading} from "./model-reading";
 import {modelRuntime} from "./model-client";
 import {operatorAccessConfigured} from "./operator-access";
@@ -98,12 +101,13 @@ async function guestSettings(){
 function json(value:unknown,status=200){return Response.json(value,{status,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff","Vary":"Cookie"}});}
 async function modelAnalysis(raw:string,title:string,cs:CorpusEntry[],methodNote:string,model:string,context:CompanyContext,company:string,onProgress?:(stage:string)=>void):Promise<AnalysisResult>{
  const runtime=modelRuntime(env);if(!runtime.apiKey)throw new Error("model_not_connected");
- return (await runModelReading({provider:runtime.provider,apiKey:runtime.apiKey,model,raw,title,comparators:cs,methodNote,request:meteredModelRequest,context,company,onProgress})).result;
+ const {result}=await runModelReading({provider:runtime.provider,apiKey:runtime.apiKey,model,raw,title,comparators:cs,methodNote,request:meteredModelRequest,context,company,onProgress});
+ return {...result,analysisVersion:ANALYSIS_VERSION};
 }
 const meteredModelRequest:typeof fetch=async(input,init)=>{try{await reserveModelCall(database(),env.MODEL_DAILY_CALL_LIMIT);}catch(error){if(error instanceof ModelBudgetError)throw error;throw new Error("model_quota_storage_unavailable");}return fetch(input,init);};
 async function updateAnalysis(current:Analysis,userId:string,input:{result?:AnalysisResult;status?:Analysis["status"];revision:number;note?:string;issues?:string[]}){
  if(input.revision!==current.revision)throw new HttpError(409,"该记录已更新，请刷新后再保存 / This record changed; refresh before saving");
- const result=input.result??current.result;const status=input.status??current.status;
+ const result=input.result?{...input.result,analysisVersion:current.result.analysisVersion}:current.result;const status=input.status??current.status;
  const errors=evidenceErrors(result,current.raw_text);
  if(result.sourceTranslation){errors.push(...translationErrors(result.sourceTranslation,current.title,current.raw_text));if(result.sourceTranslation.sourceHash!==await sourceFingerprint(current.title,current.raw_text))errors.push("Translation does not match the current title and JD.");}if(errors.length)throw new HttpError(422,errors.join("；"));
  const db=database(),change=uid(),stamp=now(),next=current.revision+1;
@@ -159,7 +163,7 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
      const row=await recordUsageFeedback(database(),d);if(!row)throw new HttpError(409,"反馈编号与记录不符 / Feedback reference does not match this reading");return json({ok:true},201);
     }
     if(path[1]==="share"){
-     const d=z.object({consent:z.literal(true),readingId:opaqueReadingId,analysis:z.object({title:z.string().max(160),company:z.string().max(160).default(""),rawText:z.string().min(40).max(24000),sourceUrl:z.string().max(1500).default(""),engine:z.enum(["model","rules","curated"]),result:resultSchema}).strict()}).strict().parse(await body(req));
+     const d=z.object({consent:z.literal(true),readingId:opaqueReadingId,analysis:z.object({title:z.string().max(160),company:z.string().max(160).default(""),rawText:z.string().min(40).max(24000),sourceUrl:z.string().max(1500).default(""),engine:z.enum(["model","rules","curated"]),result:submittedResultSchema}).strict()}).strict().parse(await body(req));
      await reserveUsageWrite(database(),"share",fingerprint);
      const a=d.analysis;if(a.sourceUrl&&!/^https?:\/\//.test(a.sourceUrl))throw new HttpError(400,"来源链接须为HTTP或HTTPS / Invalid source URL");
      if(evidenceErrors(a.result,a.rawText).length)throw new HttpError(422,"分析证据与JD不符，未提交 / The analysis evidence does not match the JD");
@@ -228,7 +232,7 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    if(!identity)await publicQuota(req);
    const hash=await textHash(d.rawText),effectiveTitle=d.title||d.rawText.split("\n")[0].slice(0,80);
    const existing=identity?await first("SELECT * FROM analyses WHERE owner_id=? AND text_hash=? AND company=? AND title=? AND source_url=? AND status!='archived' ORDER BY updated_at DESC LIMIT 1",user.userId,hash,d.company,effectiveTitle,d.sourceUrl):null;
-   if(existing){const a=readerView(parseRow(existing),op),companyContextFresh=!d.company||(a.result.context?.lookup?.status==="matched"&&a.result.context.briefBasis==="model");if(companyContextFresh&&(!d.useModel||a.engine!=="rules")){await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}}
+   if(existing){const a=readerView(parseRow(existing),op);if(canReuseAnalysis(a,d.useModel,d.company)){await finish("reused",a.id,a.engine);return json({analysis:a,reused:true});}}
    progress("accepted");
    const context=await enrichCompanyContext({raw:d.rawText,title:d.title,company:d.company,onProgress:progress});
    const cs=op?matchesFor(`${d.title} ${d.rawText}`,corpus):[];const cfg=await config();let result=ruleDraft(d.rawText,d.title||d.rawText.split("\n")[0].slice(0,60),cs);let engine="rules",modelError=false,modelFailure:string|undefined;result.context=context;
@@ -246,7 +250,7 @@ export async function handleApi(req:Request,path:string[],onProgress?:(stage:str
    const current=await getAnalysis(path[1],user.userId);
    if(path.length===2&&req.method==="GET")return json({analysis:current,reviews:op?await rows("SELECT * FROM reviews WHERE analysis_id=? ORDER BY created_at DESC",current.id):[],versions:op?await rows("SELECT revision,status,created_at FROM versions WHERE analysis_id=? ORDER BY revision DESC",current.id):[]});
    if(path.length===2&&req.method==="PATCH"){
-    await operator(user.userId);const d=z.object({result:resultSchema.optional(),status:z.enum(statuses).optional(),revision:z.number().int(),note:z.string().max(3000).optional(),issues:z.array(z.string().max(80)).max(8).optional()}).parse(await body(req));return json({analysis:await updateAnalysis(current,user.userId,d)});
+    await operator(user.userId);const d=z.object({result:submittedResultSchema.optional(),status:z.enum(statuses).optional(),revision:z.number().int(),note:z.string().max(3000).optional(),issues:z.array(z.string().max(80)).max(8).optional()}).parse(await body(req));return json({analysis:await updateAnalysis(current,user.userId,d)});
    }
    if(path[2]==="feedback"&&req.method==="POST"){
     if(!identity)await publicQuota(req);

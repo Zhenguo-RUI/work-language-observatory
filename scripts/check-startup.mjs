@@ -20,6 +20,7 @@ const mocks={
  './seed-data':{seeds:[],seedTranslations:[]},
  './model-client':{modelRuntime:()=>({provider:'deepseek',apiKey,model:'synthetic-model'})},
  './analysis-prompt':{ANALYSIS_VERSION:'test-startup'},
+ './analysis-contract':{resultSchema:require('zod').z.object({})},
  './usage-store':{getUsageSummary:async()=>({}),UsageRateLimitError:class extends Error{}},
  './model-quota':{ModelBudgetError:class extends Error{}},
 };

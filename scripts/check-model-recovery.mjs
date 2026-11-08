@@ -32,17 +32,17 @@ function corePreserved(result){for(const key of ['headline','role','terms','soci
 function sourcePreviewOnly(result){corePreserved(result);assert.notEqual(result.context?.briefBasis,'model');assert.notDeepEqual(result.context?.company.description,invalidBrief.overview);assert(!result.context?.companyEvidence?.some(a=>a.quote==='An invented source quotation'));}
 
 async function scenario(responder,extra={}){
- let clock=1_000_000;const requests=[],budgets=[],stages=[];
+ let clock=1_000_000;const requests=[],budgets=[],stages=[],diagnostics=[];
  const originalTimeout=AbortSignal.timeout;
  AbortSignal.timeout=ms=>{budgets.push(ms);return new AbortController().signal;};
- const opts={provider:'deepseek',apiKey:'synthetic-not-live',model:'deepseek-flash',raw,title:'广告投放实习',comparators:[],methodNote:'',now:()=>clock,onProgress:stage=>stages.push(stage),...extra,request:async(url,init)=>{const body=JSON.parse(init.body),index=requests.length;requests.push({url,body,input:readInput(body)});return responder({index,body,input:readInput(body),advance:ms=>{clock+=ms;}});}};
- try{return {value:await runModelReading(opts),requests,budgets,stages};}
- catch(error){error.testRequests=requests;error.testBudgets=budgets;throw error;}
+ const opts={provider:'deepseek',apiKey:'synthetic-not-live',model:'deepseek-flash',raw,title:'广告投放实习',comparators:[],methodNote:'',now:()=>clock,onProgress:stage=>stages.push(stage),onDiagnostics:entry=>diagnostics.push(entry),...extra,request:async(url,init)=>{const body=JSON.parse(init.body),index=requests.length;requests.push({url,body,input:readInput(body)});return responder({index,body,input:readInput(body),advance:ms=>{clock+=ms;}});}};
+ try{return {value:await runModelReading(opts),requests,budgets,stages,diagnostics};}
+ catch(error){error.testRequests=requests;error.testBudgets=budgets;error.testDiagnostics=diagnostics;throw error;}
  finally{AbortSignal.timeout=originalTimeout;}
 }
 
-await check('first DeepSeek request retains high reasoning with a 32K completion allowance and 150-second budget',async()=>{
- const r=await scenario(()=>deep(valid));assert.equal(r.value.calls,1);assert.equal(r.requests[0].body.reasoning_effort,'high');assert.equal(r.requests[0].body.max_tokens,32768);assert.equal(r.budgets[0],150000);corePreserved(r.value.result);
+await check('first DeepSeek request retains high reasoning with a 32K completion allowance and 200-second budget',async()=>{
+ const r=await scenario(()=>deep(valid));assert.equal(r.value.calls,1);assert.equal(r.requests[0].body.reasoning_effort,'high');assert.equal(r.requests[0].body.max_tokens,32768);assert.equal(r.budgets[0],200000);corePreserved(r.value.result);
 });
 for(const [name,failure] of [['network failure',()=>{throw networkError();}],['HTTP 429',()=>providerError(429)],['HTTP 500',()=>providerError(500)],['HTTP 503',()=>providerError(503)],['truncated output',()=>Response.json({choices:[{finish_reason:'length',message:{content:'{}'}}]})]]){
  await check(`${name} receives one complete low-reasoning recovery without accepting partial output`,async()=>{
@@ -90,17 +90,27 @@ await check('repeated malformed nesting remains rejected at the two-request ceil
 await check('fresh syntax recovery must still pass exact-source evidence validation',async()=>{
  await assert.rejects(()=>scenario(({index})=>index===0?deepText(malformed):deep(invalid)),error=>{assert.equal(error.testRequests.length,2);return error.message==='model_contract_invalid_after_one_repair';});
 });
-await check('a slow first generation still leaves a full bounded recovery allowance',async()=>{
- const r=await scenario(({index,advance})=>{if(index===0){advance(149000);return deep(invalid);}return deep(valid);});assert.equal(r.budgets[0],150000);assert.equal(r.budgets[1],90000);assert.equal(r.value.calls,2);
+await check('a complete first answer after the former 150-second limit still passes full validation',async()=>{
+ const r=await scenario(({advance})=>{advance(180000);return deep(valid);});assert.equal(r.budgets[0],200000);assert.equal(r.value.calls,1);corePreserved(r.value.result);
+});
+await check('a slow first generation leaves only the remaining shared budget for recovery',async()=>{
+ const r=await scenario(({index,advance})=>{if(index===0){advance(199000);return deep(invalid);}return deep(valid);});assert.equal(r.budgets[0],200000);assert.equal(r.budgets[1],71000);assert.equal(r.value.calls,2);
+ assert.deepEqual(r.diagnostics.map(d=>[d.phase,d.attempt,d.outcome]),[['generation',1,'completed'],['contract_repair',2,'completed']]);
+});
+await check('transport diagnostics distinguish a timeout and a successful bounded recovery',async()=>{
+ const r=await scenario(({index,advance})=>{if(index===0){advance(200000);throw new DOMException('synthetic timeout','TimeoutError');}return deep(valid);});
+ assert.equal(r.budgets[1],70000);assert.equal(r.value.calls,2);assert.equal(r.diagnostics.length,2);
+ assert.equal(r.diagnostics[0].phase,'generation');assert.equal(r.diagnostics[0].errorCode,'model_timeout');assert.equal(r.diagnostics[0].firstContentMs,null);assert.equal(r.diagnostics[0].outputChars,0);
+ assert.equal(r.diagnostics[1].phase,'transport_recovery');assert.equal(r.diagnostics[1].attempt,2);assert.equal(r.diagnostics[1].finishReason,'stop');corePreserved(r.value.result);
 });
 await check('the total deadline prevents starting a request when almost no time remains',async()=>{
- await assert.rejects(()=>scenario(({advance})=>{advance(238000);return deep(invalid);}),error=>{assert.equal(error.testRequests.length,1);return /deadline|timeout/i.test(error.message);});
+ await assert.rejects(()=>scenario(({advance})=>{advance(268000);return deep(invalid);}),error=>{assert.equal(error.testRequests.length,1);return /deadline|timeout/i.test(error.message);});
 });
 await check('a core that remains unsupported is rejected after the bounded repair',async()=>{
  await assert.rejects(()=>scenario(()=>deep(invalid)),error=>{assert.equal(error.testRequests.length,2);return /invalid_after_one_repair/.test(error.message);});
 });
 await check('an invalid company brief repairs only that field while retaining a validated JD core',async()=>{
- const r=await scenario(({index,body})=>{if(index===0)return deep({...valid,companyBrief:invalidBrief});const marker='matching this JSON schema: ';const schema=JSON.parse(body.messages[0].content.split(marker)[1]);assert.deepEqual(Object.keys(schema.properties),['companyBrief']);return deep({companyBrief:brief});},{context});assert.equal(r.requests.length,2);assert(r.budgets[1]<=30000);corePreserved(r.value.result);assert.equal(r.value.result.context.briefBasis,'model');assert.deepEqual(r.value.result.context.companyEvidence,brief.anchors);
+ const r=await scenario(({index,body})=>{if(index===0)return deep({...valid,companyBrief:invalidBrief});const marker='matching this JSON schema: ';const schema=JSON.parse(body.messages[0].content.split(marker)[1]);assert.deepEqual(Object.keys(schema.properties),['companyBrief']);return deep({companyBrief:brief});},{context});assert.equal(r.requests.length,2);assert(r.budgets[1]<=30000);corePreserved(r.value.result);assert.equal(r.value.result.context.briefBasis,'model');assert.deepEqual(r.value.result.context.companyEvidence,brief.anchors);assert.equal(r.diagnostics[1].phase,'company_repair');
 });
 await check('a twice-invalid company brief cannot downgrade or overwrite the validated core',async()=>{
  const r=await scenario(({index})=>deep(index===0?{...valid,companyBrief:invalidBrief}:{companyBrief:invalidBrief}),{context});assert.equal(r.requests.length,2);sourcePreviewOnly(r.value.result);
@@ -174,13 +184,13 @@ await check('a source error plus untranslated English takes ordinary contract re
  const r=await scenario(({index,input})=>{if(index===0)return deep(both);assert(input.previousFinalJson);assert(!('fields' in input));return deep(valid);});corePreserved(r.value.result);
 });
 await check('the total deadline prevents an English patch when less than five seconds remain',async()=>{
- await assert.rejects(()=>scenario(({advance})=>{advance(238000);return deep(mixed);}),error=>{assert.equal(error.testRequests.length,1);return error.message==='analysis_deadline';});
+ await assert.rejects(()=>scenario(({advance})=>{advance(268000);return deep(mixed);}),error=>{assert.equal(error.testRequests.length,1);return error.message==='analysis_deadline';});
 });
 await check('transport recovery cannot spend a third request on a later English-only failure',async()=>{
  await assert.rejects(()=>scenario(({index})=>{if(index===0)throw networkError();return deep(mixed);}),error=>{assert.equal(error.testRequests.length,2);return /invalid_after_one_repair/.test(error.message);});
 });
 await check('a valid English patch retains the original verified company candidate',async()=>{
- const r=await scenario(({index})=>deep(index===0?{...mixed,companyBrief:brief}:patch),{context});assert.equal(r.value.calls,2);corePreserved(r.value.result);assert.deepEqual(r.value.result.context.companyEvidence,brief.anchors);assert.equal(r.value.result.context.briefBasis,'model');
+ const r=await scenario(({index})=>deep(index===0?{...mixed,companyBrief:brief}:patch),{context});assert.equal(r.value.calls,2);assert.equal(r.diagnostics[1].phase,'english_repair');corePreserved(r.value.result);assert.deepEqual(r.value.result.context.companyEvidence,brief.anchors);assert.equal(r.value.result.context.briefBasis,'model');
 });
 await check('a valid English patch cannot spend a third call repairing an invalid company candidate',async()=>{
  const r=await scenario(({index})=>deep(index===0?{...mixed,companyBrief:invalidBrief}:patch),{context});assert.equal(r.value.calls,2);sourcePreviewOnly(r.value.result);

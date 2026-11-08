@@ -1,4 +1,7 @@
+import {safeModelFailure} from "./usage-diagnostics";
 export type ModelProvider = "openai" | "deepseek";
+/** Transport diagnostics only: completion does not mean the analysis passed validation. */
+export type ModelRequestDiagnostics={elapsedMs:number;firstContentMs:number|null;outputChars:number;finishReason:string|null;outcome:"completed"|"failed";errorCode?:string};
 type RuntimeSettings = {
   ANALYSIS_PROVIDER?:string;
   ANALYSIS_MODEL?:string;
@@ -32,6 +35,7 @@ type JsonRequest = {
   reasoningEffort?:"low"|"high";
   maxCompletionTokens?:number;
   request?:typeof fetch;
+  onDiagnostics?:(diagnostics:ModelRequestDiagnostics)=>void;
 };
 
 const MAX_PROVIDER_BYTES=16*1024*1024;
@@ -68,7 +72,8 @@ async function providerJson(response:Response,signal:AbortSignal):Promise<unknow
  try{return JSON.parse(text);}catch{throw new Error("model_invalid_response");}
 }
 
-async function deepseekStream(response:Response,signal:AbortSignal):Promise<string>{
+type OutputObserver={content:(length:number)=>void;finish:(reason:unknown)=>void};
+async function deepseekStream(response:Response,signal:AbortSignal,observe:OutputObserver):Promise<string>{
  const decoder=new TextDecoder("utf-8",{fatal:true});
  let pending="",data:string[]=[],frameSize=0,answerLength=0,stopped=false,sawDone=false;
  const content:string[]=[];
@@ -89,6 +94,7 @@ async function deepseekStream(response:Response,signal:AbortSignal):Promise<stri
   const delta=choice.delta?.content;
   if(delta!==undefined&&delta!==null&&typeof delta!=="string")throw new Error("model_invalid_stream");
   if(typeof delta==="string"&&delta){
+   observe.content(delta.length);
    if(stopped)throw new Error("model_invalid_stream");
    answerLength+=delta.length;if(answerLength>MAX_ANSWER_LENGTH)throw new Error("model_response_too_large");
    content.push(delta);
@@ -96,6 +102,7 @@ async function deepseekStream(response:Response,signal:AbortSignal):Promise<stri
   // reasoning_content is deliberately ignored rather than concatenated, logged
   // or returned. It is not part of the JSON answer or the analysis contract.
   if(choice.finish_reason){
+   observe.finish(choice.finish_reason);
    if(choice.finish_reason==="length")throw new Error("model_incomplete_output");
    if(choice.finish_reason!=="stop")throw new Error("model_empty_or_refused");
    stopped=true;
@@ -127,6 +134,9 @@ async function deepseekStream(response:Response,signal:AbortSignal):Promise<stri
 }
 
 export async function requestModelJson(options:JsonRequest):Promise<string> {
+  const started=Date.now();let firstContentMs:number|null=null,outputChars=0,finishReason:string|null=null,errorCode:string|undefined,outcome:ModelRequestDiagnostics["outcome"]="failed";
+  const observe:OutputObserver={content:length=>{if(length>0){firstContentMs??=Math.max(0,Date.now()-started);outputChars+=length;}},finish:reason=>{finishReason=typeof reason==="string"&&["stop","length","content_filter","tool_calls","function_call","insufficient_system_resource","aborted","completed","incomplete","failed"].includes(reason)?reason:"other";}};
+  try{
   const deepseek = options.provider === "deepseek";
   const request = options.request || fetch;
   // Destinations are fixed: an operator cannot redirect a provider key elsewhere.
@@ -157,21 +167,30 @@ export async function requestModelJson(options:JsonRequest):Promise<string> {
   // Do not propagate provider response bodies: they can contain source text.
   if(!response.ok)throw new Error(`model_http_${response.status}`);
   if(deepseek){
-    if(response.headers.get("content-type")?.includes("text/event-stream"))return deepseekStream(response,signal);
+    if(response.headers.get("content-type")?.includes("text/event-stream")){const answer=await deepseekStream(response,signal,observe);outcome="completed";return answer;}
     // Some test fixtures and compatible gateways return the non-streaming JSON
     // shape. Preserve its strict finish-reason checks rather than treating it as SSE.
     const data=await providerJson(response,signal) as {choices?:{finish_reason?:string;message?:{content?:string;refusal?:string}}[]};
     const choice=data.choices?.[0];
+    if(choice?.finish_reason)observe.finish(choice.finish_reason);
+    if(typeof choice?.message?.content==="string")observe.content(choice.message.content.length);
     if(choice?.finish_reason === "length")throw new Error("model_incomplete_output");
     if(choice?.finish_reason !== "stop" || choice.message?.refusal)throw new Error("model_empty_or_refused");
     const content=choice.message?.content;
     if(typeof content !== "string" || !content.trim())throw new Error("model_empty_or_refused");
     // reasoning_content is deliberately neither returned nor stored.
-    return content;
+    outcome="completed";return content;
   }
   const data=await providerJson(response,signal) as {status?:string;output?:{content?:{type:string;text?:string}[]}[]};
+  if(data.status)observe.finish(data.status);
   if(data.status === "incomplete")throw new Error("model_incomplete_output");
   const content=data.output?.flatMap(o=>o.content||[]).filter(c=>c.type === "output_text").map(c=>c.text||"").join("");
+  if(content)observe.content(content.length);
   if(!content?.trim())throw new Error("model_empty_or_refused");
-  return content;
+  outcome="completed";return content;
+  }catch(error){errorCode=safeModelFailure(error);throw error;}
+  finally{
+   // Never emit prompts, source material, answer fragments, reasoning or arbitrary errors.
+   try{options.onDiagnostics?.({elapsedMs:Math.max(0,Date.now()-started),firstContentMs,outputChars,finishReason,outcome,...(errorCode?{errorCode}:{})});}catch{/* Observability must not alter the request result. */}
+  }
 }

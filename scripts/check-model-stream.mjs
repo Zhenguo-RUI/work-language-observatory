@@ -45,4 +45,24 @@ await check('overall stream bytes remain bounded even for discarded reasoning',a
 await check('non-streaming JSON fixture remains supported with strict stop reason',async()=>{assert.equal(await run(Response.json({choices:[{finish_reason:'stop',message:{content:'{"ok":true}',reasoning_content:'private'}}]})),'{"ok":true}');await assert.rejects(()=>run(Response.json({choices:[{finish_reason:'length',message:{content:'{}'}}]})),/model_incomplete_output/);});
 await check('OpenAI Responses JSON adapter remains unchanged',async()=>{const answer=await requestModelJson({...options,provider:'openai',request:async(_url,init)=>{const body=JSON.parse(init.body);assert.equal(body.stream,undefined);assert.equal(body.store,false);return Response.json({output:[{content:[{type:'output_text',text:'{}'}]}]});}});assert.equal(answer,'{}');});
 
+await check('successful diagnostics count final content only and never expose input, answer or reasoning',async()=>{
+ const reports=[],answer='{"privateAnswer":"value"}';
+ assert.equal(await run(response(chunk(undefined,null,{reasoning_content:'PRIVATE_REASONING_SENTINEL'})+chunk(answer,'stop')+end),{input:{secret:'PRIVATE_INPUT_SENTINEL'},onDiagnostics:d=>reports.push(d)}),answer);
+ assert.equal(reports.length,1);const d=reports[0];assert.equal(d.outcome,'completed');assert.equal(d.outputChars,answer.length);assert.equal(d.finishReason,'stop');assert(d.firstContentMs>=0&&d.elapsedMs>=d.firstContentMs);
+ assert.deepEqual(Object.keys(d).sort(),['elapsedMs','finishReason','firstContentMs','outcome','outputChars'].sort());assert(!/privateAnswer|PRIVATE_INPUT|PRIVATE_REASONING|synthetic-not-live/.test(JSON.stringify(d)));
+});
+await check('timeout diagnostics retain lengths and phase timing without returning partial JSON',async()=>{
+ const reports=[],partial='{"unfinished":';let cancelled=false;
+ const res=new Response(new ReadableStream({start(c){c.enqueue(encoder.encode(chunk(partial)));},cancel(){cancelled=true;}}),{headers:{'Content-Type':'text/event-stream'}});
+ const keeper=setTimeout(()=>{},1000);try{await assert.rejects(()=>run(res,{timeoutMs:25,onDiagnostics:d=>reports.push(d)}),e=>e.name==='TimeoutError');}finally{clearTimeout(keeper);}
+ assert(cancelled);assert.equal(reports.length,1);assert.equal(reports[0].outputChars,partial.length);assert.equal(reports[0].finishReason,null);assert.equal(reports[0].outcome,'failed');assert.equal(reports[0].errorCode,'model_timeout');assert(reports[0].firstContentMs!==null);assert(!JSON.stringify(reports).includes('unfinished'));
+});
+await check('arbitrary provider finish reasons and errors cannot enter diagnostics',async()=>{
+ const reports=[];await assert.rejects(()=>run(response(chunk('{}','PRIVATE_PROVIDER_DETAIL')+end),{onDiagnostics:d=>reports.push(d)}),/refused/);
+ assert.equal(reports[0].finishReason,'other');assert.equal(reports[0].outcome,'failed');assert.equal(reports[0].errorCode,'model_empty_or_refused');assert(!JSON.stringify(reports).includes('PRIVATE_PROVIDER_DETAIL'));
+});
+await check('a failing diagnostics callback cannot invalidate an otherwise complete answer',async()=>{
+ assert.equal(await run(response(chunk('{}','stop')+end),{onDiagnostics:()=>{throw new Error('synthetic observer failure');}}),'{}');
+});
+
 console.log(JSON.stringify({passed:checks.length,paid_calls:0,checks},null,2));

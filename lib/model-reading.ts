@@ -2,7 +2,7 @@ import {companyBriefSchema,companyBriefErrors,attachCompanyBrief,companyBriefOut
 import {ANALYSIS_INSTRUCTIONS,ANALYSIS_OUTPUT_LAYOUT} from "./analysis-prompt";
 import {resultSchema,modelOutputSchema,deepEvidenceErrors} from "./analysis-contract";
 import {evidenceErrors} from "./analysis-engine";
-import {requestModelJson,type ModelProvider} from "./model-client";
+import {requestModelJson,type ModelProvider,type ModelRequestDiagnostics} from "./model-client";
 import {planEnglishRepair,englishRepairOutputSchema,applyEnglishRepair,ENGLISH_REPAIR_INSTRUCTIONS,type EnglishRepair} from "./english-field-repair";
 import {safeModelFailure} from "./usage-diagnostics";
 import type {AnalysisResult,CorpusEntry,CompanyContext} from "./observatory-types";
@@ -11,10 +11,11 @@ import type {AnalysisResult,CorpusEntry,CompanyContext} from "./observatory-type
 // optional company brief must not discard a separately verified JD reading.
 const coreReadingSchema=resultSchema.omit({context:true,sourceTranslation:true,analysisVersion:true});
 const briefOnlyOutputSchema={type:"object",additionalProperties:false,required:["companyBrief"],properties:{companyBrief:companyBriefOutputSchema}};
-export const MODEL_READING_LIMITS={totalMs:240000,firstMs:150000,recoveryMs:90000,briefRepairMs:30000,englishRepairMs:30000,firstTokens:32768,recoveryTokens:24576,briefRepairTokens:6000,englishRepairTokens:4000} as const;
+export const MODEL_READING_LIMITS={totalMs:270000,firstMs:200000,recoveryMs:90000,briefRepairMs:30000,englishRepairMs:30000,firstTokens:32768,recoveryTokens:24576,briefRepairTokens:6000,englishRepairTokens:4000} as const;
 const recoverable=new Set(["model_network_error","model_timeout","model_incomplete_output","model_incomplete_stream","model_empty_response","model_invalid_response","model_invalid_stream","model_stream_error","model_http_429","model_http_500","model_http_502","model_http_503","model_http_504"]);
 
-type ReadingRequest={apiKey:string;model:string;provider?:ModelProvider;raw:string;title:string;company?:string;context?:CompanyContext;onProgress?:(stage:string)=>void;comparators:CorpusEntry[];methodNote:string;request?:typeof fetch;now?:()=>number};
+export type ReadingCallDiagnostics=ModelRequestDiagnostics&{phase:"generation"|"transport_recovery"|"contract_repair"|"english_repair"|"company_repair";attempt:number};
+type ReadingRequest={apiKey:string;model:string;provider?:ModelProvider;raw:string;title:string;company?:string;context?:CompanyContext;onProgress?:(stage:string)=>void;onDiagnostics?:(diagnostics:ReadingCallDiagnostics)=>void;comparators:CorpusEntry[];methodNote:string;request?:typeof fetch;now?:()=>number};
 function readBrief(value:unknown,context:CompanyContext|undefined):{brief:CompanyBrief|null;errors:string[]}{
  const parsed=companyBriefSchema.nullable().optional().safeParse(value);
  if(!parsed.success)return {brief:null,errors:parsed.error.issues.slice(0,5).map(issue=>`companyBrief.${issue.path.join(".")}: ${issue.message}`)};
@@ -38,11 +39,13 @@ export async function runModelReading(options:ReadingRequest):Promise<{result:An
   const remaining=deadline-now();if(remaining<5000){if(verifiedCore)return finish(verifiedCore,null,true);throw new Error("analysis_deadline");}
   const briefOnly=!!verifiedCore,englishOnly=!!englishRepair;
   const timeoutMs=Math.min(remaining,englishOnly?MODEL_READING_LIMITS.englishRepairMs:briefOnly?MODEL_READING_LIMITS.briefRepairMs:deepseek?(attempt?MODEL_READING_LIMITS.recoveryMs:MODEL_READING_LIMITS.firstMs):remaining);
+  const phase:ReadingCallDiagnostics["phase"]=englishOnly?"english_repair":briefOnly?"company_repair":attempt?(recoveryReason?"transport_recovery":"contract_repair"):"generation";
+  const onDiagnostics=(diagnostics:ModelRequestDiagnostics)=>{const entry={...diagnostics,phase,attempt:attempt+1};if(options.onDiagnostics)options.onDiagnostics(entry);else if(entry.outcome==="completed")console.info("Observatory provider request",entry);else console.warn("Observatory provider request",entry);};
   options.onProgress?.(attempt?(recoveryReason?"retrying":"repairing"):"analysis");
   let text:string;
   try{
    calls++;
-   text=await requestModelJson({provider:options.provider,apiKey:options.apiKey,model:options.model,request,timeoutMs,maxOutputTokens:englishOnly?MODEL_READING_LIMITS.englishRepairTokens:briefOnly?2000:7500,maxCompletionTokens:briefOnly?MODEL_READING_LIMITS.briefRepairTokens:attempt?MODEL_READING_LIMITS.recoveryTokens:MODEL_READING_LIMITS.firstTokens,...(englishOnly?{thinking:false}:{}),reasoningEffort:attempt?"low":"high",instructions:englishOnly?ENGLISH_REPAIR_INSTRUCTIONS:briefOnly?ANALYSIS_INSTRUCTIONS+"\nThis is a company-only repair. Return only {companyBrief: ...}; do not regenerate the JD reading. If a sourced brief cannot be supported, return companyBrief:null.":ANALYSIS_INSTRUCTIONS,schemaName:englishOnly?"english_field_repair":briefOnly?"company_brief_repair":"jd_context_reading_v2",schema:englishOnly?englishRepairOutputSchema(englishRepair!):briefOnly?briefOnlyOutputSchema:modelOutputSchema,input:englishOnly?{title:options.title,jd:options.raw,fields:englishRepair!.targets}:{title:options.title,jd:options.raw,employerLabel:options.company||null,sourceContext:options.context||null,methodNote:options.methodNote,comparators:briefOnly?[]:options.comparators.map(c=>({id:c.id,title:c.title,reading:c.semantic||null})),repairRequirements:repair,...(previousFinalJson?{previousFinalJson}:{}),...(recoveryReason?{recoveryReason}:{})}});
+   text=await requestModelJson({provider:options.provider,apiKey:options.apiKey,model:options.model,request,timeoutMs,onDiagnostics,maxOutputTokens:englishOnly?MODEL_READING_LIMITS.englishRepairTokens:briefOnly?2000:7500,maxCompletionTokens:briefOnly?MODEL_READING_LIMITS.briefRepairTokens:attempt?MODEL_READING_LIMITS.recoveryTokens:MODEL_READING_LIMITS.firstTokens,...(englishOnly?{thinking:false}:{}),reasoningEffort:attempt?"low":"high",instructions:englishOnly?ENGLISH_REPAIR_INSTRUCTIONS:briefOnly?ANALYSIS_INSTRUCTIONS+"\nThis is a company-only repair. Return only {companyBrief: ...}; do not regenerate the JD reading. If a sourced brief cannot be supported, return companyBrief:null.":ANALYSIS_INSTRUCTIONS,schemaName:englishOnly?"english_field_repair":briefOnly?"company_brief_repair":"jd_context_reading_v2",schema:englishOnly?englishRepairOutputSchema(englishRepair!):briefOnly?briefOnlyOutputSchema:modelOutputSchema,input:englishOnly?{title:options.title,jd:options.raw,fields:englishRepair!.targets}:{title:options.title,jd:options.raw,employerLabel:options.company||null,sourceContext:options.context||null,methodNote:options.methodNote,comparators:briefOnly?[]:options.comparators.map(c=>({id:c.id,title:c.title,reading:c.semantic||null})),repairRequirements:repair,...(previousFinalJson?{previousFinalJson}:{}),...(recoveryReason?{recoveryReason}:{})}});
   }catch(error){
    if(verifiedCore)return finish(verifiedCore,null,true);
    const code=safeModelFailure(error);

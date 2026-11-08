@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-08",
+  "change": "Long JD reading timeout handling",
+  "before": {
+    "first_ms": 150000,
+    "total_model_ms": 240000
+  },
+  "after": {
+    "first_ms": 200000,
+    "total_model_ms": 270000,
+    "max_calls": 2,
+    "route_ms": 300000
+  },
+  "offline_checks": {
+    "stream": 31,
+    "recovery": 41,
+    "typescript": "passed",
+    "production_build": "passed"
+  },
+  "local_live_test": {
+    "case": "User-supplied Tencent WeChat Search Agent internship",
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "passed_contract": true,
+    "calls": 1,
+    "elapsed_ms": 94033,
+    "duties": 4,
+    "first_content_ms": 71553,
+    "output_chars": 18949
+  },
+  "limitations": [
+    "The exact failing JD was not supplied; this is a regression case, not a reproduction of that failure.",
+    "A single completed call does not establish a production success rate or a speed improvement.",
+    "Generation, transport recovery and repair timings were not distinguishable in old logs.",
+    "The original complete bilingual output and evidence validators remain enabled."
+  ],
+  "production_check": "pending"
+}

@@ -56,13 +56,13 @@ export function withOperationalModelFields(reading,raw,domain){
  d.preparation={competencies:[],materials:[evaluation?
   bi('用一组自拟答案写出评分规则，并记录一个人工与机评分歧案例。','Write a rubric for a small set of invented answers and record one human–machine disagreement.'):
   bi('用一组虚构点击与成交数据写出素材对比和调整建议，并保留计算口径。','Use invented click and transaction data to compare creatives and propose an adjustment, retaining calculation definitions.')],practice:[evaluation?
-  {question:bi('同一答案人工与机评不一致，先检查什么？','What would you check first when human and machine judgments disagree?'),approach:bi('固定答案，比较引用、完整性等判定标准，再定位分歧来自规则还是执行。','Hold the answer fixed, compare criteria such as citations and completeness, and locate whether the disagreement concerns rules or their application.')}:
-  {question:bi('素材点击率提高，但成交没有增长，如何复盘？','How would you review a creative with more clicks but no increase in sales?'),approach:bi('先核对统计窗口与口径，再分开检查素材和转化环节，不把点击直接当作成交。','Check time windows and definitions, then inspect creative and conversion stages separately; do not treat clicks as sales.')} ]};
+  {question:bi('同一答案人工与机评不一致，先检查什么？','What would you check first when human and machine judgments disagree?'),approach:bi('我会固定答案，比较引用、完整性等判定标准，再定位分歧来自规则还是执行。','I would hold the answer fixed, compare criteria such as citations and completeness, and locate whether the disagreement concerns rules or their application.')}:
+  {question:bi('素材点击率提高，但成交没有增长，如何复盘？','How would you review a creative with more clicks but no increase in sales?'),approach:bi('我会先核对统计窗口与口径，再分开检查素材和转化环节，不把点击直接当作成交。','I would check time windows and definitions, then inspect creative and conversion stages separately; do not treat clicks as sales.')} ]};
  d.preparation.materials.push(evaluation?
   bi('用自拟检索片段做一张答案问题定位表，注明哪些判断还缺材料。','Create an answer-diagnosis sheet using invented retrieval excerpts and mark where evidence is missing.'):
   bi('做一页素材设计练习，说明目标人群与需要验证的差别。','Prepare a one-page creative exercise identifying its audience and differences to test.'));
  d.preparation.practice.push(evaluation?
-  {question:bi('答案引用了旧版说明，如何查清错误发生在哪一步？','An answer cites an old instruction sheet. How would you locate the error?'),approach:bi('比较检索片段与答案，再检查版本日期。','Compare the retrieved excerpts with the answer, then check version dates.')}:
-  {question:bi('两组素材的点击不同，怎样决定下一步测试？','Two creatives receive different click rates. How would you choose the next test?'),approach:bi('核对受众与曝光差别，再定义要验证的素材差异。','Check audience and exposure differences, then define the creative difference to test.')});
+  {question:bi('答案引用了旧版说明，如何查清错误发生在哪一步？','An answer cites an old instruction sheet. How would you locate the error?'),approach:bi('我会比较检索片段与答案，再检查版本日期。','I would compare the retrieved excerpts with the answer, then check version dates.')}:
+  {question:bi('两组素材的点击不同，怎样决定下一步测试？','Two creatives receive different click rates. How would you choose the next test?'),approach:bi('我会核对受众与曝光差别，再定义要验证的素材差异。','I would check audience and exposure differences, then define the creative difference to test.')});
  return result;
 }

@@ -138,6 +138,14 @@ export function operationalBreakdownErrors(result:AnalysisResult,raw:string,requ
  if(required||d.sociologySummary){
   if(hasSociology){
    bilingual(result.sociology,"sociology");bilingual(d.sociologySummary,"depth.sociologySummary");
+   if(required){
+    if(Array.from(result.sociology.zh.trim()).length>250)errors.push("sociology.zh: keep the analytical paragraph within 250 characters; omit it if no source-grounded concept fits.");
+    for(const language of ["zh","en"] as const){
+     const prose=result.sociology[language].trim();
+     if(/[?？]["'”’]?$/u.test(prose))errors.push(`sociology.${language}: finish the analysis without a question; put a useful employer question in questions.`);
+     if(/你可以|建议你|面试时|可以问|准备时|\byou (?:can|should)\b|\bask (?:how|whether|the team)\b|\ba useful question\b/i.test(prose))errors.push(`sociology.${language}: give analysis only, not preparation advice or interview questions.`);
+    }
+   }
    if(required&&!d.sociologyConceptId)errors.push("depth.sociologyConceptId: select one supplied, relevant concept or omit the sociological reading as a whole.");
    if(d.sociologySummary){
     facts.push({path:"depth.sociologySummary",value:d.sociologySummary});
@@ -167,10 +175,29 @@ export function operationalBreakdownErrors(result:AnalysisResult,raw:string,requ
    // not promoted wholesale to a mandatory requirement.
    if(item.level==="required"&&/优先|加分|更佳|为佳|者佳|\bpreferred\b|\bnice[- ]to[- ]have\b|\ba plus\b|\bdesirable\b/i.test(item.quote))errors.push(`${path}.level: preserve preferred status; isolate the actual required clause if the quote mixes requirements and preferences.`);
    if(advertised&&unresolvedQualificationGroup(raw,item.quote))errors.push(`${path}.level: this quote belongs to an unfinished qualification group whose missing ending can qualify all items. Keep the affected group at clarify instead of assigning required/preferred status to its complete-looking earlier items.`);
+   // Preserve explicit academic identity in the label. This narrow source-
+   // anchored check does not infer ability from a degree or judge theory use.
+   if(required&&advertised&&/学历|学位|研究生|在读|在校|本科(?:及|或|以上)/u.test(item.quote)){
+    const degrees=[{source:/本科|学士/u,zh:/本科|学士/u,en:/\bbachelor(?:s|['’]s)?\b|\bundergraduate\b/i},{source:/硕士/u,zh:/硕士/u,en:/\bmaster(?:s|['’]s)?\b/i},{source:/博士/u,zh:/博士/u,en:/\bdoctoral\b|\bdoctorate\b|\bph\.?d\.?\b/i}];
+    for(const degree of degrees)if(degree.source.test(item.quote))for(const language of ["zh","en"] as const)if(!degree[language].test(item.skill[language]))errors.push(`${path}.skill.${language}: retain the explicit degree level from the qualification quote, rather than replacing it with general training or ability.`);
+    for(const degree of ["硕士","博士"] as const)if(item.quote.includes(`${degree}研究生`)){
+     if(!new RegExp(`${degree}(?:研究)?生|在读${degree}|${degree}在读`,"u").test(item.skill.zh))errors.push(`${path}.skill.zh: preserve ${degree}研究生 as student status; academic training is not the advertised qualification.`);
+     if(!/\bstudents?\b|\benrolled\b|\bpursuing\b|\bstudying\b/i.test(item.skill.en))errors.push(`${path}.skill.en: preserve the enrolled-student status in the source qualification, not merely a degree or analytical training.`);
+    }
+   }
    if(advertised){facts.push({path:`${path}.skill`,value:item.skill});facts.push({path:`${path}.application`,value:item.application});}
   }
   prep.materials.forEach((material,index)=>bilingual(material,`depth.preparation.materials[${index}]`));
-  prep.practice.forEach((practice,index)=>{bilingual(practice.question,`depth.preparation.practice[${index}].question`);bilingual(practice.approach,`depth.preparation.practice[${index}].approach`);});
+  prep.practice.forEach((practice,index)=>{
+   bilingual(practice.question,`depth.preparation.practice[${index}].question`);bilingual(practice.approach,`depth.preparation.practice[${index}].approach`);
+   // Generation-only style checks: saved older answers remain readable.
+   if(required)for(const language of ["zh","en"] as const){
+    const text=practice.approach[language].trim(),path=`depth.preparation.practice[${index}].approach.${language}`;
+    if(text&&!(language==="zh"?/我/u:/\bI\b/u).test(text))errors.push(`${path}: write a first-person interview answer (我会 / I would), without inventing past experience.`);
+    const count=Array.from(new Intl.Segmenter(language,{granularity:"sentence"}).segment(text)).filter(part=>part.segment.trim()).length;
+    if(count>3)errors.push(`${path}: use at most three sentences for the practice answer.`);
+   }
+  });
   if(required&&prep.materials.length>2)errors.push("depth.preparation.materials: keep at most two useful work samples; do not fill sparse evidence with exercises.");
   if(required&&prep.practice.length>2)errors.push("depth.preparation.practice: keep at most two specific business practice questions.");
  }

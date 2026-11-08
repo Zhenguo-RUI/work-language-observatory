@@ -41,7 +41,7 @@ const legacyFixture=()=>({
    {level:'required',skill:bi('熟练使用Excel。','Proficiency in Excel.'),application:bi('用来整理和比较投稿、观看指标。','Use it to organise and compare posting and viewing measures.'),quote:'熟练使用Excel'},
    {level:'preferred',skill:bi('SQL经验优先。','SQL experience is preferred.'),application:bi('有助于理解数据提取；原文没有要求本岗独立查询。','Useful for understanding data extraction; the JD does not require independent querying.'),quote:'SQL经验优先'},
    {level:'suggested',skill:bi('准备一组边界案例。','Prepare a set of boundary cases.'),application:bi('展示如何解释分类分歧。','Show how you explain classification disagreements.'),quote:clauses[1]}
-  ],materials:[bi('选一个熟悉的内容类别，写一页规则并附正反例。','Choose a familiar content category and prepare a one-page rule with positive and negative examples.')],practice:[{question:bi('探店视频同时教做菜，如何设计分类规则？','How would you classify a restaurant-review video that also teaches cooking?'),approach:bi('先明确用途，再比较主类与多标签方案，用边界样本检查规则。','Clarify the purpose, compare a main-category rule with multiple tags, and test boundary cases.')}]},
+  ],materials:[bi('选一个熟悉的内容类别，写一页规则并附正反例。','Choose a familiar content category and prepare a one-page rule with positive and negative examples.')],practice:[{question:bi('探店视频同时教做菜，如何设计分类规则？','How would you classify a restaurant-review video that also teaches cooking?'),approach:bi('我会先明确用途，再比较主类与多标签方案，用边界样本检查规则。','I would clarify the purpose, compare a main-category rule with multiple tags, and test boundary cases.')}]},
   example:null,sociologyQuotes:[clauses[1],clauses[2]],questionTests:[{questionIndex:0,quote:clauses[1],answerA:bi('假设采用单一主类。','Suppose one main category is used.'),answerB:bi('假设允许多标签。','Suppose multiple tags are allowed.'),difference:bi('前者需要明确主次规则，后者需要检查标签间是否兼容。','The first needs precedence rules; the second needs compatibility checks.')}]
  }
 });
@@ -50,12 +50,12 @@ const make=()=>{
  d.sociologyConceptId='classification';
  d.sociologySummary=bi('分类能力还包括把判断写成别人能使用与修订的规则。','Classification skill includes making judgments into rules others can use and revise.');
  d.preparation.materials.push(bi('用三个自拟视频描述做一页标签检查记录，标明有争议的边界。','Make a one-page tag review from three invented video descriptions, marking disputed boundaries.'));
- d.preparation.practice.push({question:bi('两位同事给同一视频分了不同类，怎么查？','Two colleagues classify the same video differently. What would you check?'),approach:bi('先对照双方理由与规则定义，再用同类边界样本检验修改。','Compare their reasons with the category definitions, then test revisions on similar boundary cases.')});
+ d.preparation.practice.push({question:bi('两位同事给同一视频分了不同类，怎么查？','Two colleagues classify the same video differently. What would you check?'),approach:bi('我会先对照双方理由与规则定义，再用同类边界样本检验修改。','I would compare their reasons with the category definitions, then test revisions on similar boundary cases.')});
  return result;
 };
 const checks=[];const check=(name,fn)=>{fn();checks.push(name);};
 const errors=(value,source=raw)=>deepEvidenceErrors(resultSchema.parse(value),source,true,true,true);
-check('v10 uses the compatible v2 record protocol',()=>{assert.equal(ANALYSIS_VERSION,'work-language-v10');assert.equal(make().depth.protocol,'work-language-v2');});
+check('v11 uses the compatible v2 record protocol',()=>{assert.equal(ANALYSIS_VERSION,'work-language-v11');assert.equal(make().depth.protocol,'work-language-v2');});
 check('a grounded complete synthetic reading passes',()=>assert.deepEqual(errors(make()),[]));
 check('strict model output requires all duty explanations and preparation',()=>{
  const d=modelOutputSchema.properties.depth;
@@ -76,6 +76,20 @@ check('an example cannot be labelled as a reported workplace event',()=>{const b
 check('requirements and preferences need non-empty source quotes',()=>{for(const level of ['required','preferred']){const bad=make();bad.depth.preparation.competencies[0].level=level;bad.depth.preparation.competencies[0].quote=' ';assert(!resultSchema.safeParse(bad).success);}});
 check('a preference cannot be promoted to a mandatory competency',()=>{const bad=make();bad.depth.preparation.competencies[1].level='required';assert(errors(bad).some(e=>e.includes('preserve preferred status')));});
 check('a false competency quote is rejected even when its shape is valid',()=>{const bad=make();bad.depth.preparation.competencies[0].quote='必须熟练掌握Python';assert(errors(bad).some(e=>e.includes('competencies[0].quote')));});
+check('an explicit masters-student preference cannot turn into training or merely a completed degree',()=>{
+ const source=raw+'硕士研究生优先。',bad=make();
+ bad.depth.preparation.competencies.push({level:'preferred',skill:bi('硕士阶段分析训练','Master’s-level analytical training'),application:bi('联系课程材料阅读报告。','Relate course material to reading reports.'),quote:'硕士研究生优先'});
+ let found=errors(bad,source);assert(found.some(e=>e.includes('.skill.zh: preserve 硕士研究生')));assert(found.some(e=>e.includes('.skill.en: preserve the enrolled-student')));
+ assert(resultSchema.safeParse(bad).success);assert.deepEqual(operationalBreakdownErrors(bad,source,false),[]);
+ bad.depth.preparation.competencies.at(-1).skill=bi('硕士研究生','Master’s students');assert.deepEqual(errors(bad,source),[]);
+ bad.depth.preparation.competencies.at(-1).skill.en='Master’s degree';found=errors(bad,source);assert(found.some(e=>e.includes('.skill.en: preserve the enrolled-student')));
+});
+check('an academic-level requirement stays a qualification rather than generic subject knowledge',()=>{
+ const source=raw+'金融等相关专业本科及以上学历。',bad=make();
+ bad.depth.preparation.competencies.push({level:'required',skill:bi('金融基础','Finance knowledge'),application:bi('阅读财务数据。','Read financial data.'),quote:'金融等相关专业本科及以上学历'});
+ assert.equal(errors(bad,source).filter(e=>e.includes('retain the explicit degree level')).length,2);
+ bad.depth.preparation.competencies.at(-1).skill=bi('金融等相关专业本科及以上学历','A bachelor’s degree or above in finance or a related field');assert.deepEqual(errors(bad,source),[]);
+});
 check('a suggested preparation exercise does not need an invented source clause',()=>{const good=make();good.depth.preparation.competencies[2].quote='';assert.deepEqual(errors(good),[]);});
 check('a qualification-free JD can omit advertised competency rows',()=>{const good=make();good.depth.preparation.competencies=[];assert.deepEqual(errors(good),[]);});
 check('blank bilingual application and practice fields are rejected',()=>{const bad=make();bad.depth.preparation.competencies[0].application.en='';bad.depth.preparation.practice[0].approach.zh='';assert(errors(bad).some(e=>e.includes('.application')));assert(errors(bad).some(e=>e.includes('.approach')));});
@@ -111,6 +125,26 @@ check('new preparation remains bounded while sparse evidence may use one sample'
  const bad=make();bad.depth.preparation.materials.push(bad.depth.preparation.materials[0]);assert(errors(bad).some(e=>e.startsWith('depth.preparation.materials')));
  const good=make();good.depth.preparation.materials.pop();good.depth.preparation.practice.pop();assert.deepEqual(errors(good),[]);
 });
+check('v11 practice answers use first person in both languages without changing legacy persistence',()=>{
+ const old=make();old.depth.preparation.practice[0].approach=bi('先看分类定义，再核对样本。','Check the category definition, then compare the samples.');
+ assert(resultSchema.safeParse(old).success);assert.deepEqual(operationalBreakdownErrors(old,raw,false),[]);
+ const found=errors(old);assert(found.some(e=>e.startsWith('depth.preparation.practice[0].approach.zh')));assert(found.some(e=>e.startsWith('depth.preparation.practice[0].approach.en')));
+ const good=make();good.depth.preparation.practice[0].approach=bi('我会先读定义。再核对两个边界样本。最后决定是否修改。','I would read the definition first. Then I would compare two boundary cases. Finally, I would decide whether a revision is needed.');assert.deepEqual(errors(good),[]);
+});
+check('v11 practice accepts at most three sentences, treating decimals as numbers',()=>{
+ const good=make();good.depth.preparation.practice[0].approach=bi('我会核对2.5%的计算过程，再看样本。','I would check how 2.5% was calculated, then inspect the sample.');assert.deepEqual(errors(good),[]);
+ const bad=make();bad.depth.preparation.practice[0].approach=bi('我会读定义。核对样本。记录分歧。再作决定。','I would read the definition. I would compare samples. I would record disagreements. I would decide what to change.');
+ const found=errors(bad);assert.equal(found.filter(e=>e.includes('at most three sentences')).length,2);
+});
+check('v11 sociological prose has a 250-character generation limit, not a storage limit',()=>{
+ const good=make();good.sociology.zh='字'.repeat(250);assert.deepEqual(errors(good),[]);
+ const old=make();old.sociology.zh='字'.repeat(251);assert(resultSchema.safeParse(old).success);assert.deepEqual(operationalBreakdownErrors(old,raw,false),[]);assert(errors(old).some(e=>e.includes('within 250 characters')));
+});
+check('v11 sociology stays analysis rather than advice or a closing interview question',()=>{
+ const bad=make();bad.sociology=bi('分类规则由协作过程形成。面试时可以问谁批准规则？','The category rules emerge through coordination. You can ask the team who approves them?');
+ const found=errors(bad);for(const lang of ['zh','en']){assert(found.some(e=>e.startsWith(`sociology.${lang}`)&&e.includes('without a question')));assert(found.some(e=>e.startsWith(`sociology.${lang}`)&&e.includes('analysis only')));}
+ assert(resultSchema.safeParse(bad).success);assert.deepEqual(operationalBreakdownErrors(bad,raw,false),[]);
+});
 check('sociology may be omitted only as a consistent empty group',()=>{
  const good=make();good.sociology=bi('','');good.depth.sociologySummary=bi('','');good.depth.sociologyConceptId=null;good.depth.sociologyQuotes=[];good.questions=[];good.depth.questionTests=[];assert.deepEqual(errors(good),[]);
  good.depth.sociologySummary.zh='还有一个强行生成的结论';assert(errors(good).some(e=>e.startsWith('sociology:')));
@@ -124,7 +158,7 @@ check('a sourced boundary-object reading persists with its checked reference and
  const source=raw+'运营与算法共用分类说明书，分别据此整理内容与训练模型。',good=make();
  good.depth.sociologyConceptId='boundary_objects';good.depth.sociologyQuotes=['运营与算法共用分类说明书，分别据此整理内容与训练模型'];
  good.depth.sociologySummary=bi('同一份分类说明书服务于内容整理与模型训练。','The same classification guide serves content organization and model training.');
- good.sociology=bi('分类说明书在运营整理内容和算法训练模型之间传递同一套类别，两组人的使用目的不同。需要确认双方怎样修改这份共同材料；若仅单方使用而不参与跨组协作，边界物的解释就较弱。','The guide carries shared categories between content operations and model training, with different uses in each group. Ask how both groups revise it; if only one group uses it without cross-group cooperation, the boundary-object reading is weaker.');
+ good.sociology=bi('分类说明书在运营整理内容和算法训练模型之间传递同一套类别，两组人的使用目的不同。这段职责写出双方使用目的不同；只有材料确实在两组之间使用，这种共同材料才承担跨组协作的作用。','The guide carries shared categories between content operations and model training, with different uses in each group. Its coordinating role depends on actual use across both groups, with different purposes in each group.');
  assert.deepEqual(errors(good,source),[]);assert.equal(resultSchema.parse(good).depth.sociologyConceptId,'boundary_objects');
  assert.equal(sociologyReference('boundary_objects').url,'https://doi.org/10.1177/030631289019003001');
  for(const id of ['classification','jurisdiction','emotional_labor'])assert(sociologyReference(id));

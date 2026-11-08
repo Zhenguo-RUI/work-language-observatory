@@ -17,3 +17,14 @@
 
 /* Grounded duty cards: read the task first, preparation after it. */
 .handoff-competencies{list-style:none;padding:0;margin:16px 0 24px;display:grid;gap:14px}.handoff-competencies li{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;align-items:start}.handoff-competencies p{margin:3px 0;font-size:14px;line-height:1.65;color:var(--muted)}.requirement-level{border:1px solid #9caf95;border-radius:30px;padding:3px 8px;font-size:12px;text-align:center;white-space:nowrap}.requirement-level.preferred{border-color:#6e9ca9;color:#346b7a}.requirement-level.suggested,.requirement-level.clarify{border-color:#d2ba8c;color:#756343}.handoff-materials,.handoff-practice{margin:24px 0}.handoff-materials h3,.handoff-practice h3{font-size:19px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.handoff-materials ul{padding-left:20px}.handoff-practice h4{margin:16px 0 5px;font-size:16px}.handoff-practice p{margin:0;color:var(--muted);line-height:1.7}.handoff-work-map-details{margin:24px 0}.handoff-duty-example{margin-top:8px}.handoff-task-detail dd{min-width:0;overflow-wrap:anywhere}
+
+/* A brief decision view, with the full reading available below. */
+.handoff-quick-read{margin:4px 0 18px;padding:0;border-top:1px solid var(--hairline)}
+.handoff-quick-read>div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--hairline)}
+.handoff-quick-read dt{font:400 13px/1.7 var(--f-sans);color:var(--grey)}
+.handoff-quick-read dd{margin:0;font:400 16px/1.7 var(--f-serif);overflow-wrap:anywhere}
+.handoff-module>summary{min-height:44px;align-content:center;cursor:pointer;color:var(--slate);font:400 14px/1.6 var(--f-sans)}
+.handoff-module>summary>h2{display:inline;margin:0;color:var(--ink)}
+.handoff-module[open]>summary{margin-bottom:16px}
+.public-reader .handoff-reading details.handoff-outputs{padding-bottom:16px}
+@media(max-width:600px){.handoff-quick-read>div{grid-template-columns:88px minmax(0,1fr);gap:12px}.handoff-quick-read dd{font-size:15px}}

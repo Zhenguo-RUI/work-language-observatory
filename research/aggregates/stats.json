@@ -783,7 +783,13 @@
     "method": "Unadjusted ad-level cross-product ratio a*d/(b*c)",
     "source": "research/aggregates/lexical-cross-tabs.json",
     "script": "research/scripts/03_public_lexical.py",
-    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "ci": [
+      2.349510442391158,
+      3.5601267989759244
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction",
+    "n": 2000
   },
   "assoc.数据_沟通.focus_n": {
     "value": 905,
@@ -845,6 +851,964 @@
     "method": "Unadjusted ad-level cross-product ratio a*d/(b*c)",
     "source": "research/aggregates/lexical-cross-tabs.json",
     "script": "research/scripts/03_public_lexical.py",
-    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3"
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "ci": [
+      1.4104602055267803,
+      2.0381765693918195
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction",
+    "n": 2000
+  },
+  "context.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "All audited advertisements retained",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.templates.patterns": {
+    "value": 103,
+    "unit": "clause patterns",
+    "method": "Exact repeated-clause candidate removal; origin unconfirmed",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; count is not a proportion"
+  },
+  "context.templates.ads_affected": {
+    "value": 79,
+    "unit": "advertisements",
+    "method": "Exact repeated-clause candidate removal; origin unconfirmed",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; count is not a proportion"
+  },
+  "context.templates.clauses_removed": {
+    "value": 543,
+    "unit": "clause occurrences",
+    "method": "Exact repeated-clause candidate removal; origin unconfirmed",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; count is not a proportion"
+  },
+  "context.templates.empty_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Exact repeated-clause candidate removal; origin unconfirmed",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; count is not a proportion"
+  },
+  "context.templates.newly_empty_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Exact repeated-clause candidate removal; origin unconfirmed",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; count is not a proportion"
+  },
+  "context.templates.original_empty_ads": {
+    "value": 0,
+    "unit": "advertisements",
+    "method": "Exact repeated-clause candidate removal; origin unconfirmed",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; count is not a proportion"
+  },
+  "context.抗压_协调.ad_both": {
+    "value": 284,
+    "unit": "advertisements",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.抗压_协调.same_clause": {
+    "value": 115,
+    "unit": "advertisements",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.抗压_协调.adjacent_clause": {
+    "value": 157,
+    "unit": "advertisements",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.抗压_协调.same_rate": {
+    "value": 0.40492957746478875,
+    "unit": "proportion",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 284,
+    "denominator": "advertisements containing both terms before removal"
+  },
+  "context.抗压_协调.adjacent_rate": {
+    "value": 0.5528169014084507,
+    "unit": "proportion",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 284,
+    "denominator": "advertisements containing both terms before removal"
+  },
+  "context.抗压_协调.before.both": {
+    "value": 284,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.first_only": {
+    "value": 217,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.second_only": {
+    "value": 467,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.neither": {
+    "value": 1032,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.first_n": {
+    "value": 501,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.other_n": {
+    "value": 1499,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.before.first_rate": {
+    "value": 0.5668662674650699,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 501,
+    "denominator": "advertisements with first term"
+  },
+  "context.抗压_协调.before.other_rate": {
+    "value": 0.3115410273515677,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1499,
+    "denominator": "advertisements without first term"
+  },
+  "context.抗压_协调.before.or": {
+    "value": 2.892154057174434,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.both": {
+    "value": 281,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.first_only": {
+    "value": 217,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.second_only": {
+    "value": 463,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.neither": {
+    "value": 1039,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.first_n": {
+    "value": 498,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.other_n": {
+    "value": 1502,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.抗压_协调.after.first_rate": {
+    "value": 0.5642570281124498,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 498,
+    "denominator": "advertisements with first term"
+  },
+  "context.抗压_协调.after.other_rate": {
+    "value": 0.30825565912117175,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1502,
+    "denominator": "advertisements without first term"
+  },
+  "context.抗压_协调.after.or": {
+    "value": 2.905903195947089,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.ad_both": {
+    "value": 619,
+    "unit": "advertisements",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.数据_沟通.same_clause": {
+    "value": 61,
+    "unit": "advertisements",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.数据_沟通.adjacent_clause": {
+    "value": 238,
+    "unit": "advertisements",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements"
+  },
+  "context.数据_沟通.same_rate": {
+    "value": 0.09854604200323101,
+    "unit": "proportion",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 619,
+    "denominator": "advertisements containing both terms before removal"
+  },
+  "context.数据_沟通.adjacent_rate": {
+    "value": 0.38449111470113084,
+    "unit": "proportion",
+    "method": "One count per advertisement per pair. a=both terms anywhere; b=same clause; c=clause-index distance <=1 including same clause. Report b/a and c/a. No cross-ad pairing.",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 619,
+    "denominator": "advertisements containing both terms before removal"
+  },
+  "context.数据_沟通.before.both": {
+    "value": 619,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.first_only": {
+    "value": 286,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.second_only": {
+    "value": 614,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.neither": {
+    "value": 481,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.first_n": {
+    "value": 905,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.other_n": {
+    "value": 1095,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.before.first_rate": {
+    "value": 0.6839779005524862,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 905,
+    "denominator": "advertisements with first term"
+  },
+  "context.数据_沟通.before.other_rate": {
+    "value": 0.5607305936073059,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1095,
+    "denominator": "advertisements without first term"
+  },
+  "context.数据_沟通.before.or": {
+    "value": 1.695513769618004,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 before repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.both": {
+    "value": 608,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.first_only": {
+    "value": 281,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.second_only": {
+    "value": 607,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.neither": {
+    "value": 504,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.n": {
+    "value": 2000,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.first_n": {
+    "value": 889,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.other_n": {
+    "value": 1111,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "context.数据_沟通.after.first_rate": {
+    "value": 0.6839145106861643,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 889,
+    "denominator": "advertisements with first term"
+  },
+  "context.数据_沟通.after.other_rate": {
+    "value": 0.5463546354635463,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1111,
+    "denominator": "advertisements without first term"
+  },
+  "context.数据_沟通.after.or": {
+    "value": 1.7965491566363951,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 after repeated-clause candidate removal; OR=a*d/(b*c), null when denominator zero",
+    "source": "research/aggregates/context-sensitivity.json",
+    "script": "research/scripts/04_context_sensitivity.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "denominator": "all advertisements; OR uses four cells"
+  },
+  "assoc.抗压_协调.source.51job.n": {
+    "value": 1000,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000
+  },
+  "assoc.抗压_协调.source.51job.first_n": {
+    "value": 270,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000
+  },
+  "assoc.抗压_协调.source.51job.other_n": {
+    "value": 730,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000
+  },
+  "assoc.抗压_协调.source.51job.first_rate": {
+    "value": 0.6037037037037037,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 270
+  },
+  "assoc.抗压_协调.source.51job.other_rate": {
+    "value": 0.26986301369863014,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 730
+  },
+  "assoc.抗压_协调.source.51job.or": {
+    "value": 4.121590208264149,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000,
+    "ci": [
+      3.0730686053624954,
+      5.527864173034006
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "assoc.抗压_协调.source.boss.n": {
+    "value": 500,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.抗压_协调.source.boss.first_n": {
+    "value": 109,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.抗压_协调.source.boss.other_n": {
+    "value": 391,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.抗压_协调.source.boss.first_rate": {
+    "value": 0.47706422018348627,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 109
+  },
+  "assoc.抗压_协调.source.boss.other_rate": {
+    "value": 0.3069053708439898,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 391
+  },
+  "assoc.抗压_协调.source.boss.or": {
+    "value": 2.060233918128655,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500,
+    "ci": [
+      1.3362273776661968,
+      3.176528088221887
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "assoc.抗压_协调.source.liepin.n": {
+    "value": 500,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.抗压_协调.source.liepin.first_n": {
+    "value": 122,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.抗压_协调.source.liepin.other_n": {
+    "value": 378,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.抗压_协调.source.liepin.first_rate": {
+    "value": 0.5655737704918032,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 122
+  },
+  "assoc.抗压_协调.source.liepin.other_rate": {
+    "value": 0.3968253968253968,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 378
+  },
+  "assoc.抗压_协调.source.liepin.or": {
+    "value": 1.9788679245283018,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500,
+    "ci": [
+      1.309264332923644,
+      2.990930222610231
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "assoc.抗压_协调.mh.or": {
+    "value": 2.8924179316607117,
+    "unit": "odds ratio",
+    "method": "Mantel–Haenszel pooled OR, stratified by source; no zero-cell correction",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "ci": [
+      2.3495468034431966,
+      3.560721360873581
+    ],
+    "ci_method": "Robins–Breslow–Greenland (1986) pooled log-OR variance; normal 95% interval"
+  },
+  "assoc.数据_沟通.source.51job.n": {
+    "value": 1000,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000
+  },
+  "assoc.数据_沟通.source.51job.first_n": {
+    "value": 414,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000
+  },
+  "assoc.数据_沟通.source.51job.other_n": {
+    "value": 586,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000
+  },
+  "assoc.数据_沟通.source.51job.first_rate": {
+    "value": 0.6908212560386473,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 414
+  },
+  "assoc.数据_沟通.source.51job.other_rate": {
+    "value": 0.5119453924914675,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 586
+  },
+  "assoc.数据_沟通.source.51job.or": {
+    "value": 2.1301041666666665,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 1000,
+    "ci": [
+      1.6359064909790828,
+      2.7735960373475343
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "assoc.数据_沟通.source.boss.n": {
+    "value": 500,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.数据_沟通.source.boss.first_n": {
+    "value": 249,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.数据_沟通.source.boss.other_n": {
+    "value": 251,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.数据_沟通.source.boss.first_rate": {
+    "value": 0.6626506024096386,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 249
+  },
+  "assoc.数据_沟通.source.boss.other_rate": {
+    "value": 0.5737051792828686,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 251
+  },
+  "assoc.数据_沟通.source.boss.or": {
+    "value": 1.4595734126984128,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500,
+    "ci": [
+      1.0155010264736157,
+      2.0978359366645516
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "assoc.数据_沟通.source.liepin.n": {
+    "value": 500,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.数据_沟通.source.liepin.first_n": {
+    "value": 242,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.数据_沟通.source.liepin.other_n": {
+    "value": 258,
+    "unit": "advertisements",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500
+  },
+  "assoc.数据_沟通.source.liepin.first_rate": {
+    "value": 0.6942148760330579,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 242
+  },
+  "assoc.数据_沟通.source.liepin.other_rate": {
+    "value": 0.6589147286821705,
+    "unit": "proportion",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 258
+  },
+  "assoc.数据_沟通.source.liepin.or": {
+    "value": 1.1751987281399046,
+    "unit": "odds ratio",
+    "method": "Literal ad-level 2x2 within one archive source; Woolf CI",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 500,
+    "ci": [
+      0.8072632084775119,
+      1.7108323978078617
+    ],
+    "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+  },
+  "assoc.数据_沟通.mh.or": {
+    "value": 1.6714604795332302,
+    "unit": "odds ratio",
+    "method": "Mantel–Haenszel pooled OR, stratified by source; no zero-cell correction",
+    "source": "research/aggregates/lexical-cross-tabs.json",
+    "script": "research/scripts/03_public_lexical.py",
+    "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+    "n": 2000,
+    "ci": [
+      1.3896203907355076,
+      2.0104628237088153
+    ],
+    "ci_method": "Robins–Breslow–Greenland (1986) pooled log-OR variance; normal 95% interval"
   }
 }

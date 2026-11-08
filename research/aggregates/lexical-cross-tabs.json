@@ -1,7 +1,8 @@
 {
   "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
   "normalization": "Unicode NFKC followed by casefold; retain whitespace and punctuation; offsets refer to normalized text, not the original.",
-  "comparison_status": "Exploratory pairs revisited after seeing earlier data; unadjusted",
+  "comparison_status": "Exploratory pairs revisited after seeing earlier data; source-stratified descriptive association, not platform effects",
+  "interval_limit": "Intervals are model-based sampling summaries for this convenience archive; they do not establish market representativeness or account for unobserved duplicated vacancies, employer dependence or selection.",
   "tables": [
     {
       "cells": [
@@ -15,11 +16,16 @@
         ]
       ],
       "n": 2000,
+      "first_n": 501,
+      "other_n": 1499,
+      "first_rate": 0.5668662674650699,
+      "other_rate": 0.3115410273515677,
       "or": 2.892154057174434,
       "or_ci95": [
         2.349510442391158,
         3.5601267989759244
       ],
+      "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction",
       "terms": [
         "抗压",
         "协调"
@@ -42,11 +48,16 @@
             ]
           ],
           "n": 502,
+          "first_n": 103,
+          "other_n": 399,
+          "first_rate": 0.5048543689320388,
+          "other_rate": 0.20802005012531327,
           "or": 3.881880463028585,
           "or_ci95": [
             2.461178486709107,
             6.122674974862181
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "51job",
@@ -63,11 +74,16 @@
             ]
           ],
           "n": 498,
+          "first_n": 167,
+          "other_n": 331,
+          "first_rate": 0.6646706586826348,
+          "other_rate": 0.34441087613293053,
           "or": 3.773026315789474,
           "or_ci95": [
             2.5463781687115152,
             5.590578710798194
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "boss",
@@ -84,11 +100,16 @@
             ]
           ],
           "n": 250,
+          "first_n": 41,
+          "other_n": 209,
+          "first_rate": 0.5121951219512195,
+          "other_rate": 0.2727272727272727,
           "or": 2.8,
           "or_ci95": [
             1.4130429773054216,
             5.548309659307287
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "boss",
@@ -105,11 +126,16 @@
             ]
           ],
           "n": 250,
+          "first_n": 68,
+          "other_n": 182,
+          "first_rate": 0.45588235294117646,
+          "other_rate": 0.34615384615384615,
           "or": 1.5825825825825826,
           "or_ci95": [
             0.8980593203840235,
             2.788866585809461
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "liepin",
@@ -126,11 +152,16 @@
             ]
           ],
           "n": 250,
+          "first_n": 46,
+          "other_n": 204,
+          "first_rate": 0.5652173913043478,
+          "other_rate": 0.39705882352941174,
           "or": 1.974074074074074,
           "or_ci95": [
             1.0337455975124694,
             3.769755788376556
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "liepin",
@@ -147,13 +178,105 @@
             ]
           ],
           "n": 250,
+          "first_n": 76,
+          "other_n": 174,
+          "first_rate": 0.5657894736842105,
+          "other_rate": 0.39655172413793105,
           "or": 1.9828722002635046,
           "or_ci95": [
             1.148710607878916,
             3.4227786664544118
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         }
-      ]
+      ],
+      "source_strata": [
+        {
+          "source": "51job",
+          "cells": [
+            [
+              163,
+              107
+            ],
+            [
+              197,
+              533
+            ]
+          ],
+          "n": 1000,
+          "first_n": 270,
+          "other_n": 730,
+          "first_rate": 0.6037037037037037,
+          "other_rate": 0.26986301369863014,
+          "or": 4.121590208264149,
+          "or_ci95": [
+            3.0730686053624954,
+            5.527864173034006
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+        },
+        {
+          "source": "boss",
+          "cells": [
+            [
+              52,
+              57
+            ],
+            [
+              120,
+              271
+            ]
+          ],
+          "n": 500,
+          "first_n": 109,
+          "other_n": 391,
+          "first_rate": 0.47706422018348627,
+          "other_rate": 0.3069053708439898,
+          "or": 2.060233918128655,
+          "or_ci95": [
+            1.3362273776661968,
+            3.176528088221887
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+        },
+        {
+          "source": "liepin",
+          "cells": [
+            [
+              69,
+              53
+            ],
+            [
+              150,
+              228
+            ]
+          ],
+          "n": 500,
+          "first_n": 122,
+          "other_n": 378,
+          "first_rate": 0.5655737704918032,
+          "other_rate": 0.3968253968253968,
+          "or": 1.9788679245283018,
+          "or_ci95": [
+            1.309264332923644,
+            2.990930222610231
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+        }
+      ],
+      "source_mh": {
+        "or": 2.8924179316607117,
+        "or_ci95": [
+          2.3495468034431966,
+          3.560721360873581
+        ],
+        "n": 2000,
+        "strata": 3,
+        "method": "Mantel–Haenszel pooled OR, stratified by source; no zero-cell correction",
+        "ci_method": "Robins–Breslow–Greenland (1986) pooled log-OR variance; normal 95% interval",
+        "implementation": "statsmodels.stats.contingency_tables.StratifiedTable",
+        "version": "0.14.6"
+      }
     },
     {
       "cells": [
@@ -167,11 +290,16 @@
         ]
       ],
       "n": 2000,
+      "first_n": 905,
+      "other_n": 1095,
+      "first_rate": 0.6839779005524862,
+      "other_rate": 0.5607305936073059,
       "or": 1.695513769618004,
       "or_ci95": [
         1.4104602055267803,
         2.0381765693918195
       ],
+      "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction",
       "terms": [
         "数据",
         "沟通"
@@ -194,11 +322,16 @@
             ]
           ],
           "n": 502,
+          "first_n": 162,
+          "other_n": 340,
+          "first_rate": 0.6419753086419753,
+          "other_rate": 0.43823529411764706,
           "or": 2.2985420041657023,
           "or_ci95": [
             1.562334226386872,
             3.3816677991702724
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "51job",
@@ -215,11 +348,16 @@
             ]
           ],
           "n": 498,
+          "first_n": 252,
+          "other_n": 246,
+          "first_rate": 0.7222222222222222,
+          "other_rate": 0.6138211382113821,
           "or": 1.6357615894039734,
           "or_ci95": [
             1.1223858123556192,
             2.3839538489476504
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "boss",
@@ -236,11 +374,16 @@
             ]
           ],
           "n": 250,
+          "first_n": 98,
+          "other_n": 152,
+          "first_rate": 0.6326530612244898,
+          "other_rate": 0.5131578947368421,
           "or": 1.6339031339031338,
           "or_ci95": [
             0.9719150764134665,
             2.7467826312869947
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "boss",
@@ -257,11 +400,16 @@
             ]
           ],
           "n": 250,
+          "first_n": 151,
+          "other_n": 99,
+          "first_rate": 0.6821192052980133,
+          "other_rate": 0.6666666666666666,
           "or": 1.0729166666666667,
           "or_ci95": [
             0.6250385901280906,
             1.8417265618354917
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "liepin",
@@ -278,11 +426,16 @@
             ]
           ],
           "n": 250,
+          "first_n": 82,
+          "other_n": 168,
+          "first_rate": 0.6219512195121951,
+          "other_rate": 0.6309523809523809,
           "or": 0.9622641509433962,
           "or_ci95": [
             0.5577430827262163,
             1.6601771045995108
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         },
         {
           "source": "liepin",
@@ -299,13 +452,105 @@
             ]
           ],
           "n": 250,
+          "first_n": 160,
+          "other_n": 90,
+          "first_rate": 0.73125,
+          "other_rate": 0.7111111111111111,
           "or": 1.1053779069767442,
           "or_ci95": [
             0.6223655200185807,
             1.9632519442847816
-          ]
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
         }
-      ]
+      ],
+      "source_strata": [
+        {
+          "source": "51job",
+          "cells": [
+            [
+              286,
+              128
+            ],
+            [
+              300,
+              286
+            ]
+          ],
+          "n": 1000,
+          "first_n": 414,
+          "other_n": 586,
+          "first_rate": 0.6908212560386473,
+          "other_rate": 0.5119453924914675,
+          "or": 2.1301041666666665,
+          "or_ci95": [
+            1.6359064909790828,
+            2.7735960373475343
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+        },
+        {
+          "source": "boss",
+          "cells": [
+            [
+              165,
+              84
+            ],
+            [
+              144,
+              107
+            ]
+          ],
+          "n": 500,
+          "first_n": 249,
+          "other_n": 251,
+          "first_rate": 0.6626506024096386,
+          "other_rate": 0.5737051792828686,
+          "or": 1.4595734126984128,
+          "or_ci95": [
+            1.0155010264736157,
+            2.0978359366645516
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+        },
+        {
+          "source": "liepin",
+          "cells": [
+            [
+              168,
+              74
+            ],
+            [
+              170,
+              88
+            ]
+          ],
+          "n": 500,
+          "first_n": 242,
+          "other_n": 258,
+          "first_rate": 0.6942148760330579,
+          "other_rate": 0.6589147286821705,
+          "or": 1.1751987281399046,
+          "or_ci95": [
+            0.8072632084775119,
+            1.7108323978078617
+          ],
+          "ci_method": "Woolf log OR +/- 1.96 sqrt(1/a+1/b+1/c+1/d); undefined with zero cell; no correction"
+        }
+      ],
+      "source_mh": {
+        "or": 1.6714604795332302,
+        "or_ci95": [
+          1.3896203907355076,
+          2.0104628237088153
+        ],
+        "n": 2000,
+        "strata": 3,
+        "method": "Mantel–Haenszel pooled OR, stratified by source; no zero-cell correction",
+        "ci_method": "Robins–Breslow–Greenland (1986) pooled log-OR variance; normal 95% interval",
+        "implementation": "statsmodels.stats.contingency_tables.StratifiedTable",
+        "version": "0.14.6"
+      }
     }
   ]
 }

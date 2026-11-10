@@ -12,10 +12,15 @@ type Context={params:Promise<{path:string[]}>};
 type Diagnostic={event:"analysis_stream";requestId:string;phase:string;elapsedMs:number;first_in_instance:boolean;resumed?:boolean;status?:number;errorType?:string};
 async function route(request:Request,context:Context){
  const path=(await context.params).path;
- if(request.method!=="POST"||path.join("/")!=="analyses"||!request.headers.get("accept")?.includes("text/event-stream"))return handleApi(request,path);
+ const analysisPost=request.method==="POST"&&path.join("/") === "analyses",statusOnly=analysisPost&&request.headers.get("x-wlo-result-status")==="1";
+ if(!analysisPost||(!statusOnly&&!request.headers.get("accept")?.includes("text/event-stream")))return handleApi(request,path);
  const suppliedId=request.headers.get("x-wlo-request-id")||"",validId=/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(suppliedId);
- const requestId=validId?suppliedId:randomUUID(),firstInInstance=!hasSeenAnalysisStream;hasSeenAnalysisStream=true;
+ const requestId=validId?suppliedId:randomUUID();
  const cacheKey=validId?createHash("sha256").update([requestId,request.url,request.headers.get("cookie")||"",request.headers.get("origin")||"",await request.clone().text()].join("\0")).digest("hex"):null;
+ // The same UUID, exact request body, URL, Cookie and Origin are required.
+ // A status request never enters handleApi, invokes a model or consumes a call budget.
+ if(statusOnly){const inspection=resume.peek(cacheKey);return Response.json(inspection.state==="ready"?{state:"ready",data:inspection.value.data}:{state:inspection.state},{status:inspection.state==="ready"?200:inspection.state==="pending"?202:404,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff","Vary":"Cookie, Origin","X-WLO-Request-Id":requestId}});}
+ const firstInInstance=!hasSeenAnalysisStream;hasSeenAnalysisStream=true;
  const encoder=new TextEncoder();let cancelled=false,finished=false;const started=Date.now();
  const log=(phase:string,extra:Pick<Diagnostic,"resumed"|"status"|"errorType">={})=>{const entry:Diagnostic={event:"analysis_stream",requestId,phase,elapsedMs:Math.max(0,Date.now()-started),first_in_instance:firstInInstance,...extra};console.info(JSON.stringify(entry));return entry;};
  const stream=new ReadableStream({

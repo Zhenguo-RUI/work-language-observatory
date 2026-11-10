@@ -24,21 +24,60 @@ async function requestAnalysisOnce(serialized:string,onStage:(stage:string)=>voi
  return result;
 }
 
-/** Reconnect once after transport failure; input and request identity stay fixed. */
-export async function requestAnalysis(body:unknown,onStage:(stage:string)=>void,signal?:AbortSignal,request:typeof fetch=fetch):Promise<AnalysisResponse>{
- const serialized=JSON.stringify(body),requestId=crypto.randomUUID(),deadline=AbortSignal.timeout(310000);
+export type AnalysisRequestOptions={totalTimeoutMs?:number;pollBudgetMs?:number;pollIntervalMs?:number;maxPollAttempts?:number;reconnectDelayMs?:number};
+function isTransportFailure(error:unknown){const message=error instanceof Error?error.message:String(error);return error instanceof AnalysisTransportError||error instanceof TypeError||/network\s*error|failed to fetch|fetch failed|load failed|connection (?:ended|unavailable|interrupted)/i.test(message);}
+function pause(ms:number,signal:AbortSignal){return new Promise<void>((resolve,reject)=>{if(signal.aborted){reject(signal.reason);return;}const abort=()=>{clearTimeout(timer);reject(signal.reason)};const timer=setTimeout(()=>{signal.removeEventListener("abort",abort);resolve()},ms);signal.addEventListener("abort",abort,{once:true});});}
+
+/** One SSE reconnect, then read-only status checks for the same submitted task.
+ * Neither polling nor an unknown cache entry may start another model request.
+ * Warm-instance recovery is best effort; the original total deadline still applies.
+ */
+export async function requestAnalysis(body:unknown,onStage:(stage:string)=>void,signal?:AbortSignal,request:typeof fetch=fetch,options:AnalysisRequestOptions={}):Promise<AnalysisResponse>{
+ const serialized=JSON.stringify(body),requestId=crypto.randomUUID(),totalMs=Math.max(1,Math.min(310000,options.totalTimeoutMs??310000)),started=Date.now(),deadline=AbortSignal.timeout(totalMs);
  const activeSignal=signal?AbortSignal.any([signal,deadline]):deadline;
+ let lastTransport:unknown=new AnalysisTransportError("analysis_connection_ended");
  for(let attempt=0;attempt<2;attempt++){
   if(deadline.aborted)throw new Error("analysis_deadline");
   activeSignal.throwIfAborted();
   try{return await requestAnalysisOnce(serialized,onStage,activeSignal,request,requestId)}catch(error){
    if(signal?.aborted)throw error;
    if(deadline.aborted)throw new Error("analysis_deadline");
-   const message=error instanceof Error?error.message:String(error);
-   const transport=error instanceof AnalysisTransportError||error instanceof TypeError||/network\s*error|failed to fetch|fetch failed|load failed|connection (?:ended|unavailable|interrupted)/i.test(message);
-   if(attempt||!transport)throw error;
-   onStage("reconnecting");await new Promise(resolve=>setTimeout(resolve,500));
+   if(!isTransportFailure(error))throw error;
+   lastTransport=error;
+   if(attempt===0){onStage("reconnecting");try{await pause(options.reconnectDelayMs??500,activeSignal)}catch(error){if(deadline.aborted)throw new Error("analysis_deadline");throw error;}}
   }
  }
+ const totalRemaining=totalMs-(Date.now()-started);if(totalRemaining<=0)throw new Error("analysis_deadline");
+ const remaining=Math.min(totalRemaining,options.pollBudgetMs??totalMs),pollAttempts=Math.max(0,Math.min(80,options.maxPollAttempts??80));
+ if(remaining<=0||!pollAttempts)throw lastTransport;
+ const pollDeadline=AbortSignal.timeout(Math.max(1,remaining)),pollSignal=AbortSignal.any([activeSignal,pollDeadline]),until=Date.now()+remaining;
+ onStage("checking_result");
+ for(let poll=0;poll<pollAttempts&&Date.now()<until;poll++){
+  if(signal?.aborted)throw signal.reason;
+  if(deadline.aborted)throw new Error("analysis_deadline");
+  try{
+   const response=await request("/api/analyses",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json","X-WLO-Request-Id":requestId,"X-WLO-Result-Status":"1"},body:serialized,signal:pollSignal,cache:"no-store"});
+   if([401,403,422,429].includes(response.status)){
+    const error=response.status===429?"analysis_rate_limited":response.status===422?"analysis_input_invalid":"analysis_auth_required";
+    throw new Error(error);
+   }
+   if(response.status!==404){
+    if(!response.ok)throw new AnalysisTransportError("analysis_connection_error");
+    let state;try{state=await response.json()}catch{throw new AnalysisTransportError("analysis_response_invalid")}
+    if(state?.state==="ready"&&state.data?.analysis)return state.data as AnalysisResponse;
+    if(state?.state!=="pending"&&state?.state!=="unknown")throw new AnalysisTransportError("analysis_response_invalid");
+   }
+  }catch(error){
+   if(signal?.aborted)throw signal.reason;
+   if(deadline.aborted)throw new Error("analysis_deadline");
+   if(pollDeadline.aborted)break;
+   if(!isTransportFailure(error))throw error;
+   lastTransport=error;
+  }
+  if(poll+1>=pollAttempts)break;
+  const timeLeft=until-Date.now();if(timeLeft<=0)break;const wait=Math.min(Math.max(0,options.pollIntervalMs??4000),timeLeft);
+  try{if(wait>0)await pause(wait,pollSignal)}catch(error){if(signal?.aborted)throw signal.reason;if(deadline.aborted)throw new Error("analysis_deadline");if(pollDeadline.aborted)break;throw error;}
+ }
+ if(deadline.aborted)throw new Error("analysis_deadline");
  throw new AnalysisTransportError("analysis_connection_ended");
 }

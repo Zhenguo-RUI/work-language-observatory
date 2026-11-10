@@ -120,3 +120,5 @@
  .public-reader .home-context-meta{font-size:13px;gap:8px}.public-reader .home-context-meta .slip{font-size:10px}.public-reader .home-context-card h3{font-size:20px}.public-reader .home-context-card blockquote{font-size:16px;margin-left:0;padding-left:10px}.public-reader .home-context-card dl{font-size:15px;margin-left:10px}.public-reader .home-context-card dl>div{grid-template-columns:34px minmax(0,1fr);gap:8px}.public-reader .home-context-hypothetical{padding-bottom:70px}.public-reader .home-context-card .home-context-reader{left:12px;bottom:8px;width:64px}.public-reader .home-context-brace{width:24px;left:-14px;height:90px;top:calc(50% - 45px)}.public-reader .home-context-conclusion{font-size:22px;margin-top:28px}
 }
 @media(max-width:430px){.public-reader .home-context-card{transform:none;--tilt:0deg}.public-reader .home-context-card .tape{width:min(56px,18%)}.public-reader .home-context-brace{left:-8px;width:18px}}
+
+.wlo-handoff .input-footer{flex-wrap:wrap;row-gap:8px}

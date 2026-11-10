@@ -11,12 +11,12 @@ export function GenerationProgress({stage,startedAt,model,lang}:{stage:string;st
  const [elapsed,setElapsed]=useState(0),[estimate,setEstimate]=useState<{low:number;high:number}|null>(null);
  const t=(zh:string,en:string)=>lang==="zh"?zh:en;
  useEffect(()=>{const tick=()=>setElapsed(Math.floor((Date.now()-startedAt)/1000));tick();const timer=setInterval(tick,1000);return()=>clearInterval(timer);},[startedAt]);
- useEffect(()=>{try{const samples=(JSON.parse(localStorage.getItem(timingsKey)||"[]") as {duration:number;model:boolean}[]).filter(s=>s.model===model&&s.duration>0).map(s=>s.duration/1000).sort((a,b)=>a-b);if(samples.length>=3)setEstimate({low:Math.max(1,Math.floor(samples[Math.floor(samples.length*.25)])),high:Math.ceil(samples[Math.min(samples.length-1,Math.floor(samples.length*.9))])});}catch{}},[model]);
+ useEffect(()=>{const frame=requestAnimationFrame(()=>{try{const samples=(JSON.parse(localStorage.getItem(timingsKey)||"[]") as {duration:number;model:boolean}[]).filter(s=>s.model===model&&s.duration>0).map(s=>s.duration/1000).sort((a,b)=>a-b);if(samples.length>=3)setEstimate({low:Math.max(1,Math.floor(samples[Math.floor(samples.length*.25)])),high:Math.ceil(samples[Math.min(samples.length-1,Math.floor(samples.length*.9))])});}catch{}});return()=>cancelAnimationFrame(frame);},[model]);
  const steps=[t("核对语境","Context"),t(model?"分析岗位":"整理草稿",model?"Reading":"Draft"),t("检查证据","Evidence"),t("保存结果","Save")];
  const statuses=[t("正在核对公司与行业资料","Checking company and industry sources"),t(model?"正在阅读这份 JD":"正在整理证据草稿",model?"Reading this JD":"Preparing an evidence draft"),t("正在核对原文与分析","Checking the reading against the JD"),t("正在保存分析结果","Saving your reading")];
- const index=stage==="saving"?3:stage==="validating"?2:["analysis","repairing","retrying"].includes(stage)?1:0;
+ const index=stage==="saving"?3:stage==="validating"?2:["analysis","repairing","retrying","reconnecting"].includes(stage)?1:0;
  return <section className="generation-progress panel" aria-busy="true" aria-label={t("分析进度","Analysis progress")}>
-  <div className="generation-status"><span className="spinner"/><div><strong role="status" aria-live="polite">{stage==="retrying"?t("正在重试，请稍候","Trying again. One moment."):stage==="repairing"?t("正在复核并修正分析","Reviewing and refining the reading"):statuses[index]}</strong><p><Clock3 size={13}/>{t(`已等待 ${elapsed} 秒`,`Elapsed: ${elapsed}s`)} · {stage==="retrying"?t("正在重试，总等待可能接近 5 分钟","Retrying; total waiting time may approach 5 minutes"):estimate?t(`近期通常用时 ${estimate.low}–${estimate.high} 秒`,`Recent readings: usually ${estimate.low}–${estimate.high}s`):model?t("完整分析可能需要 2–3 分钟；重试时可能接近 5 分钟","A full reading may take 2–3 minutes; close to 5 minutes if a retry is needed"):t("正在处理","Processing")}</p></div></div>
+  <div className="generation-status"><span className="spinner"/><div><strong role="status" aria-live="polite">{stage==="reconnecting"?t("连接中断，正在自动重连一次","Connection interrupted. Reconnecting once."):stage==="retrying"?t("正在重试，请稍候","Trying again. One moment."):stage==="repairing"?t("正在复核并修正分析","Reviewing and refining the reading"):statuses[index]}</strong><p><Clock3 size={13}/>{t(`已等待 ${elapsed} 秒`,`Elapsed: ${elapsed}s`)} · {stage==="retrying"?t("正在重试，总等待可能接近 5 分钟","Retrying; total waiting time may approach 5 minutes"):estimate?t(`近期通常用时 ${estimate.low}–${estimate.high} 秒`,`Recent readings: usually ${estimate.low}–${estimate.high}s`):model?t("完整分析可能需要 2–3 分钟；重试时可能接近 5 分钟","A full reading may take 2–3 minutes; close to 5 minutes if a retry is needed"):t("正在处理","Processing")}</p></div></div>
   <ol>{steps.map((label,i)=><li key={label} aria-current={i===index?"step":undefined} className={i<index?"done":i===index?"current":""}><span>{i<index?<Check size={12}/>:i+1}</span>{label}</li>)}</ol>
   <div className="wlo-stage-bar" aria-hidden="true">{steps.map((_,i)=><i key={i} className={i<index?"done":i===index?"now":""}/>)}</div><p className="generation-note">{t("请保持本页打开，完成后会自动保存。","Keep this page open. Your reading will save when it is ready.")}</p>
  </section>;
@@ -26,6 +26,7 @@ export function ModelRetryPanel({lang,message,canRun,disabled,generating,onRetry
  return <section className="model-retry-panel" aria-label={t("模型分析重试","Retry model analysis")}>
   <div><strong role="status">{message?.[lang]||t("模型分析尚未完成，已保留证据草稿。","The model reading is unfinished. An evidence draft is available.")}</strong><p>{canRun?t("可用原 JD 重试，已有记录会保留。","Retry with the same JD. Your existing readings will stay saved."):t("模型分析暂不可用，当前草稿仍可阅读和下载。","Model analysis is currently unavailable. You can still read and download this draft.")}</p></div>
   <button className="button primary compact" disabled={!canRun||disabled} onClick={onRetry}>{generating?<span className="spinner small-spinner"/>:<MessageSquare size={15}/>}<span>{generating?t("正在重新生成…","Regenerating…"):t("重新分析","Try again")}</span></button>
+  <a className="text-button" href={`/?page=sample&lang=${lang}`}>{t("先看一份完整示例","Read a complete sample")}</a>
  </section>;
 }
 export function CompanyContext({context,lang}:{context:NonNullable<AnalysisResult["context"]>;lang:Lang}){
@@ -43,7 +44,7 @@ export function CompanyContext({context,lang}:{context:NonNullable<AnalysisResul
 export function ReadingFeedback({analysis,lang}:{analysis:Analysis;lang:Lang}){
  const [vote,setVote]=useState<"up"|"down"|null>(null),[note,setNote]=useState(""),[category,setCategory]=useState("usefulness"),[busy,setBusy]=useState(false),[message,setMessage]=useState(""),[share,setShare]=useState(false);
  const identity=useRef<string>(""),t=(zh:string,en:string)=>lang==="zh"?zh:en;
- useEffect(()=>{identity.current=feedbackIdentity(analysis.id);try{const stored=JSON.parse(localStorage.getItem(`observatory-vote-${analysis.id}`)||"null");if(stored==="up"||stored==="down")setVote(stored);}catch{}},[analysis.id]);
+ useEffect(()=>{identity.current=feedbackIdentity(analysis.id);const frame=requestAnimationFrame(()=>{try{const stored=JSON.parse(localStorage.getItem(`observatory-vote-${analysis.id}`)||"null");if(stored==="up"||stored==="down")setVote(stored);}catch{}});return()=>cancelAnimationFrame(frame);},[analysis.id]);
  async function send(next:"up"|"down",withNote=false){
   if(busy)return;setBusy(true);setMessage("");
   try{

@@ -13,10 +13,10 @@ const cache=new Map();
 function local(file){
  const path=resolve(root,file);if(cache.has(path))return cache.get(path).exports;
  if(extname(path)==='.json')return JSON.parse(readFileSync(path,'utf8'));
- const module={exports:{}};cache.set(path,module);
+ const compiledModule={exports:{}};cache.set(path,compiledModule);
  const output=ts.transpileModule(readFileSync(path,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText;
  const dependency=p=>{if(p.startsWith('.')||p.startsWith('@/')){const stem=p.startsWith('@/')?resolve(root,p.slice(2)):resolve(dirname(path),p);for(const suffix of ['','.ts','.json'])if(existsSync(stem+suffix))return local(stem+suffix);throw new Error(`Unresolved ${p}`)}return require(p)};
- new Function('require','module','exports',output)(dependency,module,module.exports);return module.exports;
+ new Function('require','module','exports',output)(dependency,compiledModule,compiledModule.exports);return compiledModule.exports;
 }
 const {researchFraming,researchObservations,researchMethodReferences,researchMarkdown}=local('lib/research-observations.ts');
 const {keywordContexts,keywordGroups}=local('lib/keyword-contexts.ts');

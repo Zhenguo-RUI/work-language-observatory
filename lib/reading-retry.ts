@@ -3,7 +3,11 @@ export type ReadingSubmission={title:string;company:string;rawText:string;source
 /** Snapshot the saved reading, never a potentially unrelated input form. */
 export function modelRetrySubmission(reading:Analysis):ReadingSubmission{return {title:reading.title,company:reading.company,rawText:reading.raw_text,sourceUrl:reading.source_url,useModel:true};}
 export function modelFailureText(code:string|undefined):Bi{
- if(code?.includes("timeout")||code==="analysis_deadline")return {zh:"模型响应超时，尚未完成完整分析。",en:"The model timed out before completing the analysis."};
+ if(code==="analysis_rate_limited")return {zh:"当前请求较多，请稍后重试。",en:"Too many requests. Please retry later."};
+ if(code==="analysis_auth_required")return {zh:"当前访问未获授权，请刷新页面后重试。",en:"Access was not authorized. Refresh the page and try again."};
+ if(code==="analysis_connection_error")return {zh:"分析连接中断。系统已尝试自动重连，仍未收到完整结果。",en:"The analysis connection was interrupted. Automatic reconnection did not return a complete result."};
+ if(code==="analysis_deadline")return {zh:"本次分析等待超时，尚未收到完整结果。",en:"This analysis timed out before a complete result arrived."};
+ if(code?.includes("timeout"))return {zh:"模型响应超时，尚未完成完整分析。",en:"The model timed out before completing the analysis."};
  if(code==="model_network_error")return {zh:"与模型服务的连接中断，尚未收到完整分析。",en:"The connection to the model service was interrupted before a complete analysis arrived."};
  if(code==="model_http_429")return {zh:"模型服务繁忙或触发限流，请稍后重试。",en:"The model service is busy or rate-limited. Please retry shortly."};
  if(code==="model_http_402")return {zh:"模型服务余额不足，需由网站运营者处理。",en:"The model service has insufficient credit. The site operator needs to resolve this."};

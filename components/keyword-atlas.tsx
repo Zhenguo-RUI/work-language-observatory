@@ -26,12 +26,9 @@ function PaperFold(){
   return <svg className="atlas-paper-fold" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 23L23 1L23 24H1Z" fill="var(--paper)"/><path d="M1 23L2 5Q2 2 6 2L23 1L1 23" fill="var(--paper)" stroke="var(--ink)" strokeWidth="1.2" strokeLinejoin="round"/></svg>;
 }
 
-export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
-  data: PublicStudy;
-  lang: Lang;
-  initialTerm?: string;
-  onResearch?: () => void;
-}) {
+type KeywordAtlasProps={data:PublicStudy;lang:Lang;initialTerm?:string;onResearch?:()=>void};
+export function KeywordAtlas(props:KeywordAtlasProps){return <KeywordAtlasContent key={props.initialTerm||""} {...props}/>;}
+function KeywordAtlasContent({data,lang,initialTerm="",onResearch}:KeywordAtlasProps) {
   const [directoryOpen,setDirectoryOpen]=useState(false);
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState<KeywordGroup | "">("");
@@ -41,13 +38,6 @@ export function KeywordAtlas({data, lang, initialTerm = "", onResearch}: {
   const indexScroll = useRef<HTMLDivElement>(null);
   const clerk = useRef<HTMLDivElement>(null);
   const [pointerLine,setPointerLine] = useState<PointerLine|null>(null);
-  useEffect(() => {
-    if (initialTerm && data.keywords.some(k => k.term === initialTerm)) {
-      setTerm(initialTerm);
-      setQuery("");
-      setGroup("");
-    }
-  }, [initialTerm, data.keywords]);
   const t = (z: string, e: string) => lang === "zh" ? z : e;
   const stat = (key: string) => fillStats(`{{stat:${key}|int}}`, lang);
   const selected = data.keywords.find(k => k.term === term) || data.keywords[0];

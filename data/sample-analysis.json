@@ -1,0 +1,376 @@
+{
+  "generatedDate": "2026-11-09",
+  "sourceNote": {
+    "zh": "示例JD由项目编写，不对应实际招聘。以已保存的DeepSeek输出为底稿，本次由AI编辑整理；未重新调用DeepSeek。",
+    "en": "The JD was written for this project and is not a live vacancy. This AI-edited version builds on a saved DeepSeek output. No new DeepSeek call was made."
+  },
+  "analysis": {
+    "id": "public-sample-embedded-v12-editorial",
+    "title": "嵌入式软件工程师",
+    "company": "",
+    "raw_text": "负责门禁控制器固件开发，阅读现有接口文档，定位刷卡记录丢失问题，补充异常断电测试并提交版本说明。与硬件工程师共同排查板卡故障。熟悉C语言，具备串口调试经验；做过低功耗设备者优先。版本发布需测试负责人确认，每月可能安排一次现场调试。",
+    "source_url": "",
+    "text_hash": "adcb0584f4c9fde9e816eaf4fa6b1801a606e861d4363536eb53f15108880edd",
+    "engine": "curated",
+    "status": "published",
+    "result": {
+      "headline": {
+        "zh": "门禁固件开发与刷卡记录排查",
+        "en": "Access-control firmware and missing-record tracing"
+      },
+      "role": {
+        "zh": "嵌入式软件工程师（门禁控制器固件）",
+        "en": "Embedded software engineer (access-control controller firmware)"
+      },
+      "terms": [
+        {
+          "term": "门禁控制器",
+          "meaning": {
+            "zh": "本 JD 中承载固件、产生刷卡记录的门禁设备端。",
+            "en": "In this JD, the access-control device side that runs the firmware and produces card-swipe records."
+          },
+          "quote": "负责门禁控制器固件开发",
+          "alternative": {
+            "zh": "JD 只直接提到控制器固件和板卡，没说明现场设备是否还包含读卡器、门锁或后台。",
+            "en": "The JD directly mentions only the controller firmware and board; it does not say whether the onsite equipment also includes readers, locks or a back end."
+          },
+          "question": {
+            "zh": "现场调试处理的是控制器板卡，还是整套门禁设备？",
+            "en": "Does onsite debugging cover the controller board or the whole access-control installation?"
+          }
+        },
+        {
+          "term": "异常断电测试",
+          "meaning": {
+            "zh": "在设备运行中直接切断供电，再上电检查启动和记录表现的测试。",
+            "en": "A test that cuts power while the device is running, then restores it to check startup and record behavior."
+          },
+          "quote": "补充异常断电测试",
+          "alternative": {
+            "zh": "区别于正常重启或复位；JD 没有写明断电时点、重复次数和通过条件。",
+            "en": "This differs from a normal restart or reset; the JD does not state the power-cut timing, repetition count or pass criteria."
+          },
+          "question": {
+            "zh": "断电时点、重复次数和通过条件由谁定？",
+            "en": "Who sets the power-cut timing, repetition count and pass criteria?"
+          }
+        }
+      ],
+      "sociology": {
+        "zh": "同一个故障需要固件与硬件一起查，发布还要测试负责人确认。用Abbott的管辖权概念看，这份工作需要和其他专业共同判断问题归谁处理。若测试确认只是核对固定清单，你参与讨论发布标准的机会可能较少。",
+        "en": "Firmware and hardware engineers investigate the same fault, while the test lead confirms a release. Abbott's concept of jurisdiction helps identify where these professions share a problem but retain different responsibilities. If release confirmation only checks a fixed list, there may be less room to discuss the release criteria."
+      },
+      "questions": [
+        {
+          "zh": "这里的“刷卡记录丢失”，是控制器本地没有写入，还是已经写入但没有传出？",
+          "en": "Does the missing-record problem occur before the controller stores a record, or after storage when it should be transmitted?"
+        }
+      ],
+      "conditions": [
+        {
+          "zh": "版本发布需测试负责人确认。",
+          "en": "Release requires confirmation from the test lead."
+        },
+        {
+          "zh": "每月可能安排一次现场调试。",
+          "en": "Onsite debugging may be arranged once a month."
+        },
+        {
+          "zh": "熟悉C语言，具备串口调试经验。",
+          "en": "Familiarity with C and serial-port debugging experience are required."
+        },
+        {
+          "zh": "做过低功耗设备者优先。",
+          "en": "Experience with low-power devices is an advantage."
+        }
+      ],
+      "gaps": [],
+      "comparisons": [],
+      "depth": {
+        "protocol": "work-language-v2",
+        "basis": "model",
+        "workMap": {
+          "object": {
+            "zh": "门禁控制器固件、刷卡记录和板卡",
+            "en": "Access-control controller firmware, card-swipe records and boards"
+          },
+          "tools": {
+            "zh": "C语言、串口调试",
+            "en": "C and serial-port debugging"
+          },
+          "partners": {
+            "zh": "硬件工程师、测试负责人",
+            "en": "Hardware engineer and test lead"
+          },
+          "authority": {
+            "zh": "负责固件开发；版本发布需测试负责人确认",
+            "en": "Assigned firmware development; release requires test-lead confirmation"
+          },
+          "quotes": [
+            "负责门禁控制器固件开发，阅读现有接口文档",
+            "与硬件工程师共同排查板卡故障",
+            "版本发布需测试负责人确认",
+            "每月可能安排一次现场调试"
+          ]
+        },
+        "deliverables": [
+          {
+            "task": {
+              "zh": "按接口文档改固件",
+              "en": "Change firmware against interface docs"
+            },
+            "quote": "负责门禁控制器固件开发，阅读现有接口文档",
+            "output": {
+              "zh": "一份接口对照说明和对应固件改动，列出改动字段、串口前后输出。",
+              "en": "An interface comparison note and the matching firmware change, listing the changed fields and serial output before and after."
+            },
+            "check": {
+              "zh": "另一人按接口文档核对改动字段，并用同一张卡复现串口输出，能对上对照说明。",
+              "en": "Another person can check the changed fields against the interface documents and reproduce the serial output with the same card, matching the comparison note."
+            },
+            "object": {
+              "zh": "门禁控制器固件和现有接口文档",
+              "en": "Access-control controller firmware and the existing interface documents"
+            },
+            "action": {
+              "zh": "读接口文档，标出与刷卡记录有关的接口和字段；再改固件对应读写逻辑，用串口输出核对改动前后。",
+              "en": "Read the interface documents and mark the interfaces and fields tied to card-swipe records, then change the matching read/write logic in firmware and use serial output to compare before and after."
+            },
+            "purpose": {
+              "zh": "让固件读写与接口约定一致，减少改动造成的兼容问题。",
+              "en": "Keep firmware reads and writes consistent with the interface agreement and reduce compatibility problems from changes."
+            },
+            "scenario": {
+              "kind": "hypothetical",
+              "text": {
+                "zh": "现场反馈某型读卡器接入后记录字段对不上。查接口文档的上报字段，再查固件解析分支，用串口看同一张卡的输出，改掉不一致的解析。",
+                "en": "Field feedback says a card-reader model produces mismatched record fields after connection. Check the reported fields in the interface documents, then the firmware parsing branch, and use serial output for the same card to correct the mismatch."
+              }
+            }
+          },
+          {
+            "task": {
+              "zh": "追踪刷卡记录丢失",
+              "en": "Trace missing card-swipe records"
+            },
+            "quote": "定位刷卡记录丢失问题",
+            "output": {
+              "zh": "一张记录丢失排查表，写清已找到的现象、可核查的记录和下一步要查哪里。若能取得卡号、时间及接收端记录，可一起列出核对。",
+              "en": "A troubleshooting sheet showing observed symptoms, records that can be checked and the next step. Include card identifiers, timestamps and receiver records if those are available."
+            },
+            "check": {
+              "zh": "每项判断都能对应已有调试记录；缺少资料的环节写出下一步怎么查。",
+              "en": "Each judgment points to an available debugging record. Where evidence is missing, state what to check next."
+            },
+            "object": {
+              "zh": "刷卡记录丢失的现象，以及可取得的调试材料",
+              "en": "The missing-record symptom and the debugging material available"
+            },
+            "action": {
+              "zh": "先找一组能重现记录丢失的操作，记下当时的测试条件。结合接口文档和能取得的串口输出，逐步检查记录有没有产生、有没有写入、有没有传出。",
+              "en": "Start with a sequence of actions that reproduces the missing record and note the test conditions. Use the interface documents and any available serial output to check whether the record was created, stored and transmitted."
+            },
+            "purpose": {
+              "zh": "把“丢失”缩到具体环节，少凭现象猜原因。",
+              "en": "Narrow down where the record goes missing instead of guessing from the symptom."
+            },
+            "scenario": {
+              "kind": "hypothetical",
+              "text": {
+                "zh": "现场说同一张卡刷了三次只留下一条。找相邻记录核对时间与串口输出，先确认设备本地是否写入，再沿接口查接收端是否收到，把断点记下。",
+                "en": "The field reports that three swipes of the same card leave only one record. Find nearby records and compare times with serial output, first checking whether the device wrote locally, then following the interface to see whether the receiver got it, and record where the gap is."
+              }
+            }
+          },
+          {
+            "task": {
+              "zh": "补做异常断电测试",
+              "en": "Add power-loss tests"
+            },
+            "quote": "补充异常断电测试并提交版本说明",
+            "output": {
+              "zh": "一份异常断电测试记录和对应版本说明，列出断电时点、重复次数、记录结果与未通过项。",
+              "en": "A power-loss test record and matching release notes, listing power-cut timing, repetition count, record results and failed items."
+            },
+            "check": {
+              "zh": "测试条件、步骤和结果能逐项对上；版本说明的每项结论都有对应测试行。",
+              "en": "Test conditions, steps and results match item by item; each conclusion in the release notes has a corresponding test row."
+            },
+            "object": {
+              "zh": "异常断电测试用例、断电前后的刷卡记录和版本说明",
+              "en": "Power-loss test cases, card-swipe records before and after power loss, and release notes"
+            },
+            "action": {
+              "zh": "设定断电时点，刷卡后切断电源；上电核对记录，把条件、结果和未通过项写进版本说明，发布前等测试负责人确认。",
+              "en": "Set the power-cut timing and cut power after a card swipe; restore power and check the record, write the conditions, results and failed items into the release notes, and wait for the test lead's confirmation before release."
+            },
+            "purpose": {
+              "zh": "让断电后的记录表现可复现，并给版本说明留下测试依据。",
+              "en": "Make record behavior after power loss reproducible and give the release notes test evidence."
+            },
+            "scenario": {
+              "kind": "hypothetical",
+              "text": {
+                "zh": "测试版本前，把刷卡动作安排在写入过程中断电。上电后查该笔记录是否还在，再重复几次看结果是否一致，记进版本说明。",
+                "en": "Before testing a release, cut power during the write triggered by a card swipe. After power returns, check whether that record is still there, repeat several times to see whether the result is consistent, and put it in the release notes."
+              }
+            }
+          },
+          {
+            "task": {
+              "zh": "与硬件共同查板卡",
+              "en": "Trace board faults with hardware"
+            },
+            "quote": "与硬件工程师共同排查板卡故障",
+            "output": {
+              "zh": "一份联合排查记录，列出板卡编号、复现步骤、串口输出、固件侧现象和硬件侧现象。",
+              "en": "A joint troubleshooting record listing board number, reproduction steps, serial output, firmware-side behavior and hardware-side behavior."
+            },
+            "check": {
+              "zh": "同一块板卡的复现步骤和各侧现象能对上；未确认的原因留空。",
+              "en": "The reproduction steps and observations for the same board match; unconfirmed causes are left blank."
+            },
+            "object": {
+              "zh": "故障板卡、串口输出和固件侧现象",
+              "en": "The faulty board, serial output and firmware-side behavior"
+            },
+            "action": {
+              "zh": "记录故障现象和串口输出；与硬件工程师按同一块板、同一步骤分别看固件与电路侧，并排记下现象，确认下一步由谁查。",
+              "en": "Record the fault symptoms and serial output; with the hardware engineer, use the same board and the same reproduction steps to observe firmware and circuit sides, write the observations side by side, and confirm who checks next."
+            },
+            "purpose": {
+              "zh": "把固件现象和板卡硬件现象分开，减少来回猜测。",
+              "en": "Separate firmware behavior from board-hardware behavior and reduce back-and-forth guessing."
+            },
+            "scenario": {
+              "kind": "hypothetical",
+              "text": {
+                "zh": "一块板卡上电后串口无输出。换电源和线缆复现，记录串口与固件启动现象；再与硬件工程师按同一步骤分别查看，确定问题落在供电、连接还是固件启动。",
+                "en": "A board shows no serial output after power-on. Reproduce with another power supply and cable, record serial and firmware startup behavior, then check with the hardware engineer using the same steps to determine whether the issue is in power, connection or firmware startup."
+              }
+            }
+          }
+        ],
+        "preparation": {
+          "competencies": [
+            {
+              "level": "required",
+              "skill": {
+                "zh": "熟悉C语言",
+                "en": "Familiarity with C"
+              },
+              "application": {
+                "zh": "读改门禁控制器固件时，用C写清接口字段的解析分支。",
+                "en": "Use C to write and revise the parsing branches for interface fields in the access-control controller firmware."
+              },
+              "quote": "熟悉C语言"
+            },
+            {
+              "level": "required",
+              "skill": {
+                "zh": "串口调试经验",
+                "en": "Serial-port debugging experience"
+              },
+              "application": {
+                "zh": "用串口输出核对刷卡记录和板卡启动现象，保存前后片段。",
+                "en": "Use serial output to check card-swipe records and board startup behavior, keeping before-and-after excerpts."
+              },
+              "quote": "具备串口调试经验"
+            },
+            {
+              "level": "preferred",
+              "skill": {
+                "zh": "做过低功耗设备",
+                "en": "Experience with low-power devices"
+              },
+              "application": {
+                "zh": "做过低功耗设备的人可整理断电后状态保持的测试样例；JD只把它列为优先。",
+                "en": "Someone who has worked on low-power devices can prepare a test sample for state retention after power loss; the JD lists this only as an advantage."
+              },
+              "quote": "做过低功耗设备者优先"
+            }
+          ],
+          "materials": [
+            {
+              "zh": "练习：一页接口对照样例，左列接口文档的读卡字段，右列固件读写和串口输出，标出不一致处。",
+              "en": "Practice sample: one page comparing a card-reader field in the interface documents on the left with the firmware read/write and serial output on the right, marking any mismatch."
+            },
+            {
+              "zh": "练习：一份异常断电测试小样，列出断电时点、重复次数、上电后记录是否保留，以及版本说明的对应句。",
+              "en": "Practice sample: a small power-loss test sheet listing power-cut timing, repetition count, whether the record survives power restoration, and the matching release-note sentence."
+            }
+          ],
+          "practice": [
+            {
+              "question": {
+                "zh": "给你一份接口文档和一段串口日志，怎样判断刷卡记录是在固件解析、写入还是传出时丢失？",
+                "en": "Given interface documents and a serial log, how would you judge whether card-swipe records are lost during firmware parsing, writing or transmission?"
+              },
+              "approach": {
+                "zh": "我会先把同一张卡的日志按时间排开，标出接口文档要求的字段和固件实际输出。再找相邻成功记录，确认断在哪一步；日志不足时，先补能区分这三步的串口输出。",
+                "en": "I would first order the same card's log entries by time and mark the fields required by the interface documents against what the firmware actually outputs. Then I would find nearby successful records to see where the gap occurs; if the log is insufficient, I would add serial output that distinguishes those three stages."
+              }
+            },
+            {
+              "question": {
+                "zh": "做一次异常断电测试，你会怎样设计可复查的记录表？",
+                "en": "For a power-loss test, how would you design a record sheet that can be checked later?"
+              },
+              "approach": {
+                "zh": "我会固定断电时点、刷卡动作和重复次数，上电后逐条核对记录是否还在。表里保留原始串口片段和未通过项；结果不稳定时，增加重复次数并写清差异。",
+                "en": "I would fix the power-cut timing, card-swipe action and repetition count, then check each record after power returns. The sheet would keep the raw serial excerpt and failed items; if results vary, I would increase repetitions and write down the differences."
+              }
+            }
+          ]
+        },
+        "example": null,
+        "sociologySummary": {
+          "zh": "固件、硬件与测试各守一段专业边界，版本发布又经测试负责人确认。",
+          "en": "Firmware, hardware and testing each hold a segment of professional boundary, with release confirmed by the test lead."
+        },
+        "sociologyConceptId": "jurisdiction",
+        "sociologyQuotes": [
+          "负责门禁控制器固件开发，阅读现有接口文档",
+          "与硬件工程师共同排查板卡故障",
+          "版本发布需测试负责人确认"
+        ],
+        "questionTests": [
+          {
+            "questionIndex": 0,
+            "answerA": {
+              "zh": "控制器本地查不到该笔记录。",
+              "en": "The record cannot be found on the controller itself."
+            },
+            "answerB": {
+              "zh": "控制器本地有记录，接收端没有。",
+              "en": "The record exists on the controller, but the receiving end does not have it."
+            },
+            "difference": {
+              "zh": "前者先查固件写入和断电保存，后者先查接口与传出；排查入口不同。",
+              "en": "The first points first to firmware writing and power-loss retention; the second points first to the interface and transmission. The starting point for tracing differs."
+            },
+            "quote": "定位刷卡记录丢失问题"
+          }
+        ],
+        "dutyCoverage": []
+      },
+      "analysisVersion": "work-language-v12-editorial",
+      "sourceTranslation": {
+        "titleEn": "Embedded Software Engineer",
+        "paragraphs": [
+          {
+            "source": "负责门禁控制器固件开发，阅读现有接口文档，定位刷卡记录丢失问题，补充异常断电测试并提交版本说明。与硬件工程师共同排查板卡故障。熟悉C语言，具备串口调试经验；做过低功耗设备者优先。版本发布需测试负责人确认，每月可能安排一次现场调试。",
+            "en": "Develop firmware for access controllers, read the existing interface documentation, investigate missing card-swipe records, add power-loss tests, and submit release notes. Work with hardware engineers to investigate board failures. Familiarity with C and serial-port debugging experience are required; experience with low-power devices is preferred. Releases require approval from the test lead. On-site debugging may be needed once a month."
+          }
+        ],
+        "basis": "curated",
+        "sourceHash": "8aebe6f378b4dd7e32581bbf237810b64844f70f62e2b7812c8916f4e178b3c8"
+      },
+      "competenceWords": []
+    },
+    "revision": 2,
+    "created_at": "2026-11-09T01:21:49+08:00",
+    "updated_at": "2026-11-09T01:21:49+08:00"
+  },
+  "editedDate": "2026-11-10"
+}

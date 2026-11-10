@@ -34,13 +34,16 @@ function MarkedSource({text,start,selectedStart,selectedEnd}:{text:string;start:
  return selectedStart<0||to<=from?<>{text}</>:<>{text.slice(0,from)}<mark>{text.slice(from,to)}</mark>{text.slice(to)}</>;
 }
 
-export function SourceTranslationPanel({rawText,title,translation,lang,selectedQuote,onQuote,onTranslate,translating=false,canTranslate=false,translationError}:SourceTranslationPanelProps){
+export function SourceTranslationPanel(props:SourceTranslationPanelProps){return <SourceTranslationContent key={`${props.lang}\0${props.rawText}`} {...props}/>;}
+function SourceTranslationContent({rawText,title,translation,lang,selectedQuote,onQuote,onTranslate,translating=false,canTranslate=false,translationError}:SourceTranslationPanelProps){
  const t=(zh:string,en:string)=>lang==="zh"?zh:en;
  const id=useId(),panel=useRef<HTMLElement>(null);
- const [narrowView,setNarrowView]=useState<"en"|"source">(lang==="en"?"en":"source");
+ const [viewChoice,setViewChoice]=useState<{view:"en"|"source";quote:string}>({view:lang==="en"?"en":"source",quote:selectedQuote});
  const valid=sourceTranslationMatches(rawText,translation);
  const selectedStart=selectedQuote?rawText.indexOf(selectedQuote):-1;
  const selectedEnd=selectedStart<0?-1:selectedStart+selectedQuote.length;
+ const narrowView=selectedStart>=0&&viewChoice.quote!==selectedQuote?"source":viewChoice.view;
+ const setNarrowView=(view:"en"|"source")=>setViewChoice({view,quote:selectedQuote});
  const rows=useMemo(()=>{
   if(!valid||!translation)return [];
   let cursor=0;
@@ -56,10 +59,8 @@ export function SourceTranslationPanel({rawText,title,translation,lang,selectedQ
   });
  },[rawText,translation,valid]);
  const aligned=valid&&rows.every(row=>row.start>=0);
- useEffect(()=>{setNarrowView(lang==="en"?"en":"source");},[lang]);
  useEffect(()=>{
   if(!selectedQuote||selectedStart<0)return;
-  setNarrowView("source");
   const frame=requestAnimationFrame(()=>panel.current?.querySelector("mark")?.scrollIntoView({block:"nearest",behavior:"auto"}));
   return ()=>cancelAnimationFrame(frame);
  },[selectedQuote,selectedStart,rawText]);

@@ -1,0 +1,3 @@
+import Link from "next/link";
+import {publicPageHref} from "@/lib/page-routes";
+export function PageNotFound({lang}:{lang:"zh"|"en"}){const t=(zh:string,en:string)=>lang==="zh"?zh:en;return <main className="standalone-auth"><section className="panel auth-card"><h1>{t("没有找到这个页面","Page not found")}</h1><p>{t("可以返回首页，或直接查看一份完整分析。","Return home or read a complete sample analysis.")}</p><p><Link className="text-button" href={publicPageHref("",lang)}>{t("回首页","Back to home")}</Link></p><p><Link className="text-button" href={publicPageHref("sample",lang)}>{t("查看示例分析","View a sample analysis")}</Link></p></section></main>;}

@@ -5,10 +5,12 @@ import {trackUsage} from "@/lib/usage-client";
 import type {CompanyContext} from "@/lib/observatory-types";
 import "./company-lookup.css";
 
-export function CompanyLookupPreview({company,lang,disabled=false,compact=false}:{company:string;lang:"zh"|"en";disabled?:boolean;compact?:boolean}){
+type CompanyLookupProps={company:string;lang:"zh"|"en";disabled?:boolean;compact?:boolean};
+export function CompanyLookupPreview(props:CompanyLookupProps){return <CompanyLookupContent key={props.company} {...props}/>;}
+function CompanyLookupContent({company,lang,disabled=false,compact=false}:CompanyLookupProps){
  const [context,setContext]=useState<CompanyContext|null>(null),[loading,setLoading]=useState(false),[error,setError]=useState("");
  const controller=useRef<AbortController|null>(null),run=useRef(0),t=(zh:string,en:string)=>lang==="zh"?zh:en;
- useEffect(()=>{run.current++;controller.current?.abort();setContext(null);setError("");setLoading(false);return()=>controller.current?.abort();},[company]);
+ useEffect(()=>()=>{run.current++;controller.current?.abort();},[]);
  async function search(){
   if(!company.trim()||loading||disabled)return;
   trackUsage("company_lookup",{view:"analyze"});const current=++run.current;controller.current?.abort();const activeController=new AbortController();controller.current=activeController;setLoading(true);setError("");

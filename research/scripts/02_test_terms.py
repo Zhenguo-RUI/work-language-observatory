@@ -26,7 +26,7 @@ class TermRules(unittest.TestCase):
         return module.match_term(module.normalize(text), BY_TERM[term])
 
     def test_preserves_twenty_terms_and_six_subset(self):
-        self.assertEqual(len(BY_TERM), 20)
+        self.assertEqual(len(BY_TERM), 21)
         self.assertEqual({t["term"] for t in CONFIG["terms"] if t["deep_coding"]}, module.DEEP)
 
     def test_compounds_do_not_erase_valid_hits_in_same_ad(self):
@@ -184,6 +184,9 @@ const unavailable=boot(true);unavailable.nodes.label.value='unclear';unavailable
         with self.assertRaises(ValueError):
             module.build([row("fixture-same", "沟通"), row("fixture-same", "学习")], CONFIG)
 
+
+    def test_self_drive_nested_aliases_count_once(self):
+        self.assertEqual(len(module.match_term(module.normalize("自驱力；自我驱动"), BY_TERM["自驱"])), 2)
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

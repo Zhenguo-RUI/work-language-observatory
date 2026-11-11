@@ -1,0 +1,11 @@
+{
+  "generated": "2026-11-10T07:33:54.043194+00:00",
+  "input_sha256": "ae247a10263b905b59f62a0fa82559257e3998ccb7f43f775177b12a740c7ef3",
+  "rule_sha256": "c68e5f4978edf379e7c24038784b5545d1835e60b73d4b5f918e19fdceae015b",
+  "rule_commit": "unconfirmed; local git command timed out",
+  "model": "no API used; corpus counts by deterministic rules, prose drafted by coding agent",
+  "paid_calls": 0,
+  "exploratory": true,
+  "hypotheses_changed": false,
+  "human_labels_written": false
+}

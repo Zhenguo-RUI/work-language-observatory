@@ -46,7 +46,7 @@ stat("corpus.candidate_terms",len(config["terms"]),"terms",method="Fixed approve
 for source,number in counts["by_source"].items(): stat("corpus.sources."+source,number)
 for entry in counts["terms"]:
     term=entry["term"]
-    assert sum(term in t for t in texts)==entry["literal_ads"]
+    assert sum(any(alias in t for alias in entry.get("aliases",[term])) for t in texts)==entry["literal_ads"]
     stat(f"term.{term}.ads",entry["literal_ads"],denominator=n)
     for field in ("n_checked","k_correct","precision"):
         stat(f"term.{term}.{field}",None,"unavailable",method="Human review pending; blank fields are not zero judgments")

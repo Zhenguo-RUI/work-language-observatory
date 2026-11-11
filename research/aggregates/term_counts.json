@@ -1125,6 +1125,61 @@
       "human_review_status": "pending",
       "precision": null,
       "precision_ci": null
+    },
+    {
+      "term": "自驱",
+      "group": "品质与工作方式",
+      "deep_coding": false,
+      "literal_ads": 93,
+      "literal_occurrences": 97,
+      "candidate_kept_ads": 93,
+      "candidate_kept_occurrences": 97,
+      "excluded_candidate_ads": 0,
+      "excluded_candidate_occurrences": 0,
+      "excluded_only_ads": 0,
+      "mixed_ads": 0,
+      "by_source": {
+        "51job": {
+          "corpus_ads": 1000,
+          "literal_ads": 23,
+          "literal_occurrences": 23,
+          "candidate_kept_ads": 23,
+          "candidate_kept_occurrences": 23,
+          "excluded_candidate_ads": 0,
+          "excluded_candidate_occurrences": 0,
+          "excluded_only_ads": 0,
+          "mixed_ads": 0
+        },
+        "boss": {
+          "corpus_ads": 500,
+          "literal_ads": 41,
+          "literal_occurrences": 44,
+          "candidate_kept_ads": 41,
+          "candidate_kept_occurrences": 44,
+          "excluded_candidate_ads": 0,
+          "excluded_candidate_occurrences": 0,
+          "excluded_only_ads": 0,
+          "mixed_ads": 0
+        },
+        "liepin": {
+          "corpus_ads": 500,
+          "literal_ads": 29,
+          "literal_occurrences": 30,
+          "candidate_kept_ads": 29,
+          "candidate_kept_occurrences": 30,
+          "excluded_candidate_ads": 0,
+          "excluded_candidate_occurrences": 0,
+          "excluded_only_ads": 0,
+          "mixed_ads": 0
+        }
+      },
+      "review_sample_n": 0,
+      "exploratory": true,
+      "aliases": [
+        "自驱",
+        "自驱力",
+        "自我驱动"
+      ]
     }
   ],
   "schema_version": "wlo-term-counts-v1",

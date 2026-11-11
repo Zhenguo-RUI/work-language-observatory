@@ -144,7 +144,7 @@ function KeywordAtlasContent({data,lang,initialTerm="",onResearch}:KeywordAtlasP
           <div className="atlas-title-row"><h2 id="atlas-detail-title" tabIndex={-1}><span>{lang === "zh" ? selected.term : selected.english}</span><PencilOval/></h2><p className="atlas-gloss">{lang === "zh" ? selected.english : selected.term}</p></div>
           <p className="atlas-definition atlas-term-summary">{(expansion?.short || selected.short)[lang]}<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7Q23 2 43 6T86 6T128 7T169 6T213 7T255 6T298 5"/></svg></p>
           <p className="atlas-data-line">{stat(`term.${selected.term}.ads`)} {t("份广告命中", "ads matched")} / {stat("corpus.n")} {t("份广告", "ads")}{expansion&&<span>{keywordGroups[expansion.group][lang]}</span>}</p>
-          <p className="atlas-pending-note">{t("用法尚未编码。以下是挑选的工作对照，不代表词义分布。", "Meanings have not yet been coded. The selected contrasts below do not show their prevalence.")}</p>
+          {selected.exploratory&&<p className="atlas-pending-note">{t("计划后补充 · 模型草稿 · 探索性词条，不进入原有假设及深度编码。","Added after the plan · Model draft · Exploratory entry outside the original hypotheses and deep-coding set.")}</p>}
         </header>
         <div className="atlas-contexts-heading"><h3>{t("在这些工作里，具体怎么用","What it means in these roles")}</h3></div>
         <div className="atlas-examples">{selected.examples.map((example, i) => {
@@ -157,15 +157,17 @@ function KeywordAtlasContent({data,lang,initialTerm="",onResearch}:KeywordAtlasP
           {context&&<><p className="atlas-expert-reading">{context.expertTake[lang]}</p><p className="atlas-deliverable"><span>{t("可能的交付","Possible deliverable")}</span>{context.deliverable[lang]}</p></>}
           <div className="atlas-follow-up"><span className="atlas-detail-label">{t("可以问", "Ask the employer")}</span><p>{(context?.question || example.question)[lang]}</p></div>
         </article>})}</div>
-        <p className="atlas-review-note">{allAIReviewed?t("卡片使用归档广告的去识别释义，已经AI编辑复核，尚无人工审核结果；交付建议供准备时参考。", "The cards use deidentified paraphrases of archived ads and have received an AI editorial review. No human review results are available; suggested deliverables are preparation ideas."):t("卡片使用归档广告的去识别释义，任务说明与交付建议由AI起草，尚无人工审核结果。", "The cards use deidentified paraphrases of archived ads. Task explanations and suggested deliverables were drafted by AI; no human review results are available.")}</p>
+
         <div className="atlas-closing"><WloIllustration name="twocards" width={120} className="atlas-two-cards"/></div>
         <details className="atlas-archive-contexts"><summary>{t("查看归档中的职责描述", "Read the archived duty descriptions")}</summary>{selected.examples.map((example, i)=><div key={selected.term+i}><h4>{example.role[lang]}</h4><p>{example.context[lang]}</p></div>)}</details>
       </section>
     </div>
     <details className="study-method"><summary>{t("词表与统计方法", "Vocabulary and counting method")}</summary>
+      <p>{t("这些案例为挑选的工作对照，不代表词义分布。", "These examples are selected contrasts, not a distribution of meanings.")}</p>
+      <p className="atlas-review-note">{allAIReviewed?t("卡片使用归档广告的去识别释义，已经AI编辑复核，尚无人工审核结果；交付建议供准备时参考。", "The cards use deidentified paraphrases of archived ads and have received an AI editorial review. No human review results are available; suggested deliverables are preparation ideas."):t("卡片使用归档广告的去识别释义，任务说明与交付建议由AI起草，尚无人工审核结果。", "The cards use deidentified paraphrases of archived ads. Task explanations and suggested deliverables were drafted by AI; no human review results are available.")}</p>
       <p>{t("按广告正文匹配词表，同一广告重复出现只计一次。暂将独立站、服务器、机器学习等复合词中的命中单独标记，再保留其余命中；这些规则尚待人工抽查。", "Terms are matched in ad bodies, with each ad counted once per term. Matches inside listed compounds, such as independent online stores, servers and machine learning, are flagged separately. The remaining matches still await human checks.")}</p>
       <p>{t("人工抽查尚未完成，当前不展示匹配精确率。职业分类仍在准备，尚无经核对的职业分布、搭配词或词义比例。", "Human checks are incomplete, so matching precision is not reported. Occupation mapping is still being prepared; there are no validated occupation distributions, collocates or meaning proportions to show.")}</p>
-      <p>{t("分组按词语通常指向品质、协作、工具或管理安排来帮助查找，由作者提出，不是模型测出的词义类别。目录保留现有词条顺序。", "The author proposed groups around qualities, collaboration, skills and management to help readers browse. They are not measured meaning categories. The directory retains its existing term order.")}</p>
+      <p>{t("分组按词语通常指向品质、协作、工具或管理安排来帮助查找，由作者提出，不是模型测出的词义类别。目录按命中广告数排序。", "The author proposed groups around qualities, collaboration, skills and management to help readers browse. They are not measured meaning categories. The directory is ordered by matching advertisement count.")}</p>
       <p className="study-vocabulary">{data.methods.candidateVocabulary?.join(" · ")}</p>
       <a className="text-button" href="/work-language-study-aggregates.json" download>{t("下载词频与交叉表", "Download frequencies and cross-tabs")}<ArrowUpRight size={14}/></a>
     </details>

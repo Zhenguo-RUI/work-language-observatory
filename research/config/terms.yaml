@@ -1,7 +1,7 @@
 {
   "version": "terms-v1-exploratory",
   "seed": 20261108,
-  "scope": "The existing 20 dictionary entries; six are a later deep-coding subset. No new Top-20 selection.",
+  "scope": "Original vocabulary plus one post-plan exploratory self-drive entry; the original six deep-coding terms and H1–H3 remain unchanged.",
   "text_field": "body",
   "normalization": "Unicode NFKC followed by casefold; retain whitespace and punctuation; offsets refer to normalized text, not the original.",
   "matching": "Exact substring in body only. A title-only hit is not included. No stemming, synonym expansion, whitespace joining or automatic person/nonperson classification.",
@@ -152,6 +152,19 @@
       "group": "管理用语",
       "deep_coding": false,
       "exclude_compounds": []
+    },
+    {
+      "term": "自驱",
+      "group": "品质与工作方式",
+      "deep_coding": false,
+      "exclude_compounds": [],
+      "aliases": [
+        "自驱",
+        "自驱力",
+        "自我驱动"
+      ],
+      "exploratory": true,
+      "rule_file": "research/config/self-drive-v1.json"
     }
   ],
   "provisional_exclusions_note": "These compound rules distinguish surface senses for retrieval only. A role can require machine-learning skill or independent-site work. Such hits are not declared irrelevant, and all candidate exclusions are retained for human review.",

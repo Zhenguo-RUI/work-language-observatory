@@ -1425,3 +1425,86 @@ export const keywordContexts: Record<string, KeywordContextEntry> = {
     }
   }
 };
+
+/** Post-plan exploratory entry; selected archive paraphrases, AI drafts. */
+keywordContexts["自驱"] = {
+  "group": "品质与工作方式",
+  "short": {
+    "zh": "自己发起工作时，也要问清目标、资料和决定权。",
+    "en": "Taking initiative still depends on goals, information and decision rights."
+  },
+  "examples": [
+    {
+      "sourceRoleZh": "客户与渠道工作",
+      "reviewStatus": "model_draft",
+      "task": {
+        "zh": "处理客户、渠道与维护相关工作",
+        "en": "Work involving customers, channels and account maintenance"
+      },
+      "expertTake": {
+        "zh": "广告把自驱与客户、渠道与维护放在一起，具体需要主动到什么程度还要问清楚。",
+        "en": "The ad places self-direction alongside customers, channels and account maintenance. Ask how much initiative the role actually permits and requires."
+      },
+      "scenario": {
+        "zh": "",
+        "en": ""
+      },
+      "deliverable": {
+        "zh": "可准备一页工作计划，列出已有资料、下一步动作和需要他人决定的事。",
+        "en": "Prepare a one-page plan listing available information, next actions and decisions needed from others."
+      },
+      "question": {
+        "zh": "需要自己拓展哪些客户，现有名单和渠道由谁提供？",
+        "en": "Which customers must I approach myself, and who supplies existing leads and channels?"
+      }
+    },
+    {
+      "sourceRoleZh": "产品数据与报告工作",
+      "reviewStatus": "model_draft",
+      "task": {
+        "zh": "处理产品、数据、设计与分析报告相关工作",
+        "en": "Work involving products, data, design and analytical reports"
+      },
+      "expertTake": {
+        "zh": "广告把自驱与产品、数据、设计与分析报告放在一起，具体需要主动到什么程度还要问清楚。",
+        "en": "The ad places self-direction alongside products, data, design and analytical reports. Ask how much initiative the role actually permits and requires."
+      },
+      "scenario": {
+        "zh": "",
+        "en": ""
+      },
+      "deliverable": {
+        "zh": "可准备一页工作计划，列出已有资料、下一步动作和需要他人决定的事。",
+        "en": "Prepare a one-page plan listing available information, next actions and decisions needed from others."
+      },
+      "question": {
+        "zh": "分析题目由谁确定，资料和数据是否已经准备好？",
+        "en": "Who sets the analytical question, and are the data and source materials already available?"
+      }
+    },
+    {
+      "sourceRoleZh": "运营与渠道工作",
+      "reviewStatus": "model_draft",
+      "task": {
+        "zh": "处理运营、渠道、市场与数据分析相关工作",
+        "en": "Work involving operations, channels, market work and data analysis"
+      },
+      "expertTake": {
+        "zh": "广告把自驱与运营、渠道、市场与数据分析放在一起，具体需要主动到什么程度还要问清楚。",
+        "en": "The ad places self-direction alongside operations, channels, market work and data analysis. Ask how much initiative the role actually permits and requires."
+      },
+      "scenario": {
+        "zh": "",
+        "en": ""
+      },
+      "deliverable": {
+        "zh": "可准备一页工作计划，列出已有资料、下一步动作和需要他人决定的事。",
+        "en": "Prepare a one-page plan listing available information, next actions and decisions needed from others."
+      },
+      "question": {
+        "zh": "需要主动提出新方案，还是按现有计划持续跟进？",
+        "en": "Am I expected to propose new approaches or to follow an existing plan through?"
+      }
+    }
+  ]
+};

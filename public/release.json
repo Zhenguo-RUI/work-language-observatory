@@ -1,6 +1,6 @@
 {
-  "release": "group1-20261110-r2",
+  "release": "self-drive-20261112",
   "baseCommit": "b8b91bd606f9399929f85e7c956285378ff3d033",
-  "scope": "first-group-and-page-validation",
+  "scope": "first-group-and-self-drive-dictionary",
   "preparedAt": "2026-11-10T12:38:58.095997+00:00"
 }

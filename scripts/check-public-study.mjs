@@ -37,8 +37,8 @@ function walkBi(value,visit,path='$'){
 const plain=html=>html.replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#x27;|&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ');
 const contains=(html,text)=>assert(plain(html).includes(text.replace(/\s+/g,' ')),`Missing rendered content: ${text.slice(0,80)}`);
 check('the fixed twenty terms each retain three bilingual AI-reviewed examples',()=>{
- assert.equal(data.keywords.length,20);assert.deepEqual(new Set(data.keywords.map(k=>k.term)),new Set(config.terms.map(k=>k.term)));
- const {keywordContexts}=local('lib/keyword-contexts.ts');for(const k of data.keywords){assert.equal(k.examples.length,3);assert(!keywordContexts[k.term].summary);assert(keywordContexts[k.term].short.zh.length<=40);assert.equal(keywordContexts[k.term].examples.length,3);for(const e of keywordContexts[k.term].examples)assert.equal(e.reviewStatus,'ai_reviewed');for(const e of k.examples){assert.equal(e.reviewStatus,'ai_reviewed');for(const key of ['role','question'])assert(e[key]?.zh&&e[key]?.en,`${k.term}.${key}`);}}
+ assert.equal(data.keywords.length,stat('corpus.dictionary_terms').value);assert.equal(data.keywords.length,21);assert.equal(data.keywords.find(k=>k.term==='自驱').exploratory,true);assert(data.keywords.every((k,i)=>!i||data.keywords[i-1].documents>=k.documents));assert.deepEqual(new Set(data.keywords.map(k=>k.term)),new Set(config.terms.map(k=>k.term)));
+ const {keywordContexts}=local('lib/keyword-contexts.ts');for(const k of data.keywords){assert.equal(k.examples.length,3);assert(!keywordContexts[k.term].summary);assert(keywordContexts[k.term].short.zh.length<=40);assert.equal(keywordContexts[k.term].examples.length,3);for(const e of keywordContexts[k.term].examples)assert.equal(e.reviewStatus,k.exploratory?'model_draft':'ai_reviewed');for(const e of k.examples){assert.equal(e.reviewStatus,k.exploratory?'model_draft':'ai_reviewed');for(const key of ['role','question'])assert(e[key]?.zh&&e[key]?.en,`${k.term}.${key}`);}}
 });
 check('bilingual copy is complete and renders every numeric placeholder',()=>{
  let fields=0;walkBi(data,(x,path)=>{fields++;assert(x.zh.trim()&&x.en.trim(),path);for(const lang of ['zh','en']){const rendered=fillStats(x[lang],lang);assert(!rendered.includes('{{stat:'),path);if(lang==='en')assert(!/[\u3400-\u9fff]/u.test(rendered),path);}});assert(fields>100);
@@ -64,7 +64,7 @@ check('public content contains no raw records, contact details or private identi
 });
 const {KeywordAtlas}=local('components/keyword-atlas.tsx'),{ResearchReport}=local('components/research-report.tsx');
 const researchModule=local('lib/research-observations.ts'),observations=researchModule.researchObservations??data.report.findings,researchTitle=researchModule.researchFraming?.title??data.report.title;
-check('all twenty keyword pages render their three roles and questions in both languages',()=>{
+check('all twenty-one keyword pages render their three roles and questions in both languages',()=>{
  for(const lang of ['zh','en'])for(const k of data.keywords){const html=renderToStaticMarkup(React.createElement(KeywordAtlas,{data,lang,initialTerm:k.term}));assert(!html.includes('{{stat:'));for(const e of k.examples){contains(html,fillStats(e.role[lang],lang));contains(html,fillStats(e.question[lang],lang));}assert(/model[- ]draft|model-generated|drafted by a model|AI[- ]review|AI editorial review|AI编辑复核|AI 复核|模型草稿|模型起草/i.test(plain(html)),'Missing visible review provenance');}
 });
 check('research SSR renders hypotheses, validation status, references and stat-backed findings',()=>{

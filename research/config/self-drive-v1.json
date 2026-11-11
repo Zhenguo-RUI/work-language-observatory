@@ -1,0 +1,16 @@
+{
+  "version": "self-drive-v1-exploratory",
+  "term": "自驱",
+  "aliases": [
+    "自驱",
+    "自驱力",
+    "自我驱动"
+  ],
+  "text_field": "body",
+  "normalization": "Unicode NFKC then casefold",
+  "unit": "one advertisement counted once if any alias occurs",
+  "deep_coding": false,
+  "hypotheses": [],
+  "exclusions": [],
+  "selection": "post-plan addition; frozen before counting; no changes based on rank"
+}

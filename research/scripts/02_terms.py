@@ -39,7 +39,8 @@ def normalize(text):
 def load_config(path):
     config = json.loads(path.read_text())  # JSON is also valid YAML; no dependency needed.
     terms = config["terms"]
-    if len(terms) != 20 or {t["term"] for t in terms} != EXPECTED:
+    core=[t for t in terms if not t.get("exploratory")]
+    if len(core) != 20 or {t["term"] for t in core} != EXPECTED:
         raise ValueError("The fixed 20 terms must be preserved.")
     if {t["term"] for t in terms if t["deep_coding"]} != DEEP:
         raise ValueError("The six deep-coding terms must remain a subset.")
@@ -62,10 +63,12 @@ def spans(text, needle):
 def match_term(text, spec):
     """Input is normalized. Offsets never claim to index the raw source."""
     compounds = [(c, a, b) for c in spec["exclude_compounds"] for a, b in spans(text, normalize(c))]
+    candidates={(a,b) for alias in spec.get("aliases",[spec["term"]]) for a,b in spans(text,normalize(alias))}
+    matches=sorted((a,b) for a,b in candidates if not any(x<=a and y>=b and (x,y)!=(a,b) for x,y in candidates))
     return [{"start": a, "end": b,
              "candidate_excluded": any(x <= a and y >= b for _, x, y in compounds),
              "exclusion_rules": sorted({c for c, x, y in compounds if x <= a and y >= b})}
-            for a, b in spans(text, normalize(spec["term"]))]
+            for a, b in matches]
 
 
 def window(text, start, end, radius=70):

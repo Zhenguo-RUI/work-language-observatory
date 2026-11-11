@@ -12,6 +12,9 @@ export function withOperationalModelFields(reading,raw,domain){
  assert(d?.deliverables.length,'The synthetic fixture must already have grounded duties.');
  assert(['evaluation','advertising'].includes(domain));
  d.basis='model';
+ // Explicit v12 fields in these invented provider payloads; not production enrichment.
+ d.dutyCoverage=[];
+ result.competenceWords=raw.includes('沟通')?[{term:'沟通',quote:'与设计团队沟通并独立完成复盘',meaning:bi('与设计团队讨论素材和复盘中的问题。','Discuss creative and review findings with the design team.'),evidenceQuotes:['与设计团队沟通并独立完成复盘'],question:bi('','')}]:[];
  d.deliverables=d.deliverables.map(item=>{
   assert(raw.includes(item.quote),'A fixture duty must have an exact source quote.');
   let object,action,purpose,example;

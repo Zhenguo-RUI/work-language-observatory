@@ -1,3 +1,4 @@
+import {currentReadingErrors,extractAdvertisedCompetenceTerms,extractNumberedDuties} from "./current-reading-contract";
 import {companyBriefSchema,companyBriefErrors,attachCompanyBrief,companyBriefOutputSchema,type CompanyBrief} from "./company-brief";
 import {ANALYSIS_INSTRUCTIONS,ANALYSIS_OUTPUT_LAYOUT} from "./analysis-prompt";
 import {resultSchema,modelOutputSchema,deepEvidenceErrors} from "./analysis-contract";
@@ -45,7 +46,7 @@ export async function runModelReading(options:ReadingRequest):Promise<{result:An
   let text:string;
   try{
    calls++;
-   text=await requestModelJson({provider:options.provider,apiKey:options.apiKey,model:options.model,request,timeoutMs,onDiagnostics,maxOutputTokens:englishOnly?MODEL_READING_LIMITS.englishRepairTokens:briefOnly?2000:7500,maxCompletionTokens:briefOnly?MODEL_READING_LIMITS.briefRepairTokens:attempt?MODEL_READING_LIMITS.recoveryTokens:MODEL_READING_LIMITS.firstTokens,...(englishOnly?{thinking:false}:{}),reasoningEffort:attempt?"low":"high",instructions:englishOnly?ENGLISH_REPAIR_INSTRUCTIONS:briefOnly?ANALYSIS_INSTRUCTIONS+"\nThis is a company-only repair. Return only {companyBrief: ...}; do not regenerate the JD reading. If a sourced brief cannot be supported, return companyBrief:null.":ANALYSIS_INSTRUCTIONS,schemaName:englishOnly?"english_field_repair":briefOnly?"company_brief_repair":"jd_context_reading_v2",schema:englishOnly?englishRepairOutputSchema(englishRepair!):briefOnly?briefOnlyOutputSchema:modelOutputSchema,input:englishOnly?{title:options.title,jd:options.raw,fields:englishRepair!.targets}:{title:options.title,jd:options.raw,employerLabel:options.company||null,sourceContext:options.context||null,methodNote:options.methodNote,comparators:briefOnly?[]:options.comparators.map(c=>({id:c.id,title:c.title,reading:c.semantic||null})),repairRequirements:repair,...(previousFinalJson?{previousFinalJson}:{}),...(recoveryReason?{recoveryReason}:{})}});
+   text=await requestModelJson({provider:options.provider,apiKey:options.apiKey,model:options.model,request,timeoutMs,onDiagnostics,maxOutputTokens:englishOnly?MODEL_READING_LIMITS.englishRepairTokens:briefOnly?2000:7500,maxCompletionTokens:briefOnly?MODEL_READING_LIMITS.briefRepairTokens:attempt?MODEL_READING_LIMITS.recoveryTokens:MODEL_READING_LIMITS.firstTokens,...(englishOnly?{thinking:false}:{}),reasoningEffort:attempt?"low":"high",instructions:englishOnly?ENGLISH_REPAIR_INSTRUCTIONS:briefOnly?ANALYSIS_INSTRUCTIONS+"\nThis is a company-only repair. Return only {companyBrief: ...}; do not regenerate the JD reading. If a sourced brief cannot be supported, return companyBrief:null.":ANALYSIS_INSTRUCTIONS,schemaName:englishOnly?"english_field_repair":briefOnly?"company_brief_repair":"jd_context_reading_v2",schema:englishOnly?englishRepairOutputSchema(englishRepair!):briefOnly?briefOnlyOutputSchema:modelOutputSchema,input:englishOnly?{title:options.title,jd:options.raw,fields:englishRepair!.targets}:{title:options.title,jd:options.raw,employerLabel:options.company||null,sourceContext:options.context||null,methodNote:options.methodNote,advertisedCompetenceTerms:extractAdvertisedCompetenceTerms(options.raw),sourceDuties:extractNumberedDuties(options.raw),comparators:briefOnly?[]:options.comparators.map(c=>({id:c.id,title:c.title,reading:c.semantic||null})),repairRequirements:repair,...(previousFinalJson?{previousFinalJson}:{}),...(recoveryReason?{recoveryReason}:{})}});
   }catch(error){
    if(verifiedCore)return finish(verifiedCore,null,true);
    const code=safeModelFailure(error);
@@ -76,7 +77,7 @@ export async function runModelReading(options:ReadingRequest):Promise<{result:An
   const parsed=coreReadingSchema.safeParse(data);
   if(!parsed.success){repair=parsed.error.issues.slice(0,6).map(issue=>`${issue.path.join(".")}: ${issue.message}`);previousFinalJson=text.slice(0,100000);continue;}
   const result=parsed.data;
-  repair=[...new Set([...evidenceErrors(result,options.raw),...deepEvidenceErrors(result,options.raw,true,true,true)])];
+  repair=[...new Set([...evidenceErrors(result,options.raw),...deepEvidenceErrors(result,options.raw,true,true,true),...currentReadingErrors(result,options.raw)])];
   const allowed=new Set(options.comparators.map(c=>c.id));
   if(result.comparisons.some(c=>!allowed.has(c.id)))repair.push("Only supplied comparator IDs are allowed; if none were supplied, comparisons must be empty.");
   const candidate=data&&typeof data==="object"?(data as {companyBrief?:unknown}).companyBrief:undefined;

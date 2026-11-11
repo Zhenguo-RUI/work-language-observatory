@@ -55,7 +55,7 @@ const make=()=>{
 };
 const checks=[];const check=(name,fn)=>{fn();checks.push(name);};
 const errors=(value,source=raw)=>deepEvidenceErrors(resultSchema.parse(value),source,true,true,true);
-check('v11 uses the compatible v2 record protocol',()=>{assert.equal(ANALYSIS_VERSION,'work-language-v11');assert.equal(make().depth.protocol,'work-language-v2');});
+check('v12 uses the compatible v2 record protocol',()=>{assert.equal(ANALYSIS_VERSION,'work-language-v12');assert.equal(make().depth.protocol,'work-language-v2');});
 check('a grounded complete synthetic reading passes',()=>assert.deepEqual(errors(make()),[]));
 check('strict model output requires all duty explanations and preparation',()=>{
  const d=modelOutputSchema.properties.depth;

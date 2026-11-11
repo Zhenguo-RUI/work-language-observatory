@@ -28,3 +28,5 @@
 .handoff-module[open]>summary{margin-bottom:16px}
 .public-reader .handoff-reading details.handoff-outputs{padding-bottom:16px}
 @media(max-width:600px){.handoff-quick-read>div{grid-template-columns:88px minmax(0,1fr);gap:12px}.handoff-quick-read dd{font-size:15px}}
+
+.handoff-competence-words{margin:24px 0}.handoff-competence-words h2{font-size:20px}.handoff-competence-words article{padding:16px 0;border-bottom:1px solid var(--rule)}.handoff-competence-words h3{font-size:18px;margin:0 0 10px}.handoff-competence-words p{font-size:15px;line-height:1.75}.handoff-competence-words .quote{width:100%;text-align:left}.handoff-coverage{margin:14px 0}.handoff-company-row>p{margin:0}

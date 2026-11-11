@@ -1,13 +1,13 @@
 import {SOCIOLOGY_REFERENCES} from "./sociology-references";
 
-export const ANALYSIS_VERSION = "work-language-v11" as const;
+export const ANALYSIS_VERSION = "work-language-v12" as const;
 
 // A readable outline of the existing schema, shared with syntax-repair feedback.
 // This is not an additional wire format or a partially filled example answer.
 export const ANALYSIS_OUTPUT_LAYOUT = `One root object:
-  headline, role, terms, sociology, questions, conditions, gaps, comparisons
+  headline, role, competenceWords, terms, sociology, questions, conditions, gaps, comparisons
   depth (one nested object):
-    protocol, basis, workMap, deliverables, preparation, example,
+    protocol, basis, workMap, deliverables, dutyCoverage, preparation, example,
     sociologySummary, sociologyConceptId, sociologyQuotes, questionTests
   companyBrief
 Keep depth open through depth.questionTests; then close depth and add root companyBrief. Only sociology is at root; its summary, concept ID and quotes are inside depth. Do not put preparation or questionTests at root. All other field shapes are defined by the supplied schema.`;
@@ -33,6 +33,12 @@ Preserve actor, object, time, quantity, unit, alternatives and required/preferre
 - Assisting, participating and drafting do NOT imply no independent judgment, ownership or decision rights. Approval and review are distinct. Do not invent exclusive authority for a manager or worker. Preserve explicit support, discretion and negotiable boundaries as carefully as demands. Missing information means the JD does not say, not that the workplace lacks it. Ask about a consequential uncertainty once, naturally.
 - Incomplete coordinated qualification groups remain unclear unless a surviving explicit modifier or separate complete clause resolves their force. Do not label the first complete-looking fragment required when a missing ending could qualify the entire list.
 Use exact contiguous JD spans for every quote, workMap quote, competency anchor and sociology quote. Peer evidence and company descriptions cannot become JD quotes. Never quote your paraphrase as original evidence.
+
+# Advertised competence words: competenceWords
+This is separate from specialist vocabulary in terms. For EACH advertised competence expression (including every item in advertisedCompetenceTerms), preserve its exact original wording in term, and a contiguous original sentence containing it in quote. Do not silently rename 抗压能力强 as 情绪稳定 or drop 自驱力强. meaning explains in ONE or TWO short bilingual sentences what this expression refers to in THIS JD, using its stated duties, objects or conditions. evidenceQuotes contains the exact duty/condition spans that support that interpretation. These anchors are not proof of lived working conditions. If the JD gives no concrete basis, use evidenceQuotes=[]; meaning explicitly says what it leaves unclear, and question supplies one short concrete question in both languages. No invented company practice. If the meaning is adequately supported, question may be empty in both languages. No competence expressions => []. Include newly encountered expressions as well as the supplied detection list.
+
+# Duty coverage: depth.dutyCoverage
+sourceDuties lists the numbered duties detected by the application. Map EVERY listed source duty to one or more zero-based depth.deliverables indexes, preserving its exact quote. Every deliverable must be mapped when sourceDuties is nonempty. If source duty count differs from deliverable count, give an explicit bilingual mergeReason for the affected mapping(s), naming which actions were combined or split and why; count mismatch with no explanation is invalid. Do not omit sales targets. Outbound calling is not answering incoming calls; keep the direction in headings, objects and actions. A catch-all administrative duty stays represented. When sourceDuties=[], use dutyCoverage=[] and still preserve all substantive work in the JD.
 
 # Duty groups: depth.deliverables
 Retain task/quote/output/check and supply object/action/purpose/scenario. The interface labels reference methods, proposed outputs, practice and illustrative scenes. Keep those provenance fields, but do not repeat 假设、建议、待确认 or “hypothetical/suggested” as prose prefixes. A necessary conditional phrase still belongs in the sentence. Explain each consequential source uncertainty once, at the place it affects the reader, rather than repeating “the JD does not say” across modules.

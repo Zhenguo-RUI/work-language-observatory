@@ -70,7 +70,7 @@ const stripped=await runModelReading({...opts,request:async()=>response(copiedMe
 await check('model-generated context metadata is stripped instead of blocking a valid reading',()=>assert(stripped.calls===1&&!stripped.result.context));
 await check('model-generated full-source translation cannot enter the saved reading',()=>assert(!stripped.result.sourceTranslation));
 await check('model-generated version claims are stripped and never enter stored metadata',()=>assert(!stripped.result.analysisVersion));
-await check('the current v11 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v11'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
+await check('the current v12 instruction and required tests are used by the API adapter',()=>assert(ANALYSIS_VERSION==='work-language-v12'&&inputs[0].instructions===ANALYSIS_INSTRUCTIONS&&inputs[0].text.format.strict&&inputs[0].text.format.schema.properties.depth.required.includes('questionTests')&&inputs[0].store===false));
 let missingCalls=0;const missingRepair=await runModelReading({...opts,request:async()=>response(++missingCalls===1?withoutTests:valid)});
 await check('missing question consequence receives only one bounded repair',()=>assert.equal(missingRepair.calls,2));
 const noBreakdown=structuredClone(valid);delete noBreakdown.depth.preparation;for(const item of noBreakdown.depth.deliverables)for(const key of ['object','action','purpose','scenario'])delete item[key];

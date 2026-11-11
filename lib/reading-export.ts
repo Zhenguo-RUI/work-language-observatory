@@ -12,7 +12,9 @@ export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
  add("title",lang==="en"&&translation?translation.titleEn:a.title);
  if(lang==="en")add("meta",`${translation?"Original job title":"Original job title (full translation not yet generated)"}: ${a.title}`);
  add("subheading",r.headline[lang]);add("body",r.role[lang]);
- if(r.context){
+ if(r.competenceWords?.length){add("heading",t("这份 JD 里的能力词","Competence words in this JD"));for(const word of r.competenceWords){add("subheading",word.term);add("quote",word.quote);add("body",word.meaning[lang]);for(const q of word.evidenceQuotes)add("quote",q);add("body",word.question[lang]);}}
+ if(a.company!==undefined&&!a.company.trim())add("body",t("未填写公司，本次只依据 JD 原文","No company was entered; this reading uses the JD only."));
+ if((a.company===undefined||a.company.trim())&&r.context){
   const c=r.context;
   add("heading",t("公司与行业语境","Company and industry context"));
   add("subheading",c.company.name[lang]);add("body",c.company.description[lang]);
@@ -34,7 +36,7 @@ export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
     add("body",`${t("最后交什么（建议）","What you hand over (proposed output)")}: ${x.output[lang]}`);
     add("body",`${t("做到什么算好（建议标准）","What good work looks like (proposed check)")}: ${x.check[lang]}`);
     for(const [termIndex,term] of r.terms.entries())if(term.quote===x.quote||x.quote.includes(term.quote)||term.quote.includes(x.quote)){
-     attachedTerms.add(termIndex);add("subheading",`${t("这项里的词","Words in this task")} · ${displayTerm(term.term,lang)}`);
+     attachedTerms.add(termIndex);add("subheading",`${t("这项里的行业用语","Industry terms in this task")} · ${displayTerm(term.term,lang)}`);
      add("body",term.meaning[lang]);add("body",term.alternative[lang]);add("body",term.question[lang]);
     }
    }

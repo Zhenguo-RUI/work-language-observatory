@@ -2,16 +2,16 @@ import type {AnalysisResult} from "./observatory-types";
 
 /** Conservative, visible extraction helpers, not a claim to exhaust every competence. */
 export function extractAdvertisedCompetenceTerms(raw:string):string[]{
- const pattern=/抗压(?:能力)?(?:强|良好)?|自驱力?(?:强)?|自我驱动(?:能力)?|(?:良好的?|较强的?|优秀的?)?(?:沟通(?:协调)?|协调|学习|逻辑思维|执行|团队协作|时间管理|独立思考|独立工作)(?:能力|意识)?(?:强)?|责任心(?:强)?|耐心|细心|主动性|积极主动|数据敏感(?:性)?|独立负责/gu;
+ const pattern=/抗压(?:能力)?(?:强|良好)?|自驱力?(?:强)?|自我驱动(?:能力)?|(?:良好的?|较强的?|优秀的?)?(?:沟通(?:协调)?|协调|学习|逻辑思维|执行|团队协作|时间管理|独立思考|独立工作)(?:能力|意识)?(?:强|良好|好)?|责任心(?:强)?|耐心|细心|主动性|积极主动|数据敏感(?:性)?|独立负责/gu;
  return [...new Set(Array.from(raw.matchAll(pattern),m=>m[0]))];
 }
 
 /** Only numbered clauses inside an explicitly labelled duties section are counted. */
 export function extractNumberedDuties(raw:string):string[]{
- const heading=/(?:工作职责|岗位职责|工作内容|岗位描述|职位描述|Responsibilities|Duties)\s*[：:]?/i.exec(raw);
+ const heading=/(?:工作职责|岗位职责|工作内容|岗位描述|职位描述|Responsibilities|Duties|(?:^|\n)[ \t]*职责)\s*[：:]?/i.exec(raw);
  if(!heading)return [];
  let section=raw.slice(heading.index+heading[0].length);
- const end=/(?:任职要求|职位要求|岗位要求|工作要求|任职条件|基本任职条件|申请方式|投递方式|Qualifications|Requirements|Benefits)\s*[：:]?/i.exec(section);
+ const end=/(?:任职要求|职位要求|岗位要求|工作要求|任职条件|基本任职条件|申请方式|投递方式|Qualifications|Requirements|Benefits|(?:^|\n)[ \t]*要求[ \t]*[：:])\s*[：:]?/i.exec(section);
  if(end)section=section.slice(0,end.index);
  const marks=Array.from(section.matchAll(/(?:^|\n|[；;。]\s*)(?:[ \t]*)(?:[\d]+[、.．)）]|[①②③④⑤⑥⑦⑧⑨⑩])\s*/g));
  return marks.map((m,i)=>section.slice(m.index!+m[0].length,marks[i+1]?.index??section.length).trim()).filter(Boolean);

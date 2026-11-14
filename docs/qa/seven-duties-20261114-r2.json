@@ -1,0 +1,808 @@
+{
+  "scope": "Exactly one authorized r2 synthetic seven-duty production retest after the scope fix; the real client may perform its one reconnect and bounded status-only recovery. No separate generation retry.",
+  "startedAt": "2026-11-14T12:07:40.395Z",
+  "origin": "https://work-language-observatory.org",
+  "release": {
+    "release": "reading-and-research-20261114-r2",
+    "baseCommit": "29a091925e1d98c18419e0f143004f40e0326566",
+    "scope": "groups-3-4-and-numbered-duty-scope",
+    "analysisContractRevision": "numbered-duty-scope-v1",
+    "preparedDate": "2026-11-14"
+  },
+  "fixture": {
+    "id": "manufacturing-quality-seven-20261114",
+    "sourceDutyCount": 7,
+    "sourceSha256": "7e6d41ee0bcd488630f66e1791d59fdb4781eef5c0440329406b3ae24d3e94a9",
+    "containsRealCompanyOrPersonalData": false
+  },
+  "client": {
+    "implementation": "lib/analysis-stream.ts requestAnalysis",
+    "maxSseReconnects": 1,
+    "totalTimeoutMs": 310000,
+    "maxStatusPollAttempts": 80
+  },
+  "requests": [
+    {
+      "atMs": 3,
+      "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+      "statusOnly": false,
+      "bodySha256": "f7b5d7e75a3751f45f6a5155165b9b9c71e4ca378fccbc0c5807d86d3d5fa1d4",
+      "events": [
+        {
+          "sseEvent": "stage",
+          "atMs": 1724,
+          "stage": "accepted"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1725,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "accepted",
+          "elapsedMs": 2,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1725,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "execution_started",
+          "elapsedMs": 4,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1873,
+          "stage": "accepted"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1883,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "accepted",
+          "elapsedMs": 177,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1883,
+          "stage": "context"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1883,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "context",
+          "elapsedMs": 178,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1991,
+          "stage": "analysis"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1994,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "analysis",
+          "elapsedMs": 217,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1995,
+          "stage": "analysis"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1995,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "analysis",
+          "elapsedMs": 218,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 76523,
+          "stage": "validating"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 76536,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "validating",
+          "elapsedMs": 74769,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 76536,
+          "stage": "repairing"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 76537,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "repairing",
+          "elapsedMs": 74816,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 116609,
+          "stage": "validating"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 116620,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "validating",
+          "elapsedMs": 114904,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 116621,
+          "stage": "validating"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 116621,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "validating",
+          "elapsedMs": 114913,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 116621,
+          "stage": "saving"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 116621,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "saving",
+          "elapsedMs": 114913,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 116840,
+          "event": "analysis_stream",
+          "requestId": "2e91c1e7-b14b-413e-9a67-416086c9fc2b",
+          "phase": "result",
+          "elapsedMs": 114935,
+          "first_in_instance": true,
+          "status": 200,
+          "resumed": false
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "date": "Sat, 14 Nov 2026 12:07:42 GMT",
+        "x-vercel-id": "sin1::iad1::z4f42-1794658061660-b75d93582050",
+        "x-vercel-cache": "MISS",
+        "content-type": "text/event-stream; charset=utf-8",
+        "x-wlo-request-id": "2e91c1e7-b14b-413e-9a67-416086c9fc2b"
+      }
+    }
+  ],
+  "stages": [
+    {
+      "stage": "accepted",
+      "atMs": 1726
+    },
+    {
+      "stage": "accepted",
+      "atMs": 1873
+    },
+    {
+      "stage": "context",
+      "atMs": 1884
+    },
+    {
+      "stage": "analysis",
+      "atMs": 1992
+    },
+    {
+      "stage": "analysis",
+      "atMs": 1995
+    },
+    {
+      "stage": "validating",
+      "atMs": 76526
+    },
+    {
+      "stage": "repairing",
+      "atMs": 76537
+    },
+    {
+      "stage": "validating",
+      "atMs": 116611
+    },
+    {
+      "stage": "validating",
+      "atMs": 116622
+    },
+    {
+      "stage": "saving",
+      "atMs": 116623
+    }
+  ],
+  "reconnects": 0,
+  "paidAnalysisSubmissions": 1,
+  "savedLocally": ".sites-runtime/seven-duties-20261114-r2/result.json",
+  "engine": "model",
+  "status": "draft",
+  "analysisVersion": "work-language-v12",
+  "analysisContractRevision": "numbered-duty-scope-v1",
+  "reused": false,
+  "providerModel": "Not exposed by the public response; not inferred",
+  "modelError": false,
+  "deliverableCount": 7,
+  "competenceTerms": [
+    "协调",
+    "沟通能力好",
+    "责任心强",
+    "独立工作能力"
+  ],
+  "competencePresence": [
+    {
+      "term": "沟通能力好",
+      "present": true
+    },
+    {
+      "term": "责任心强",
+      "present": true
+    },
+    {
+      "term": "独立工作能力",
+      "present": true
+    }
+  ],
+  "coverage": [
+    {
+      "sourceDuty": 1,
+      "quote": "依据图纸和检验规范，用卡尺检查来料零件的尺寸，记录零件批次和测量结果",
+      "matches": [
+        {
+          "indexes": [
+            0
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 2,
+      "quote": "按巡检计划检查生产中零件的外观，记录缺陷类型及对应批次",
+      "matches": [
+        {
+          "indexes": [
+            1
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 3,
+      "quote": "将检验发现的不合格零件放入指定隔离区，向生产协调员说明异常现象",
+      "matches": [
+        {
+          "indexes": [
+            2
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 4,
+      "quote": "对返工后的零件按原检验规范复检，比较返工前后的结果",
+      "matches": [
+        {
+          "indexes": [
+            3
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 5,
+      "quote": "核对在用量具的校准有效期和使用记录，将到期或记录缺失的量具报给质量负责人",
+      "matches": [
+        {
+          "indexes": [
+            4
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 6,
+      "quote": "每周汇总尺寸和外观缺陷数量，区分来料检验、制程巡检及返工复检的数据",
+      "matches": [
+        {
+          "indexes": [
+            5
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 7,
+      "quote": "整理检验报告及原始记录，标注零件批次和文件版本，交质量负责人复核后归档",
+      "matches": [
+        {
+          "indexes": [
+            6
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    }
+  ],
+  "allSevenDutiesMapped": true,
+  "orderedOneToOne": true,
+  "allDeliverablesMapped": true,
+  "mergeExplanationPresent": true,
+  "exactQuotes": {
+    "count": 44,
+    "passed": true,
+    "checks": [
+      {
+        "path": "terms[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "terms[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[0].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[0].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].evidenceQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].evidenceQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].evidenceQuotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].evidenceQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[4].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[5].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[6].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[4].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[5].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[6].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[3]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.questionTests[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      }
+    ]
+  },
+  "currentReadingErrors": [],
+  "requiredPreferredAnchors": [
+    {
+      "level": "required",
+      "quote": "能读懂检验规范",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    },
+    {
+      "level": "required",
+      "quote": "沟通能力好",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    },
+    {
+      "level": "required",
+      "quote": "责任心强",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    },
+    {
+      "level": "required",
+      "quote": "具备独立工作能力",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    }
+  ],
+  "automatedPassed": true,
+  "success": false,
+  "elapsedMs": 117000,
+  "finishedAt": "2026-11-14T12:09:37.394Z",
+  "requestIdStable": true,
+  "requestBodyStable": true,
+  "sseRequestCount": 1,
+  "statusPollCount": 0,
+  "observedExecutionStarts": 1,
+  "acceptanceStatus": "failed_semantic_fidelity_after_targeted_fix",
+  "runCompleted": true,
+  "noRerun": true,
+  "sameSyntheticInputAsFirstRun": true,
+  "internalRepairObserved": true,
+  "internalRepairCount": 1,
+  "paidRunLimitRespected": true,
+  "providerCallCount": "Not directly exposed; one internal repairing stage was observed within the single submitted run.",
+  "aiCloseReading": {
+    "status": "completed",
+    "reviewedLanguages": [
+      "zh",
+      "en"
+    ],
+    "independentSecondReview": true,
+    "reviewedFields": [
+      "headline",
+      "role",
+      "competenceWords",
+      "terms",
+      "conditions",
+      "questions",
+      "depth.workMap",
+      "depth.deliverables",
+      "depth.dutyCoverage",
+      "depth.preparation",
+      "depth.questionTests",
+      "sociology",
+      "depth.sociologySummary",
+      "context"
+    ],
+    "targetedFixes": {
+      "sevenSeparateDuties": true,
+      "isolationScopeGeneral": true,
+      "gaugeDutyRemainsCheckAndReport": true,
+      "finalReleaseAuthorityPreserved": true
+    },
+    "semanticDutyChecks": [
+      {
+        "sourceDuty": 1,
+        "passed": true,
+        "finding": "Caliper inspection retains drawing/spec, incoming parts, batch and measurements; illustrative tolerance arithmetic is correct."
+      },
+      {
+        "sourceDuty": 2,
+        "passed": false,
+        "finding": "Appearance patrol and batch/type recording are retained, but an existing defect-type list is asserted without source support."
+      },
+      {
+        "sourceDuty": 3,
+        "passed": true,
+        "finding": "Isolation and reporting now form a separate general duty. The dimension-defect example shows it is no longer restricted to appearance patrol."
+      },
+      {
+        "sourceDuty": 4,
+        "passed": true,
+        "qualification": "The proposed method focuses on the original failed measurement. The term definition is narrower than the general source reinspection duty; the source does not specify reinspection extent or sampling."
+      },
+      {
+        "sourceDuty": 5,
+        "passed": true,
+        "finding": "Gauge dates/records and reporting are retained. The previous withholding/return-to-use instruction is absent."
+      },
+      {
+        "sourceDuty": 6,
+        "passed": false,
+        "finding": "All three data sources are named, but one-part-one-column deduplication is imposed without a specified count unit or source basis."
+      },
+      {
+        "sourceDuty": 7,
+        "passed": true,
+        "finding": "Reports, raw records, batch and version, review-before-archive order are retained."
+      }
+    ],
+    "findings": [
+      {
+        "id": "unstated-cross-stage-deduplication",
+        "severity": "material",
+        "sourceDuty": 6,
+        "paths": [
+          "depth.deliverables[5].action",
+          "depth.deliverables[5].output",
+          "depth.deliverables[5].check",
+          "depth.deliverables[5].scenario.text"
+        ],
+        "sourceQuote": "每周汇总尺寸和外观缺陷数量，区分来料检验、制程巡检及返工复检的数据",
+        "outputExcerptZh": "同一件只计入一栏",
+        "outputExcerptEn": "count a part in one column only",
+        "explanation": "The source separates inspection-stage data but does not define unique-part counting or deduplication across stages. The same part can legitimately have separate incoming, in-process or rework inspection/defect records. The unconditional proposed rule may suppress those events."
+      },
+      {
+        "id": "existing-defect-list-invented",
+        "severity": "material",
+        "sourceDuty": 2,
+        "paths": [
+          "depth.deliverables[1].object",
+          "depth.deliverables[1].action",
+          "depth.deliverables[1].check"
+        ],
+        "sourceQuote": "按巡检计划检查生产中零件的外观，记录缺陷类型及对应批次",
+        "outputExcerptZh": "缺陷类型用的是既定清单上的词",
+        "outputExcerptEn": "Defect types use the words on the existing list",
+        "explanation": "Recording defect types does not establish that a predefined defect-type list exists. A proposed classification aid must not be described as an existing company artifact."
+      },
+      {
+        "id": "disposition-authority-added-in-practice",
+        "severity": "moderate",
+        "paths": [
+          "depth.preparation.practice[1].approach"
+        ],
+        "outputExcerptZh": "由他们决定后续处置",
+        "outputExcerptEn": "let them decide the next step",
+        "explanation": "The source assigns final-release confirmation to the quality lead, not every subsequent disposition decision. The main follow-up correctly treats disposition authority as unknown, so the practice answer is inconsistent with that uncertainty."
+      },
+      {
+        "id": "fixed-report-recipient-made-variable",
+        "severity": "material",
+        "sourceDuty": 3,
+        "paths": [
+          "depth.questionTests[0].difference"
+        ],
+        "sourceQuote": "将检验发现的不合格零件放入指定隔离区，向生产协调员说明异常现象",
+        "outputExcerptZh": "决定检验员向谁说明异常",
+        "outputExcerptEn": "It changes who receives the anomaly report",
+        "explanation": "The source explicitly fixes the anomaly-report recipient as the production coordinator. Hypothetical answers about disposition decisions cannot make that explicit recipient variable."
+      }
+    ],
+    "qualifications": {
+      "passed": true,
+      "finding": "All four required preparation skills correspond to explicit requirements. No degree, experience duration, certificate, software, pay or shift requirement was invented."
+    },
+    "competenceInterpretation": {
+      "passed": true,
+      "finding": "Communication, responsibility and independent work remain present. Coordination is correctly identified as part of a recipient role title rather than an advertised inspector skill. Final-release confirmation remains with the quality lead."
+    },
+    "employerFacts": {
+      "passed": true,
+      "finding": "Employer remains unidentified; no real company or personal data supplied."
+    },
+    "plainUsefulness": {
+      "strengths": [
+        "Seven clear, separate task headings make the work easier to follow.",
+        "Concrete measurement, isolation and record examples are understandable.",
+        "The dimensional example is coherent: 20.12 exceeds the 20.05 upper limit for 20±0.05.",
+        "Suggested sample records and practice questions generally connect to the stated work."
+      ],
+      "limits": [
+        "The unconditional deduplication rule makes the weekly counting method unreliable without clarification.",
+        "An invented existing list and unsupported disposition/recipient claims prevent treating the reading as fully faithful.",
+        "Some English headings are awkward but cosmetic, such as Patrol for appearance."
+      ]
+    },
+    "overallPassed": false,
+    "summary": "The targeted short-list mapping, general isolation and gauge-report-only fixes worked, but overall semantic acceptance still fails on new counting-rule and source-fidelity errors."
+  },
+  "reviewerBasis": {
+    "type": "AI-agent close reading",
+    "humanReviewPerformed": false,
+    "independentModelReviewIsNotHumanGoldStandard": true
+  }
+}

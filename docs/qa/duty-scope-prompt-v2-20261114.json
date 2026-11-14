@@ -1,0 +1,106 @@
+{
+  "recordedAt": "2026-11-14T12:18:59.580Z",
+  "scope": "Offline prompt-only refinement following the failed r2 semantic acceptance",
+  "analysisVersion": "work-language-v12",
+  "analysisContractRevision": "numbered-duty-scope-v2",
+  "paidCalls": 0,
+  "deployed": false,
+  "newRegexAdded": false,
+  "changes": [
+    "Preserve stated counting units and leave unspecified deduplication/category membership unresolved.",
+    "Treat lists, taxonomies, checklists and templates as existing only with source evidence; otherwise identify proposed drafts.",
+    "Use one-item examples without narrowing the source duty or its applicable checks.",
+    "Keep explicit recipients, responsibilities and review order fixed across hypothetical A/B answers.",
+    "Do not expand ownership of one stated decision into authority over every next step."
+  ],
+  "example": {
+    "domain": "Web and phone customer counts",
+    "source": "Count customers separately for web and phone channels.",
+    "unsupported": "Each customer belongs to only one channel.",
+    "faithful": "Keep channel counts separate and confirm how customers appearing in both channels are handled before producing a combined total."
+  },
+  "priorLiveAcceptance": {
+    "evidence": "docs/qa/seven-duties-20261114-r2.json",
+    "contractRevision": "numbered-duty-scope-v1",
+    "status": "failed_semantic_fidelity_after_targeted_fix",
+    "targetedFixesPassed": true,
+    "overallSemanticPassed": false,
+    "remainingFindings": [
+      {
+        "id": "unstated-cross-stage-deduplication",
+        "severity": "material",
+        "paths": [
+          "depth.deliverables[5].action",
+          "depth.deliverables[5].output",
+          "depth.deliverables[5].check",
+          "depth.deliverables[5].scenario.text"
+        ]
+      },
+      {
+        "id": "existing-defect-list-invented",
+        "severity": "material",
+        "paths": [
+          "depth.deliverables[1].object",
+          "depth.deliverables[1].action",
+          "depth.deliverables[1].check"
+        ]
+      },
+      {
+        "id": "disposition-authority-added-in-practice",
+        "severity": "moderate",
+        "paths": [
+          "depth.preparation.practice[1].approach"
+        ]
+      },
+      {
+        "id": "fixed-report-recipient-made-variable",
+        "severity": "material",
+        "paths": [
+          "depth.questionTests[0].difference"
+        ]
+      }
+    ]
+  },
+  "checks": [
+    {
+      "script": "scripts/check-analysis-cache.mjs",
+      "passed": true,
+      "count": 9,
+      "addedCoverage": "Explicit numbered-duty-scope-v1 result regenerates under the current marker while the original remains readable."
+    },
+    {
+      "script": "scripts/check-analysis.mjs",
+      "passed": true,
+      "count": 54
+    },
+    {
+      "script": "scripts/check-duty-scope.mjs",
+      "passed": true,
+      "count": 34
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true
+    },
+    {
+      "command": "targeted ESLint",
+      "passed": true,
+      "warnings": 0
+    }
+  ],
+  "archivedR2ReadOnlyReplay": {
+    "schemaReadable": true,
+    "reusableAsCurrentModelResult": false,
+    "deterministicReadingErrors": 0,
+    "interpretation": "The archived r2 still passes structural checks, as expected: this refinement adds prompt guidance, not a semantic regex. Its earlier failed AI close-reading verdict remains unchanged; this is not human validation."
+  },
+  "independentPromptReview": {
+    "passed": true,
+    "blockingInstructionConflicts": 0
+  },
+  "liveValidation": {
+    "performed": false,
+    "semanticImprovementProven": false,
+    "note": "No v2 model output has been generated or accepted. Offline checks prove compatibility, cache invalidation and mocked adapter behavior only."
+  }
+}

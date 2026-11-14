@@ -206,128 +206,6 @@
   ],
   "reconnects": 0,
   "paidAnalysisSubmissions": 1,
-  "manualReview": {
-    "status": "completed",
-    "reviewedLanguages": [
-      "zh",
-      "en"
-    ],
-    "reviewedFields": [
-      "headline",
-      "role",
-      "competenceWords",
-      "terms",
-      "conditions",
-      "questions",
-      "depth.workMap",
-      "depth.deliverables",
-      "depth.dutyCoverage",
-      "depth.preparation",
-      "depth.questionTests",
-      "sociology",
-      "depth.sociologySummary",
-      "context"
-    ],
-    "semanticDutyChecks": [
-      {
-        "sourceDuty": 1,
-        "passed": true,
-        "finding": "Incoming dimensional inspection retains drawings, specification, calipers, lot and measurements."
-      },
-      {
-        "sourceDuty": 2,
-        "passed": true,
-        "finding": "In-process appearance patrol retains plan, defect types and lot."
-      },
-      {
-        "sourceDuty": 3,
-        "passed": false,
-        "finding": "Isolation and reporting are present, but their scope is narrowed to appearance-patrol findings. The source applies to nonconforming parts found through inspection generally."
-      },
-      {
-        "sourceDuty": 4,
-        "passed": true,
-        "finding": "Rework re-inspection retains original specification and before/after comparison."
-      },
-      {
-        "sourceDuty": 5,
-        "passed": false,
-        "finding": "Gauge expiry and usage-record checks plus reporting are retained, but the output adds withholding gauges from usable positions pending instructions."
-      },
-      {
-        "sourceDuty": 6,
-        "passed": true,
-        "finding": "Weekly dimension and appearance counts retain incoming, in-process and rework distinctions."
-      },
-      {
-        "sourceDuty": 7,
-        "passed": true,
-        "finding": "Reports, original records, lots, versions, review-before-archive order all retained."
-      }
-    ],
-    "findings": [
-      {
-        "id": "isolation-scope-narrowed",
-        "severity": "material",
-        "sourceDuty": 3,
-        "paths": [
-          "depth.deliverables[1].task",
-          "depth.deliverables[1].action",
-          "depth.deliverables[1].purpose",
-          "depth.dutyCoverage[2].mergeReason"
-        ],
-        "sourceQuote": "将检验发现的不合格零件放入指定隔离区，向生产协调员说明异常现象",
-        "outputExcerptZh": "把隔离和说明并入外观巡检组，因为不合格件来自巡检发现",
-        "outputExcerptEn": "Isolation and explanation are merged into the appearance-patrol group because the nonconforming parts come from that patrol",
-        "explanation": "The mapping names the duty but the explanation invents a patrol-only origin and loses the general incoming/rework scope. A merge must retain isolation/reporting for every applicable inspection finding."
-      },
-      {
-        "id": "gauge-handling-procedure-added",
-        "severity": "moderate",
-        "sourceDuty": 5,
-        "paths": [
-          "depth.deliverables[3].check",
-          "depth.deliverables[3].scenario.text"
-        ],
-        "sourceQuote": "核对在用量具的校准有效期和使用记录，将到期或记录缺失的量具报给质量负责人",
-        "outputExcerptZh": "待处理量具没有被放回可用位置",
-        "outputExcerptEn": "gauges awaiting action have not been returned to the usable position",
-        "explanation": "The JD assigns verification and reporting. The check and hypothetical scene introduce a hold/return-to-use procedure without establishing authority or making it conditional."
-      },
-      {
-        "id": "weekly-report-assumption",
-        "severity": "minor",
-        "sourceDuty": 7,
-        "paths": [
-          "depth.dutyCoverage[6].mergeReason"
-        ],
-        "outputExcerptZh": "因为报告要用同一周的检验数据",
-        "explanation": "Weekly frequency is explicit for defect counts, but the report/archive duty has no stated weekly limit. The merge explanation supplies that link as fact."
-      }
-    ],
-    "qualifications": {
-      "passed": true,
-      "finding": "All four required preparation rows correspond to explicit requirement quotes. No degree, experience duration, certification, pay, shift or software requirement was invented."
-    },
-    "competenceInterpretation": {
-      "passed": true,
-      "finding": "Communication, responsibility and independent work are preserved. Independent work does not override the quality lead final-release confirmation. An extra coordination entry recognizes it occurs only in the production-coordinator role name and does not assign a separate coordination duty."
-    },
-    "authority": {
-      "finalReleasePreserved": true,
-      "gaugeHandlingOverreach": true
-    },
-    "employerFacts": {
-      "passed": true,
-      "finding": "Employer remains unidentified; no real organization or personal data supplied or invented."
-    },
-    "hypotheticalArithmetic": {
-      "passed": true,
-      "finding": "Weekly illustrative totals agree: 12 + 8 = 3 + 14 + 3 = 20."
-    },
-    "overallPassed": false,
-    "summary": "Structural coverage and exact quotations passed, but substantive scope fidelity did not. Do not label this seven-duty acceptance fully passed."
-  },
   "savedLocally": ".sites-runtime/seven-duties-20261114/result.json",
   "engine": "model",
   "status": "draft",
@@ -730,5 +608,132 @@
   "acceptanceStatus": "failed_semantic_fidelity",
   "noRerun": true,
   "runCompleted": true,
-  "paidRunLimitRespected": true
+  "paidRunLimitRespected": true,
+  "aiCloseReading": {
+    "status": "completed",
+    "reviewedLanguages": [
+      "zh",
+      "en"
+    ],
+    "reviewedFields": [
+      "headline",
+      "role",
+      "competenceWords",
+      "terms",
+      "conditions",
+      "questions",
+      "depth.workMap",
+      "depth.deliverables",
+      "depth.dutyCoverage",
+      "depth.preparation",
+      "depth.questionTests",
+      "sociology",
+      "depth.sociologySummary",
+      "context"
+    ],
+    "semanticDutyChecks": [
+      {
+        "sourceDuty": 1,
+        "passed": true,
+        "finding": "Incoming dimensional inspection retains drawings, specification, calipers, lot and measurements."
+      },
+      {
+        "sourceDuty": 2,
+        "passed": true,
+        "finding": "In-process appearance patrol retains plan, defect types and lot."
+      },
+      {
+        "sourceDuty": 3,
+        "passed": false,
+        "finding": "Isolation and reporting are present, but their scope is narrowed to appearance-patrol findings. The source applies to nonconforming parts found through inspection generally."
+      },
+      {
+        "sourceDuty": 4,
+        "passed": true,
+        "finding": "Rework re-inspection retains original specification and before/after comparison."
+      },
+      {
+        "sourceDuty": 5,
+        "passed": false,
+        "finding": "Gauge expiry and usage-record checks plus reporting are retained, but the output adds withholding gauges from usable positions pending instructions."
+      },
+      {
+        "sourceDuty": 6,
+        "passed": true,
+        "finding": "Weekly dimension and appearance counts retain incoming, in-process and rework distinctions."
+      },
+      {
+        "sourceDuty": 7,
+        "passed": true,
+        "finding": "Reports, original records, lots, versions, review-before-archive order all retained."
+      }
+    ],
+    "findings": [
+      {
+        "id": "isolation-scope-narrowed",
+        "severity": "material",
+        "sourceDuty": 3,
+        "paths": [
+          "depth.deliverables[1].task",
+          "depth.deliverables[1].action",
+          "depth.deliverables[1].purpose",
+          "depth.dutyCoverage[2].mergeReason"
+        ],
+        "sourceQuote": "将检验发现的不合格零件放入指定隔离区，向生产协调员说明异常现象",
+        "outputExcerptZh": "把隔离和说明并入外观巡检组，因为不合格件来自巡检发现",
+        "outputExcerptEn": "Isolation and explanation are merged into the appearance-patrol group because the nonconforming parts come from that patrol",
+        "explanation": "The mapping names the duty but the explanation invents a patrol-only origin and loses the general incoming/rework scope. A merge must retain isolation/reporting for every applicable inspection finding."
+      },
+      {
+        "id": "gauge-handling-procedure-added",
+        "severity": "moderate",
+        "sourceDuty": 5,
+        "paths": [
+          "depth.deliverables[3].check",
+          "depth.deliverables[3].scenario.text"
+        ],
+        "sourceQuote": "核对在用量具的校准有效期和使用记录，将到期或记录缺失的量具报给质量负责人",
+        "outputExcerptZh": "待处理量具没有被放回可用位置",
+        "outputExcerptEn": "gauges awaiting action have not been returned to the usable position",
+        "explanation": "The JD assigns verification and reporting. The check and hypothetical scene introduce a hold/return-to-use procedure without establishing authority or making it conditional."
+      },
+      {
+        "id": "weekly-report-assumption",
+        "severity": "minor",
+        "sourceDuty": 7,
+        "paths": [
+          "depth.dutyCoverage[6].mergeReason"
+        ],
+        "outputExcerptZh": "因为报告要用同一周的检验数据",
+        "explanation": "Weekly frequency is explicit for defect counts, but the report/archive duty has no stated weekly limit. The merge explanation supplies that link as fact."
+      }
+    ],
+    "qualifications": {
+      "passed": true,
+      "finding": "All four required preparation rows correspond to explicit requirement quotes. No degree, experience duration, certification, pay, shift or software requirement was invented."
+    },
+    "competenceInterpretation": {
+      "passed": true,
+      "finding": "Communication, responsibility and independent work are preserved. Independent work does not override the quality lead final-release confirmation. An extra coordination entry recognizes it occurs only in the production-coordinator role name and does not assign a separate coordination duty."
+    },
+    "authority": {
+      "finalReleasePreserved": true,
+      "gaugeHandlingOverreach": true
+    },
+    "employerFacts": {
+      "passed": true,
+      "finding": "Employer remains unidentified; no real organization or personal data supplied or invented."
+    },
+    "hypotheticalArithmetic": {
+      "passed": true,
+      "finding": "Weekly illustrative totals agree: 12 + 8 = 3 + 14 + 3 = 20."
+    },
+    "overallPassed": false,
+    "summary": "Structural coverage and exact quotations passed, but substantive scope fidelity did not. Do not label this seven-duty acceptance fully passed."
+  },
+  "reviewerBasis": {
+    "type": "AI-agent close reading",
+    "humanReviewPerformed": false,
+    "independentModelReviewIsNotHumanGoldStandard": true
+  }
 }

@@ -64,7 +64,7 @@
   "limits": [
     "Exact one-to-one coverage is structural; arbitrary semantic narrowing within one paragraph still requires close reading.",
     "Procedure checks are narrow lexical guards and prompt constraints, not a complete entailment or authority model.",
-    "No live generation has been run after this fix."
+    "This record originally covered offline v1 checks. The subsequent r2 live acceptance fixed the targeted defects but failed overall semantic fidelity; see its separate report."
   ],
   "newRegressionCases": [
     "seven independent source duties parse and pass the generation evidence gate",
@@ -114,5 +114,12 @@
       "targeted ESLint"
     ],
     "newPaidCalls": 0
+  },
+  "subsequentAcceptance": {
+    "evidence": "docs/qa/seven-duties-20261114-r2.json",
+    "overallPassed": false,
+    "targetedDefectsFixed": true,
+    "promptRefinementEvidence": "docs/qa/duty-scope-prompt-v2-20261114.json",
+    "v2LiveValidationPerformed": false
   }
 }

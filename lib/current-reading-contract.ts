@@ -2,7 +2,7 @@ import type {AnalysisResult} from "./observatory-types";
 
 export const MAX_DUTY_GROUPS=8;
 // Server-owned generation provenance; saved readings without it remain valid.
-export const ANALYSIS_CONTRACT_REVISION="numbered-duty-scope-v1" as const;
+export const ANALYSIS_CONTRACT_REVISION="numbered-duty-scope-v2" as const;
 
 /** Conservative, visible extraction helpers, not a claim to exhaust every competence. */
 export function extractAdvertisedCompetenceTerms(raw:string):string[]{

@@ -1,9 +1,10 @@
 {
-  "checkedAt": "2026-11-14T11:57:21.304Z",
+  "checkedAt": "2026-11-14T12:40:15.229Z",
   "release": {
-    "release": "reading-and-research-20261114",
-    "baseCommit": "6a8f6da811e9b746edbb2bb616bdf9b376a20a59",
-    "scope": "groups-3-4-home-research-readability",
+    "release": "reading-and-research-20261114-r3",
+    "baseCommit": "613419e9b43a8d33430a44889fd8e99b4f16a07d",
+    "scope": "groups-3-4-and-numbered-duty-scope",
+    "analysisContractRevision": "numbered-duty-scope-v2",
     "preparedDate": "2026-11-14"
   },
   "allPassed": true,
@@ -11,7 +12,7 @@
     {
       "url": "https://work-language-observatory.org/?page=sample&lang=zh",
       "status": 200,
-      "elapsedMs": 2349,
+      "elapsedMs": 2755,
       "bodyPresent": true,
       "title": "工作语言观察站",
       "bytes": 32608,
@@ -20,7 +21,7 @@
     {
       "url": "https://work-language-observatory.org/?page=sample&lang=en",
       "status": 200,
-      "elapsedMs": 1830,
+      "elapsedMs": 2260,
       "bodyPresent": true,
       "title": "Work Language Observatory",
       "bytes": 34798,
@@ -29,7 +30,7 @@
     {
       "url": "https://work-language-observatory.org/?page=research&lang=zh",
       "status": 200,
-      "elapsedMs": 1345,
+      "elapsedMs": 2815,
       "bodyPresent": true,
       "title": "工作语言观察站",
       "bytes": 109665,
@@ -38,7 +39,7 @@
     {
       "url": "https://work-language-observatory.org/?page=research&lang=en",
       "status": 200,
-      "elapsedMs": 1937,
+      "elapsedMs": 3952,
       "bodyPresent": true,
       "title": "Work Language Observatory",
       "bytes": 112337,
@@ -47,7 +48,7 @@
     {
       "url": "https://work-language-observatory.org/?page=keywords&lang=zh&term=%E6%8A%97%E5%8E%8B",
       "status": 200,
-      "elapsedMs": 1347,
+      "elapsedMs": 2685,
       "bodyPresent": true,
       "title": "工作语言观察站",
       "bytes": 101770,
@@ -56,7 +57,7 @@
     {
       "url": "https://work-language-observatory.org/?page=keywords&lang=en&term=%E6%8A%97%E5%8E%8B",
       "status": 200,
-      "elapsedMs": 1937,
+      "elapsedMs": 4046,
       "bodyPresent": true,
       "title": "Work Language Observatory",
       "bytes": 102301,
@@ -65,7 +66,7 @@
     {
       "url": "https://work-language-observatory.org/?page=keywords&lang=zh&term=%E8%87%AA%E9%A9%B1",
       "status": 200,
-      "elapsedMs": 2137,
+      "elapsedMs": 2514,
       "bodyPresent": true,
       "title": "工作语言观察站",
       "bytes": 102108,
@@ -74,7 +75,7 @@
     {
       "url": "https://work-language-observatory.org/?page=keywords&lang=en&term=%E8%87%AA%E9%A9%B1",
       "status": 200,
-      "elapsedMs": 1220,
+      "elapsedMs": 4701,
       "bodyPresent": true,
       "title": "Work Language Observatory",
       "bytes": 102663,

@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-11-14T12:32:52.775Z",
+  "checks": [
+    {
+      "page": "research-methods-zh",
+      "scroll": 375,
+      "width": 375
+    },
+    {
+      "page": "home-zh",
+      "scroll": 375,
+      "width": 375
+    },
+    {
+      "page": "keywords-self-drive-zh",
+      "scroll": 375,
+      "width": 375
+    },
+    {
+      "page": "history-en",
+      "scroll": 375,
+      "title": "Work Language Observatory",
+      "width": 375
+    },
+    {
+      "page": "sample-zh",
+      "scroll": 375,
+      "width": 375
+    },
+    {
+      "page": "production-keywords-selfdrive-en",
+      "scrollWidth": 375,
+      "title": "Work Language Observatory",
+      "width": 375
+    },
+    {
+      "page": "production-keywords-directory-en",
+      "scrollWidth": 375,
+      "width": 375
+    },
+    {
+      "page": "production-research-zh-methods",
+      "scrollWidth": 375,
+      "smallVisibleText": 0,
+      "width": 375
+    }
+  ],
+  "imageCheck": {
+    "actualCurrentSrcWidths": [
+      256,
+      640,
+      384
+    ],
+    "allLoaded": true
+  },
+  "modelButtonEnabled": true
+}

@@ -1,0 +1,753 @@
+{
+  "scope": "Exactly one authorized final r3 synthetic seven-duty production retest after the scope fix; the real client may perform its one reconnect and bounded status-only recovery. No separate generation retry.",
+  "startedAt": "2026-11-14T12:36:43.921Z",
+  "origin": "https://work-language-observatory.org",
+  "release": {
+    "release": "reading-and-research-20261114-r3",
+    "baseCommit": "613419e9b43a8d33430a44889fd8e99b4f16a07d",
+    "scope": "groups-3-4-and-numbered-duty-scope",
+    "analysisContractRevision": "numbered-duty-scope-v2",
+    "preparedDate": "2026-11-14"
+  },
+  "fixture": {
+    "id": "manufacturing-quality-seven-20261114",
+    "sourceDutyCount": 7,
+    "sourceSha256": "7e6d41ee0bcd488630f66e1791d59fdb4781eef5c0440329406b3ae24d3e94a9",
+    "containsRealCompanyOrPersonalData": false
+  },
+  "client": {
+    "implementation": "lib/analysis-stream.ts requestAnalysis",
+    "maxSseReconnects": 1,
+    "totalTimeoutMs": 310000,
+    "maxStatusPollAttempts": 80
+  },
+  "requests": [
+    {
+      "atMs": 6,
+      "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+      "statusOnly": false,
+      "bodySha256": "f7b5d7e75a3751f45f6a5155165b9b9c71e4ca378fccbc0c5807d86d3d5fa1d4",
+      "events": [
+        {
+          "sseEvent": "stage",
+          "atMs": 1603,
+          "stage": "accepted"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1603,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "accepted",
+          "elapsedMs": 0,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1604,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "execution_started",
+          "elapsedMs": 6,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1788,
+          "stage": "accepted"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1800,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "accepted",
+          "elapsedMs": 208,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1801,
+          "stage": "context"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1801,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "context",
+          "elapsedMs": 209,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1853,
+          "stage": "analysis"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1859,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "analysis",
+          "elapsedMs": 251,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 1859,
+          "stage": "analysis"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 1859,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "analysis",
+          "elapsedMs": 266,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 104893,
+          "stage": "validating"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 104897,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "validating",
+          "elapsedMs": 103258,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 104897,
+          "stage": "validating"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 104897,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "validating",
+          "elapsedMs": 103306,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "stage",
+          "atMs": 104898,
+          "stage": "saving"
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 104898,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "saving",
+          "elapsedMs": 103307,
+          "first_in_instance": true
+        },
+        {
+          "sseEvent": "diagnostics",
+          "atMs": 105162,
+          "event": "analysis_stream",
+          "requestId": "f3176176-51f2-489e-833e-63c3a2bac2e0",
+          "phase": "result",
+          "elapsedMs": 103335,
+          "first_in_instance": true,
+          "status": 200,
+          "resumed": false
+        }
+      ],
+      "status": 200,
+      "headers": {
+        "date": "Sat, 14 Nov 2026 12:36:45 GMT",
+        "x-vercel-id": "sin1::iad1::75426-1794659805278-af614a1ee3b2",
+        "x-vercel-cache": "MISS",
+        "content-type": "text/event-stream; charset=utf-8",
+        "x-wlo-request-id": "f3176176-51f2-489e-833e-63c3a2bac2e0"
+      }
+    }
+  ],
+  "stages": [
+    {
+      "stage": "accepted",
+      "atMs": 1604
+    },
+    {
+      "stage": "accepted",
+      "atMs": 1789
+    },
+    {
+      "stage": "context",
+      "atMs": 1801
+    },
+    {
+      "stage": "analysis",
+      "atMs": 1853
+    },
+    {
+      "stage": "analysis",
+      "atMs": 1860
+    },
+    {
+      "stage": "validating",
+      "atMs": 104895
+    },
+    {
+      "stage": "validating",
+      "atMs": 104898
+    },
+    {
+      "stage": "saving",
+      "atMs": 104899
+    }
+  ],
+  "reconnects": 0,
+  "paidAnalysisSubmissions": 1,
+  "reviewerBasis": {
+    "kind": "ai_close_reading",
+    "human": false,
+    "independentAiReview": true,
+    "aiReviewers": 2
+  },
+  "aiCloseReading": {
+    "status": "completed",
+    "reviewedLanguages": [
+      "zh",
+      "en"
+    ],
+    "independentSecondAiReview": true,
+    "reviewedFields": [
+      "headline",
+      "role",
+      "competenceWords",
+      "terms",
+      "conditions",
+      "questions",
+      "depth.workMap",
+      "depth.deliverables",
+      "depth.dutyCoverage",
+      "depth.preparation",
+      "depth.questionTests",
+      "sociology",
+      "depth.sociologySummary",
+      "context"
+    ],
+    "semanticDutyChecks": [
+      {
+        "sourceDuty": 1,
+        "passed": true,
+        "finding": "Incoming dimensions retain drawings, specifications, calipers, batch and readings. Proposed traceable records are useful additions rather than asserted existing company forms."
+      },
+      {
+        "sourceDuty": 2,
+        "passed": true,
+        "finding": "Patrol remains appearance checking under the plan with defect-type and batch records. No pre-existing defect list is asserted."
+      },
+      {
+        "sourceDuty": 3,
+        "passed": true,
+        "finding": "General nonconforming-part isolation and reporting to the production coordinator remain separate and explicit."
+      },
+      {
+        "sourceDuty": 4,
+        "passed": true,
+        "finding": "Reinspection retains the original specification and explicitly compares dimensional or appearance results before and after rework."
+      },
+      {
+        "sourceDuty": 5,
+        "passed": true,
+        "finding": "Gauge duty remains checking dates/use records and reporting to the quality lead. The hypothetical use decision is also explored as an unresolved question; no unconditional hold rule is imposed on the duty."
+      },
+      {
+        "sourceDuty": 6,
+        "passed": true,
+        "finding": "Weekly dimensional/appearance counts retain all three inspection-stage sources. No one-part-one-column rule or unique total is imposed. The exercise explicitly asks about parts versus defect occurrences and cross-stage overlap."
+      },
+      {
+        "sourceDuty": 7,
+        "passed": true,
+        "finding": "Reports and raw records retain batch/version labels and review by the quality lead before archiving."
+      }
+    ],
+    "targetedFixes": {
+      "sevenSeparateDuties": true,
+      "generalIsolationScope": true,
+      "gaugeCheckAndReportScope": true,
+      "noForcedCrossStageDeduplication": true,
+      "noInventedExistingDefectList": true,
+      "reinspectionIncludesApplicableChecks": true,
+      "explicitRecipientsPreservedInHypotheticalReplies": true,
+      "finalReleaseAuthorityPreserved": true
+    },
+    "materialFindings": [],
+    "nonblockingFindings": [
+      {
+        "id": "localized-specification-scope-wording",
+        "severity": "nonblocking_wording",
+        "paths": [
+          "terms[0].alternative.zh"
+        ],
+        "outputExcerptZh": "不同于只查来料零件的图纸和检验规范",
+        "sourceQuote": "对返工后的零件按原检验规范复检，比较返工前后的结果",
+        "explanation": "The word 只 wrongly implies that the inspection specification applies only to incoming parts. Duty 4 explicitly and correctly applies it to reinspection in both languages, so the core work scope is preserved. Removing 只 would fix this localized comparison."
+      },
+      {
+        "id": "patrol-example-uses-dimension",
+        "severity": "nonblocking_example_wording",
+        "paths": [
+          "depth.deliverables[2].scenario.text"
+        ],
+        "outputExcerptZh": "巡检发现一批零件孔径偏小",
+        "outputExcerptEn": "A patrol finds a batch with undersized holes",
+        "sourceQuote": "按巡检计划检查生产中零件的外观，记录缺陷类型及对应批次",
+        "explanation": "This hypothetical isolation scene uses a dimensional defect in a patrol example, while the stated patrol duty concerns appearance. Calling it a general inspection finding would fit better. The actual isolation task remains general and does not add a new advertised patrol duty."
+      }
+    ],
+    "qualifications": {
+      "passed": true,
+      "finding": "Required preparation rows retain exact source anchors. Communication, responsibility and independent work remain explicit in competenceWords; no degree, experience duration, certificate, software, pay or shift requirement is invented."
+    },
+    "authorityAndRecipients": {
+      "passed": true,
+      "finding": "Production coordinator receives part anomalies; quality lead receives gauge issues, reviews reports and confirms final release. The A/B gauge-use question varies only the unresolved permission to pause use and preserves reporting in both branches."
+    },
+    "provenanceAssessment": {
+      "passed": true,
+      "finding": "Proposed record layouts, small practice samples and hypothetical examples are assessed as suggestions/examples, not required to repeat the JD verbatim. No material invented company policy was found."
+    },
+    "plainUsefulness": {
+      "passed": true,
+      "finding": "Seven concise headings explain object, action, proposed record and inspectable result. Bilingual examples are understandable. The counting exercise makes the unresolved unit and cross-stage overlap concrete; the reinspection exercise connects evidence checks to the stated final-release boundary."
+    },
+    "employerFacts": {
+      "passed": true,
+      "finding": "Employer remains unidentified. The fixture contains no real company or personal data."
+    },
+    "overallPassed": true,
+    "summary": "This synthetic seven-duty acceptance passes with two localized nonblocking wording notes. Earlier material mapping, counting-rule and source-scope defects are corrected in this output."
+  },
+  "savedLocally": ".sites-runtime/seven-duties-20261114-r3/result.json",
+  "engine": "model",
+  "status": "draft",
+  "analysisVersion": "work-language-v12",
+  "analysisContractRevision": "numbered-duty-scope-v2",
+  "reused": false,
+  "providerModel": "Not exposed by the public response; not inferred",
+  "modelError": false,
+  "deliverableCount": 7,
+  "competenceTerms": [
+    "协调",
+    "沟通能力好",
+    "责任心强",
+    "独立工作能力"
+  ],
+  "competencePresence": [
+    {
+      "term": "沟通能力好",
+      "present": true
+    },
+    {
+      "term": "责任心强",
+      "present": true
+    },
+    {
+      "term": "独立工作能力",
+      "present": true
+    }
+  ],
+  "coverage": [
+    {
+      "sourceDuty": 1,
+      "quote": "依据图纸和检验规范，用卡尺检查来料零件的尺寸，记录零件批次和测量结果",
+      "matches": [
+        {
+          "indexes": [
+            0
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 2,
+      "quote": "按巡检计划检查生产中零件的外观，记录缺陷类型及对应批次",
+      "matches": [
+        {
+          "indexes": [
+            1
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 3,
+      "quote": "将检验发现的不合格零件放入指定隔离区，向生产协调员说明异常现象",
+      "matches": [
+        {
+          "indexes": [
+            2
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 4,
+      "quote": "对返工后的零件按原检验规范复检，比较返工前后的结果",
+      "matches": [
+        {
+          "indexes": [
+            3
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 5,
+      "quote": "核对在用量具的校准有效期和使用记录，将到期或记录缺失的量具报给质量负责人",
+      "matches": [
+        {
+          "indexes": [
+            4
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 6,
+      "quote": "每周汇总尺寸和外观缺陷数量，区分来料检验、制程巡检及返工复检的数据",
+      "matches": [
+        {
+          "indexes": [
+            5
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
+      "sourceDuty": 7,
+      "quote": "整理检验报告及原始记录，标注零件批次和文件版本，交质量负责人复核后归档",
+      "matches": [
+        {
+          "indexes": [
+            6
+          ],
+          "mergeReason": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ]
+    }
+  ],
+  "allSevenDutiesMapped": true,
+  "orderedOneToOne": true,
+  "allDeliverablesMapped": true,
+  "mergeExplanationPresent": true,
+  "exactQuotes": {
+    "count": 46,
+    "passed": true,
+    "checks": [
+      {
+        "path": "terms[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "terms[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[0].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[0].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[1].evidenceQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].evidenceQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[2].evidenceQuotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].term",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].evidenceQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].evidenceQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "competenceWords[3].evidenceQuotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.workMap.quotes[3]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[4].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[5].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.deliverables[6].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[4].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[5].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.dutyCoverage[6].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[1].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[2].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.preparation.competencies[3].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[0]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[1]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[2]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.sociologyQuotes[3]",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      },
+      {
+        "path": "depth.questionTests[0].quote",
+        "nonempty": true,
+        "exactContiguousSpan": true
+      }
+    ]
+  },
+  "currentReadingErrors": [],
+  "requiredPreferredAnchors": [
+    {
+      "level": "required",
+      "quote": "能读懂检验规范",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    },
+    {
+      "level": "required",
+      "quote": "沟通能力好",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    },
+    {
+      "level": "required",
+      "quote": "责任心强",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    },
+    {
+      "level": "required",
+      "quote": "具备独立工作能力",
+      "exactSpan": true,
+      "inRequirementsSection": true
+    }
+  ],
+  "automatedPassed": true,
+  "success": true,
+  "elapsedMs": 105352,
+  "finishedAt": "2026-11-14T12:38:29.272Z",
+  "requestIdStable": true,
+  "requestBodyStable": true,
+  "sseRequestCount": 1,
+  "statusPollCount": 0,
+  "observedExecutionStarts": 1,
+  "acceptanceStatus": "passed_with_nonblocking_wording_notes",
+  "runCompleted": true,
+  "noRerun": true,
+  "sameSyntheticInputAsFirstRun": true,
+  "internalRepairObserved": false,
+  "internalRepairCount": 0,
+  "paidRunLimitRespected": true,
+  "scopeLimit": "Acceptance of this one synthetic fixture, based on deterministic checks and two AI close readings; not a human review or a general model-quality guarantee."
+}

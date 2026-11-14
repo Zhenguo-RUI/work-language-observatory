@@ -103,12 +103,19 @@ await check('incomplete model output is rejected without a second request',()=>a
 const leaking=structuredClone(valid);leaking.comparisons=[{id:'not-supplied',title:'Unapproved comparison',reading:{zh:'不应出现',en:'Not supplied'}}];
 await check('unsupplied archive comparisons cannot pass the adapter',async()=>assert.rejects(()=>runModelReading({...opts,request:async()=>response(leaking)}),/after_one_repair/));
 const md=readingMarkdown({id:'test',title:'Synthetic',company:'',raw_text:raw,source_url:'',text_hash:'test',status:'draft',engine:'rules',result:drafted,revision:1,created_at:'test',updated_at:'test'},'en');
-await check('export retains proposed-output and hypothetical-example labels',()=>assert(md.includes('What you hand over (proposed output):')&&md.includes('What good work looks like (proposed check):')&&md.includes('Fictional example — not measured')));
+await check('export marks each duty as preparation advice and preserves hypothetical-example content',()=>{
+ const note='The approaches, examples and outputs below are suggestions for preparation.';
+ assert.equal(md.split(note).length-1,drafted.depth.deliverables.length);
+ for(const item of drafted.depth.deliverables){assert(md.includes(item.quote));assert(md.includes(`What you hand over: ${item.output.en}`));assert(md.includes(`What good work looks like: ${item.check.en}`));}
+ assert(md.includes('Fictional example — not measured'));assert(md.includes(drafted.depth.example.scenario.en));assert(md.includes(drafted.depth.example.lesson.en));for(const step of drafted.depth.example.steps)assert(md.includes(step.en));
+});
 for(const language of ['zh','en'])await check(`${language}: all v10 duty and preparation content survives the shared Markdown/PDF projection`,()=>{
  const text=readingMarkdown({id:'v9-export',title:'Synthetic',company:'',raw_text:raw,source_url:'',text_hash:'test',status:'draft',engine:'model',result:valid,revision:1,created_at:'test',updated_at:'test'},language);
- for(const item of valid.depth.deliverables){for(const key of ['object','action','purpose','output','check'])assert(text.includes(item[key][language]));assert(text.includes(item.scenario.text[language]));assert(text.includes(item.quote));}
+ for(const item of valid.depth.deliverables){for(const key of ['object','action','purpose','output','check'])assert(text.includes(item[key][language]));assert(text.includes(`${language==='zh'?'举个例子':'An example'}: ${item.scenario.text[language]}`));assert(text.includes(item.quote));}
  for(const material of valid.depth.preparation.materials)assert(text.includes(material[language]));for(const item of valid.depth.preparation.practice){assert(text.includes(item.question[language]));assert(text.includes(item.approach[language]));}
- assert(text.includes(valid.depth.sociologySummary[language]));assert(text.includes('https://mitpress.mit.edu/9780262522953/sorting-things-out/'));assert(!text.includes('并非招聘方已经答复'));assert(text.includes(language==='zh'?'情境示例':'illustrative scenario'));assert(text.includes(language==='zh'?'面试练习':'Interview practice'));
+ const note=language==='zh'?'以下做法、示例与交付供准备时参考。':'The approaches, examples and outputs below are suggestions for preparation.';
+ assert.equal(text.split(note).length-1,valid.depth.deliverables.length);
+ assert(text.includes(valid.depth.sociologySummary[language]));assert(text.includes('https://mitpress.mit.edu/9780262522953/sorting-things-out/'));assert(!text.includes('并非招聘方已经答复'));assert(text.includes(language==='zh'?'面试练习':'Interview practice'));
 });
 await check('an omitted sociological reading leaves no empty heading or fabricated citation in either export',()=>{
  const omitted=structuredClone(valid);omitted.sociology={zh:'',en:''};omitted.depth.sociologySummary={zh:'',en:''};omitted.depth.sociologyConceptId=null;omitted.depth.sociologyQuotes=[];

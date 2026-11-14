@@ -1,0 +1,52 @@
+{
+  "term": "数据",
+  "english": "Data",
+  "examples": [
+    {
+      "role": {
+        "zh": "化学工程师",
+        "en": "Chemical engineer"
+      },
+      "context": {
+        "zh": "记录墨水打印的流畅性、颜色、干燥及牢度测试结果。",
+        "en": "Record ink-printing tests for flow, colour, drying and fastness."
+      },
+      "reviewStatus": "ai_reviewed",
+      "task": {
+        "zh": "把测试观察记成可比记录",
+        "en": "Make test observations comparable"
+      },
+      "deliverable": {
+        "zh": "带测试条件和各项结果的打印测试记录表",
+        "en": "A printing-test record with conditions and results"
+      },
+      "reading": {
+        "zh": "数据来自打印测试，需要把流畅性、颜色、干燥和牢度的结果与测试条件对应起来，便于比较。",
+        "en": "The data come from printing tests. Flow, colour, drying and fastness results need to be recorded alongside test conditions so they can be compared."
+      }
+    },
+    {
+      "role": {
+        "zh": "招聘主管",
+        "en": "Recruitment supervisor"
+      },
+      "context": {
+        "zh": "统计招聘数据、复盘流程，改进招聘效率和候选人体验。",
+        "en": "Review recruitment data to improve hiring efficiency and candidate experience."
+      },
+      "reviewStatus": "ai_reviewed",
+      "task": {
+        "zh": "找出招聘流程卡在哪里",
+        "en": "Locate a hiring bottleneck"
+      },
+      "deliverable": {
+        "zh": "分环节招聘看板与流程改进建议",
+        "en": "A stage-by-stage hiring view and process recommendations"
+      },
+      "reading": {
+        "zh": "招聘数据要连回筛选、面试和入职步骤，解释效率与候选人体验出了什么问题。",
+        "en": "Recruitment data link back to screening, interviews and onboarding to explain problems with speed or candidate experience."
+      }
+    }
+  ]
+}

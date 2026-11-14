@@ -1,0 +1,1 @@
+export const homeResearchCopy={size:{zh:"{{stat:corpus.n|int}}份广告 · {{stat:corpus.dictionary_terms|int}}个词条",en:"{{stat:corpus.n|int}} advertisements · {{stat:corpus.dictionary_terms|int}} keywords"}};

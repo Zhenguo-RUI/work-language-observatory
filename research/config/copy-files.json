@@ -2,6 +2,8 @@
   "files": [
     "lib/research-observations.ts",
     "lib/keyword-contexts.ts",
-    "data/public-study.json"
+    "data/public-study.json",
+    "lib/research-publication.ts",
+    "lib/home-research-copy.ts"
   ]
 }

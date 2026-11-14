@@ -1,0 +1,258 @@
+{
+  "auditedAt": "2026-11-14T10:46:28.470573+00:00",
+  "scope": "Read-only investigation of retained Vercel production logs, archived synthetic acceptance evidence, and application timeout code.",
+  "project": {
+    "id": "prj_DPvAw7NzAl9FdzJCZMrz8pcWa9P2",
+    "teamId": "team_GELUhm3sRIHncSatxUvwaNhx",
+    "domain": "work-language-observatory.org"
+  },
+  "actions": {
+    "productionMutations": false,
+    "deploymentOrConfigurationChanges": false,
+    "secretValuesRead": false,
+    "newModelRequests": 0,
+    "newAnalysisRequests": 0
+  },
+  "vercelQueries": [
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "since": "2026-11-09T16:00:00Z",
+      "until": "2026-11-10T16:00:00Z",
+      "group_by": "level",
+      "purpose": "November 10 Asia/Shanghai calendar day",
+      "result": "API rejected the time range (400 bad_request)",
+      "reason": "The hobby plan does not retain runtime logs for the requested time range.",
+      "reportedRetentionHours": 1,
+      "interpretation": "Historical logs unavailable; this is not evidence of no failures."
+    },
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "since": "2026-11-13T10:44:25.336Z",
+      "until": "2026-11-14T10:44:25.336Z",
+      "level": [
+        "error",
+        "fatal"
+      ],
+      "result": "API rejected the time range (400 bad_request)",
+      "reportedRetentionHours": 1
+    },
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "relativeWindow": "50m",
+      "group_by": "level",
+      "queriedAtApprox": "2026-11-14T10:44:43Z",
+      "result": "No count rows returned."
+    },
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "since": "2026-11-14T09:54:43.556Z",
+      "until": "2026-11-14T10:44:43.556Z",
+      "query": "analysis_stream",
+      "result": "No logs found for the specified criteria."
+    },
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "since": "2026-11-14T09:55:36.810Z",
+      "until": "2026-11-14T10:45:36.810Z",
+      "query": "model_timeout",
+      "result": "No logs found for the specified criteria."
+    },
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "since": "2026-11-14T09:55:36.607Z",
+      "until": "2026-11-14T10:45:36.607Z",
+      "query": "Observatory provider request",
+      "result": "No logs found for the specified criteria."
+    },
+    {
+      "tool": "get_runtime_logs",
+      "environment": "production",
+      "since": "2026-11-14T09:55:36.798Z",
+      "until": "2026-11-14T10:45:36.798Z",
+      "level": [
+        "warning",
+        "error",
+        "fatal"
+      ],
+      "result": "No logs found for the specified criteria."
+    },
+    {
+      "tool": "get_runtime_errors",
+      "relativeWindow": "7d",
+      "queriedAtApprox": "2026-11-14T10:44:43Z",
+      "result": "No runtime errors found in the selected time range.",
+      "interpretation": "No error clusters returned. This does not establish that all requested days have retained logs, nor exclude handled model fallbacks, client transport failures, or model_timeout usage records."
+    }
+  ],
+  "november10ArchivedEvidence": {
+    "source": "docs/qa/phone-retry-20261110.json",
+    "startedAt": "2026-11-10T12:19:01.277Z",
+    "finishedAt": "2026-11-10T12:20:03.891Z",
+    "elapsedMs": 62614,
+    "reconnects": 1,
+    "stableClientRequestId": "0c131e63-4e88-4c9c-b730-d8dd2d5fbf7f",
+    "vercelRequestId": "cdg1::iad1::82vx7-1794313142491-228315767a3f",
+    "initialResponse": {
+      "status": 200,
+      "contentType": "text/event-stream",
+      "lastKnownPhase": "analysis",
+      "lastDiagnosticElapsedMs": 182,
+      "first_in_instance": true
+    },
+    "failure": {
+      "initialStreamElapsedMsApprox": 61100,
+      "type": "TypeError",
+      "message": "terminated",
+      "causeType": "SocketError",
+      "causeMessage": "other side closed",
+      "causeCode": "UND_ERR_SOCKET",
+      "reconnectCauseCode": "ECONNRESET",
+      "reconnectStage": "Before TLS connection was established; no HTTP response headers."
+    },
+    "supportedConclusion": "The reconnect failed between the Node test client and the production domain before TLS completed. The first response stream was closed before a completed model result was received.",
+    "notEstablished": [
+      "Which component closed the first stream.",
+      "A DeepSeek outage or provider error.",
+      "A Vercel function-duration timeout.",
+      "A cold start; first_in_instance only means first observed analysis stream in that process."
+    ]
+  },
+  "subsequentArchivedSyntheticChecks": [
+    {
+      "startedAt": "2026-11-10T12:53:10.555Z",
+      "finishedAt": "2026-11-10T12:54:35.556Z",
+      "elapsedMs": 85001,
+      "engine": "model",
+      "modelError": false,
+      "reconnects": 0,
+      "source": "docs/qa/phone-recovery-20261110-r2.json",
+      "scope": "Archived synthetic model completion, not a new request and not a production success-rate sample."
+    },
+    {
+      "startedAt": "2026-11-11T17:18:27.783Z",
+      "finishedAt": "2026-11-11T17:19:48.022Z",
+      "elapsedMs": 80237,
+      "engine": "model",
+      "modelError": false,
+      "reconnects": 0,
+      "source": "docs/qa/phone-jd-v12-20261112.json",
+      "scope": "Archived synthetic model completion, not a new request and not a production success-rate sample."
+    },
+    {
+      "startedAt": "2026-11-11T17:33:03.081Z",
+      "finishedAt": "2026-11-11T17:34:34.718Z",
+      "elapsedMs": 91635,
+      "engine": "model",
+      "modelError": false,
+      "reconnects": 0,
+      "source": "docs/qa/phone-jd-v12-r2-20261112.json",
+      "scope": "Archived synthetic model completion, not a new request and not a production success-rate sample."
+    }
+  ],
+  "sourceCodeFindings": {
+    "localHead": "6a8f6da",
+    "scopeCaveat": "These are settings in the inspected release checkout, not a newly fetched per-function deployment configuration.",
+    "streamRoute": {
+      "file": "app/api/[...path]/route.ts",
+      "runtime": "nodejs",
+      "maxDurationSeconds": 300,
+      "heartbeatSeconds": 5,
+      "firstInInstanceIsColdStartProof": false,
+      "diagnosticsFields": [
+        "requestId",
+        "phase",
+        "elapsedMs",
+        "first_in_instance",
+        "resumed",
+        "status",
+        "errorType"
+      ]
+    },
+    "vercelJson": {
+      "file": "vercel.json",
+      "durationOverridePresent": false
+    },
+    "deepseekReadingBudget": {
+      "file": "lib/model-reading.ts",
+      "firstAttemptMs": 200000,
+      "totalMs": 270000,
+      "recoveryAttemptMaxMs": 90000,
+      "recoveryUsesRemainingTotalBudget": true,
+      "maxProviderCalls": 2,
+      "englishOrCompanyRepairMs": 30000
+    },
+    "clientDeadline": {
+      "file": "lib/analysis-stream.ts",
+      "totalMs": 310000,
+      "automaticSseReconnects": 1,
+      "statusPollingDoesNotStartModelRequest": true,
+      "recoveryCache": "Instance-local and best effort."
+    },
+    "timeoutClassification": {
+      "file": "lib/usage-diagnostics.ts",
+      "model_timeout": [
+        "analysis_deadline",
+        "TimeoutError",
+        "AbortError"
+      ],
+      "meaning": "Application error classification. The label alone does not prove a provider outage, hosting timeout, or a specific network fault."
+    },
+    "providerDiagnostics": {
+      "files": [
+        "lib/model-reading.ts",
+        "lib/model-client.ts"
+      ],
+      "label": "Observatory provider request",
+      "failedLevel": "warning",
+      "fields": [
+        "elapsedMs",
+        "firstContentMs",
+        "outputChars",
+        "finishReason",
+        "outcome",
+        "errorCode",
+        "phase",
+        "attempt"
+      ],
+      "phases": [
+        "generation",
+        "transport_recovery",
+        "contract_repair",
+        "english_repair",
+        "company_repair"
+      ]
+    },
+    "fallbackHandling": {
+      "file": "lib/observatory-server.ts",
+      "label": "Observatory model fallback",
+      "level": "warning",
+      "storedUsageCode": "safeModelFailure(error)",
+      "implication": "A handled model failure may return fallback output and not appear as an unhandled runtime-error cluster."
+    }
+  },
+  "conclusions": [
+    "The November 10 server-side root cause cannot be established from the retained Vercel logs because the historical query is outside the current one-hour retention.",
+    "No current model_timeout or provider-request records were found in the queried retained window. This cannot establish resolution of previously reported timeouts.",
+    "Archived transport failure and model_timeout are distinct evidence categories; neither should be used as proof of the other.",
+    "Existing later synthetic runs completed model readings beyond 60 seconds. They do not establish a production success rate or explain the earlier stream closure."
+  ],
+  "nextEvidenceNeeded": {
+    "timing": "Read runtime logs within one hour of the next naturally occurring failure; do not infer permission for an additional metered model call.",
+    "correlate": [
+      "UTC start time",
+      "deployment ID",
+      "x-vercel-id",
+      "X-WLO-Request-Id",
+      "analysis_stream phase and elapsedMs",
+      "provider phase, attempt, elapsedMs, firstContentMs, outputChars, finishReason, outcome, errorCode"
+    ],
+    "purpose": "Distinguish generation timeout, recovery timeout, repair timeout, hosting termination, and client-side transport interruption.",
+    "redaction": "Retain metadata only; exclude JD text, prompts, model output, cookies, authorization headers, and secret values."
+  }
+}

@@ -1,3 +1,5 @@
+> 已归档的旧版本，现行版本见[研究观察页](https://work-language-observatory.org/?page=research&lang=zh)。
+
 # 招聘如何把组织关系写成个人能力
 
 2026-11-05 · Work Language Observatory

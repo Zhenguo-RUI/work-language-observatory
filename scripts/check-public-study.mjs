@@ -70,12 +70,37 @@ check('all twenty-one keyword pages render their three roles and questions in bo
 check('research SSR renders hypotheses, validation status, references and stat-backed findings',()=>{
  for(const lang of ['zh','en']){const html=renderToStaticMarkup(React.createElement(ResearchReport,{data,lang}));contains(html,fillStats(researchTitle[lang],lang));assert(!html.includes('{{stat:'));assert(!html.includes('作者与分工')&&!html.includes('research-authorship'));for(const h of ['H1','H2','H3'])assert(html.includes(h));for(const ref of data.report.bibliography)contains(html,ref.author);for(const f of observations){const title=f.headline||f.title;if(title)contains(html,fillStats(title[lang],lang));if(f.numbers)contains(html,fillStats(f.numbers[lang],lang));for(const key of f.statKeys||[])stat(key);for(const row of f.rows||[])for(const field of ['rateKey','countKey','denominatorKey'])stat(row[field]);}assert(/pending|not yet|unvalidated|待|尚未/i.test(plain(html)));}
 });
+check('research summary, permission and citation share recorded sources in both languages',()=>{
+ const {researchPublicationCopy,researchPublicationMetadata,researchCitation}=local('lib/research-publication.ts');
+ const extension=read('research/logs/self-drive-extension.json'),rule=read('research/config/self-drive-v1.json');
+ assert.equal(researchPublicationMetadata.corpusVersion,counts.run_id);
+ assert.equal(researchPublicationMetadata.inputSha256,counts.input_sha256);
+ assert.equal(researchPublicationMetadata.vocabularyVersion,rule.version);
+ const expectedDate=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(extension.generated));
+ assert.equal(researchPublicationMetadata.updatedAt,expectedDate);
+ for(const lang of ['zh','en']){
+  const html=renderToStaticMarkup(React.createElement(ResearchReport,{data,lang})),md=researchModule.researchMarkdown(data,lang);
+  for(const field of [researchModule.researchFraming.question,observations[0].title,researchPublicationCopy.unfinished,researchPublicationCopy.license,researchPublicationCopy.methodRecord]){
+   const text=fillStats(field[lang],lang);contains(html,text);assert(md.includes(text));
+  }
+  contains(html,researchCitation(lang));assert(md.includes(researchCitation(lang)));
+  assert(html.indexOf('research-quick-summary')<html.indexOf('research-downloads'));
+  assert(html.includes('research/source-decision.md'));
+  assert(!html.includes('research-authorship'));
+ }
+});
 check('new downloadable Markdown equals the live report exporter without unresolved placeholders',()=>{
  const {researchMarkdown}=local('lib/research-observations.ts'),files=readdirSync('public/research').filter(f=>f.endsWith('.md'));
  for(const lang of ['zh','en']){const md=researchMarkdown(data,lang);assert(!md.includes('{{stat:'));assert(files.some(f=>readFileSync('public/research/'+f,'utf8').trim()===md.trim()),`Missing matching ${lang} Markdown`);for(const f of observations){const title=f.headline||f.title;if(title)assert(md.includes(fillStats(title[lang],lang)));}}
 });
-check('the two earlier reports are retained byte for byte',()=>{
+check('the two archived reports keep their exact bodies under a single current-edition notice',()=>{
  const expected={zh:'9a3d7390b0d18ae1d77e8d2caf96a6285f6de932b1ca3f3067212f78242e68c2',en:'6c68216f6f002a908c78755f320a11148643528ad2f9e319ab3cb1a0724df219'};
- for(const lang of ['zh','en'])assert.equal(createHash('sha256').update(readFileSync(`public/work-language-research.${lang}.md`)).digest('hex'),expected[lang]);
+ for(const lang of ['zh','en']){
+  const text=readFileSync(`public/work-language-research.${lang}.md`,'utf8'),notice=text.match(/^> [^\n]+\n\n/);
+  assert(notice,'Archived report needs exactly one prefixed notice');
+  assert(notice[0].includes(`https://work-language-observatory.org/?page=research&lang=${lang}`));
+  assert(notice[0].includes(lang==='zh'?'已归档的旧版本':'Archived edition'));
+  assert.equal(createHash('sha256').update(text.slice(notice[0].length)).digest('hex'),expected[lang]);
+ }
 });
 writeFileSync('public-study-checks.json',JSON.stringify({checks,count:checks.length,passed:true,independent_human_semantic_review:false,live_api_calls:0},null,2)+'\n');console.log(JSON.stringify({public_study_checks:checks.length,passed:true,independent_human_semantic_review:false,live_api_calls:0}));

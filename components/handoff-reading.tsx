@@ -55,12 +55,13 @@ export function HandoffReading({analysis,lang,title,selectedQuote,onEvidence,onT
     {tasks.length?tasks.map((task,i)=><article className="handoff-task" key={i}>
      <details className="handoff-task-body" open={defaultExpanded}><summary><h3><span className="handoff-task-number">{String(i+1).padStart(2,"0")}</span>{task.task[lang]}</h3><span className="task-expand-label">{t("查看拆解","Read this task")} <ArrowRight size={14}/></span></summary>
      <button className={`handoff-quote quote ${selectedQuote===task.quote?"selected":""}`} onClick={()=>showSource(task.quote)}><span>{markedQuote(task.quote)}</span><span className="t-mono">{sourceLabel(task.quote)} <ArrowUpRight size={13}/></span></button>
+     <p className="handoff-task-reference">{t("以下做法、示例与交付供准备时参考。","The approaches, examples and outputs below are suggestions for preparation.")}</p>
      <dl className="handoff-task-detail">
       {task.object&&<div><dt>{t("对象","Object")}</dt><dd>{task.object[lang]}</dd></div>}
-      {task.action&&<div><dt>{t("具体做什么","What you do")}</dt><dd>{task.action[lang]} <span className="slip">{t("参考做法","Suggested approach")}</span></dd></div>}
+      {task.action&&<div><dt>{t("具体做什么","What you do")}</dt><dd>{task.action[lang]}</dd></div>}
       {task.purpose&&<div><dt>{t("为什么要做","Why it matters")}</dt><dd>{task.purpose[lang]}</dd></div>}
-      {task.scenario&&<div className="handoff-duty-example"><dt>{t("举个例子","An example")}</dt><dd>{task.scenario.text[lang]} <span className="slip">{t("情境示例","Illustrative scenario")}</span></dd></div>}
-      <div><dt>{t("最后交什么","What you hand over")}</dt><dd>{task.output[lang]} <span className="slip">{t("建议","Proposed")}</span></dd></div><div><dt>{t("做到什么算好","What good work looks like")}</dt><dd>{task.check[lang]}</dd></div></dl>
+      {task.scenario&&<div className="handoff-duty-example"><dt>{t("举个例子","An example")}</dt><dd>{task.scenario.text[lang]}</dd></div>}
+      <div><dt>{t("最后交什么","What you hand over")}</dt><dd>{task.output[lang]}</dd></div><div><dt>{t("做到什么算好","What good work looks like")}</dt><dd>{task.check[lang]}</dd></div></dl>
      {r.terms.some(term=>term.quote===task.quote||task.quote.includes(term.quote)||term.quote.includes(task.quote))&&<details className="handoff-task-terms"><summary>{t("这项里的行业用语","Industry terms in this task")}</summary>{r.terms.filter(term=>term.quote===task.quote||task.quote.includes(term.quote)||term.quote.includes(task.quote)).map((term,j)=><div key={j}><h4>{displayTerm(term.term,lang)}</h4><p>{term.meaning[lang]}</p><p className="muted">{term.alternative[lang]}</p><button className="text-button" onClick={()=>onTerm(term.term)}>{t("对照其他用法","Compare other uses")} <ArrowRight size={14}/></button></div>)}</details>}
     </details></article>):r.terms.map((term,i)=><article className="handoff-task" key={i}><details className="handoff-task-body" open={defaultExpanded}><summary><h3>{displayTerm(term.term,lang)}</h3><span className="task-expand-label">{t("查看拆解","Read this task")} <ArrowRight size={14}/></span></summary><button className="handoff-quote quote" onClick={()=>showSource(term.quote)}>{term.quote}</button><p>{term.meaning[lang]}</p><details><summary>{t("另一种读法","Another reading")}</summary><p>{term.alternative[lang]}</p></details></details></article>)}
    </section>

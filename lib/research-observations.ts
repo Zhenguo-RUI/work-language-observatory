@@ -1,3 +1,4 @@
+import {researchPublicationCopy,researchPublicationMetadata,researchCitation} from "./research-publication";
 import type {Bi} from "./observatory-types";
 import type {PublicStudy} from "./public-study-types";
 import {fillStats} from "./research-stats";
@@ -81,6 +82,7 @@ export const researchMethodReferences = [
 export function researchMarkdown(_data:PublicStudy,lang:"zh"|"en"){
  const b=(x:Bi)=>fillStats(x[lang],lang),t=(zh:string,en:string)=>lang==="zh"?zh:en;
  const lines=[`# ${b(researchFraming.title)}`,"",b(researchFraming.lead),"",b(researchFraming.scope),""];
+ lines.push(`- **${t("问了什么","Question")}** ${b(researchFraming.question)}`,`- **${t("目前最清楚的结果","Clearest current finding")}** ${b(researchObservations[0].title)}`,`- **${t("还没完成什么","Still unfinished")}** ${b(researchPublicationCopy.unfinished)}`,"");
  if(lang==="en")lines.push(b(researchFraming.abstract),"");
  lines.push(`## ${t("问题","Question")}`,b(researchFraming.question),"",`## ${t("发现 · 词面比较","Findings · Lexical comparisons")}`);
  for(const o of researchObservations){lines.push(`### ${b(o.title)}`,b(o.numbers),b(o.chartLabel),"",`| ${t("广告组","Ad group")} | ${t("命中 / 广告数","Hits / ads")} | ${t("比例","Share")} |`,`| --- | --- | --- |`);for(const row of o.rows)lines.push(`| ${b(row.label)} | ${fillStats(`{{stat:${row.countKey}|int}} / {{stat:${row.denominatorKey}|int}}`,lang)} | ${fillStats(`{{stat:${row.rateKey}|pct}}`,lang)} |`);lines.push("",b(o.interpretation),"");}
@@ -93,5 +95,6 @@ export function researchMarkdown(_data:PublicStudy,lang:"zh"|"en"){
  lines.push("",`### ${t("不同读法","Alternative readings")}`);for(const r of researchAlternativeReadings)lines.push(`#### ${b(r.question)}`,b(r.answer));
  lines.push("",`### ${t("解释范围","Limits on interpretation")}`);for(const l of researchLimitations)lines.push(`- ${b(l)}`);
  lines.push("",`### ${t("复现材料","Reproducibility")}`,b(researchFraming.reproducibility),`[${t("脚本、规则与记录","Scripts, rules and logs")}](https://github.com/Zhenguo-RUI/work-language-observatory/tree/main/research) · [${t("聚合统计","Aggregate statistics")}](/research/stats.json)`,"",`### ${t("参考文献","References")}`);for(const r of researchMethodReferences)lines.push(`- ${r.author}. [${r.title}](${r.url})`);
+ lines.push("",`### ${t("资料说明与引用","Materials and citation")}`,b(researchPublicationCopy.license),`[${t("来源处理决定","Source decision")}](https://github.com/Zhenguo-RUI/work-language-observatory/blob/main/research/source-decision.md)`,"",`${t("语料版本","Corpus version")}: ${researchPublicationMetadata.corpusVersion}`,`${t("词表补充","Vocabulary supplement")}: ${researchPublicationMetadata.vocabularyVersion}`,`${t("数据更新","Data updated")}: ${researchPublicationMetadata.updatedAt}`,b(researchPublicationCopy.versionNote),researchCitation(lang),"",b(researchPublicationCopy.methodRecord));
  return fillStats(lines.join("\n"),lang);
 }

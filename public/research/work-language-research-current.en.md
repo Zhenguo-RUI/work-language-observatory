@@ -4,6 +4,10 @@ Read named collaborators, expected results and decision rights alongside the wor
 
 2,000 historical ads · Exploratory research · Lexical comparisons and coding diagnostics
 
+- **Question** When an ad asks for independence, pressure tolerance or communication, which collaborators, expected results and decision rights does it name for that work?
+- **Clearest current finding** Ads mentioning pressure tolerance more often mention coordination
+- **Still unfinished** Human checks of individual examples and estimates of meaning frequencies are unfinished.
+
 What work relations do competence words describe in job advertisements? Skills language can signal demand while recasting collective work as individual qualities. This study examines 2,000 historical advertisements using lexical comparisons, source stratification and repeated-fragment detection. Rules code 4,029 occurrences of focal terms, followed by AI review of a held-out sample. Pressure tolerance remains associated with coordination after detected repeats are removed. Yet broadening named collaborators to include generic team references changes the direction of threshold comparisons. An authority detector also achieves high overall agreement while missing every positive case identified in review. These results show why the units and definitions used to count skills matter for interpreting advertisements. Automated analysis and error diagnosis are complete for this round; the absence of human reference labels limits semantic inference.
 
 ## Question
@@ -109,3 +113,15 @@ Counts, intervals, repeat detection, rule candidates and AI-review diagnostics h
 - Laura K. Nelson. [Computational Grounded Theory: A Methodological Framework (2020)](https://doi.org/10.1177/0049124117729703)
 - Justin Grimmer & Brandon M. Stewart. [Text as Data: The Promise and Pitfalls of Automatic Content Analysis Methods for Political Texts (2013)](https://doi.org/10.1093/pan/mps028)
 - Naoki Egami, Musashi Hinck, Brandon M. Stewart & Hanying Wei. [Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models (2023)](https://proceedings.neurips.cc/paper_files/paper/2023/hash/d862f7f5445255090de13b825b880d59-Abstract.html)
+
+### Materials and citation
+The scope of permission for third-party advertisements in the secondary archives remains unconfirmed. Raw text stays on the local machine. Public materials comprise aggregate statistics, scripts and deidentified paraphrases. A source project's code licence does not license the advertisement text.
+[Source decision](https://github.com/Zhenguo-RUI/work-language-observatory/blob/main/research/source-decision.md)
+
+Corpus version: terms-v1-exploratory-ae247a10-1e6af096-aba968d9
+Vocabulary supplement: self-drive-v1-exploratory
+Data updated: 2026-11-10
+Corpus and supplementary vocabulary versions and the update date come from saved run records. Self-direction is a post-plan addition and does not enter the original hypotheses.
+Rui Zhenguo. (2026). Work Language Observatory: Research Notes. terms-v1-exploratory-ae247a10-1e6af096-aba968d9; self-drive-v1-exploratory. 2026-11-10. https://work-language-observatory.org/?page=research
+
+Rui Zhenguo designed the research questions, scope and product. AI coding tools were used to build the website and analysis scripts. Rule-based coding, model codes and paraphrased examples have separate records; model review is not counted as human review.

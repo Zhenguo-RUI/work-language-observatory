@@ -29,12 +29,13 @@ export function readingBlocks(a:Analysis,lang:"zh"|"en"):ReadingBlock[]{
   if(d.deliverables.length){add("heading",t("逐条拆解工作职责","The work, step by step"));
    for(const [index,x] of d.deliverables.entries()){
     add("subheading",`${index+1}. ${x.task[lang]}`);add("quote",x.quote);
+    add("meta",t("以下做法、示例与交付供准备时参考。","The approaches, examples and outputs below are suggestions for preparation."));
     if(x.object)add("body",`${t("对象","Object")}: ${x.object[lang]}`);
-    if(x.action)add("body",`${t("具体做什么（参考做法）","What you do (suggested approach)")}: ${x.action[lang]}`);
+    if(x.action)add("body",`${t("具体做什么","What you do")}: ${x.action[lang]}`);
     if(x.purpose)add("body",`${t("为什么要做","Why it matters")}: ${x.purpose[lang]}`);
-    if(x.scenario)add("body",`${t("举个例子（情境示例）","An example (illustrative scenario)")}: ${x.scenario.text[lang]}`);
-    add("body",`${t("最后交什么（建议）","What you hand over (proposed output)")}: ${x.output[lang]}`);
-    add("body",`${t("做到什么算好（建议标准）","What good work looks like (proposed check)")}: ${x.check[lang]}`);
+    if(x.scenario)add("body",`${t("举个例子","An example")}: ${x.scenario.text[lang]}`);
+    add("body",`${t("最后交什么","What you hand over")}: ${x.output[lang]}`);
+    add("body",`${t("做到什么算好","What good work looks like")}: ${x.check[lang]}`);
     for(const [termIndex,term] of r.terms.entries())if(term.quote===x.quote||x.quote.includes(term.quote)||term.quote.includes(x.quote)){
      attachedTerms.add(termIndex);add("subheading",`${t("这项里的行业用语","Industry terms in this task")} · ${displayTerm(term.term,lang)}`);
      add("body",term.meaning[lang]);add("body",term.alternative[lang]);add("body",term.question[lang]);

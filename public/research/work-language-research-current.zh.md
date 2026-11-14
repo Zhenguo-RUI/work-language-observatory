@@ -4,6 +4,10 @@
 
 2,000份历史广告 · 探索性研究 · 词面比较与自动编码诊断
 
+- **问了什么** 招聘要求个人独立、抗压、沟通时，同一项工作写出了哪些合作对象、结果要求和可以决定的事项？
+- **目前最清楚的结果** 写抗压的广告，更常同时写协调
+- **还没完成什么** 逐条人工核对和语义比例估计尚未完成。
+
 ## 问题
 招聘要求个人独立、抗压、沟通时，同一项工作写出了哪些合作对象、结果要求和可以决定的事项？
 
@@ -107,3 +111,15 @@ Deming与Kahn（2018）把招聘中的技能词作为需求信号来测量。Urc
 - Laura K. Nelson. [Computational Grounded Theory: A Methodological Framework (2020)](https://doi.org/10.1177/0049124117729703)
 - Justin Grimmer & Brandon M. Stewart. [Text as Data: The Promise and Pitfalls of Automatic Content Analysis Methods for Political Texts (2013)](https://doi.org/10.1093/pan/mps028)
 - Naoki Egami, Musashi Hinck, Brandon M. Stewart & Hanying Wei. [Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models (2023)](https://proceedings.neurips.cc/paper_files/paper/2023/hash/d862f7f5445255090de13b825b880d59-Abstract.html)
+
+### 资料说明与引用
+两套二手归档的第三方招聘文本许可范围尚无法确认。原文只保存在本机；公开的是聚合统计、脚本和去识别释义。来源项目的代码许可不能替代招聘正文的许可。
+[来源处理决定](https://github.com/Zhenguo-RUI/work-language-observatory/blob/main/research/source-decision.md)
+
+语料版本: terms-v1-exploratory-ae247a10-1e6af096-aba968d9
+词表补充: self-drive-v1-exploratory
+数据更新: 2026-11-10
+语料版本、词表补充版本和更新日期来自已保存的运行记录。自驱为计划后补充，不进入原有假设。
+Rui Zhenguo. (2026). 工作语言观察站：研究观察. terms-v1-exploratory-ae247a10-1e6af096-aba968d9; self-drive-v1-exploratory. 2026-11-10. https://work-language-observatory.org/?page=research
+
+研究问题、分析范围与产品由 Rui Zhenguo 设计；网站和分析脚本使用 AI 编程工具实现。规则编码、模型初码和案例释义分别留有记录；模型复核不计作人工审核。

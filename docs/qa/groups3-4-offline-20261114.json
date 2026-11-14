@@ -1,0 +1,487 @@
+{
+  "checked_at_utc": "2026-11-14T10:10:14.455807+00:00",
+  "completed_at_utc": "2026-11-14T10:26:17.012584+00:00",
+  "node_version": "v22.23.1",
+  "scope": "Offline synthetic regression checks. Corrected only stale export assertions and the copy-style self-test loader/expected context list. No implementation changes. Existing root test reports restored after execution.",
+  "isolation": {
+    "clean_child_environment": true,
+    "real_http_and_fetch_blocked": true,
+    "env_files_read": false,
+    "paid_model_calls": 0,
+    "live_neon_tested": false,
+    "optional_reading_retry_http_disabled": true
+  },
+  "not_repeated": [
+    "build",
+    "lint",
+    "typecheck",
+    "home-contexts",
+    "research-numbers",
+    "public-study",
+    "page-routes"
+  ],
+  "excluded": [
+    "check-vercel-http",
+    "check-experience-http",
+    "test:live"
+  ],
+  "results": [
+    {
+      "suite": "analysis",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.84,
+      "log": "/private/tmp/wlo-offline-logs-20261114/analysis-final.log",
+      "evidence": [
+        {
+          "analysis_checks": 54,
+          "all_passed": true,
+          "live_model_tested": false
+        }
+      ]
+    },
+    {
+      "suite": "cross-field-fidelity",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.13,
+      "log": "/private/tmp/wlo-offline-logs-20261114/cross-field-fidelity.log",
+      "evidence": [
+        {
+          "passed": true,
+          "boundary_checks": 18,
+          "cross_field_checks": 45,
+          "total": 63,
+          "flagged_controls": 17,
+          "scope": "Known source-aligned literal patterns only; ambiguous subjects, degree conventions, specialist omissions and mechanism quality are not judged. Conservative exemptions can leave unsupported or omitted facts undetected.",
+          "live_api_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "translation",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.36,
+      "log": "/private/tmp/wlo-offline-logs-20261114/translation.log",
+      "evidence": [
+        {
+          "translation_checks": 19,
+          "prepared_cases": 0,
+          "prepared_paragraphs": 0,
+          "all_passed": true
+        }
+      ]
+    },
+    {
+      "suite": "language",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.1,
+      "log": "/private/tmp/wlo-offline-logs-20261114/language.log",
+      "evidence": [
+        {
+          "language_checks": 13,
+          "all_passed": true
+        }
+      ]
+    },
+    {
+      "suite": "semantic-regressions",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.09,
+      "log": "/private/tmp/wlo-offline-logs-20261114/semantic-regressions.log",
+      "evidence": [
+        {
+          "semantic_regression_checks": 12,
+          "all_passed": true
+        }
+      ]
+    },
+    {
+      "suite": "database",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 5.1,
+      "log": "/private/tmp/wlo-offline-logs-20261114/database.log",
+      "evidence": [
+        {
+          "database_and_identity_checks": 18,
+          "passed": true,
+          "live_neon_tested": false
+        }
+      ]
+    },
+    {
+      "suite": "company-context",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 4.24,
+      "log": "/private/tmp/wlo-offline-logs-20261114/company-context.log",
+      "evidence": [
+        {
+          "passed": 20,
+          "checks_count": 20
+        }
+      ]
+    },
+    {
+      "suite": "usage",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 5.36,
+      "log": "/private/tmp/wlo-offline-logs-20261114/usage.log",
+      "evidence": [
+        {
+          "usage_checks": 17,
+          "passed": true,
+          "live_database_tested": false,
+          "live_model_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "pdf-export",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 16.05,
+      "log": "/private/tmp/wlo-offline-logs-20261114/pdf-export.log",
+      "evidence": [
+        {
+          "pdf_checks": 4,
+          "all_passed": true,
+          "output": "/private/tmp/wlo-release-20261110/.sites-runtime/pdf-tests"
+        }
+      ]
+    },
+    {
+      "suite": "model-stream",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.39,
+      "log": "/private/tmp/wlo-offline-logs-20261114/model-stream.log",
+      "evidence": [
+        {
+          "passed": 31,
+          "paid_calls": 0,
+          "checks_count": 31
+        }
+      ]
+    },
+    {
+      "suite": "company-search",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.2,
+      "log": "/private/tmp/wlo-offline-logs-20261114/company-search.log",
+      "evidence": [
+        {
+          "company_search_checks": 19,
+          "passed": true,
+          "paid_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "company-brief",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.96,
+      "log": "/private/tmp/wlo-offline-logs-20261114/company-brief.log",
+      "evidence": [
+        {
+          "company_brief_checks": 14,
+          "passed": true,
+          "paid_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "model-recovery",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 8.17,
+      "log": "/private/tmp/wlo-offline-logs-20261114/model-recovery.log",
+      "evidence": [
+        {
+          "model_recovery_checks": 41,
+          "passed": true,
+          "paid_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "reading-retry",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.6,
+      "log": "/private/tmp/wlo-offline-logs-20261114/reading-retry.log",
+      "evidence": [
+        {
+          "reading_retry_checks": 6,
+          "passed": true,
+          "paid_calls": 0,
+          "local_http": false
+        }
+      ]
+    },
+    {
+      "suite": "analysis-cache",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 4.65,
+      "log": "/private/tmp/wlo-offline-logs-20261114/analysis-cache.log",
+      "evidence": [
+        {
+          "passed": true,
+          "analysis_cache_checks": 8,
+          "paid_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "analysis-diagnostics",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.34,
+      "log": "/private/tmp/wlo-offline-logs-20261114/analysis-diagnostics.log",
+      "evidence": [
+        {
+          "passed": true,
+          "checks": 13,
+          "no_private_fields": true,
+          "live_model_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "analysis-transport",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.88,
+      "log": "/private/tmp/wlo-offline-logs-20261114/analysis-transport.log",
+      "evidence": [
+        {
+          "passed": true,
+          "checks": 28,
+          "live_model_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "current-reading",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.28,
+      "log": "/private/tmp/wlo-offline-logs-20261114/current-reading.log",
+      "evidence": [
+        {
+          "passed": true,
+          "checks": 13,
+          "live_model_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "operational-reading",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 3.16,
+      "log": "/private/tmp/wlo-offline-logs-20261114/operational-reading.log",
+      "evidence": [
+        {
+          "passed": true,
+          "checks": 45,
+          "liveApiCalls": 0,
+          "interpretiveQualityMeasured": false,
+          "scope": "Synthetic evidence, compatibility, bilingual and output-contract regressions. Rubric quality still needs independent review.",
+          "acceptance": "At least 10/12 after review, with no material factual failure."
+        }
+      ]
+    },
+    {
+      "suite": "startup",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 4.02,
+      "log": "/private/tmp/wlo-offline-logs-20261114/startup.log",
+      "evidence": [
+        {
+          "passed": true,
+          "startup_checks": 9,
+          "paid_calls": 0,
+          "private_values_printed": false
+        }
+      ]
+    },
+    {
+      "suite": "copy-style",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.2,
+      "log": "/private/tmp/wlo-offline-logs-20261114/copy-style.log",
+      "evidence": [
+        {
+          "passed": true,
+          "files": 5,
+          "fields": 2038,
+          "errors_count": 0
+        }
+      ]
+    },
+    {
+      "suite": "reading-flow",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.51,
+      "log": "/private/tmp/wlo-offline-logs-20261114/reading-flow.log",
+      "evidence": [
+        {
+          "bilingual_short_sociology": true,
+          "long_sociology_not_repeated": true,
+          "first_screen_checked": true,
+          "passed": true
+        },
+        {
+          "competence_ui_and_exports": true,
+          "legacy_compatible": true,
+          "empty_sections_hidden": true,
+          "passed": true
+        },
+        {
+          "one_preparation_note_per_task": true,
+          "screen_export_parity": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "suite": "sample-reading",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.2,
+      "log": "/private/tmp/wlo-offline-logs-20261114/sample-reading.log",
+      "evidence": [
+        {
+          "passed": true,
+          "bilingual_sample_ssr": true,
+          "duties": 4,
+          "model_calls": 0
+        }
+      ]
+    },
+    {
+      "suite": "copy-style-configured",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.61,
+      "log": "/private/tmp/wlo-offline-logs-20261114/copy-style-configured-final.log",
+      "evidence": [
+        {
+          "passed": true,
+          "files": 5,
+          "fields": 1553,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "suite": "copy-style-self-test",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.62,
+      "log": "/private/tmp/wlo-offline-logs-20261114/copy-style-self-test-final.log",
+      "evidence": [
+        {
+          "style_self_tests": "passed",
+          "short_terms": 21,
+          "ai_reviewed_examples": 60,
+          "model_draft_examples": 3,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "suite": "modified-test-lint",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 2.86,
+      "log": "/private/tmp/wlo-offline-logs-20261114/modified-test-lint-final.log",
+      "evidence": []
+    }
+  ],
+  "summary": {
+    "passed": 26,
+    "failed": 0,
+    "environmental_failures": 0,
+    "initial_failures_resolved": 2
+  },
+  "findings": [
+    {
+      "suite": "analysis",
+      "location": "scripts/check-analysis.mjs:106",
+      "finding": "Markdown expectation still includes proposed-output/proposed-check suffixes. Current lib/reading-export.ts emits What you hand over and What good work looks like under one shared preparation disclaimer, as asserted by the passing reading-flow suite. No test or implementation change made. Remaining assertions after the first failure were not executed.",
+      "status": "resolved",
+      "historical_initial_finding": true
+    },
+    {
+      "suite": "copy-style-self-test",
+      "location": "scripts/check-copy-style.mjs:68",
+      "finding": "Self-test assumes keywordContexts declaration is the final source text. A later keywordContexts[\"自驱\"] assignment makes that JSON parse invalid. The normal authored-copy checks pass for both default files and all five configured research copy files. No implementation or test change made.",
+      "status": "resolved",
+      "historical_initial_finding": true
+    }
+  ],
+  "limitations": [
+    "PDF check verifies file validity, CJK embedding and pagination; it does not perform visual or extracted-text inspection.",
+    "Offline synthetic tests do not independently establish model interpretation quality or production behavior."
+  ],
+  "initial_failures": [
+    {
+      "suite": "analysis",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 1.96,
+      "log": "/private/tmp/wlo-offline-logs-20261114/analysis.log",
+      "failure_category": "assertion_failure",
+      "failure_detail": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(md.includes('What you hand over (proposed output):')&&md.includes('What good work looks like (proposed check):')&&md.includes('Fictional example — not measured'))\n\n    at file:///private/tmp/wlo-release-20261110/scripts/check-analysis.mjs:106:82\n    at check (file:///private/tmp/wlo-release-20261110/scripts/check-analysis.mjs:19:54)\n    at file:///private/tmp/wlo-release-20261110/scripts/check-analysis.mjs:106:7 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v22.23.1",
+      "later_checks_not_executed": true
+    },
+    {
+      "suite": "copy-style-self-test",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.38,
+      "log": "/private/tmp/wlo-offline-logs-20261114/copy-style-self-test.log",
+      "failure_category": "test_harness_parse_failure",
+      "failure_detail": "SyntaxError: Unexpected non-whitespace character after JSON at position 60994, from scripts/check-copy-style.mjs:68. The self-test parses the complete remaining keyword-contexts.ts source as JSON, including the appended keywordContexts[\"自驱\"] assignment at lib/keyword-contexts.ts:1430.",
+      "later_checks_not_executed": true
+    }
+  ],
+  "resolutions": [
+    {
+      "suite": "analysis",
+      "changes": [
+        "Assert exactly one consolidated preparation suggestion note per duty.",
+        "Retain complete task quotes, outputs, checks and hypothetical-case scenario/steps/lesson.",
+        "Assert each bilingual example line uses the current 举个例子 / An example label while preserving the existing duty/preparation/source content checks."
+      ],
+      "intermediate_check": {
+        "result": "first correction exposed a second stale expected-copy assertion",
+        "assertion": "情境示例 / illustrative scenario",
+        "log": "/private/tmp/wlo-offline-logs-20261114/analysis-correction1.log"
+      },
+      "final": "Full suite passed; no assertions skipped."
+    },
+    {
+      "suite": "copy-style-self-test",
+      "changes": [
+        "Transpile and evaluate the complete TypeScript module via a data URL so later assignments are included.",
+        "Assert exact 21-term known list, including 自驱, against both research term configuration and evaluated context exports.",
+        "Require exactly three examples per term, with 60 original ai_reviewed examples and three 自驱 model_draft examples."
+      ],
+      "final": "Passed."
+    }
+  ]
+}

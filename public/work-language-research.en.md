@@ -1,3 +1,5 @@
+> Archived edition. See the [Research page](https://work-language-observatory.org/?page=research&lang=en) for the current version.
+
 # How recruitment turns organizational relations into personal abilities
 
 2026-11-05 · Work Language Observatory

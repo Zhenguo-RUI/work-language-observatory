@@ -54,7 +54,7 @@ function collectTS(source,file){
  };
  visit(ast);return result;
 }
-function selfTest(){
+async function selfTest(){
  const cases=[['可以问：谁审核？',true],['不是有权，而是只能跑腿。',true],['不只会工具，还要懂业务。',true],['这体现了控制。',true],['赋能业务落地。',true],['In short: this is crucial.',true],['Not just a task but a commitment.',true],['谁决定例外处理？',false],['统计“闭环”出现在哪些广告里。',false],['将两列日期对齐。',false],['沟通',false],['问题：',false]];
  for(const [text,bad]of cases)assert.equal(inspectText(text).length>0,bad,text);
  assert.equal(inspectText('赋能落地。','entry.quote').length,0);
@@ -65,12 +65,23 @@ function selfTest(){
  assert.equal(tsFields.length,4);assert.equal(tsFields.flatMap(x=>inspectText(x.text,x.path)).length,3);
  assert.equal(collectTS('const items=[{zh:"赋能"}];','fixture.ts')[0].path,'items[0].zh');
  const contextsSource=readFileSync(resolve(root,'lib/keyword-contexts.ts'),'utf8');
- const contextObject=JSON.parse(contextsSource.split('export const keywordContexts: Record<string, KeywordContextEntry> = ',2)[1].trim().replace(/;$/,''));
- assert.equal(Object.keys(contextObject).length,20);for(const [term,entry]of Object.entries(contextObject)){assert(entry.short.zh.length<=40,term);assert(entry.short.en&&entry.short.zh);assert(!('summary'in entry),term);assert.equal(entry.examples.length,3);assert(entry.examples.every(e=>e.reviewStatus==='ai_reviewed'),term);}
+ const compiled=ts.transpileModule(contextsSource,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+ const {keywordContexts:contextObject}=await import('data:text/javascript;base64,'+Buffer.from(compiled).toString('base64'));
+ const expectedTerms=['沟通','分析','数据','协调','熟练','独立','协作','抗压','责任心','适应','目标','服务','逻辑','学习','统筹','主动','英语','严谨','闭环','执行力','自驱'];
+ assert.deepEqual(JSON.parse(readFileSync(termConfig,'utf8')).terms.map(entry=>entry.term).sort(),[...expectedTerms].sort());
+ assert.deepEqual(Object.keys(contextObject).sort(),[...expectedTerms].sort());
+ let reviewedExamples=0,draftExamples=0;
+ for(const [term,entry]of Object.entries(contextObject)){
+  assert(entry.short.zh.length<=40,term);assert(entry.short.en&&entry.short.zh);assert(!('summary'in entry),term);assert.equal(entry.examples.length,3,term);
+  const expectedStatus=term==='自驱'?'model_draft':'ai_reviewed';
+  assert(entry.examples.every(example=>example.reviewStatus===expectedStatus),term);
+  if(expectedStatus==='ai_reviewed')reviewedExamples+=entry.examples.length;else draftExamples+=entry.examples.length;
+ }
+ assert.equal(reviewedExamples,60);assert.equal(draftExamples,3);
  assert(!readFileSync(resolve(root,'components/keyword-atlas.tsx'),'utf8').includes('expansion.summary'));
- console.log(JSON.stringify({style_self_tests:"passed",short_terms:20,ai_reviewed_examples:60,passed:true}));
+ console.log(JSON.stringify({style_self_tests:"passed",short_terms:expectedTerms.length,ai_reviewed_examples:reviewedExamples,model_draft_examples:draftExamples,passed:true}));
 }
-if(process.argv.includes('--self-test'))selfTest();
+if(process.argv.includes('--self-test'))await selfTest();
 else {
  const arg=process.argv.indexOf('--files'),files=arg>=0?process.argv.slice(arg+1):defaultFiles,errors=[];let fields=0;
  for(const file of files){const path=resolve(root,file),source=readFileSync(path,'utf8'),entries=file.endsWith('.json')?collectJSON(JSON.parse(source)):collectTS(source,file);fields+=entries.length;for(const entry of entries)for(const issue of inspectText(entry.text,entry.path))errors.push({file:relative(root,path),line:entry.line??null,...issue});}

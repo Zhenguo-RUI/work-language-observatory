@@ -1,6 +1,6 @@
 {
-  "release": "jd-competence-v12-20261112-r2",
-  "baseCommit": "b8b91bd606f9399929f85e7c956285378ff3d033",
-  "scope": "first-group-self-drive-and-jd-v12",
-  "preparedAt": "2026-11-10T12:38:58.095997+00:00"
+  "release": "reading-and-research-20261114",
+  "baseCommit": "6a8f6da811e9b746edbb2bb616bdf9b376a20a59",
+  "scope": "groups-3-4-home-research-readability",
+  "preparedDate": "2026-11-14"
 }

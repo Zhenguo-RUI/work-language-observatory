@@ -1,3 +1,4 @@
+import "./build-publication-metadata.mjs";
 /** Publish aggregate records and current report copy; never reads research/private. */
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';

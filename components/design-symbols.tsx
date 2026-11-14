@@ -36,16 +36,16 @@ const imageViewports: Record<IllustrationName, readonly [number, number, number,
  "flag": [725, 708, 1529, 1527],
  "hand": [1035, 695, 904, 1404],
 };
-export function WloIllustration({name,width=120,className=""}:{name:IllustrationName;width?:number;className?:string}) {
+export function WloIllustration({name,width=120,className="",alt=""}:{name:IllustrationName;width?:number;className?:string;alt?:string}) {
  const source = originalImages[name];
  if (!source) return null;
  const [left,top,cropWidth,cropHeight]=imageViewports[name];
  const nativeSize=name==="pointer-hand"?2048:name==="ladder"?1254:2880;
  const frameStyle={"--illo-width":`${width}px`,aspectRatio:`${cropWidth} / ${cropHeight}`} as const;
  const imageStyle={position:"absolute",left:`${-left/cropWidth*100}%`,top:`${-top/cropHeight*100}%`,width:`${nativeSize/cropWidth*100}%`,height:"auto",maxWidth:"none",mixBlendMode:"multiply",pointerEvents:"none"} as const;
- return <span className={`wlo-illustration illo-frame illo-${name} ${className}`} style={frameStyle} aria-hidden="true">
+ return <span className={`wlo-illustration illo-frame illo-${name} ${className}`} style={frameStyle} aria-hidden={alt?undefined:true}>
   {/* Preserve the source PNG and CSS viewport; serve a size-matched copy to avoid multi-megabyte downloads. */}
-  <Image className="illo" src={source} width={nativeSize} height={nativeSize} sizes={`${Math.ceil(width*nativeSize/cropWidth)}px`} quality={85} alt="" loading="lazy" decoding="async" style={imageStyle}/>
+  <Image className="illo" src={source} width={nativeSize} height={nativeSize} sizes={`${Math.ceil(width*nativeSize/cropWidth)}px`} quality={85} alt={alt} loading="lazy" decoding="async" style={imageStyle}/>
  </span>;
 }
 export function WloMark(){return <svg className="wlo-mark" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="16" height="2"/><rect x="4" y="3" width="2" height="11"/><rect x="4" y="12" width="16" height="2"/><rect x="7" y="7" width="9" height="4"/><rect x="4" y="17" width="9" height="4"/></svg>}

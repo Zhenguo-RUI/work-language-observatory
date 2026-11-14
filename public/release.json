@@ -1,6 +1,7 @@
 {
-  "release": "reading-and-research-20261114",
-  "baseCommit": "6a8f6da811e9b746edbb2bb616bdf9b376a20a59",
-  "scope": "groups-3-4-home-research-readability",
+  "release": "reading-and-research-20261114-r2",
+  "baseCommit": "29a091925e1d98c18419e0f143004f40e0326566",
+  "scope": "groups-3-4-and-numbered-duty-scope",
+  "analysisContractRevision": "numbered-duty-scope-v1",
   "preparedDate": "2026-11-14"
 }

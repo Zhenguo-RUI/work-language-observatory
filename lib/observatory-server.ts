@@ -15,9 +15,10 @@ import {PUBLIC_DEMO} from "./public-demo";
 import {evidenceErrors,matchesFor,ruleDraft,textHash} from "./analysis-engine";
 import {resultSchema} from "./analysis-contract";
 import {ANALYSIS_VERSION} from "./analysis-prompt";
+import {ANALYSIS_CONTRACT_REVISION} from "./current-reading-contract";
 import {canReuseAnalysis} from "./analysis-cache";
 // Client submissions cannot claim a server analysis version.
-const submittedResultSchema=resultSchema.omit({analysisVersion:true});
+const submittedResultSchema=resultSchema.omit({analysisVersion:true,analysisContractRevision:true});
 import {runModelReading} from "./model-reading";
 import {modelRuntime} from "./model-client";
 import {operatorAccessConfigured} from "./operator-access";
@@ -102,12 +103,12 @@ function json(value:unknown,status=200){return Response.json(value,{status,heade
 async function modelAnalysis(raw:string,title:string,cs:CorpusEntry[],methodNote:string,model:string,context:CompanyContext,company:string,onProgress?:(stage:string)=>void):Promise<AnalysisResult>{
  const runtime=modelRuntime(env);if(!runtime.apiKey)throw new Error("model_not_connected");
  const {result}=await runModelReading({provider:runtime.provider,apiKey:runtime.apiKey,model,raw,title,comparators:cs,methodNote,request:meteredModelRequest,context,company,onProgress});
- return {...result,analysisVersion:ANALYSIS_VERSION};
+ return {...result,analysisVersion:ANALYSIS_VERSION,analysisContractRevision:ANALYSIS_CONTRACT_REVISION};
 }
 const meteredModelRequest:typeof fetch=async(input,init)=>{try{await reserveModelCall(database(),env.MODEL_DAILY_CALL_LIMIT);}catch(error){if(error instanceof ModelBudgetError)throw error;throw new Error("model_quota_storage_unavailable");}return fetch(input,init);};
 async function updateAnalysis(current:Analysis,userId:string,input:{result?:AnalysisResult;status?:Analysis["status"];revision:number;note?:string;issues?:string[]}){
  if(input.revision!==current.revision)throw new HttpError(409,"该记录已更新，请刷新后再保存 / This record changed; refresh before saving");
- const result=input.result?{...input.result,analysisVersion:current.result.analysisVersion}:current.result;const status=input.status??current.status;
+ const result=input.result?{...input.result,analysisVersion:current.result.analysisVersion,analysisContractRevision:current.result.analysisContractRevision}:current.result;const status=input.status??current.status;
  const errors=evidenceErrors(result,current.raw_text);
  if(result.sourceTranslation){errors.push(...translationErrors(result.sourceTranslation,current.title,current.raw_text));if(result.sourceTranslation.sourceHash!==await sourceFingerprint(current.title,current.raw_text))errors.push("Translation does not match the current title and JD.");}if(errors.length)throw new HttpError(422,errors.join("；"));
  const db=database(),change=uid(),stamp=now(),next=current.revision+1;

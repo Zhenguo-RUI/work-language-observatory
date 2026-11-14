@@ -10,7 +10,7 @@ import type {AnalysisResult,CorpusEntry,CompanyContext} from "./observatory-type
 
 // Company metadata, translation and provenance belong to the application. A bad
 // optional company brief must not discard a separately verified JD reading.
-const coreReadingSchema=resultSchema.omit({context:true,sourceTranslation:true,analysisVersion:true});
+const coreReadingSchema=resultSchema.omit({context:true,sourceTranslation:true,analysisVersion:true,analysisContractRevision:true});
 const briefOnlyOutputSchema={type:"object",additionalProperties:false,required:["companyBrief"],properties:{companyBrief:companyBriefOutputSchema}};
 export const MODEL_READING_LIMITS={totalMs:270000,firstMs:200000,recoveryMs:90000,briefRepairMs:30000,englishRepairMs:30000,firstTokens:32768,recoveryTokens:24576,briefRepairTokens:6000,englishRepairTokens:4000} as const;
 const recoverable=new Set(["model_network_error","model_timeout","model_incomplete_output","model_incomplete_stream","model_empty_response","model_invalid_response","model_invalid_stream","model_stream_error","model_http_429","model_http_500","model_http_502","model_http_503","model_http_504"]);

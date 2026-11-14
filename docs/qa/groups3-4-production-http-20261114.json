@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-11-14T11:57:21.304Z",
+  "release": {
+    "release": "reading-and-research-20261114",
+    "baseCommit": "6a8f6da811e9b746edbb2bb616bdf9b376a20a59",
+    "scope": "groups-3-4-home-research-readability",
+    "preparedDate": "2026-11-14"
+  },
+  "allPassed": true,
+  "results": [
+    {
+      "url": "https://work-language-observatory.org/?page=sample&lang=zh",
+      "status": 200,
+      "elapsedMs": 2349,
+      "bodyPresent": true,
+      "title": "工作语言观察站",
+      "bytes": 32608,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=sample&lang=en",
+      "status": 200,
+      "elapsedMs": 1830,
+      "bodyPresent": true,
+      "title": "Work Language Observatory",
+      "bytes": 34798,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=research&lang=zh",
+      "status": 200,
+      "elapsedMs": 1345,
+      "bodyPresent": true,
+      "title": "工作语言观察站",
+      "bytes": 109665,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=research&lang=en",
+      "status": 200,
+      "elapsedMs": 1937,
+      "bodyPresent": true,
+      "title": "Work Language Observatory",
+      "bytes": 112337,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=keywords&lang=zh&term=%E6%8A%97%E5%8E%8B",
+      "status": 200,
+      "elapsedMs": 1347,
+      "bodyPresent": true,
+      "title": "工作语言观察站",
+      "bytes": 101770,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=keywords&lang=en&term=%E6%8A%97%E5%8E%8B",
+      "status": 200,
+      "elapsedMs": 1937,
+      "bodyPresent": true,
+      "title": "Work Language Observatory",
+      "bytes": 102301,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=keywords&lang=zh&term=%E8%87%AA%E9%A9%B1",
+      "status": 200,
+      "elapsedMs": 2137,
+      "bodyPresent": true,
+      "title": "工作语言观察站",
+      "bytes": 102108,
+      "cookieSent": false
+    },
+    {
+      "url": "https://work-language-observatory.org/?page=keywords&lang=en&term=%E8%87%AA%E9%A9%B1",
+      "status": 200,
+      "elapsedMs": 1220,
+      "bodyPresent": true,
+      "title": "Work Language Observatory",
+      "bytes": 102663,
+      "cookieSent": false
+    }
+  ]
+}

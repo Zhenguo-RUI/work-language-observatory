@@ -1,0 +1,118 @@
+{
+  "scope": "Local narrow duty-scope fix; mocked providers and archived synthetic response only",
+  "analysisVersion": "work-language-v12",
+  "analysisContractRevision": "numbered-duty-scope-v1",
+  "newPaidCalls": 0,
+  "changes": {
+    "shortNumberedLists": "One ordered group per source clause for 1–8 numbered duties; actions already combined in one source clause remain together",
+    "capacity": "8 groups, indexes 0–7 in stored-result and model schemas",
+    "procedures": "Generation-only lexical guard for unsupported equipment-use, work-stop and disposal controls, with local conditional/proposal checks",
+    "compatibility": "Old records remain schema-readable and editable; server-owned optional revision prevents pre-fix results being reused as current model generations"
+  },
+  "checks": [
+    {
+      "script": "scripts/check-duty-scope.mjs",
+      "passed": true,
+      "count": 34
+    },
+    {
+      "script": "scripts/check-current-reading.mjs",
+      "passed": true,
+      "count": 13
+    },
+    {
+      "script": "scripts/check-analysis-cache.mjs",
+      "passed": true,
+      "count": 9
+    },
+    {
+      "script": "scripts/check-analysis.mjs",
+      "passed": true,
+      "count": 54
+    },
+    {
+      "script": "scripts/check-operational-reading.mjs",
+      "passed": true,
+      "count": 45
+    },
+    {
+      "script": "scripts/check-model-recovery.mjs",
+      "passed": true,
+      "count": 41
+    },
+    {
+      "script": "scripts/check-company-brief.mjs",
+      "passed": true,
+      "count": 14
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true
+    },
+    {
+      "command": "targeted ESLint on changed files",
+      "passed": true,
+      "preExistingWarnings": 2
+    }
+  ],
+  "archivedSyntheticReplay": {
+    "paidCalls": 0,
+    "errorCount": 8,
+    "rejectedMergedDuties": true,
+    "rejectedUnsupportedGaugeHold": true
+  },
+  "limits": [
+    "Exact one-to-one coverage is structural; arbitrary semantic narrowing within one paragraph still requires close reading.",
+    "Procedure checks are narrow lexical guards and prompt constraints, not a complete entailment or authority model.",
+    "No live generation has been run after this fix."
+  ],
+  "newRegressionCases": [
+    "seven independent source duties parse and pass the generation evidence gate",
+    "the observed seven-to-five scope-narrowing merger is rejected despite complete coverage",
+    "a short merger explanation cannot override separate numbered duties",
+    "older merged records remain parseable and readable",
+    "duplicate source entries and a shared destination cannot masquerade as complete coverage",
+    "swapped output anchors fail even if coverage indexes are complete",
+    "splitting one numbered clause across two groups is rejected",
+    "multiple actions originally combined in one numbered clause stay valid together",
+    "eight groups and index seven fit both stored and model schemas",
+    "long lists can still group distinct source clauses without losing coverage",
+    "nine independent output groups exceed the bounded schema",
+    "the observed extra gauge hold procedure fails in both languages",
+    "a hypothetical label does not authorize an asserted company control procedure",
+    "example wording and a defect condition do not authorize a new mandatory procedure",
+    "a local permission-dependent proposed method remains allowed",
+    "an explicitly advertised control action remains valid",
+    "a different numbered duty cannot lend stop-use authority to this duty",
+    "a control mentioned in records or denied authority does not grant it",
+    "record checking or expiry uncertainty cannot excuse a subsequent control action",
+    "an explicitly combined record-check and control action permits its bilingual paraphrase",
+    "disabling a rule in an advertised ablation is not equipment-control authority",
+    "advice against unilateral stoppage preserves the stated reporting duty",
+    "negative unilateral advice does not assert equipment withholding or disposal",
+    "prohibiting ordinary equipment use is still an unsupported hold rule",
+    "an explicit source use prohibition supports a bilingual hold instruction",
+    "an unsupported claim of missing disposal decision rights remains a policy claim",
+    "an explicit source authority denial permits its paraphrase but never grants the control",
+    "uncertainty about disposal rights can lead to a clarification",
+    "negative advice cannot excuse a following affirmative control action",
+    "company-policy framing is not harmless unilateral-action advice",
+    "a narrowed merger receives one bounded repair with the original seven source duties",
+    "an ungrounded procedure receives the same bounded repair",
+    "repeated scope failure stops after two mocked provider calls",
+    "provider output cannot claim the server-owned contract revision"
+  ],
+  "focusedNegativeAdviceReview": {
+    "passed": true,
+    "addedRegressionGroups": 9,
+    "rule": "Allow advisory negation of an affirmative control with a unilateral-action cue. A prohibition of ordinary equipment use remains a hold rule; a bare authority denial still needs source evidence.",
+    "rerunChecks": [
+      "check-duty-scope: 34",
+      "check-current-reading: 13",
+      "check-analysis: 54",
+      "typecheck",
+      "targeted ESLint"
+    ],
+    "newPaidCalls": 0
+  }
+}
